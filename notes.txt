@@ -1,0 +1,17 @@
+msbuild prop: Version("3.8.1.1-develop"), RepositoryUrl, Configuration
+
+pack prop: OutputDirectory=artifacts/NuGet
+
+SelfContained = false
+
+ConsoleCheck
+Native
+DesktopGL
+WindowsDX
+Android
+iOS
+UWP
+ContentPipeline
+MGFXC
+MGCB
+DotNetTemplates
