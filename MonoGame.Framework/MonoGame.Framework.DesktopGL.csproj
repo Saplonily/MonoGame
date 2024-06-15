@@ -11,12 +11,7 @@
     <CopyContentFiles>True</CopyContentFiles>
   </PropertyGroup>
 
-  <!-- NETFX reference assemblies let us target .NET Framework on Mac/Linux without Mono -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="MonoGame.Library.SDL" Version="2.26.5.5" />
     <PackageReference Include="NVorbis" Version="0.10.4" />
   </ItemGroup>
