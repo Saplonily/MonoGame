@@ -3,7 +3,6 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna;
 using Monogame;
 using Monogame.Content;
 using Monogame.Graphics;
