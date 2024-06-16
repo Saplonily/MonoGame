@@ -142,4 +142,3 @@ namespace Monogame.Media
 #endif
     }
 }
-

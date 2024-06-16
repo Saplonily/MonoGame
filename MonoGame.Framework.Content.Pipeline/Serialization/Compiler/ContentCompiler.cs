@@ -3,10 +3,10 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.IO;
-using Monogame.Graphics;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
+using Monogame.Graphics;
 
 namespace Monogame.Content.Pipeline.Serialization.Compiler
 {

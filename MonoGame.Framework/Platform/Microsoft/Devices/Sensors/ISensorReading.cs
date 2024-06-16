@@ -11,4 +11,3 @@ namespace Microsoft.Devices.Sensors
         DateTimeOffset Timestamp { get; }
     }
 }
-

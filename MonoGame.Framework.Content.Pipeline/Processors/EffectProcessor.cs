@@ -86,17 +86,17 @@ namespace Monogame.Content.Pipeline.Processors
         {
             switch (platform)
             {
-                case TargetPlatform.Windows:
-                case TargetPlatform.WindowsPhone8:
-                case TargetPlatform.WindowsStoreApp:
-                    return "DirectX_11";
-                case TargetPlatform.iOS:
-                case TargetPlatform.Android:
-                case TargetPlatform.DesktopGL:
-                case TargetPlatform.MacOSX:
-                case TargetPlatform.RaspberryPi:
-                case TargetPlatform.Web:
-                    return "OpenGL";
+            case TargetPlatform.Windows:
+            case TargetPlatform.WindowsPhone8:
+            case TargetPlatform.WindowsStoreApp:
+                return "DirectX_11";
+            case TargetPlatform.iOS:
+            case TargetPlatform.Android:
+            case TargetPlatform.DesktopGL:
+            case TargetPlatform.MacOSX:
+            case TargetPlatform.RaspberryPi:
+            case TargetPlatform.Web:
+                return "OpenGL";
             }
 
             return platform.ToString();

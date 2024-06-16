@@ -188,16 +188,16 @@ namespace MonoGame.Tests.ContentPipeline
         {
             switch (format)
             {
-                case ConversionFormat.Pcm:
-                    if (bitsPerSample == 32)
-                        return 3;
-                    return 1;
-                case ConversionFormat.Adpcm:
-                    return 2;
-                case ConversionFormat.WindowsMedia:
-                case ConversionFormat.Xma:
-                default:
-                    throw new ArgumentOutOfRangeException("format");
+            case ConversionFormat.Pcm:
+                if (bitsPerSample == 32)
+                    return 3;
+                return 1;
+            case ConversionFormat.Adpcm:
+                return 2;
+            case ConversionFormat.WindowsMedia:
+            case ConversionFormat.Xma:
+            default:
+                throw new ArgumentOutOfRangeException("format");
             }
         }
 

@@ -118,35 +118,35 @@ namespace Monogame
             {
                 switch (this.PreLoop)
                 {
-                    case CurveLoopType.Constant:
-                        //constant
-                        return first.Value;
+                case CurveLoopType.Constant:
+                    //constant
+                    return first.Value;
 
-                    case CurveLoopType.Linear:
-                        // linear y = a*x +b with a tangeant of last point
-                        return first.Value - first.TangentIn * (first.Position - position);
+                case CurveLoopType.Linear:
+                    // linear y = a*x +b with a tangeant of last point
+                    return first.Value - first.TangentIn * (first.Position - position);
 
-                    case CurveLoopType.Cycle:
-                        //start -> end / start -> end
-                        int cycle = GetNumberOfCycle(position);
-                        float virtualPos = position - (cycle * (last.Position - first.Position));
-                        return GetCurvePosition(virtualPos);
+                case CurveLoopType.Cycle:
+                    //start -> end / start -> end
+                    int cycle = GetNumberOfCycle(position);
+                    float virtualPos = position - (cycle * (last.Position - first.Position));
+                    return GetCurvePosition(virtualPos);
 
-                    case CurveLoopType.CycleOffset:
-                        //make the curve continue (with no step) so must up the curve each cycle of delta(value)
-                        cycle = GetNumberOfCycle(position);
+                case CurveLoopType.CycleOffset:
+                    //make the curve continue (with no step) so must up the curve each cycle of delta(value)
+                    cycle = GetNumberOfCycle(position);
+                    virtualPos = position - (cycle * (last.Position - first.Position));
+                    return (GetCurvePosition(virtualPos) + cycle * (last.Value - first.Value));
+
+                case CurveLoopType.Oscillate:
+                    //go back on curve from end and target start 
+                    // start-> end / end -> start
+                    cycle = GetNumberOfCycle(position);
+                    if (0 == cycle % 2f)//if pair
                         virtualPos = position - (cycle * (last.Position - first.Position));
-                        return (GetCurvePosition(virtualPos) + cycle * (last.Value - first.Value));
-
-                    case CurveLoopType.Oscillate:
-                        //go back on curve from end and target start 
-                        // start-> end / end -> start
-                        cycle = GetNumberOfCycle(position);
-                        if (0 == cycle % 2f)//if pair
-                            virtualPos = position - (cycle * (last.Position - first.Position));
-                        else
-                            virtualPos = last.Position - position + first.Position + (cycle * (last.Position - first.Position));
-                        return GetCurvePosition(virtualPos);
+                    else
+                        virtualPos = last.Position - position + first.Position + (cycle * (last.Position - first.Position));
+                    return GetCurvePosition(virtualPos);
                 }
             }
             else if (position > last.Position)
@@ -154,36 +154,36 @@ namespace Monogame
                 int cycle;
                 switch (this.PostLoop)
                 {
-                    case CurveLoopType.Constant:
-                        //constant
-                        return last.Value;
+                case CurveLoopType.Constant:
+                    //constant
+                    return last.Value;
 
-                    case CurveLoopType.Linear:
-                        // linear y = a*x +b with a tangeant of last point
-                        return last.Value + first.TangentOut * (position - last.Position);
+                case CurveLoopType.Linear:
+                    // linear y = a*x +b with a tangeant of last point
+                    return last.Value + first.TangentOut * (position - last.Position);
 
-                    case CurveLoopType.Cycle:
-                        //start -> end / start -> end
-                        cycle = GetNumberOfCycle(position);
-                        float virtualPos = position - (cycle * (last.Position - first.Position));
-                        return GetCurvePosition(virtualPos);
+                case CurveLoopType.Cycle:
+                    //start -> end / start -> end
+                    cycle = GetNumberOfCycle(position);
+                    float virtualPos = position - (cycle * (last.Position - first.Position));
+                    return GetCurvePosition(virtualPos);
 
-                    case CurveLoopType.CycleOffset:
-                        //make the curve continue (with no step) so must up the curve each cycle of delta(value)
-                        cycle = GetNumberOfCycle(position);
+                case CurveLoopType.CycleOffset:
+                    //make the curve continue (with no step) so must up the curve each cycle of delta(value)
+                    cycle = GetNumberOfCycle(position);
+                    virtualPos = position - (cycle * (last.Position - first.Position));
+                    return (GetCurvePosition(virtualPos) + cycle * (last.Value - first.Value));
+
+                case CurveLoopType.Oscillate:
+                    //go back on curve from end and target start 
+                    // start-> end / end -> start
+                    cycle = GetNumberOfCycle(position);
+                    virtualPos = position - (cycle * (last.Position - first.Position));
+                    if (0 == cycle % 2f)//if pair
                         virtualPos = position - (cycle * (last.Position - first.Position));
-                        return (GetCurvePosition(virtualPos) + cycle * (last.Value - first.Value));
-
-                    case CurveLoopType.Oscillate:
-                        //go back on curve from end and target start 
-                        // start-> end / end -> start
-                        cycle = GetNumberOfCycle(position);
-                        virtualPos = position - (cycle * (last.Position - first.Position));
-                        if (0 == cycle % 2f)//if pair
-                            virtualPos = position - (cycle * (last.Position - first.Position));
-                        else
-                            virtualPos = last.Position - position + first.Position + (cycle * (last.Position - first.Position));
-                        return GetCurvePosition(virtualPos);
+                    else
+                        virtualPos = last.Position - position + first.Position + (cycle * (last.Position - first.Position));
+                    return GetCurvePosition(virtualPos);
                 }
             }
 
@@ -255,36 +255,36 @@ namespace Monogame
 
             switch (tangentInType)
             {
-                case CurveTangent.Flat:
+            case CurveTangent.Flat:
+                key.TangentIn = 0;
+                break;
+            case CurveTangent.Linear:
+                key.TangentIn = v - v0;
+                break;
+            case CurveTangent.Smooth:
+                var pn = p1 - p0;
+                if (Math.Abs(pn) < float.Epsilon)
                     key.TangentIn = 0;
-                    break;
-                case CurveTangent.Linear:
-                    key.TangentIn = v - v0;
-                    break;
-                case CurveTangent.Smooth:
-                    var pn = p1 - p0;
-                    if (Math.Abs(pn) < float.Epsilon)
-                        key.TangentIn = 0;
-                    else
-                        key.TangentIn = (v1 - v0) * ((p - p0) / pn);
-                    break;
+                else
+                    key.TangentIn = (v1 - v0) * ((p - p0) / pn);
+                break;
             }
 
             switch (tangentOutType)
             {
-                case CurveTangent.Flat:
+            case CurveTangent.Flat:
+                key.TangentOut = 0;
+                break;
+            case CurveTangent.Linear:
+                key.TangentOut = v1 - v;
+                break;
+            case CurveTangent.Smooth:
+                var pn = p1 - p0;
+                if (Math.Abs(pn) < float.Epsilon)
                     key.TangentOut = 0;
-                    break;
-                case CurveTangent.Linear:
-                    key.TangentOut = v1 - v;
-                    break;
-                case CurveTangent.Smooth:
-                    var pn = p1 - p0;
-                    if (Math.Abs(pn) < float.Epsilon)
-                        key.TangentOut = 0;
-                    else
-                        key.TangentOut = (v1 - v0) * ((p1 - p) / pn);
-                    break;
+                else
+                    key.TangentOut = (v1 - v0) * ((p1 - p) / pn);
+                break;
             }
         }
 

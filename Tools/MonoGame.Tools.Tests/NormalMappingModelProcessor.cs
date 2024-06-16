@@ -8,10 +8,10 @@
 #endregion
 
 #region Using Statements
+using System;
 using Monogame.Content.Pipeline;
 using Monogame.Content.Pipeline.Graphics;
 using Monogame.Content.Pipeline.Processors;
-using System;
 
 #endregion
 

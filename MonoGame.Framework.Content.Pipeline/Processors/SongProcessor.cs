@@ -3,8 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Monogame.Content.Pipeline.Audio;
 using System.IO;
+using Monogame.Content.Pipeline.Audio;
 using MonoGame.Framework.Content.Pipeline.Builder;
 
 namespace Monogame.Content.Pipeline.Processors

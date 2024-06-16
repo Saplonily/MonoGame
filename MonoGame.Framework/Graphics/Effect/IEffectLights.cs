@@ -41,4 +41,3 @@ namespace Monogame.Graphics
 		void EnableDefaultLighting();
     }
 }
-

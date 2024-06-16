@@ -319,28 +319,28 @@ namespace Monogame.Audio
                     // Process the final curve value based on the parameter type it is.
                     switch (rpcCurve.Parameter)
                     {
-                        case RpcParameter.Volume:
-                            volume *= XactHelpers.ParseVolumeFromDecibels(value / 100.0f);
-                            break;
+                    case RpcParameter.Volume:
+                        volume *= XactHelpers.ParseVolumeFromDecibels(value / 100.0f);
+                        break;
 
-                        case RpcParameter.Pitch:
-                            pitch += value / 1000.0f;
-                            break;
+                    case RpcParameter.Pitch:
+                        pitch += value / 1000.0f;
+                        break;
 
-                        case RpcParameter.ReverbSend:
-                            reverbMix *= XactHelpers.ParseVolumeFromDecibels(value / 100.0f);
-                            break;
+                    case RpcParameter.ReverbSend:
+                        reverbMix *= XactHelpers.ParseVolumeFromDecibels(value / 100.0f);
+                        break;
 
-                        case RpcParameter.FilterFrequency:
-                            filterFrequency = value;
-                            break;
+                    case RpcParameter.FilterFrequency:
+                        filterFrequency = value;
+                        break;
 
-                        case RpcParameter.FilterQFactor:
-                            filterQFactor = value;
-                            break;
+                    case RpcParameter.FilterQFactor:
+                        filterQFactor = value;
+                        break;
 
-                        default:
-                            throw new ArgumentOutOfRangeException("rpcCurve.Parameter");
+                    default:
+                        throw new ArgumentOutOfRangeException("rpcCurve.Parameter");
                     }
                 }
 
@@ -388,4 +388,3 @@ namespace Monogame.Audio
         }
     }
 }
-

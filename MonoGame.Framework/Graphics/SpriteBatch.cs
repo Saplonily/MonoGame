@@ -194,18 +194,18 @@ namespace Monogame.Graphics
             // set SortKey based on SpriteSortMode.
             switch (_sortMode)
             {
-                // Comparison of Texture objects.
-                case SpriteSortMode.Texture:
-                    item.SortKey = texture.SortingKey;
-                    break;
-                // Comparison of Depth
-                case SpriteSortMode.FrontToBack:
-                    item.SortKey = layerDepth;
-                    break;
-                // Comparison of Depth in reverse
-                case SpriteSortMode.BackToFront:
-                    item.SortKey = -layerDepth;
-                    break;
+            // Comparison of Texture objects.
+            case SpriteSortMode.Texture:
+                item.SortKey = texture.SortingKey;
+                break;
+            // Comparison of Depth
+            case SpriteSortMode.FrontToBack:
+                item.SortKey = layerDepth;
+                break;
+            // Comparison of Depth in reverse
+            case SpriteSortMode.BackToFront:
+                item.SortKey = -layerDepth;
+                break;
             }
 
             origin = origin * scale;
@@ -326,18 +326,18 @@ namespace Monogame.Graphics
             // set SortKey based on SpriteSortMode.
             switch (_sortMode)
             {
-                // Comparison of Texture objects.
-                case SpriteSortMode.Texture:
-                    item.SortKey = texture.SortingKey;
-                    break;
-                // Comparison of Depth
-                case SpriteSortMode.FrontToBack:
-                    item.SortKey = layerDepth;
-                    break;
-                // Comparison of Depth in reverse
-                case SpriteSortMode.BackToFront:
-                    item.SortKey = -layerDepth;
-                    break;
+            // Comparison of Texture objects.
+            case SpriteSortMode.Texture:
+                item.SortKey = texture.SortingKey;
+                break;
+            // Comparison of Depth
+            case SpriteSortMode.FrontToBack:
+                item.SortKey = layerDepth;
+                break;
+            // Comparison of Depth in reverse
+            case SpriteSortMode.BackToFront:
+                item.SortKey = -layerDepth;
+                break;
             }
 
             if (sourceRectangle.HasValue)
@@ -684,18 +684,18 @@ namespace Monogame.Graphics
             // set SortKey based on SpriteSortMode.
             switch (_sortMode)
             {
-                // Comparison of Texture objects.
-                case SpriteSortMode.Texture:
-                    sortKey = spriteFont.Texture.SortingKey;
-                    break;
-                // Comparison of Depth
-                case SpriteSortMode.FrontToBack:
-                    sortKey = layerDepth;
-                    break;
-                // Comparison of Depth in reverse
-                case SpriteSortMode.BackToFront:
-                    sortKey = -layerDepth;
-                    break;
+            // Comparison of Texture objects.
+            case SpriteSortMode.Texture:
+                sortKey = spriteFont.Texture.SortingKey;
+                break;
+            // Comparison of Depth
+            case SpriteSortMode.FrontToBack:
+                sortKey = layerDepth;
+                break;
+            // Comparison of Depth in reverse
+            case SpriteSortMode.BackToFront:
+                sortKey = -layerDepth;
+                break;
             }
 
             var flipAdjustment = Vector2.Zero;
@@ -870,18 +870,18 @@ namespace Monogame.Graphics
             // set SortKey based on SpriteSortMode.
             switch (_sortMode)
             {
-                // Comparison of Texture objects.
-                case SpriteSortMode.Texture:
-                    sortKey = spriteFont.Texture.SortingKey;
-                    break;
-                // Comparison of Depth
-                case SpriteSortMode.FrontToBack:
-                    sortKey = layerDepth;
-                    break;
-                // Comparison of Depth in reverse
-                case SpriteSortMode.BackToFront:
-                    sortKey = -layerDepth;
-                    break;
+            // Comparison of Texture objects.
+            case SpriteSortMode.Texture:
+                sortKey = spriteFont.Texture.SortingKey;
+                break;
+            // Comparison of Depth
+            case SpriteSortMode.FrontToBack:
+                sortKey = layerDepth;
+                break;
+            // Comparison of Depth in reverse
+            case SpriteSortMode.BackToFront:
+                sortKey = -layerDepth;
+                break;
             }
 
             var flipAdjustment = Vector2.Zero;
@@ -1152,18 +1152,18 @@ namespace Monogame.Graphics
             // set SortKey based on SpriteSortMode.
             switch (_sortMode)
             {
-                // Comparison of Texture objects.
-                case SpriteSortMode.Texture:
-                    sortKey = spriteFont.Texture.SortingKey;
-                    break;
-                // Comparison of Depth
-                case SpriteSortMode.FrontToBack:
-                    sortKey = layerDepth;
-                    break;
-                // Comparison of Depth in reverse
-                case SpriteSortMode.BackToFront:
-                    sortKey = -layerDepth;
-                    break;
+            // Comparison of Texture objects.
+            case SpriteSortMode.Texture:
+                sortKey = spriteFont.Texture.SortingKey;
+                break;
+            // Comparison of Depth
+            case SpriteSortMode.FrontToBack:
+                sortKey = layerDepth;
+                break;
+            // Comparison of Depth in reverse
+            case SpriteSortMode.BackToFront:
+                sortKey = -layerDepth;
+                break;
             }
 
             var flipAdjustment = Vector2.Zero;
@@ -1337,18 +1337,18 @@ namespace Monogame.Graphics
             // set SortKey based on SpriteSortMode.
             switch (_sortMode)
             {
-                // Comparison of Texture objects.
-                case SpriteSortMode.Texture:
-                    sortKey = spriteFont.Texture.SortingKey;
-                    break;
-                // Comparison of Depth
-                case SpriteSortMode.FrontToBack:
-                    sortKey = layerDepth;
-                    break;
-                // Comparison of Depth in reverse
-                case SpriteSortMode.BackToFront:
-                    sortKey = -layerDepth;
-                    break;
+            // Comparison of Texture objects.
+            case SpriteSortMode.Texture:
+                sortKey = spriteFont.Texture.SortingKey;
+                break;
+            // Comparison of Depth
+            case SpriteSortMode.FrontToBack:
+                sortKey = layerDepth;
+                break;
+            // Comparison of Depth in reverse
+            case SpriteSortMode.BackToFront:
+                sortKey = -layerDepth;
+                break;
             }
 
             var flipAdjustment = Vector2.Zero;
@@ -1520,4 +1520,3 @@ namespace Monogame.Graphics
         }
     }
 }
-

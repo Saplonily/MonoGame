@@ -7,10 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Monogame;
-
-using NUnit.Framework;
-
 using MonoGame.Tests.Components;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.Visual
 {

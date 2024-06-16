@@ -486,19 +486,19 @@ namespace Monogame
             _gameTimer = Stopwatch.StartNew();
             switch (runBehavior)
             {
-                case GameRunBehavior.Asynchronous:
-                    Platform.AsyncRunLoopEnded += Platform_AsyncRunLoopEnded;
-                    Platform.StartRunLoop();
-                    break;
-                case GameRunBehavior.Synchronous:
-                    // XNA runs one Update even before showing the window
-                    DoUpdate(new GameTime());
+            case GameRunBehavior.Asynchronous:
+                Platform.AsyncRunLoopEnded += Platform_AsyncRunLoopEnded;
+                Platform.StartRunLoop();
+                break;
+            case GameRunBehavior.Synchronous:
+                // XNA runs one Update even before showing the window
+                DoUpdate(new GameTime());
 
-                    Platform.RunLoop();
-                    break;
-                default:
-                    throw new ArgumentException(string.Format(
-                        "Handling for the run behavior {0} is not implemented.", runBehavior));
+                Platform.RunLoop();
+                break;
+            default:
+                throw new ArgumentException(string.Format(
+                    "Handling for the run behavior {0} is not implemented.", runBehavior));
             }
         }
 

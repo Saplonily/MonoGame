@@ -17,4 +17,3 @@ namespace Monogame.Audio
         Stereo = 2
     }
 }
-

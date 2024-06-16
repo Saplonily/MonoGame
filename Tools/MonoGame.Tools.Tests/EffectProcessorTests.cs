@@ -1,8 +1,8 @@
 using System;
-using Monogame.Content.Pipeline;
-using NUnit.Framework;
-using Monogame.Content.Pipeline.Processors;
 using System.IO;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Processors;
+using NUnit.Framework;
 #if DIRECTX
 using System.Collections.Generic;
 using TwoMGFX;

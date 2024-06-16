@@ -64,4 +64,3 @@ namespace Monogame.Input.Touch
         VerticalDrag = 512,
     }
 }
-

@@ -4,10 +4,10 @@
 
 using System;
 using System.Diagnostics;
-using System.Threading;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace MonoGame.Content.Builder
 {

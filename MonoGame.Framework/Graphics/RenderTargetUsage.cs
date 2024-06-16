@@ -23,4 +23,3 @@ namespace Monogame.Graphics
         PlatformContents
     }
 }
-

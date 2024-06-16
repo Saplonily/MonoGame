@@ -18,4 +18,3 @@ namespace Monogame.Content
         }
     }
 }
-

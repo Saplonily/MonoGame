@@ -1,7 +1,7 @@
 using System;
+using Android.App;
 using Android.Content;
 using Monogame.Media;
-using Android.App;
 
 namespace Monogame
 {
@@ -48,4 +48,3 @@ namespace Monogame
         }
     }
 }
-

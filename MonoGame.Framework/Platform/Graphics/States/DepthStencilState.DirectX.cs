@@ -73,32 +73,32 @@ namespace Monogame.Graphics
         {
             switch (op)
             {
-                case StencilOperation.Decrement:
-                    return SharpDX.Direct3D11.StencilOperation.Decrement;
+            case StencilOperation.Decrement:
+                return SharpDX.Direct3D11.StencilOperation.Decrement;
 
-                case StencilOperation.DecrementSaturation:
-                    return SharpDX.Direct3D11.StencilOperation.DecrementAndClamp;
+            case StencilOperation.DecrementSaturation:
+                return SharpDX.Direct3D11.StencilOperation.DecrementAndClamp;
 
-                case StencilOperation.Increment:
-                    return SharpDX.Direct3D11.StencilOperation.Increment;
+            case StencilOperation.Increment:
+                return SharpDX.Direct3D11.StencilOperation.Increment;
 
-                case StencilOperation.IncrementSaturation:
-                    return SharpDX.Direct3D11.StencilOperation.IncrementAndClamp;
+            case StencilOperation.IncrementSaturation:
+                return SharpDX.Direct3D11.StencilOperation.IncrementAndClamp;
 
-                case StencilOperation.Invert:
-                    return SharpDX.Direct3D11.StencilOperation.Invert;
+            case StencilOperation.Invert:
+                return SharpDX.Direct3D11.StencilOperation.Invert;
 
-                case StencilOperation.Keep:
-                    return SharpDX.Direct3D11.StencilOperation.Keep;
+            case StencilOperation.Keep:
+                return SharpDX.Direct3D11.StencilOperation.Keep;
 
-                case StencilOperation.Replace:
-                    return SharpDX.Direct3D11.StencilOperation.Replace;
+            case StencilOperation.Replace:
+                return SharpDX.Direct3D11.StencilOperation.Replace;
 
-                case StencilOperation.Zero:
-                    return SharpDX.Direct3D11.StencilOperation.Zero;
+            case StencilOperation.Zero:
+                return SharpDX.Direct3D11.StencilOperation.Zero;
 
-                default:
-                    throw new ArgumentException("Invalid stencil operation!");
+            default:
+                throw new ArgumentException("Invalid stencil operation!");
             }
         }
 
@@ -108,4 +108,3 @@ namespace Monogame.Graphics
         }
     }
 }
-

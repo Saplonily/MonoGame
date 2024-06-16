@@ -3,14 +3,14 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using Monogame;
 using Monogame.Audio;
-using NUnit.Framework;
 using Monogame.Content;
 using Monogame.Graphics;
-using System.Threading;
-using System.Diagnostics;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.Audio
 {

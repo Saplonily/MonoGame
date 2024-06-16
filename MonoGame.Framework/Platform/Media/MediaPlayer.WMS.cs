@@ -3,10 +3,10 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.Runtime.InteropServices;
 using SharpDX;
 using SharpDX.MediaFoundation;
 using SharpDX.Win32;
-using System.Runtime.InteropServices;
 
 namespace Monogame.Media
 {
@@ -47,17 +47,17 @@ namespace Monogame.Media
 
                 switch (ev.TypeInfo)
                 {
-                    case MediaEventTypes.SessionEnded:
-                        _sessionState = SessionState.Ended;
-                        OnSongFinishedPlaying(null, null);
-                        break;
-                    case MediaEventTypes.SessionTopologyStatus:
-                        if (ev.Get(EventAttributeKeys.TopologyStatus) == TopologyStatus.Ready)
-                            OnTopologyReady();
-                        break;
-                    case MediaEventTypes.SessionStopped:
-                        OnSessionStopped();
-                        break;
+                case MediaEventTypes.SessionEnded:
+                    _sessionState = SessionState.Ended;
+                    OnSongFinishedPlaying(null, null);
+                    break;
+                case MediaEventTypes.SessionTopologyStatus:
+                    if (ev.Get(EventAttributeKeys.TopologyStatus) == TopologyStatus.Ready)
+                        OnTopologyReady();
+                    break;
+                case MediaEventTypes.SessionStopped:
+                    OnSessionStopped();
+                    break;
                 }
 
                 _session.BeginGetEvent(this, null);

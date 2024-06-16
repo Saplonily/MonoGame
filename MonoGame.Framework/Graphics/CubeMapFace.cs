@@ -35,4 +35,3 @@ namespace Monogame.Graphics
 		NegativeZ
     }
 }
-

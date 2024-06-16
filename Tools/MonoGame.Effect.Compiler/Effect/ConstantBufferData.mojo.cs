@@ -55,43 +55,43 @@ namespace MonoGame.Effect
 
             switch (symbol.info.parameter_class)
             {
-                case MojoShader.MOJOSHADER_symbolClass.MOJOSHADER_SYMCLASS_SCALAR:
-                    param.class_ = EffectObject.D3DXPARAMETER_CLASS.SCALAR;
-                    break;
+            case MojoShader.MOJOSHADER_symbolClass.MOJOSHADER_SYMCLASS_SCALAR:
+                param.class_ = EffectObject.D3DXPARAMETER_CLASS.SCALAR;
+                break;
 
-                case MojoShader.MOJOSHADER_symbolClass.MOJOSHADER_SYMCLASS_VECTOR:
-                    param.class_ = EffectObject.D3DXPARAMETER_CLASS.VECTOR;
-                    break;
+            case MojoShader.MOJOSHADER_symbolClass.MOJOSHADER_SYMCLASS_VECTOR:
+                param.class_ = EffectObject.D3DXPARAMETER_CLASS.VECTOR;
+                break;
 
-                case MojoShader.MOJOSHADER_symbolClass.MOJOSHADER_SYMCLASS_MATRIX_COLUMNS:
-                    param.class_ = EffectObject.D3DXPARAMETER_CLASS.MATRIX_COLUMNS;
+            case MojoShader.MOJOSHADER_symbolClass.MOJOSHADER_SYMCLASS_MATRIX_COLUMNS:
+                param.class_ = EffectObject.D3DXPARAMETER_CLASS.MATRIX_COLUMNS;
 
-                    // MojoShader optimizes matrices to occupy less registers.
-                    // This effectively convert a Matrix4x4 into Matrix4x3, Matrix4x2 or Matrix4x1.
-                    param.columns = Math.Min(param.columns, symbol.register_count);
+                // MojoShader optimizes matrices to occupy less registers.
+                // This effectively convert a Matrix4x4 into Matrix4x3, Matrix4x2 or Matrix4x1.
+                param.columns = Math.Min(param.columns, symbol.register_count);
 
-                    break;
+                break;
 
-                default:
-                    throw new Exception("Unsupported parameter class!");
+            default:
+                throw new Exception("Unsupported parameter class!");
             }
 
             switch (symbol.info.parameter_type)
             {
-                case MojoShader.MOJOSHADER_symbolType.MOJOSHADER_SYMTYPE_BOOL:
-                    param.type = EffectObject.D3DXPARAMETER_TYPE.BOOL;
-                    break;
+            case MojoShader.MOJOSHADER_symbolType.MOJOSHADER_SYMTYPE_BOOL:
+                param.type = EffectObject.D3DXPARAMETER_TYPE.BOOL;
+                break;
 
-                case MojoShader.MOJOSHADER_symbolType.MOJOSHADER_SYMTYPE_FLOAT:
-                    param.type = EffectObject.D3DXPARAMETER_TYPE.FLOAT;
-                    break;
+            case MojoShader.MOJOSHADER_symbolType.MOJOSHADER_SYMTYPE_FLOAT:
+                param.type = EffectObject.D3DXPARAMETER_TYPE.FLOAT;
+                break;
 
-                case MojoShader.MOJOSHADER_symbolType.MOJOSHADER_SYMTYPE_INT:
-                    param.type = EffectObject.D3DXPARAMETER_TYPE.INT;
-                    break;
+            case MojoShader.MOJOSHADER_symbolType.MOJOSHADER_SYMTYPE_INT:
+                param.type = EffectObject.D3DXPARAMETER_TYPE.INT;
+                break;
 
-                default:
-                    throw new Exception("Unsupported parameter type!");
+            default:
+                throw new Exception("Unsupported parameter type!");
             }
 
             // HACK: We don't have real default parameters from mojoshader! 

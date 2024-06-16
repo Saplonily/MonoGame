@@ -3,11 +3,11 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Collections;
 using System.Reflection;
+using System.Text;
 
 namespace Monogame.Content.Pipeline.Graphics
 {

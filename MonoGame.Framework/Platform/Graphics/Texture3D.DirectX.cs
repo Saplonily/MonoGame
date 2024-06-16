@@ -5,10 +5,10 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using MonoGame.Framework.Utilities;
 using SharpDX;
 using SharpDX.Direct3D11;
 using MapFlags = SharpDX.Direct3D11.MapFlags;
-using MonoGame.Framework.Utilities;
 
 namespace Monogame.Graphics
 {
@@ -150,4 +150,3 @@ namespace Monogame.Graphics
         }
     }
 }
-

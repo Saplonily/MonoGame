@@ -6,9 +6,9 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using Monogame;
 using Monogame.Audio;
 using NUnit.Framework;
-using Monogame;
 
 namespace MonoGame.Tests.Audio
 {

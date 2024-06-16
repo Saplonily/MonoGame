@@ -19,40 +19,40 @@ namespace Monogame.Audio
         {
             switch (format)
             {
-                case FormatPcm:
-                    // PCM
-                    switch (channels)
-                    {
-                        case 1: return bits == 8 ? ALFormat.Mono8 : ALFormat.Mono16;
-                        case 2: return bits == 8 ? ALFormat.Stereo8 : ALFormat.Stereo16;
-                        default: throw new NotSupportedException("The specified channel count is not supported.");
-                    }
-                case FormatMsAdpcm:
-                    // Microsoft ADPCM
-                    switch (channels)
-                    {
-                        case 1: return ALFormat.MonoMSAdpcm;
-                        case 2: return ALFormat.StereoMSAdpcm;
-                        default: throw new NotSupportedException("The specified channel count is not supported.");
-                    }
-                case FormatIeee:
-                    // IEEE Float
-                    switch (channels)
-                    {
-                        case 1: return ALFormat.MonoFloat32;
-                        case 2: return ALFormat.StereoFloat32;
-                        default: throw new NotSupportedException("The specified channel count is not supported.");
-                    }
-                case FormatIma4:
-                    // IMA4 ADPCM
-                    switch (channels)
-                    {
-                        case 1: return ALFormat.MonoIma4;
-                        case 2: return ALFormat.StereoIma4;
-                        default: throw new NotSupportedException("The specified channel count is not supported.");
-                    }
-                default:
-                    throw new NotSupportedException("The specified sound format (" + format.ToString() + ") is not supported.");
+            case FormatPcm:
+                // PCM
+                switch (channels)
+                {
+                case 1: return bits == 8 ? ALFormat.Mono8 : ALFormat.Mono16;
+                case 2: return bits == 8 ? ALFormat.Stereo8 : ALFormat.Stereo16;
+                default: throw new NotSupportedException("The specified channel count is not supported.");
+                }
+            case FormatMsAdpcm:
+                // Microsoft ADPCM
+                switch (channels)
+                {
+                case 1: return ALFormat.MonoMSAdpcm;
+                case 2: return ALFormat.StereoMSAdpcm;
+                default: throw new NotSupportedException("The specified channel count is not supported.");
+                }
+            case FormatIeee:
+                // IEEE Float
+                switch (channels)
+                {
+                case 1: return ALFormat.MonoFloat32;
+                case 2: return ALFormat.StereoFloat32;
+                default: throw new NotSupportedException("The specified channel count is not supported.");
+                }
+            case FormatIma4:
+                // IMA4 ADPCM
+                switch (channels)
+                {
+                case 1: return ALFormat.MonoIma4;
+                case 2: return ALFormat.StereoIma4;
+                default: throw new NotSupportedException("The specified channel count is not supported.");
+                }
+            default:
+                throw new NotSupportedException("The specified sound format (" + format.ToString() + ") is not supported.");
             }
         }
 
@@ -62,14 +62,14 @@ namespace Monogame.Audio
         {
             switch (format)
             {
-                case ALFormat.MonoIma4:
-                    return (blockAlignment - 4) / 4 * 8 + 1;
-                case ALFormat.StereoIma4:
-                    return (blockAlignment / 2 - 4) / 4 * 8 + 1;
-                case ALFormat.MonoMSAdpcm:
-                    return (blockAlignment - 7) * 2 + 2;
-                case ALFormat.StereoMSAdpcm:
-                    return (blockAlignment / 2 - 7) * 2 + 2;
+            case ALFormat.MonoIma4:
+                return (blockAlignment - 4) / 4 * 8 + 1;
+            case ALFormat.StereoIma4:
+                return (blockAlignment / 2 - 4) / 4 * 8 + 1;
+            case ALFormat.MonoMSAdpcm:
+                return (blockAlignment - 7) * 2 + 2;
+            case ALFormat.StereoMSAdpcm:
+                return (blockAlignment / 2 - 7) * 2 + 2;
             }
             return 0;
         }
@@ -129,60 +129,46 @@ namespace Monogame.Audio
                 int chunkSize = reader.ReadInt32();
                 switch (chunkType)
                 {
-                    case "fmt ":
-                        {
-                            audioFormat = reader.ReadInt16(); // 2
-                            channels = reader.ReadInt16(); // 4
-                            frequency = reader.ReadInt32();  // 8
-                            int byteRate = reader.ReadInt32();    // 12
-                            blockAlignment = (int)reader.ReadInt16();  // 14
-                            bitsPerSample = reader.ReadInt16(); // 16
+                case "fmt ":
+                {
+                    audioFormat = reader.ReadInt16(); // 2
+                    channels = reader.ReadInt16(); // 4
+                    frequency = reader.ReadInt32();  // 8
+                    int byteRate = reader.ReadInt32();    // 12
+                    blockAlignment = (int)reader.ReadInt16();  // 14
+                    bitsPerSample = reader.ReadInt16(); // 16
 
-                            // Read extra data if present
-                            if (chunkSize > 16)
-                            {
-                                int extraDataSize = reader.ReadInt16();
-                                if (audioFormat == FormatIma4)
-                                {
-                                    samplesPerBlock = reader.ReadInt16();
-                                    extraDataSize -= 2;
-                                }
-                                if (extraDataSize > 0)
-                                {
-                                    if (reader.BaseStream.CanSeek)
-                                        reader.BaseStream.Seek(extraDataSize, SeekOrigin.Current);
-                                    else
-                                    {
-                                        for (int i = 0; i < extraDataSize; ++i)
-                                            reader.ReadByte();
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    case "fact":
+                    // Read extra data if present
+                    if (chunkSize > 16)
+                    {
+                        int extraDataSize = reader.ReadInt16();
                         if (audioFormat == FormatIma4)
                         {
-                            sampleCount = reader.ReadInt32() * channels;
-                            chunkSize -= 4;
+                            samplesPerBlock = reader.ReadInt16();
+                            extraDataSize -= 2;
                         }
-                        // Skip any remaining chunk data
-                        if (chunkSize > 0)
+                        if (extraDataSize > 0)
                         {
                             if (reader.BaseStream.CanSeek)
-                                reader.BaseStream.Seek(chunkSize, SeekOrigin.Current);
+                                reader.BaseStream.Seek(extraDataSize, SeekOrigin.Current);
                             else
                             {
-                                for (int i = 0; i < chunkSize; ++i)
+                                for (int i = 0; i < extraDataSize; ++i)
                                     reader.ReadByte();
                             }
                         }
-                        break;
-                    case "data":
-                        audioData = reader.ReadBytes(chunkSize);
-                        break;
-                    default:
-                        // Skip this chunk
+                    }
+                }
+                break;
+                case "fact":
+                    if (audioFormat == FormatIma4)
+                    {
+                        sampleCount = reader.ReadInt32() * channels;
+                        chunkSize -= 4;
+                    }
+                    // Skip any remaining chunk data
+                    if (chunkSize > 0)
+                    {
                         if (reader.BaseStream.CanSeek)
                             reader.BaseStream.Seek(chunkSize, SeekOrigin.Current);
                         else
@@ -190,7 +176,21 @@ namespace Monogame.Audio
                             for (int i = 0; i < chunkSize; ++i)
                                 reader.ReadByte();
                         }
-                        break;
+                    }
+                    break;
+                case "data":
+                    audioData = reader.ReadBytes(chunkSize);
+                    break;
+                default:
+                    // Skip this chunk
+                    if (reader.BaseStream.CanSeek)
+                        reader.BaseStream.Seek(chunkSize, SeekOrigin.Current);
+                    else
+                    {
+                        for (int i = 0; i < chunkSize; ++i)
+                            reader.ReadByte();
+                    }
+                    break;
                 }
             }
 
@@ -206,16 +206,16 @@ namespace Monogame.Audio
             {
                 switch (audioFormat)
                 {
-                    case FormatIma4:
-                    case FormatMsAdpcm:
-                        sampleCount = ((audioData.Length / blockAlignment) * samplesPerBlock) + SampleAlignment(format, audioData.Length % blockAlignment);
-                        break;
-                    case FormatPcm:
-                    case FormatIeee:
-                        sampleCount = audioData.Length / ((channels * bitsPerSample) / 8);
-                        break;
-                    default:
-                        throw new InvalidDataException("Unhandled WAV format " + format.ToString());
+                case FormatIma4:
+                case FormatMsAdpcm:
+                    sampleCount = ((audioData.Length / blockAlignment) * samplesPerBlock) + SampleAlignment(format, audioData.Length % blockAlignment);
+                    break;
+                case FormatPcm:
+                case FormatIeee:
+                    sampleCount = audioData.Length / ((channels * bitsPerSample) / 8);
+                    break;
+                default:
+                    throw new InvalidDataException("Unhandled WAV format " + format.ToString());
                 }
             }
 

@@ -197,12 +197,12 @@ namespace Monogame
                 box.Intersects(ref this._planes[i], out planeIntersectionType);
                 switch (planeIntersectionType)
                 {
-                    case PlaneIntersectionType.Front:
-                        result = ContainmentType.Disjoint;
-                        return;
-                    case PlaneIntersectionType.Intersecting:
-                        intersects = true;
-                        break;
+                case PlaneIntersectionType.Front:
+                    result = ContainmentType.Disjoint;
+                    return;
+                case PlaneIntersectionType.Intersecting:
+                    intersects = true;
+                    break;
                 }
             }
             result = intersects ? ContainmentType.Intersects : ContainmentType.Contains;
@@ -225,11 +225,11 @@ namespace Monogame
                 frustum.Intersects(ref _planes[i], out planeIntersectionType);
                 switch (planeIntersectionType)
                 {
-                    case PlaneIntersectionType.Front:
-                        return ContainmentType.Disjoint;
-                    case PlaneIntersectionType.Intersecting:
-                        intersects = true;
-                        break;
+                case PlaneIntersectionType.Front:
+                    return ContainmentType.Disjoint;
+                case PlaneIntersectionType.Intersecting:
+                    intersects = true;
+                    break;
                 }
             }
             return intersects ? ContainmentType.Intersects : ContainmentType.Contains;
@@ -263,12 +263,12 @@ namespace Monogame
                 sphere.Intersects(ref this._planes[i], out planeIntersectionType);
                 switch (planeIntersectionType)
                 {
-                    case PlaneIntersectionType.Front:
-                        result = ContainmentType.Disjoint;
-                        return;
-                    case PlaneIntersectionType.Intersecting:
-                        intersects = true;
-                        break;
+                case PlaneIntersectionType.Front:
+                    result = ContainmentType.Disjoint;
+                    return;
+                case PlaneIntersectionType.Intersecting:
+                    intersects = true;
+                    break;
                 }
             }
             result = intersects ? ContainmentType.Intersects : ContainmentType.Contains;
@@ -464,16 +464,16 @@ namespace Monogame
 
             switch (ctype)
             {
-                case ContainmentType.Disjoint:
-                    result = null;
-                    return;
-                case ContainmentType.Contains:
-                    result = 0.0f;
-                    return;
-                case ContainmentType.Intersects:
-                    throw new NotImplementedException();
-                default:
-                    throw new ArgumentOutOfRangeException();
+            case ContainmentType.Disjoint:
+                result = null;
+                return;
+            case ContainmentType.Contains:
+                result = 0.0f;
+                return;
+            case ContainmentType.Intersects:
+                throw new NotImplementedException();
+            default:
+                throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -575,4 +575,3 @@ namespace Monogame
         #endregion
     }
 }
-

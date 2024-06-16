@@ -119,24 +119,24 @@ namespace Monogame.Graphics
             {
                 switch (param.ParameterType)
                 {
-                    case EffectParameterType.Single:
-                    case EffectParameterType.Int32:
-                    case EffectParameterType.Bool:
-                        // HLSL assumes matrices are column-major, whereas in-memory we use row-major.
-                        // TODO: HLSL can be told to use row-major. We should handle that too.
-                        if (param.ParameterClass == EffectParameterClass.Matrix)
-                        {
-                            rowsUsed = param.ColumnCount;
-                            SetData(offset, param.ColumnCount, param.RowCount, param.Data);
-                        }
-                        else
-                        {
-                            rowsUsed = param.RowCount;
-                            SetData(offset, param.RowCount, param.ColumnCount, param.Data);
-                        }
-                        break;
-                    default:
-                        throw new NotSupportedException("Not supported!");
+                case EffectParameterType.Single:
+                case EffectParameterType.Int32:
+                case EffectParameterType.Bool:
+                    // HLSL assumes matrices are column-major, whereas in-memory we use row-major.
+                    // TODO: HLSL can be told to use row-major. We should handle that too.
+                    if (param.ParameterClass == EffectParameterClass.Matrix)
+                    {
+                        rowsUsed = param.ColumnCount;
+                        SetData(offset, param.ColumnCount, param.RowCount, param.Data);
+                    }
+                    else
+                    {
+                        rowsUsed = param.RowCount;
+                        SetData(offset, param.RowCount, param.ColumnCount, param.Data);
+                    }
+                    break;
+                default:
+                    throw new NotSupportedException("Not supported!");
                 }
             }
 

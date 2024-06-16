@@ -81,89 +81,89 @@ namespace Monogame.Windows
 
             switch (m.Msg)
             {
-                case WM_TABLET_QUERYSYSTEMGESTURESTA:
-                    {
-                        // This disables the windows touch helpers, popups, and 
-                        // guides that get in the way of touch gameplay.
-                        const int flags = 0x00000001 | // TABLET_DISABLE_PRESSANDHOLD
-                                          0x00000008 | // TABLET_DISABLE_PENTAPFEEDBACK
-                                          0x00000010 | // TABLET_DISABLE_PENBARRELFEEDBACK
-                                          0x00000100 | // TABLET_DISABLE_TOUCHUIFORCEON
-                                          0x00000200 | // TABLET_DISABLE_TOUCHUIFORCEOFF
-                                          0x00008000 | // TABLET_DISABLE_TOUCHSWITCH
-                                          0x00010000 | // TABLET_DISABLE_FLICKS
-                                          0x00080000 | // TABLET_DISABLE_SMOOTHSCROLLING 
-                                          0x00100000; // TABLET_DISABLE_FLICKFALLBACKKEYS
-                        m.Result = new IntPtr(flags);
-                        return;
-                    }
+            case WM_TABLET_QUERYSYSTEMGESTURESTA:
+            {
+                // This disables the windows touch helpers, popups, and 
+                // guides that get in the way of touch gameplay.
+                const int flags = 0x00000001 | // TABLET_DISABLE_PRESSANDHOLD
+                                  0x00000008 | // TABLET_DISABLE_PENTAPFEEDBACK
+                                  0x00000010 | // TABLET_DISABLE_PENBARRELFEEDBACK
+                                  0x00000100 | // TABLET_DISABLE_TOUCHUIFORCEON
+                                  0x00000200 | // TABLET_DISABLE_TOUCHUIFORCEOFF
+                                  0x00008000 | // TABLET_DISABLE_TOUCHSWITCH
+                                  0x00010000 | // TABLET_DISABLE_FLICKS
+                                  0x00080000 | // TABLET_DISABLE_SMOOTHSCROLLING 
+                                  0x00100000; // TABLET_DISABLE_FLICKFALLBACKKEYS
+                m.Result = new IntPtr(flags);
+                return;
+            }
 #if (WINDOWS && DIRECTX)
-                case WM_KEYDOWN:
-                    HandleKeyMessage(ref m);
-                    switch (m.WParam.ToInt32())
-                    {
-                        case 0x5B:  // Left Windows Key
-                        case 0x5C: // Right Windows Key
+            case WM_KEYDOWN:
+                HandleKeyMessage(ref m);
+                switch (m.WParam.ToInt32())
+                {
+                case 0x5B:  // Left Windows Key
+                case 0x5C: // Right Windows Key
 
-                            if (_window.IsFullScreen && _window.HardwareModeSwitch)
-                                this.WindowState = FormWindowState.Minimized;
+                    if (_window.IsFullScreen && _window.HardwareModeSwitch)
+                        this.WindowState = FormWindowState.Minimized;
 
-                            break;
-                    }
                     break;
-                case WM_SYSKEYDOWN:
-                    HandleKeyMessage(ref m);
-                    break;
-                case WM_KEYUP:
-                case WM_SYSKEYUP:
-                    HandleKeyMessage(ref m);
-                    break;
+                }
+                break;
+            case WM_SYSKEYDOWN:
+                HandleKeyMessage(ref m);
+                break;
+            case WM_KEYUP:
+            case WM_SYSKEYUP:
+                HandleKeyMessage(ref m);
+                break;
 
-                case WM_DROPFILES:
-                    HandleDropMessage(ref m);
-                    break;
+            case WM_DROPFILES:
+                HandleDropMessage(ref m);
+                break;
 #endif
-                case WM_SYSCOMMAND:
+            case WM_SYSCOMMAND:
 
-                    var wParam = m.WParam.ToInt32();
+                var wParam = m.WParam.ToInt32();
 
-                    if (!AllowAltF4 && wParam == 0xF060 && m.LParam.ToInt32() == 0 && Focused)
-                    {
-                        m.Result = IntPtr.Zero;
-                        return;
-                    }
+                if (!AllowAltF4 && wParam == 0xF060 && m.LParam.ToInt32() == 0 && Focused)
+                {
+                    m.Result = IntPtr.Zero;
+                    return;
+                }
 
-                    // Disable the system menu from being toggled by
-                    // keyboard input so we can own the ALT key.
-                    if (wParam == 0xF100) // SC_KEYMENU
-                    {
-                        m.Result = IntPtr.Zero;
-                        return;
-                    }
-                    break;
+                // Disable the system menu from being toggled by
+                // keyboard input so we can own the ALT key.
+                if (wParam == 0xF100) // SC_KEYMENU
+                {
+                    m.Result = IntPtr.Zero;
+                    return;
+                }
+                break;
 
-                case WM_POINTERUP:
-                    state = TouchLocationState.Released;
-                    break;
-                case WM_POINTERDOWN:
-                    state = TouchLocationState.Pressed;
-                    break;
-                case WM_POINTERUPDATE:
-                    state = TouchLocationState.Moved;
-                    break;
-                case WM_MOUSEHWHEEL:
-                    var delta = (short)(((ulong)m.WParam >> 16) & 0xffff); ;
-                    var handler = MouseHorizontalWheel;
+            case WM_POINTERUP:
+                state = TouchLocationState.Released;
+                break;
+            case WM_POINTERDOWN:
+                state = TouchLocationState.Pressed;
+                break;
+            case WM_POINTERUPDATE:
+                state = TouchLocationState.Moved;
+                break;
+            case WM_MOUSEHWHEEL:
+                var delta = (short)(((ulong)m.WParam >> 16) & 0xffff); ;
+                var handler = MouseHorizontalWheel;
 
-                    if (handler != null)
-                        handler(this, new HorizontalMouseWheelEventArgs(delta));
-                    break;
-                case WM_ENTERSIZEMOVE:
-                    IsResizing = true;
-                    break;
-                case WM_EXITSIZEMOVE:
-                    IsResizing = false;
-                    break;
+                if (handler != null)
+                    handler(this, new HorizontalMouseWheelEventArgs(delta));
+                break;
+            case WM_ENTERSIZEMOVE:
+                IsResizing = true;
+                break;
+            case WM_EXITSIZEMOVE:
+                IsResizing = false;
+                break;
             }
 
             if (state != TouchLocationState.Invalid)
@@ -193,16 +193,16 @@ namespace Monogame.Windows
             {
                 switch (m.Msg)
                 {
-                    case WM_KEYDOWN:
-                    case WM_SYSKEYDOWN:
-                        _window.OnKeyDown(new InputKeyEventArgs(key));
-                        break;
-                    case WM_KEYUP:
-                    case WM_SYSKEYUP:
-                        _window.OnKeyUp(new InputKeyEventArgs(key));
-                        break;
-                    default:
-                        break;
+                case WM_KEYDOWN:
+                case WM_SYSKEYDOWN:
+                    _window.OnKeyDown(new InputKeyEventArgs(key));
+                    break;
+                case WM_KEYUP:
+                case WM_SYSKEYUP:
+                    _window.OnKeyUp(new InputKeyEventArgs(key));
+                    break;
+                default:
+                    break;
                 }
             }
 
@@ -236,26 +236,26 @@ namespace Monogame.Windows
         {
             switch (keyCode)
             {
-                // WinForms does not distinguish between left/right keys
-                // We have to check for special keys such as control/shift/alt/ etc
-                case System.Windows.Forms.Keys.ControlKey:
-                    return extended
-                        ? Monogame.Input.Keys.RightControl
-                        : Monogame.Input.Keys.LeftControl;
-                case System.Windows.Forms.Keys.ShiftKey:
-                    // left shift is 0x2A, right shift is 0x36. IsExtendedKey is always false.
-                    return ((scancode & 0x1FF) == 0x36)
-                               ? Monogame.Input.Keys.RightShift
-                                : Monogame.Input.Keys.LeftShift;
-                // Note that the Alt key is now refered to as Menu.
-                case System.Windows.Forms.Keys.Menu:
-                case System.Windows.Forms.Keys.Alt:
-                    return extended
-                        ? Monogame.Input.Keys.RightAlt
-                        : Monogame.Input.Keys.LeftAlt;
+            // WinForms does not distinguish between left/right keys
+            // We have to check for special keys such as control/shift/alt/ etc
+            case System.Windows.Forms.Keys.ControlKey:
+                return extended
+                    ? Monogame.Input.Keys.RightControl
+                    : Monogame.Input.Keys.LeftControl;
+            case System.Windows.Forms.Keys.ShiftKey:
+                // left shift is 0x2A, right shift is 0x36. IsExtendedKey is always false.
+                return ((scancode & 0x1FF) == 0x36)
+                           ? Monogame.Input.Keys.RightShift
+                            : Monogame.Input.Keys.LeftShift;
+            // Note that the Alt key is now refered to as Menu.
+            case System.Windows.Forms.Keys.Menu:
+            case System.Windows.Forms.Keys.Alt:
+                return extended
+                    ? Monogame.Input.Keys.RightAlt
+                    : Monogame.Input.Keys.LeftAlt;
 
-                default:
-                    return (Monogame.Input.Keys)keyCode;
+            default:
+                return (Monogame.Input.Keys)keyCode;
             }
         }
     }

@@ -4,9 +4,9 @@
 
 using System;
 using System.IO;
+using FreeImageAPI;
 using Monogame.Graphics;
 using Monogame.Graphics.PackedVector;
-using FreeImageAPI;
 
 namespace Monogame.Content.Pipeline.Graphics
 {

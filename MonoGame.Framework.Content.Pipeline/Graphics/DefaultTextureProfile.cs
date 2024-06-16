@@ -29,11 +29,11 @@ namespace Monogame.Content.Pipeline.Graphics
         {
             switch (format)
             {
-                case TextureProcessorOutputFormat.AtcCompressed:
-                case TextureProcessorOutputFormat.DxtCompressed:
-                case TextureProcessorOutputFormat.Etc1Compressed:
-                case TextureProcessorOutputFormat.PvrCompressed:
-                    return true;
+            case TextureProcessorOutputFormat.AtcCompressed:
+            case TextureProcessorOutputFormat.DxtCompressed:
+            case TextureProcessorOutputFormat.Etc1Compressed:
+            case TextureProcessorOutputFormat.PvrCompressed:
+                return true;
             }
             return false;
         }
@@ -83,30 +83,30 @@ namespace Monogame.Content.Pipeline.Graphics
             // Does it require POT textures?
             switch (format)
             {
-                default:
-                    requiresPowerOfTwo = false;
-                    break;
+            default:
+                requiresPowerOfTwo = false;
+                break;
 
-                case TextureProcessorOutputFormat.DxtCompressed:
-                    requiresPowerOfTwo = context.TargetProfile == GraphicsProfile.Reach;
-                    break;
+            case TextureProcessorOutputFormat.DxtCompressed:
+                requiresPowerOfTwo = context.TargetProfile == GraphicsProfile.Reach;
+                break;
 
-                case TextureProcessorOutputFormat.PvrCompressed:
-                case TextureProcessorOutputFormat.Etc1Compressed:
-                    requiresPowerOfTwo = true;
-                    break;
+            case TextureProcessorOutputFormat.PvrCompressed:
+            case TextureProcessorOutputFormat.Etc1Compressed:
+                requiresPowerOfTwo = true;
+                break;
             }
 
             // Does it require square textures?
             switch (format)
             {
-                default:
-                    requiresSquare = false;
-                    break;
+            default:
+                requiresSquare = false;
+                break;
 
-                case TextureProcessorOutputFormat.PvrCompressed:
-                    requiresSquare = true;
-                    break;
+            case TextureProcessorOutputFormat.PvrCompressed:
+                requiresSquare = true;
+                break;
             }
         }
 
@@ -119,25 +119,25 @@ namespace Monogame.Content.Pipeline.Graphics
 
             switch (format)
             {
-                case TextureProcessorOutputFormat.AtcCompressed:
-                    GraphicsUtil.CompressAti(context, content, isSpriteFont);
-                    break;
+            case TextureProcessorOutputFormat.AtcCompressed:
+                GraphicsUtil.CompressAti(context, content, isSpriteFont);
+                break;
 
-                case TextureProcessorOutputFormat.Color16Bit:
-                    GraphicsUtil.CompressColor16Bit(context, content);
-                    break;
+            case TextureProcessorOutputFormat.Color16Bit:
+                GraphicsUtil.CompressColor16Bit(context, content);
+                break;
 
-                case TextureProcessorOutputFormat.DxtCompressed:
-                    GraphicsUtil.CompressDxt(context, content, isSpriteFont);
-                    break;
+            case TextureProcessorOutputFormat.DxtCompressed:
+                GraphicsUtil.CompressDxt(context, content, isSpriteFont);
+                break;
 
-                case TextureProcessorOutputFormat.Etc1Compressed:
-                    GraphicsUtil.CompressEtc1(context, content, isSpriteFont);
-                    break;
+            case TextureProcessorOutputFormat.Etc1Compressed:
+                GraphicsUtil.CompressEtc1(context, content, isSpriteFont);
+                break;
 
-                case TextureProcessorOutputFormat.PvrCompressed:
-                    GraphicsUtil.CompressPvrtc(context, content, isSpriteFont);
-                    break;
+            case TextureProcessorOutputFormat.PvrCompressed:
+                GraphicsUtil.CompressPvrtc(context, content, isSpriteFont);
+                break;
             }
         }
     }

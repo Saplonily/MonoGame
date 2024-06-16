@@ -2,8 +2,8 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Monogame;
 using System;
+using Monogame;
 
 namespace Microsoft.Devices.Sensors
 {
@@ -84,4 +84,3 @@ namespace Microsoft.Devices.Sensors
         public abstract void Stop();
     }
 }
-

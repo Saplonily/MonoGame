@@ -148,4 +148,3 @@ namespace Monogame.Content.Pipeline.Graphics
     }
 
 }
-

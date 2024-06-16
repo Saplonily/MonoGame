@@ -9,4 +9,3 @@ public sealed class BuildiOSTask : FrostingTask<BuildContext>
     public override void Run(BuildContext context)
         => context.DotNetPack(context.GetProjectPath(ProjectType.Framework, "iOS"), context.DotNetPackSettings);
 }
-

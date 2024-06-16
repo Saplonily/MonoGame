@@ -122,4 +122,3 @@ namespace Monogame.Graphics
         }
     }
 }
-

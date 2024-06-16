@@ -171,11 +171,11 @@ namespace MonoGame.Effect
             {
                 switch (type)
                 {
-                    case EffectParameterType.Bool:
-                    case EffectParameterType.Int32:
-                    case EffectParameterType.Single:
-                        writer.Write((byte[])param.data);
-                        break;
+                case EffectParameterType.Bool:
+                case EffectParameterType.Int32:
+                case EffectParameterType.Single:
+                    writer.Write((byte[])param.data);
+                    break;
                 }
             }
         }
@@ -189,4 +189,3 @@ namespace MonoGame.Effect
         }
     }
 }
-

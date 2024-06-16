@@ -98,14 +98,14 @@ namespace Monogame.Input.Touch
                 var touch = state[i];
                 switch (touch.State)
                 {
-                    case TouchLocationState.Released:
-                        state.RemoveAt(i);
-                        break;
-                    case TouchLocationState.Pressed:
-                    case TouchLocationState.Moved:
-                        touch.AgeState();
-                        state[i] = touch;
-                        break;
+                case TouchLocationState.Released:
+                    state.RemoveAt(i);
+                    break;
+                case TouchLocationState.Pressed:
+                case TouchLocationState.Moved:
+                    touch.AgeState();
+                    state[i] = touch;
+                    break;
                 }
             }
         }
@@ -449,112 +449,112 @@ namespace Monogame.Input.Touch
             {
                 switch (touch.State)
                 {
-                    case TouchLocationState.Pressed:
-                    case TouchLocationState.Moved:
-                        {
-                            // The DoubleTap event is emitted on first press as
-                            // opposed to Tap which happens on release.
-                            if (touch.State == TouchLocationState.Pressed &&
-                                ProcessDoubleTap(touch))
-                                break;
+                case TouchLocationState.Pressed:
+                case TouchLocationState.Moved:
+                {
+                    // The DoubleTap event is emitted on first press as
+                    // opposed to Tap which happens on release.
+                    if (touch.State == TouchLocationState.Pressed &&
+                        ProcessDoubleTap(touch))
+                        break;
 
-                            // Any time more than one finger is down and pinch is
-                            // enabled then we exclusively do pinch processing.
-                            if (GestureIsEnabled(GestureType.Pinch) && heldLocations > 1)
-                            {
-                                // Save or update the first pinch point.
-                                if (_pinchTouch[0].State == TouchLocationState.Invalid ||
-                                        _pinchTouch[0].Id == touch.Id)
-                                    _pinchTouch[0] = touch;
+                    // Any time more than one finger is down and pinch is
+                    // enabled then we exclusively do pinch processing.
+                    if (GestureIsEnabled(GestureType.Pinch) && heldLocations > 1)
+                    {
+                        // Save or update the first pinch point.
+                        if (_pinchTouch[0].State == TouchLocationState.Invalid ||
+                                _pinchTouch[0].Id == touch.Id)
+                            _pinchTouch[0] = touch;
 
-                                // Save or update the second pinch point.
-                                else if (_pinchTouch[1].State == TouchLocationState.Invalid ||
-                                            _pinchTouch[1].Id == touch.Id)
-                                    _pinchTouch[1] = touch;
+                        // Save or update the second pinch point.
+                        else if (_pinchTouch[1].State == TouchLocationState.Invalid ||
+                                    _pinchTouch[1].Id == touch.Id)
+                            _pinchTouch[1] = touch;
 
-                                // NOTE: Actual pinch processing happens outside and
-                                // below this loop to ensure both points are updated
-                                // before gestures are emitted.
-                                break;
-                            }
+                        // NOTE: Actual pinch processing happens outside and
+                        // below this loop to ensure both points are updated
+                        // before gestures are emitted.
+                        break;
+                    }
 
-                            // If we're not dragging try to process a hold event.
-                            var dist = Vector2.Distance(touch.Position, touch.PressPosition);
-                            if (_dragGestureStarted == GestureType.None && dist < TapJitterTolerance)
-                            {
-                                ProcessHold(touch);
-                                break;
-                            }
+                    // If we're not dragging try to process a hold event.
+                    var dist = Vector2.Distance(touch.Position, touch.PressPosition);
+                    if (_dragGestureStarted == GestureType.None && dist < TapJitterTolerance)
+                    {
+                        ProcessHold(touch);
+                        break;
+                    }
 
-                            // If the touch state has changed then do a drag gesture.
-                            if (stateChanged)
-                                ProcessDrag(touch);
-                            break;
-                        }
+                    // If the touch state has changed then do a drag gesture.
+                    if (stateChanged)
+                        ProcessDrag(touch);
+                    break;
+                }
 
-                    case TouchLocationState.Released:
-                        {
-                            // If the touch state hasn't changed then this
-                            // is an old release event... skip it.
-                            if (!stateChanged)
-                                break;
+                case TouchLocationState.Released:
+                {
+                    // If the touch state hasn't changed then this
+                    // is an old release event... skip it.
+                    if (!stateChanged)
+                        break;
 
-                            // If this is one of the pinch locations then we
-                            // need to fire off the complete event and stop
-                            // the pinch gesture operation.
-                            if (_pinchGestureStarted &&
-                                    (touch.Id == _pinchTouch[0].Id ||
-                                        touch.Id == _pinchTouch[1].Id))
-                            {
-                                if (GestureIsEnabled(GestureType.PinchComplete))
-                                    GestureList.Enqueue(new GestureSample(
-                                                            GestureType.PinchComplete, touch.Timestamp,
-                                                            Vector2.Zero, Vector2.Zero,
-                                                            Vector2.Zero, Vector2.Zero));
+                    // If this is one of the pinch locations then we
+                    // need to fire off the complete event and stop
+                    // the pinch gesture operation.
+                    if (_pinchGestureStarted &&
+                            (touch.Id == _pinchTouch[0].Id ||
+                                touch.Id == _pinchTouch[1].Id))
+                    {
+                        if (GestureIsEnabled(GestureType.PinchComplete))
+                            GestureList.Enqueue(new GestureSample(
+                                                    GestureType.PinchComplete, touch.Timestamp,
+                                                    Vector2.Zero, Vector2.Zero,
+                                                    Vector2.Zero, Vector2.Zero));
 
-                                _pinchGestureStarted = false;
-                                _pinchTouch[0] = TouchLocation.Invalid;
-                                _pinchTouch[1] = TouchLocation.Invalid;
-                                break;
-                            }
+                        _pinchGestureStarted = false;
+                        _pinchTouch[0] = TouchLocation.Invalid;
+                        _pinchTouch[1] = TouchLocation.Invalid;
+                        break;
+                    }
 
-                            // If there are still other pressed locations then there
-                            // is nothing more we can do with this release.
-                            if (heldLocations != 0)
-                                break;
+                    // If there are still other pressed locations then there
+                    // is nothing more we can do with this release.
+                    if (heldLocations != 0)
+                        break;
 
-                            // From testing XNA it seems we need a velocity 
-                            // of about 100 to classify this as a flick.
-                            var dist = Vector2.Distance(touch.Position, touch.PressPosition);
-                            if (dist > TapJitterTolerance &&
-                                    touch.Velocity.Length() > 100.0f &&
-                                    GestureIsEnabled(GestureType.Flick))
-                            {
-                                GestureList.Enqueue(new GestureSample(
-                                                        GestureType.Flick, touch.Timestamp,
-                                                        Vector2.Zero, Vector2.Zero,
-                                                        touch.Velocity, Vector2.Zero));
+                    // From testing XNA it seems we need a velocity 
+                    // of about 100 to classify this as a flick.
+                    var dist = Vector2.Distance(touch.Position, touch.PressPosition);
+                    if (dist > TapJitterTolerance &&
+                            touch.Velocity.Length() > 100.0f &&
+                            GestureIsEnabled(GestureType.Flick))
+                    {
+                        GestureList.Enqueue(new GestureSample(
+                                                GestureType.Flick, touch.Timestamp,
+                                                Vector2.Zero, Vector2.Zero,
+                                                touch.Velocity, Vector2.Zero));
 
-                                //fall through, a drag should still happen even if a flick does
-                            }
+                        //fall through, a drag should still happen even if a flick does
+                    }
 
-                            // If a drag is active then we need to finalize it.
-                            if (_dragGestureStarted != GestureType.None)
-                            {
-                                if (GestureIsEnabled(GestureType.DragComplete))
-                                    GestureList.Enqueue(new GestureSample(
-                                                            GestureType.DragComplete, touch.Timestamp,
-                                                            Vector2.Zero, Vector2.Zero,
-                                                            Vector2.Zero, Vector2.Zero));
+                    // If a drag is active then we need to finalize it.
+                    if (_dragGestureStarted != GestureType.None)
+                    {
+                        if (GestureIsEnabled(GestureType.DragComplete))
+                            GestureList.Enqueue(new GestureSample(
+                                                    GestureType.DragComplete, touch.Timestamp,
+                                                    Vector2.Zero, Vector2.Zero,
+                                                    Vector2.Zero, Vector2.Zero));
 
-                                _dragGestureStarted = GestureType.None;
-                                break;
-                            }
+                        _dragGestureStarted = GestureType.None;
+                        break;
+                    }
 
-                            // If all else fails try to process it as a tap.
-                            ProcessTap(touch);
-                            break;
-                        }
+                    // If all else fails try to process it as a tap.
+                    ProcessTap(touch);
+                    break;
+                }
                 }
             }
 

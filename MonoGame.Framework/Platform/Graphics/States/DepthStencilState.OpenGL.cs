@@ -168,24 +168,24 @@ namespace Monogame.Graphics
         {
             switch (function)
             {
-                case CompareFunction.Always:
-                    return GLStencilFunction.Always;
-                case CompareFunction.Equal:
-                    return GLStencilFunction.Equal;
-                case CompareFunction.Greater:
-                    return GLStencilFunction.Greater;
-                case CompareFunction.GreaterEqual:
-                    return GLStencilFunction.Gequal;
-                case CompareFunction.Less:
-                    return GLStencilFunction.Less;
-                case CompareFunction.LessEqual:
-                    return GLStencilFunction.Lequal;
-                case CompareFunction.Never:
-                    return GLStencilFunction.Never;
-                case CompareFunction.NotEqual:
-                    return GLStencilFunction.Notequal;
-                default:
-                    return GLStencilFunction.Always;
+            case CompareFunction.Always:
+                return GLStencilFunction.Always;
+            case CompareFunction.Equal:
+                return GLStencilFunction.Equal;
+            case CompareFunction.Greater:
+                return GLStencilFunction.Greater;
+            case CompareFunction.GreaterEqual:
+                return GLStencilFunction.Gequal;
+            case CompareFunction.Less:
+                return GLStencilFunction.Less;
+            case CompareFunction.LessEqual:
+                return GLStencilFunction.Lequal;
+            case CompareFunction.Never:
+                return GLStencilFunction.Never;
+            case CompareFunction.NotEqual:
+                return GLStencilFunction.Notequal;
+            default:
+                return GLStencilFunction.Always;
             }
         }
 
@@ -193,26 +193,25 @@ namespace Monogame.Graphics
         {
             switch (operation)
             {
-                case StencilOperation.Keep:
-                    return StencilOp.Keep;
-                case StencilOperation.Decrement:
-                    return StencilOp.DecrWrap;
-                case StencilOperation.DecrementSaturation:
-                    return StencilOp.Decr;
-                case StencilOperation.IncrementSaturation:
-                    return StencilOp.Incr;
-                case StencilOperation.Increment:
-                    return StencilOp.IncrWrap;
-                case StencilOperation.Invert:
-                    return StencilOp.Invert;
-                case StencilOperation.Replace:
-                    return StencilOp.Replace;
-                case StencilOperation.Zero:
-                    return StencilOp.Zero;
-                default:
-                    return StencilOp.Keep;
+            case StencilOperation.Keep:
+                return StencilOp.Keep;
+            case StencilOperation.Decrement:
+                return StencilOp.DecrWrap;
+            case StencilOperation.DecrementSaturation:
+                return StencilOp.Decr;
+            case StencilOperation.IncrementSaturation:
+                return StencilOp.Incr;
+            case StencilOperation.Increment:
+                return StencilOp.IncrWrap;
+            case StencilOperation.Invert:
+                return StencilOp.Invert;
+            case StencilOperation.Replace:
+                return StencilOp.Replace;
+            case StencilOperation.Zero:
+                return StencilOp.Zero;
+            default:
+                return StencilOp.Keep;
             }
         }
     }
 }
-

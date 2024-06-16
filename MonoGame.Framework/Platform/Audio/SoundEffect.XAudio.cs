@@ -4,11 +4,10 @@
 
 using System;
 using System.IO;
-
 using SharpDX;
-using SharpDX.XAudio2;
 using SharpDX.Multimedia;
 using SharpDX.X3DAudio;
+using SharpDX.XAudio2;
 
 namespace Monogame.Audio
 {
@@ -222,18 +221,18 @@ namespace Monogame.Audio
             int sampleCount = 0;
             switch (soundStream.Format.Encoding)
             {
-                case WaveFormatEncoding.Adpcm:
-                    {
-                        var samplesPerBlock = (soundStream.Format.BlockAlign / soundStream.Format.Channels - 7) * 2 + 2;
-                        sampleCount = ((int)dataStream.Length / soundStream.Format.BlockAlign) * samplesPerBlock;
-                    }
-                    break;
-                case WaveFormatEncoding.Pcm:
-                case WaveFormatEncoding.IeeeFloat:
-                    sampleCount = (int)(dataStream.Length / ((soundStream.Format.Channels * soundStream.Format.BitsPerSample) / 8));
-                    break;
-                default:
-                    throw new ArgumentException("Ensure that the specified stream contains valid PCM, MS-ADPCM or IEEE Float wave data.");
+            case WaveFormatEncoding.Adpcm:
+            {
+                var samplesPerBlock = (soundStream.Format.BlockAlign / soundStream.Format.Channels - 7) * 2 + 2;
+                sampleCount = ((int)dataStream.Length / soundStream.Format.BlockAlign) * samplesPerBlock;
+            }
+            break;
+            case WaveFormatEncoding.Pcm:
+            case WaveFormatEncoding.IeeeFloat:
+                sampleCount = (int)(dataStream.Length / ((soundStream.Format.Channels * soundStream.Format.BitsPerSample) / 8));
+                break;
+            default:
+                throw new ArgumentException("Ensure that the specified stream contains valid PCM, MS-ADPCM or IEEE Float wave data.");
             }
 
             CreateBuffers(soundStream.Format, dataStream, 0, sampleCount);
@@ -380,4 +379,3 @@ namespace Monogame.Audio
         }
     }
 }
-

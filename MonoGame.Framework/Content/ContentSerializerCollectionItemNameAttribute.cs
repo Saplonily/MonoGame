@@ -27,4 +27,3 @@ namespace Monogame.Content
         public string CollectionItemName { get; private set; }
     }
 }
-

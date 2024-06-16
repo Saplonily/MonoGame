@@ -3,9 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-
-using Monogame.Content;
 using Monogame;
+using Monogame.Content;
 
 namespace Monogame.Content
 {

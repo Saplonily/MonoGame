@@ -65,58 +65,58 @@ namespace MonoGame.Tests.Graphics
 
                 switch (state)
                 {
-                    case 0:
-                        // Make query with red rectangle, 50% occluded.
-                        occlusionQuery.Begin();
-                        spriteBatch.Begin(SpriteSortMode.Immediate, null, null, DepthStencilState.Default, null);
-                        spriteBatch.Draw(whiteTexture, new Rectangle(50, 100, 100, 100), null, Color.Red, 0, Vector2.Zero,
-                            SpriteEffects.None, 1);
-                        spriteBatch.End();
-                        occlusionQuery.End();
-                        state = 1;
-                        queryFrameCount = 0;
-                        break;
-                    case 1:
-                        queryFrameCount++;
+                case 0:
+                    // Make query with red rectangle, 50% occluded.
+                    occlusionQuery.Begin();
+                    spriteBatch.Begin(SpriteSortMode.Immediate, null, null, DepthStencilState.Default, null);
+                    spriteBatch.Draw(whiteTexture, new Rectangle(50, 100, 100, 100), null, Color.Red, 0, Vector2.Zero,
+                        SpriteEffects.None, 1);
+                    spriteBatch.End();
+                    occlusionQuery.End();
+                    state = 1;
+                    queryFrameCount = 0;
+                    break;
+                case 1:
+                    queryFrameCount++;
 
-                        if (queryFrameCount > 5)
-                            Assert.Fail("Occlusion query did not complete.");
+                    if (queryFrameCount > 5)
+                        Assert.Fail("Occlusion query did not complete.");
 
-                        if (occlusionQuery.IsComplete)
-                        {
-                            Assert.AreEqual(100 * 100 / 2, occlusionQuery.PixelCount);
-                            Console.WriteLine("First occlusionQuery completed in {0} frames", queryFrameCount);
-                            state = 2;
-                        }
-                        break;
-                    case 2:
-                        // Same results as last frame.
-                        Assert.IsTrue(occlusionQuery.IsComplete);
+                    if (occlusionQuery.IsComplete)
+                    {
                         Assert.AreEqual(100 * 100 / 2, occlusionQuery.PixelCount);
+                        Console.WriteLine("First occlusionQuery completed in {0} frames", queryFrameCount);
+                        state = 2;
+                    }
+                    break;
+                case 2:
+                    // Same results as last frame.
+                    Assert.IsTrue(occlusionQuery.IsComplete);
+                    Assert.AreEqual(100 * 100 / 2, occlusionQuery.PixelCount);
 
-                        // Reuse query a second time, 10% occlusion.
-                        occlusionQuery.Begin();
-                        spriteBatch.Begin(SpriteSortMode.Immediate, null, null, DepthStencilState.Default, null);
-                        spriteBatch.Draw(whiteTexture, new Rectangle(10, 100, 100, 100), null, Color.Red, 0, Vector2.Zero,
-                            SpriteEffects.None, 1);
-                        spriteBatch.End();
-                        occlusionQuery.End();
-                        state = 3;
-                        queryFrameCount = 0;
-                        break;
-                    case 3:
-                        queryFrameCount++;
+                    // Reuse query a second time, 10% occlusion.
+                    occlusionQuery.Begin();
+                    spriteBatch.Begin(SpriteSortMode.Immediate, null, null, DepthStencilState.Default, null);
+                    spriteBatch.Draw(whiteTexture, new Rectangle(10, 100, 100, 100), null, Color.Red, 0, Vector2.Zero,
+                        SpriteEffects.None, 1);
+                    spriteBatch.End();
+                    occlusionQuery.End();
+                    state = 3;
+                    queryFrameCount = 0;
+                    break;
+                case 3:
+                    queryFrameCount++;
 
-                        if (queryFrameCount > 5)
-                            Assert.Fail("Occlusion query did not complete.");
+                    if (queryFrameCount > 5)
+                        Assert.Fail("Occlusion query did not complete.");
 
-                        if (occlusionQuery.IsComplete)
-                        {
-                            Assert.AreEqual(100 * 100 * 9 / 10, occlusionQuery.PixelCount);
-                            Console.WriteLine("Second occlusionQuery completed in {0} frames", queryFrameCount);
-                            state = 4;
-                        }
-                        break;
+                    if (occlusionQuery.IsComplete)
+                    {
+                        Assert.AreEqual(100 * 100 * 9 / 10, occlusionQuery.PixelCount);
+                        Console.WriteLine("Second occlusionQuery completed in {0} frames", queryFrameCount);
+                        state = 4;
+                    }
+                    break;
                 }
             };
 

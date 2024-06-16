@@ -2,11 +2,11 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Monogame.Graphics.PackedVector;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Monogame.Graphics.PackedVector;
 
 namespace Monogame.Design
 {

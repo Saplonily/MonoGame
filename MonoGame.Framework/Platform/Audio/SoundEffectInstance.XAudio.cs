@@ -3,10 +3,10 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using SharpDX.XAudio2;
-using SharpDX.X3DAudio;
-using SharpDX.Multimedia;
 using SharpDX.Mathematics.Interop;
+using SharpDX.Multimedia;
+using SharpDX.X3DAudio;
+using SharpDX.XAudio2;
 
 namespace Monogame.Audio
 {

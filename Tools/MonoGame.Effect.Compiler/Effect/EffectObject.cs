@@ -568,19 +568,19 @@ namespace MonoGame.Effect
         {
             switch (class_)
             {
-                case D3DXPARAMETER_CLASS.SCALAR:
-                    return EffectParameterClass.Scalar;
-                case D3DXPARAMETER_CLASS.VECTOR:
-                    return EffectParameterClass.Vector;
-                case D3DXPARAMETER_CLASS.MATRIX_ROWS:
-                case D3DXPARAMETER_CLASS.MATRIX_COLUMNS:
-                    return EffectParameterClass.Matrix;
-                case D3DXPARAMETER_CLASS.OBJECT:
-                    return EffectParameterClass.Object;
-                case D3DXPARAMETER_CLASS.STRUCT:
-                    return EffectParameterClass.Struct;
-                default:
-                    throw new NotImplementedException();
+            case D3DXPARAMETER_CLASS.SCALAR:
+                return EffectParameterClass.Scalar;
+            case D3DXPARAMETER_CLASS.VECTOR:
+                return EffectParameterClass.Vector;
+            case D3DXPARAMETER_CLASS.MATRIX_ROWS:
+            case D3DXPARAMETER_CLASS.MATRIX_COLUMNS:
+                return EffectParameterClass.Matrix;
+            case D3DXPARAMETER_CLASS.OBJECT:
+                return EffectParameterClass.Object;
+            case D3DXPARAMETER_CLASS.STRUCT:
+                return EffectParameterClass.Struct;
+            default:
+                throw new NotImplementedException();
             }
         }
 
@@ -588,26 +588,26 @@ namespace MonoGame.Effect
         {
             switch (type)
             {
-                case D3DXPARAMETER_TYPE.BOOL:
-                    return EffectParameterType.Bool;
-                case D3DXPARAMETER_TYPE.INT:
-                    return EffectParameterType.Int32;
-                case D3DXPARAMETER_TYPE.FLOAT:
-                    return EffectParameterType.Single;
-                case D3DXPARAMETER_TYPE.STRING:
-                    return EffectParameterType.String;
-                case D3DXPARAMETER_TYPE.TEXTURE:
-                    return EffectParameterType.Texture;
-                case D3DXPARAMETER_TYPE.TEXTURE1D:
-                    return EffectParameterType.Texture1D;
-                case D3DXPARAMETER_TYPE.TEXTURE2D:
-                    return EffectParameterType.Texture2D;
-                case D3DXPARAMETER_TYPE.TEXTURE3D:
-                    return EffectParameterType.Texture3D;
-                case D3DXPARAMETER_TYPE.TEXTURECUBE:
-                    return EffectParameterType.TextureCube;
-                default:
-                    throw new NotImplementedException();
+            case D3DXPARAMETER_TYPE.BOOL:
+                return EffectParameterType.Bool;
+            case D3DXPARAMETER_TYPE.INT:
+                return EffectParameterType.Int32;
+            case D3DXPARAMETER_TYPE.FLOAT:
+                return EffectParameterType.Single;
+            case D3DXPARAMETER_TYPE.STRING:
+                return EffectParameterType.String;
+            case D3DXPARAMETER_TYPE.TEXTURE:
+                return EffectParameterType.Texture;
+            case D3DXPARAMETER_TYPE.TEXTURE1D:
+                return EffectParameterType.Texture1D;
+            case D3DXPARAMETER_TYPE.TEXTURE2D:
+                return EffectParameterType.Texture2D;
+            case D3DXPARAMETER_TYPE.TEXTURE3D:
+                return EffectParameterType.Texture3D;
+            case D3DXPARAMETER_TYPE.TEXTURECUBE:
+                return EffectParameterType.TextureCube;
+            default:
+                throw new NotImplementedException();
             }
         }
 
@@ -615,35 +615,35 @@ namespace MonoGame.Effect
         {
             switch (usage)
             {
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_POSITION:
-                    return VertexElementUsage.Position;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_BLENDWEIGHT:
-                    return VertexElementUsage.BlendWeight;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_BLENDINDICES:
-                    return VertexElementUsage.BlendIndices;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_NORMAL:
-                    return VertexElementUsage.Normal;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_POINTSIZE:
-                    return VertexElementUsage.PointSize;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_TEXCOORD:
-                    return VertexElementUsage.TextureCoordinate;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_TANGENT:
-                    return VertexElementUsage.Tangent;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_BINORMAL:
-                    return VertexElementUsage.Binormal;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_TESSFACTOR:
-                    return VertexElementUsage.TessellateFactor;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_COLOR:
-                    return VertexElementUsage.Color;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_FOG:
-                    return VertexElementUsage.Fog;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_DEPTH:
-                    return VertexElementUsage.Depth;
-                case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_SAMPLE:
-                    return VertexElementUsage.Sample;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_POSITION:
+                return VertexElementUsage.Position;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_BLENDWEIGHT:
+                return VertexElementUsage.BlendWeight;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_BLENDINDICES:
+                return VertexElementUsage.BlendIndices;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_NORMAL:
+                return VertexElementUsage.Normal;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_POINTSIZE:
+                return VertexElementUsage.PointSize;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_TEXCOORD:
+                return VertexElementUsage.TextureCoordinate;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_TANGENT:
+                return VertexElementUsage.Tangent;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_BINORMAL:
+                return VertexElementUsage.Binormal;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_TESSFACTOR:
+                return VertexElementUsage.TessellateFactor;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_COLOR:
+                return VertexElementUsage.Color;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_FOG:
+                return VertexElementUsage.Fog;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_DEPTH:
+                return VertexElementUsage.Depth;
+            case MojoShader.MOJOSHADER_usage.MOJOSHADER_USAGE_SAMPLE:
+                return VertexElementUsage.Sample;
 
-                default:
-                    throw new NotImplementedException();
+            default:
+                throw new NotImplementedException();
             }
         }
 
@@ -754,21 +754,21 @@ namespace MonoGame.Effect
 
                         switch (sampler.type)
                         {
-                            case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_1D:
-                                param.type = D3DXPARAMETER_TYPE.TEXTURE1D;
-                                break;
+                        case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_1D:
+                            param.type = D3DXPARAMETER_TYPE.TEXTURE1D;
+                            break;
 
-                            case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_2D:
-                                param.type = D3DXPARAMETER_TYPE.TEXTURE2D;
-                                break;
+                        case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_2D:
+                            param.type = D3DXPARAMETER_TYPE.TEXTURE2D;
+                            break;
 
-                            case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_VOLUME:
-                                param.type = D3DXPARAMETER_TYPE.TEXTURE3D;
-                                break;
+                        case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_VOLUME:
+                            param.type = D3DXPARAMETER_TYPE.TEXTURE3D;
+                            break;
 
-                            case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_CUBE:
-                                param.type = D3DXPARAMETER_TYPE.TEXTURECUBE;
-                                break;
+                        case MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_CUBE:
+                            param.type = D3DXPARAMETER_TYPE.TEXTURECUBE;
+                            break;
                         }
 
                         parameters.Add(param);
@@ -850,4 +850,3 @@ namespace MonoGame.Effect
         public List<ConstantBufferData> ConstantBuffers { get; private set; }
     }
 }
-

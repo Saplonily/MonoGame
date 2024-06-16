@@ -6,8 +6,8 @@ using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Monogame;
-using NUnit.Framework;
 using Monogame.Graphics;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.Graphics
 {

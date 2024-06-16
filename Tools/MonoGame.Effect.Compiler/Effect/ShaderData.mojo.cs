@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
 using MonoGame.Effect.TPGParser;
 
 namespace MonoGame.Effect
@@ -85,20 +85,20 @@ namespace MonoGame.Effect
                 {
                     switch (symbols[i].register_set)
                     {
-                        case MojoShader.MOJOSHADER_symbolRegisterSet.MOJOSHADER_SYMREGSET_BOOL:
-                            symbols[i].register_index = bool_index;
-                            bool_index += symbols[i].register_count;
-                            break;
+                    case MojoShader.MOJOSHADER_symbolRegisterSet.MOJOSHADER_SYMREGSET_BOOL:
+                        symbols[i].register_index = bool_index;
+                        bool_index += symbols[i].register_count;
+                        break;
 
-                        case MojoShader.MOJOSHADER_symbolRegisterSet.MOJOSHADER_SYMREGSET_FLOAT4:
-                            symbols[i].register_index = float4_index;
-                            float4_index += symbols[i].register_count;
-                            break;
+                    case MojoShader.MOJOSHADER_symbolRegisterSet.MOJOSHADER_SYMREGSET_FLOAT4:
+                        symbols[i].register_index = float4_index;
+                        float4_index += symbols[i].register_count;
+                        break;
 
-                        case MojoShader.MOJOSHADER_symbolRegisterSet.MOJOSHADER_SYMREGSET_INT4:
-                            symbols[i].register_index = int4_index;
-                            int4_index += symbols[i].register_count;
-                            break;
+                    case MojoShader.MOJOSHADER_symbolRegisterSet.MOJOSHADER_SYMREGSET_INT4:
+                        symbols[i].register_index = int4_index;
+                        int4_index += symbols[i].register_count;
+                        break;
                     }
                 }
             }

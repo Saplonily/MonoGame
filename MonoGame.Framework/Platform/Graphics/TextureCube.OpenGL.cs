@@ -4,9 +4,9 @@
 
 using System;
 using System.Runtime.InteropServices;
+using MonoGame.Framework.Utilities;
 using MonoGame.OpenGL;
 using GLPixelFormat = MonoGame.OpenGL.PixelFormat;
-using MonoGame.Framework.Utilities;
 
 namespace Monogame.Graphics
 {
@@ -49,34 +49,34 @@ namespace Monogame.Graphics
                         var imageSize = 0;
                         switch (format)
                         {
-                            case SurfaceFormat.RgbPvrtc2Bpp:
-                            case SurfaceFormat.RgbaPvrtc2Bpp:
-                                imageSize = (Math.Max(size, 16) * Math.Max(size, 8) * 2 + 7) / 8;
-                                break;
-                            case SurfaceFormat.RgbPvrtc4Bpp:
-                            case SurfaceFormat.RgbaPvrtc4Bpp:
-                                imageSize = (Math.Max(size, 8) * Math.Max(size, 8) * 4 + 7) / 8;
-                                break;
-                            case SurfaceFormat.Dxt1:
-                            case SurfaceFormat.Dxt1a:
-                            case SurfaceFormat.Dxt1SRgb:
-                            case SurfaceFormat.Dxt3:
-                            case SurfaceFormat.Dxt3SRgb:
-                            case SurfaceFormat.Dxt5:
-                            case SurfaceFormat.Dxt5SRgb:
-                            case SurfaceFormat.RgbEtc1:
-                            case SurfaceFormat.Rgb8Etc2:
-                            case SurfaceFormat.Srgb8Etc2:
-                            case SurfaceFormat.Rgb8A1Etc2:
-                            case SurfaceFormat.Srgb8A1Etc2:
-                            case SurfaceFormat.Rgba8Etc2:
-                            case SurfaceFormat.SRgb8A8Etc2:
-                            case SurfaceFormat.RgbaAtcExplicitAlpha:
-                            case SurfaceFormat.RgbaAtcInterpolatedAlpha:
-                                imageSize = (size + 3) / 4 * ((size + 3) / 4) * format.GetSize();
-                                break;
-                            default:
-                                throw new NotSupportedException();
+                        case SurfaceFormat.RgbPvrtc2Bpp:
+                        case SurfaceFormat.RgbaPvrtc2Bpp:
+                            imageSize = (Math.Max(size, 16) * Math.Max(size, 8) * 2 + 7) / 8;
+                            break;
+                        case SurfaceFormat.RgbPvrtc4Bpp:
+                        case SurfaceFormat.RgbaPvrtc4Bpp:
+                            imageSize = (Math.Max(size, 8) * Math.Max(size, 8) * 4 + 7) / 8;
+                            break;
+                        case SurfaceFormat.Dxt1:
+                        case SurfaceFormat.Dxt1a:
+                        case SurfaceFormat.Dxt1SRgb:
+                        case SurfaceFormat.Dxt3:
+                        case SurfaceFormat.Dxt3SRgb:
+                        case SurfaceFormat.Dxt5:
+                        case SurfaceFormat.Dxt5SRgb:
+                        case SurfaceFormat.RgbEtc1:
+                        case SurfaceFormat.Rgb8Etc2:
+                        case SurfaceFormat.Srgb8Etc2:
+                        case SurfaceFormat.Rgb8A1Etc2:
+                        case SurfaceFormat.Srgb8A1Etc2:
+                        case SurfaceFormat.Rgba8Etc2:
+                        case SurfaceFormat.SRgb8A8Etc2:
+                        case SurfaceFormat.RgbaAtcExplicitAlpha:
+                        case SurfaceFormat.RgbaAtcInterpolatedAlpha:
+                            imageSize = (size + 3) / 4 * ((size + 3) / 4) * format.GetSize();
+                            break;
+                        default:
+                            throw new NotSupportedException();
                         }
                         GL.CompressedTexImage2D(target, 0, glInternalFormat, size, size, 0, imageSize, IntPtr.Zero);
                         GraphicsExtensions.CheckGLError();
@@ -195,21 +195,20 @@ namespace Monogame.Graphics
         {
             switch (face)
             {
-                case CubeMapFace.PositiveX:
-                    return TextureTarget.TextureCubeMapPositiveX;
-                case CubeMapFace.NegativeX:
-                    return TextureTarget.TextureCubeMapNegativeX;
-                case CubeMapFace.PositiveY:
-                    return TextureTarget.TextureCubeMapPositiveY;
-                case CubeMapFace.NegativeY:
-                    return TextureTarget.TextureCubeMapNegativeY;
-                case CubeMapFace.PositiveZ:
-                    return TextureTarget.TextureCubeMapPositiveZ;
-                case CubeMapFace.NegativeZ:
-                    return TextureTarget.TextureCubeMapNegativeZ;
+            case CubeMapFace.PositiveX:
+                return TextureTarget.TextureCubeMapPositiveX;
+            case CubeMapFace.NegativeX:
+                return TextureTarget.TextureCubeMapNegativeX;
+            case CubeMapFace.PositiveY:
+                return TextureTarget.TextureCubeMapPositiveY;
+            case CubeMapFace.NegativeY:
+                return TextureTarget.TextureCubeMapNegativeY;
+            case CubeMapFace.PositiveZ:
+                return TextureTarget.TextureCubeMapPositiveZ;
+            case CubeMapFace.NegativeZ:
+                return TextureTarget.TextureCubeMapNegativeZ;
             }
             throw new ArgumentException();
         }
     }
 }
-

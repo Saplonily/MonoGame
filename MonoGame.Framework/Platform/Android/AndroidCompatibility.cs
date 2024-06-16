@@ -61,21 +61,21 @@ namespace Monogame
             var disporientation = DisplayOrientation.Unknown;
             switch (ort)
             {
-                case 90:
-                    disporientation = FlipLandscape ? DisplayOrientation.LandscapeLeft : DisplayOrientation.LandscapeRight;
-                    break;
-                case 270:
-                    disporientation = FlipLandscape ? DisplayOrientation.LandscapeRight : DisplayOrientation.LandscapeLeft;
-                    break;
-                case 0:
-                    disporientation = DisplayOrientation.Portrait;
-                    break;
-                case 180:
-                    disporientation = DisplayOrientation.PortraitDown;
-                    break;
-                default:
-                    disporientation = DisplayOrientation.LandscapeLeft;
-                    break;
+            case 90:
+                disporientation = FlipLandscape ? DisplayOrientation.LandscapeLeft : DisplayOrientation.LandscapeRight;
+                break;
+            case 270:
+                disporientation = FlipLandscape ? DisplayOrientation.LandscapeRight : DisplayOrientation.LandscapeLeft;
+                break;
+            case 0:
+                disporientation = DisplayOrientation.Portrait;
+                break;
+            case 180:
+                disporientation = DisplayOrientation.PortraitDown;
+                break;
+            default:
+                disporientation = DisplayOrientation.LandscapeLeft;
+                break;
             }
 
             return disporientation;
@@ -94,18 +94,18 @@ namespace Monogame
             int degrees;
             switch (orientation)
             {
-                case SurfaceOrientation.Rotation90:
-                    degrees = 270;
-                    break;
-                case SurfaceOrientation.Rotation180:
-                    degrees = 180;
-                    break;
-                case SurfaceOrientation.Rotation270:
-                    degrees = 90;
-                    break;
-                default:
-                    degrees = 0;
-                    break;
+            case SurfaceOrientation.Rotation90:
+                degrees = 270;
+                break;
+            case SurfaceOrientation.Rotation180:
+                degrees = 180;
+                break;
+            case SurfaceOrientation.Rotation270:
+                degrees = 90;
+                break;
+            default:
+                degrees = 0;
+                break;
             }
 
             return GetAbsoluteOrientation(degrees);

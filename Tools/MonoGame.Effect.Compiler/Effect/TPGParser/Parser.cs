@@ -59,26 +59,26 @@ namespace MonoGame.Effect.TPGParser
                 tok = scanner.LookAhead(TokenType.Code, TokenType.Technique, TokenType.Sampler); // Choice Rule
                 switch (tok.Type)
                 { // Choice Rule
-                    case TokenType.Code:
-                        tok = scanner.Scan(TokenType.Code); // Terminal Rule: Code
-                        n = node.CreateNode(tok, tok.ToString());
-                        node.Token.UpdateRange(tok);
-                        node.Nodes.Add(n);
-                        if (tok.Type != TokenType.Code)
-                        {
-                            tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Code.ToString(), 0x1001, tok));
-                            return;
-                        }
-                        break;
-                    case TokenType.Technique:
-                        ParseTechnique_Declaration(node); // NonTerminal Rule: Technique_Declaration
-                        break;
-                    case TokenType.Sampler:
-                        ParseSampler_Declaration(node); // NonTerminal Rule: Sampler_Declaration
-                        break;
-                    default:
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Code, Technique, or Sampler.", 0x0002, tok));
-                        break;
+                case TokenType.Code:
+                    tok = scanner.Scan(TokenType.Code); // Terminal Rule: Code
+                    n = node.CreateNode(tok, tok.ToString());
+                    node.Token.UpdateRange(tok);
+                    node.Nodes.Add(n);
+                    if (tok.Type != TokenType.Code)
+                    {
+                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Code.ToString(), 0x1001, tok));
+                        return;
+                    }
+                    break;
+                case TokenType.Technique:
+                    ParseTechnique_Declaration(node); // NonTerminal Rule: Technique_Declaration
+                    break;
+                case TokenType.Sampler:
+                    ParseSampler_Declaration(node); // NonTerminal Rule: Sampler_Declaration
+                    break;
+                default:
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Code, Technique, or Sampler.", 0x0002, tok));
+                    break;
                 } // Choice Rule
                 tok = scanner.LookAhead(TokenType.Code, TokenType.Technique, TokenType.Sampler); // ZeroOrMore Rule
             }
@@ -213,15 +213,15 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Solid, TokenType.WireFrame); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Solid:
-                    ParseFillMode_Solid(node); // NonTerminal Rule: FillMode_Solid
-                    break;
-                case TokenType.WireFrame:
-                    ParseFillMode_WireFrame(node); // NonTerminal Rule: FillMode_WireFrame
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Solid or WireFrame.", 0x0002, tok));
-                    break;
+            case TokenType.Solid:
+                ParseFillMode_Solid(node); // NonTerminal Rule: FillMode_Solid
+                break;
+            case TokenType.WireFrame:
+                ParseFillMode_WireFrame(node); // NonTerminal Rule: FillMode_WireFrame
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Solid or WireFrame.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -297,18 +297,18 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.None, TokenType.Cw, TokenType.Ccw); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.None:
-                    ParseCullMode_None(node); // NonTerminal Rule: CullMode_None
-                    break;
-                case TokenType.Cw:
-                    ParseCullMode_Cw(node); // NonTerminal Rule: CullMode_Cw
-                    break;
-                case TokenType.Ccw:
-                    ParseCullMode_Ccw(node); // NonTerminal Rule: CullMode_Ccw
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected None, Cw, or Ccw.", 0x0002, tok));
-                    break;
+            case TokenType.None:
+                ParseCullMode_None(node); // NonTerminal Rule: CullMode_None
+                break;
+            case TokenType.Cw:
+                ParseCullMode_Cw(node); // NonTerminal Rule: CullMode_Cw
+                break;
+            case TokenType.Ccw:
+                ParseCullMode_Ccw(node); // NonTerminal Rule: CullMode_Ccw
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected None, Cw, or Ccw.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -464,30 +464,30 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Red, TokenType.Green, TokenType.Blue, TokenType.Alpha, TokenType.None, TokenType.All, TokenType.Boolean); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Red:
-                    ParseColors_Red(node); // NonTerminal Rule: Colors_Red
-                    break;
-                case TokenType.Green:
-                    ParseColors_Green(node); // NonTerminal Rule: Colors_Green
-                    break;
-                case TokenType.Blue:
-                    ParseColors_Blue(node); // NonTerminal Rule: Colors_Blue
-                    break;
-                case TokenType.Alpha:
-                    ParseColors_Alpha(node); // NonTerminal Rule: Colors_Alpha
-                    break;
-                case TokenType.None:
-                    ParseColors_None(node); // NonTerminal Rule: Colors_None
-                    break;
-                case TokenType.All:
-                    ParseColors_All(node); // NonTerminal Rule: Colors_All
-                    break;
-                case TokenType.Boolean:
-                    ParseColors_Boolean(node); // NonTerminal Rule: Colors_Boolean
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Red, Green, Blue, Alpha, None, All, or Boolean.", 0x0002, tok));
-                    break;
+            case TokenType.Red:
+                ParseColors_Red(node); // NonTerminal Rule: Colors_Red
+                break;
+            case TokenType.Green:
+                ParseColors_Green(node); // NonTerminal Rule: Colors_Green
+                break;
+            case TokenType.Blue:
+                ParseColors_Blue(node); // NonTerminal Rule: Colors_Blue
+                break;
+            case TokenType.Alpha:
+                ParseColors_Alpha(node); // NonTerminal Rule: Colors_Alpha
+                break;
+            case TokenType.None:
+                ParseColors_None(node); // NonTerminal Rule: Colors_None
+                break;
+            case TokenType.All:
+                ParseColors_All(node); // NonTerminal Rule: Colors_All
+                break;
+            case TokenType.Boolean:
+                ParseColors_Boolean(node); // NonTerminal Rule: Colors_Boolean
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Red, Green, Blue, Alpha, None, All, or Boolean.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -837,48 +837,48 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Zero, TokenType.One, TokenType.SrcColor, TokenType.InvSrcColor, TokenType.SrcAlpha, TokenType.InvSrcAlpha, TokenType.DestAlpha, TokenType.InvDestAlpha, TokenType.DestColor, TokenType.InvDestColor, TokenType.SrcAlphaSat, TokenType.BlendFactor, TokenType.InvBlendFactor); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Zero:
-                    ParseBlend_Zero(node); // NonTerminal Rule: Blend_Zero
-                    break;
-                case TokenType.One:
-                    ParseBlend_One(node); // NonTerminal Rule: Blend_One
-                    break;
-                case TokenType.SrcColor:
-                    ParseBlend_SrcColor(node); // NonTerminal Rule: Blend_SrcColor
-                    break;
-                case TokenType.InvSrcColor:
-                    ParseBlend_InvSrcColor(node); // NonTerminal Rule: Blend_InvSrcColor
-                    break;
-                case TokenType.SrcAlpha:
-                    ParseBlend_SrcAlpha(node); // NonTerminal Rule: Blend_SrcAlpha
-                    break;
-                case TokenType.InvSrcAlpha:
-                    ParseBlend_InvSrcAlpha(node); // NonTerminal Rule: Blend_InvSrcAlpha
-                    break;
-                case TokenType.DestAlpha:
-                    ParseBlend_DestAlpha(node); // NonTerminal Rule: Blend_DestAlpha
-                    break;
-                case TokenType.InvDestAlpha:
-                    ParseBlend_InvDestAlpha(node); // NonTerminal Rule: Blend_InvDestAlpha
-                    break;
-                case TokenType.DestColor:
-                    ParseBlend_DestColor(node); // NonTerminal Rule: Blend_DestColor
-                    break;
-                case TokenType.InvDestColor:
-                    ParseBlend_InvDestColor(node); // NonTerminal Rule: Blend_InvDestColor
-                    break;
-                case TokenType.SrcAlphaSat:
-                    ParseBlend_SrcAlphaSat(node); // NonTerminal Rule: Blend_SrcAlphaSat
-                    break;
-                case TokenType.BlendFactor:
-                    ParseBlend_BlendFactor(node); // NonTerminal Rule: Blend_BlendFactor
-                    break;
-                case TokenType.InvBlendFactor:
-                    ParseBlend_InvBlendFactor(node); // NonTerminal Rule: Blend_InvBlendFactor
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Zero, One, SrcColor, InvSrcColor, SrcAlpha, InvSrcAlpha, DestAlpha, InvDestAlpha, DestColor, InvDestColor, SrcAlphaSat, BlendFactor, or InvBlendFactor.", 0x0002, tok));
-                    break;
+            case TokenType.Zero:
+                ParseBlend_Zero(node); // NonTerminal Rule: Blend_Zero
+                break;
+            case TokenType.One:
+                ParseBlend_One(node); // NonTerminal Rule: Blend_One
+                break;
+            case TokenType.SrcColor:
+                ParseBlend_SrcColor(node); // NonTerminal Rule: Blend_SrcColor
+                break;
+            case TokenType.InvSrcColor:
+                ParseBlend_InvSrcColor(node); // NonTerminal Rule: Blend_InvSrcColor
+                break;
+            case TokenType.SrcAlpha:
+                ParseBlend_SrcAlpha(node); // NonTerminal Rule: Blend_SrcAlpha
+                break;
+            case TokenType.InvSrcAlpha:
+                ParseBlend_InvSrcAlpha(node); // NonTerminal Rule: Blend_InvSrcAlpha
+                break;
+            case TokenType.DestAlpha:
+                ParseBlend_DestAlpha(node); // NonTerminal Rule: Blend_DestAlpha
+                break;
+            case TokenType.InvDestAlpha:
+                ParseBlend_InvDestAlpha(node); // NonTerminal Rule: Blend_InvDestAlpha
+                break;
+            case TokenType.DestColor:
+                ParseBlend_DestColor(node); // NonTerminal Rule: Blend_DestColor
+                break;
+            case TokenType.InvDestColor:
+                ParseBlend_InvDestColor(node); // NonTerminal Rule: Blend_InvDestColor
+                break;
+            case TokenType.SrcAlphaSat:
+                ParseBlend_SrcAlphaSat(node); // NonTerminal Rule: Blend_SrcAlphaSat
+                break;
+            case TokenType.BlendFactor:
+                ParseBlend_BlendFactor(node); // NonTerminal Rule: Blend_BlendFactor
+                break;
+            case TokenType.InvBlendFactor:
+                ParseBlend_InvBlendFactor(node); // NonTerminal Rule: Blend_InvBlendFactor
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Zero, One, SrcColor, InvSrcColor, SrcAlpha, InvSrcAlpha, DestAlpha, InvDestAlpha, DestColor, InvDestColor, SrcAlphaSat, BlendFactor, or InvBlendFactor.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -994,24 +994,24 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Add, TokenType.Subtract, TokenType.RevSubtract, TokenType.Min, TokenType.Max); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Add:
-                    ParseBlendOp_Add(node); // NonTerminal Rule: BlendOp_Add
-                    break;
-                case TokenType.Subtract:
-                    ParseBlendOp_Subtract(node); // NonTerminal Rule: BlendOp_Subtract
-                    break;
-                case TokenType.RevSubtract:
-                    ParseBlendOp_RevSubtract(node); // NonTerminal Rule: BlendOp_RevSubtract
-                    break;
-                case TokenType.Min:
-                    ParseBlendOp_Min(node); // NonTerminal Rule: BlendOp_Min
-                    break;
-                case TokenType.Max:
-                    ParseBlendOp_Max(node); // NonTerminal Rule: BlendOp_Max
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Add, Subtract, RevSubtract, Min, or Max.", 0x0002, tok));
-                    break;
+            case TokenType.Add:
+                ParseBlendOp_Add(node); // NonTerminal Rule: BlendOp_Add
+                break;
+            case TokenType.Subtract:
+                ParseBlendOp_Subtract(node); // NonTerminal Rule: BlendOp_Subtract
+                break;
+            case TokenType.RevSubtract:
+                ParseBlendOp_RevSubtract(node); // NonTerminal Rule: BlendOp_RevSubtract
+                break;
+            case TokenType.Min:
+                ParseBlendOp_Min(node); // NonTerminal Rule: BlendOp_Min
+                break;
+            case TokenType.Max:
+                ParseBlendOp_Max(node); // NonTerminal Rule: BlendOp_Max
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Add, Subtract, RevSubtract, Min, or Max.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -1187,33 +1187,33 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Never, TokenType.Less, TokenType.Equal, TokenType.LessEqual, TokenType.Greater, TokenType.NotEqual, TokenType.GreaterEqual, TokenType.Always); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Never:
-                    ParseCmpFunc_Never(node); // NonTerminal Rule: CmpFunc_Never
-                    break;
-                case TokenType.Less:
-                    ParseCmpFunc_Less(node); // NonTerminal Rule: CmpFunc_Less
-                    break;
-                case TokenType.Equal:
-                    ParseCmpFunc_Equal(node); // NonTerminal Rule: CmpFunc_Equal
-                    break;
-                case TokenType.LessEqual:
-                    ParseCmpFunc_LessEqual(node); // NonTerminal Rule: CmpFunc_LessEqual
-                    break;
-                case TokenType.Greater:
-                    ParseCmpFunc_Greater(node); // NonTerminal Rule: CmpFunc_Greater
-                    break;
-                case TokenType.NotEqual:
-                    ParseCmpFunc_NotEqual(node); // NonTerminal Rule: CmpFunc_NotEqual
-                    break;
-                case TokenType.GreaterEqual:
-                    ParseCmpFunc_GreaterEqual(node); // NonTerminal Rule: CmpFunc_GreaterEqual
-                    break;
-                case TokenType.Always:
-                    ParseCmpFunc_Always(node); // NonTerminal Rule: CmpFunc_Always
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Never, Less, Equal, LessEqual, Greater, NotEqual, GreaterEqual, or Always.", 0x0002, tok));
-                    break;
+            case TokenType.Never:
+                ParseCmpFunc_Never(node); // NonTerminal Rule: CmpFunc_Never
+                break;
+            case TokenType.Less:
+                ParseCmpFunc_Less(node); // NonTerminal Rule: CmpFunc_Less
+                break;
+            case TokenType.Equal:
+                ParseCmpFunc_Equal(node); // NonTerminal Rule: CmpFunc_Equal
+                break;
+            case TokenType.LessEqual:
+                ParseCmpFunc_LessEqual(node); // NonTerminal Rule: CmpFunc_LessEqual
+                break;
+            case TokenType.Greater:
+                ParseCmpFunc_Greater(node); // NonTerminal Rule: CmpFunc_Greater
+                break;
+            case TokenType.NotEqual:
+                ParseCmpFunc_NotEqual(node); // NonTerminal Rule: CmpFunc_NotEqual
+                break;
+            case TokenType.GreaterEqual:
+                ParseCmpFunc_GreaterEqual(node); // NonTerminal Rule: CmpFunc_GreaterEqual
+                break;
+            case TokenType.Always:
+                ParseCmpFunc_Always(node); // NonTerminal Rule: CmpFunc_Always
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Never, Less, Equal, LessEqual, Greater, NotEqual, GreaterEqual, or Always.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -1389,33 +1389,33 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Keep, TokenType.Zero, TokenType.Replace, TokenType.IncrSat, TokenType.DecrSat, TokenType.Invert, TokenType.Incr, TokenType.Decr); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Keep:
-                    ParseStencilOp_Keep(node); // NonTerminal Rule: StencilOp_Keep
-                    break;
-                case TokenType.Zero:
-                    ParseStencilOp_Zero(node); // NonTerminal Rule: StencilOp_Zero
-                    break;
-                case TokenType.Replace:
-                    ParseStencilOp_Replace(node); // NonTerminal Rule: StencilOp_Replace
-                    break;
-                case TokenType.IncrSat:
-                    ParseStencilOp_IncrSat(node); // NonTerminal Rule: StencilOp_IncrSat
-                    break;
-                case TokenType.DecrSat:
-                    ParseStencilOp_DecrSat(node); // NonTerminal Rule: StencilOp_DecrSat
-                    break;
-                case TokenType.Invert:
-                    ParseStencilOp_Invert(node); // NonTerminal Rule: StencilOp_Invert
-                    break;
-                case TokenType.Incr:
-                    ParseStencilOp_Incr(node); // NonTerminal Rule: StencilOp_Incr
-                    break;
-                case TokenType.Decr:
-                    ParseStencilOp_Decr(node); // NonTerminal Rule: StencilOp_Decr
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Keep, Zero, Replace, IncrSat, DecrSat, Invert, Incr, or Decr.", 0x0002, tok));
-                    break;
+            case TokenType.Keep:
+                ParseStencilOp_Keep(node); // NonTerminal Rule: StencilOp_Keep
+                break;
+            case TokenType.Zero:
+                ParseStencilOp_Zero(node); // NonTerminal Rule: StencilOp_Zero
+                break;
+            case TokenType.Replace:
+                ParseStencilOp_Replace(node); // NonTerminal Rule: StencilOp_Replace
+                break;
+            case TokenType.IncrSat:
+                ParseStencilOp_IncrSat(node); // NonTerminal Rule: StencilOp_IncrSat
+                break;
+            case TokenType.DecrSat:
+                ParseStencilOp_DecrSat(node); // NonTerminal Rule: StencilOp_DecrSat
+                break;
+            case TokenType.Invert:
+                ParseStencilOp_Invert(node); // NonTerminal Rule: StencilOp_Invert
+                break;
+            case TokenType.Incr:
+                ParseStencilOp_Incr(node); // NonTerminal Rule: StencilOp_Incr
+                break;
+            case TokenType.Decr:
+                ParseStencilOp_Decr(node); // NonTerminal Rule: StencilOp_Decr
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Keep, Zero, Replace, IncrSat, DecrSat, Invert, Incr, or Decr.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -2553,75 +2553,75 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.CullMode, TokenType.FillMode, TokenType.AlphaBlendEnable, TokenType.SrcBlend, TokenType.DestBlend, TokenType.BlendOp, TokenType.ColorWriteEnable, TokenType.DepthBias, TokenType.SlopeScaleDepthBias, TokenType.ZEnable, TokenType.ZWriteEnable, TokenType.ZFunc, TokenType.MultiSampleAntiAlias, TokenType.ScissorTestEnable, TokenType.StencilEnable, TokenType.StencilFail, TokenType.StencilFunc, TokenType.StencilMask, TokenType.StencilPass, TokenType.StencilRef, TokenType.StencilWriteMask, TokenType.StencilZFail); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.CullMode:
-                    ParseRender_State_CullMode(node); // NonTerminal Rule: Render_State_CullMode
-                    break;
-                case TokenType.FillMode:
-                    ParseRender_State_FillMode(node); // NonTerminal Rule: Render_State_FillMode
-                    break;
-                case TokenType.AlphaBlendEnable:
-                    ParseRender_State_AlphaBlendEnable(node); // NonTerminal Rule: Render_State_AlphaBlendEnable
-                    break;
-                case TokenType.SrcBlend:
-                    ParseRender_State_SrcBlend(node); // NonTerminal Rule: Render_State_SrcBlend
-                    break;
-                case TokenType.DestBlend:
-                    ParseRender_State_DestBlend(node); // NonTerminal Rule: Render_State_DestBlend
-                    break;
-                case TokenType.BlendOp:
-                    ParseRender_State_BlendOp(node); // NonTerminal Rule: Render_State_BlendOp
-                    break;
-                case TokenType.ColorWriteEnable:
-                    ParseRender_State_ColorWriteEnable(node); // NonTerminal Rule: Render_State_ColorWriteEnable
-                    break;
-                case TokenType.DepthBias:
-                    ParseRender_State_DepthBias(node); // NonTerminal Rule: Render_State_DepthBias
-                    break;
-                case TokenType.SlopeScaleDepthBias:
-                    ParseRender_State_SlopeScaleDepthBias(node); // NonTerminal Rule: Render_State_SlopeScaleDepthBias
-                    break;
-                case TokenType.ZEnable:
-                    ParseRender_State_ZEnable(node); // NonTerminal Rule: Render_State_ZEnable
-                    break;
-                case TokenType.ZWriteEnable:
-                    ParseRender_State_ZWriteEnable(node); // NonTerminal Rule: Render_State_ZWriteEnable
-                    break;
-                case TokenType.ZFunc:
-                    ParseRender_State_ZFunc(node); // NonTerminal Rule: Render_State_ZFunc
-                    break;
-                case TokenType.MultiSampleAntiAlias:
-                    ParseRender_State_MultiSampleAntiAlias(node); // NonTerminal Rule: Render_State_MultiSampleAntiAlias
-                    break;
-                case TokenType.ScissorTestEnable:
-                    ParseRender_State_ScissorTestEnable(node); // NonTerminal Rule: Render_State_ScissorTestEnable
-                    break;
-                case TokenType.StencilEnable:
-                    ParseRender_State_StencilEnable(node); // NonTerminal Rule: Render_State_StencilEnable
-                    break;
-                case TokenType.StencilFail:
-                    ParseRender_State_StencilFail(node); // NonTerminal Rule: Render_State_StencilFail
-                    break;
-                case TokenType.StencilFunc:
-                    ParseRender_State_StencilFunc(node); // NonTerminal Rule: Render_State_StencilFunc
-                    break;
-                case TokenType.StencilMask:
-                    ParseRender_State_StencilMask(node); // NonTerminal Rule: Render_State_StencilMask
-                    break;
-                case TokenType.StencilPass:
-                    ParseRender_State_StencilPass(node); // NonTerminal Rule: Render_State_StencilPass
-                    break;
-                case TokenType.StencilRef:
-                    ParseRender_State_StencilRef(node); // NonTerminal Rule: Render_State_StencilRef
-                    break;
-                case TokenType.StencilWriteMask:
-                    ParseRender_State_StencilWriteMask(node); // NonTerminal Rule: Render_State_StencilWriteMask
-                    break;
-                case TokenType.StencilZFail:
-                    ParseRender_State_StencilZFail(node); // NonTerminal Rule: Render_State_StencilZFail
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected CullMode, FillMode, AlphaBlendEnable, SrcBlend, DestBlend, BlendOp, ColorWriteEnable, DepthBias, SlopeScaleDepthBias, ZEnable, ZWriteEnable, ZFunc, MultiSampleAntiAlias, ScissorTestEnable, StencilEnable, StencilFail, StencilFunc, StencilMask, StencilPass, StencilRef, StencilWriteMask, or StencilZFail.", 0x0002, tok));
-                    break;
+            case TokenType.CullMode:
+                ParseRender_State_CullMode(node); // NonTerminal Rule: Render_State_CullMode
+                break;
+            case TokenType.FillMode:
+                ParseRender_State_FillMode(node); // NonTerminal Rule: Render_State_FillMode
+                break;
+            case TokenType.AlphaBlendEnable:
+                ParseRender_State_AlphaBlendEnable(node); // NonTerminal Rule: Render_State_AlphaBlendEnable
+                break;
+            case TokenType.SrcBlend:
+                ParseRender_State_SrcBlend(node); // NonTerminal Rule: Render_State_SrcBlend
+                break;
+            case TokenType.DestBlend:
+                ParseRender_State_DestBlend(node); // NonTerminal Rule: Render_State_DestBlend
+                break;
+            case TokenType.BlendOp:
+                ParseRender_State_BlendOp(node); // NonTerminal Rule: Render_State_BlendOp
+                break;
+            case TokenType.ColorWriteEnable:
+                ParseRender_State_ColorWriteEnable(node); // NonTerminal Rule: Render_State_ColorWriteEnable
+                break;
+            case TokenType.DepthBias:
+                ParseRender_State_DepthBias(node); // NonTerminal Rule: Render_State_DepthBias
+                break;
+            case TokenType.SlopeScaleDepthBias:
+                ParseRender_State_SlopeScaleDepthBias(node); // NonTerminal Rule: Render_State_SlopeScaleDepthBias
+                break;
+            case TokenType.ZEnable:
+                ParseRender_State_ZEnable(node); // NonTerminal Rule: Render_State_ZEnable
+                break;
+            case TokenType.ZWriteEnable:
+                ParseRender_State_ZWriteEnable(node); // NonTerminal Rule: Render_State_ZWriteEnable
+                break;
+            case TokenType.ZFunc:
+                ParseRender_State_ZFunc(node); // NonTerminal Rule: Render_State_ZFunc
+                break;
+            case TokenType.MultiSampleAntiAlias:
+                ParseRender_State_MultiSampleAntiAlias(node); // NonTerminal Rule: Render_State_MultiSampleAntiAlias
+                break;
+            case TokenType.ScissorTestEnable:
+                ParseRender_State_ScissorTestEnable(node); // NonTerminal Rule: Render_State_ScissorTestEnable
+                break;
+            case TokenType.StencilEnable:
+                ParseRender_State_StencilEnable(node); // NonTerminal Rule: Render_State_StencilEnable
+                break;
+            case TokenType.StencilFail:
+                ParseRender_State_StencilFail(node); // NonTerminal Rule: Render_State_StencilFail
+                break;
+            case TokenType.StencilFunc:
+                ParseRender_State_StencilFunc(node); // NonTerminal Rule: Render_State_StencilFunc
+                break;
+            case TokenType.StencilMask:
+                ParseRender_State_StencilMask(node); // NonTerminal Rule: Render_State_StencilMask
+                break;
+            case TokenType.StencilPass:
+                ParseRender_State_StencilPass(node); // NonTerminal Rule: Render_State_StencilPass
+                break;
+            case TokenType.StencilRef:
+                ParseRender_State_StencilRef(node); // NonTerminal Rule: Render_State_StencilRef
+                break;
+            case TokenType.StencilWriteMask:
+                ParseRender_State_StencilWriteMask(node); // NonTerminal Rule: Render_State_StencilWriteMask
+                break;
+            case TokenType.StencilZFail:
+                ParseRender_State_StencilZFail(node); // NonTerminal Rule: Render_State_StencilZFail
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected CullMode, FillMode, AlphaBlendEnable, SrcBlend, DestBlend, BlendOp, ColorWriteEnable, DepthBias, SlopeScaleDepthBias, ZEnable, ZWriteEnable, ZFunc, MultiSampleAntiAlias, ScissorTestEnable, StencilEnable, StencilFail, StencilFunc, StencilMask, StencilPass, StencilRef, StencilWriteMask, or StencilZFail.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -2702,39 +2702,39 @@ namespace MonoGame.Effect.TPGParser
                 tok = scanner.LookAhead(TokenType.VertexShader, TokenType.PixelShader, TokenType.CullMode, TokenType.FillMode, TokenType.AlphaBlendEnable, TokenType.SrcBlend, TokenType.DestBlend, TokenType.BlendOp, TokenType.ColorWriteEnable, TokenType.DepthBias, TokenType.SlopeScaleDepthBias, TokenType.ZEnable, TokenType.ZWriteEnable, TokenType.ZFunc, TokenType.MultiSampleAntiAlias, TokenType.ScissorTestEnable, TokenType.StencilEnable, TokenType.StencilFail, TokenType.StencilFunc, TokenType.StencilMask, TokenType.StencilPass, TokenType.StencilRef, TokenType.StencilWriteMask, TokenType.StencilZFail); // Choice Rule
                 switch (tok.Type)
                 { // Choice Rule
-                    case TokenType.VertexShader:
-                        ParseVertexShader_Pass_Expression(node); // NonTerminal Rule: VertexShader_Pass_Expression
-                        break;
-                    case TokenType.PixelShader:
-                        ParsePixelShader_Pass_Expression(node); // NonTerminal Rule: PixelShader_Pass_Expression
-                        break;
-                    case TokenType.CullMode:
-                    case TokenType.FillMode:
-                    case TokenType.AlphaBlendEnable:
-                    case TokenType.SrcBlend:
-                    case TokenType.DestBlend:
-                    case TokenType.BlendOp:
-                    case TokenType.ColorWriteEnable:
-                    case TokenType.DepthBias:
-                    case TokenType.SlopeScaleDepthBias:
-                    case TokenType.ZEnable:
-                    case TokenType.ZWriteEnable:
-                    case TokenType.ZFunc:
-                    case TokenType.MultiSampleAntiAlias:
-                    case TokenType.ScissorTestEnable:
-                    case TokenType.StencilEnable:
-                    case TokenType.StencilFail:
-                    case TokenType.StencilFunc:
-                    case TokenType.StencilMask:
-                    case TokenType.StencilPass:
-                    case TokenType.StencilRef:
-                    case TokenType.StencilWriteMask:
-                    case TokenType.StencilZFail:
-                        ParseRender_State_Expression(node); // NonTerminal Rule: Render_State_Expression
-                        break;
-                    default:
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected VertexShader, PixelShader, CullMode, FillMode, AlphaBlendEnable, SrcBlend, DestBlend, BlendOp, ColorWriteEnable, DepthBias, SlopeScaleDepthBias, ZEnable, ZWriteEnable, ZFunc, MultiSampleAntiAlias, ScissorTestEnable, StencilEnable, StencilFail, StencilFunc, StencilMask, StencilPass, StencilRef, StencilWriteMask, or StencilZFail.", 0x0002, tok));
-                        break;
+                case TokenType.VertexShader:
+                    ParseVertexShader_Pass_Expression(node); // NonTerminal Rule: VertexShader_Pass_Expression
+                    break;
+                case TokenType.PixelShader:
+                    ParsePixelShader_Pass_Expression(node); // NonTerminal Rule: PixelShader_Pass_Expression
+                    break;
+                case TokenType.CullMode:
+                case TokenType.FillMode:
+                case TokenType.AlphaBlendEnable:
+                case TokenType.SrcBlend:
+                case TokenType.DestBlend:
+                case TokenType.BlendOp:
+                case TokenType.ColorWriteEnable:
+                case TokenType.DepthBias:
+                case TokenType.SlopeScaleDepthBias:
+                case TokenType.ZEnable:
+                case TokenType.ZWriteEnable:
+                case TokenType.ZFunc:
+                case TokenType.MultiSampleAntiAlias:
+                case TokenType.ScissorTestEnable:
+                case TokenType.StencilEnable:
+                case TokenType.StencilFail:
+                case TokenType.StencilFunc:
+                case TokenType.StencilMask:
+                case TokenType.StencilPass:
+                case TokenType.StencilRef:
+                case TokenType.StencilWriteMask:
+                case TokenType.StencilZFail:
+                    ParseRender_State_Expression(node); // NonTerminal Rule: Render_State_Expression
+                    break;
+                default:
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected VertexShader, PixelShader, CullMode, FillMode, AlphaBlendEnable, SrcBlend, DestBlend, BlendOp, ColorWriteEnable, DepthBias, SlopeScaleDepthBias, ZEnable, ZWriteEnable, ZFunc, MultiSampleAntiAlias, ScissorTestEnable, StencilEnable, StencilFail, StencilFunc, StencilMask, StencilPass, StencilRef, StencilWriteMask, or StencilZFail.", 0x0002, tok));
+                    break;
                 } // Choice Rule
                 tok = scanner.LookAhead(TokenType.VertexShader, TokenType.PixelShader, TokenType.CullMode, TokenType.FillMode, TokenType.AlphaBlendEnable, TokenType.SrcBlend, TokenType.DestBlend, TokenType.BlendOp, TokenType.ColorWriteEnable, TokenType.DepthBias, TokenType.SlopeScaleDepthBias, TokenType.ZEnable, TokenType.ZWriteEnable, TokenType.ZFunc, TokenType.MultiSampleAntiAlias, TokenType.ScissorTestEnable, TokenType.StencilEnable, TokenType.StencilFail, TokenType.StencilFunc, TokenType.StencilMask, TokenType.StencilPass, TokenType.StencilRef, TokenType.StencilWriteMask, TokenType.StencilZFail); // ZeroOrMore Rule
             }
@@ -3041,21 +3041,21 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Clamp, TokenType.Wrap, TokenType.Mirror, TokenType.Border); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Clamp:
-                    ParseAddressMode_Clamp(node); // NonTerminal Rule: AddressMode_Clamp
-                    break;
-                case TokenType.Wrap:
-                    ParseAddressMode_Wrap(node); // NonTerminal Rule: AddressMode_Wrap
-                    break;
-                case TokenType.Mirror:
-                    ParseAddressMode_Mirror(node); // NonTerminal Rule: AddressMode_Mirror
-                    break;
-                case TokenType.Border:
-                    ParseAddressMode_Border(node); // NonTerminal Rule: AddressMode_Border
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Clamp, Wrap, Mirror, or Border.", 0x0002, tok));
-                    break;
+            case TokenType.Clamp:
+                ParseAddressMode_Clamp(node); // NonTerminal Rule: AddressMode_Clamp
+                break;
+            case TokenType.Wrap:
+                ParseAddressMode_Wrap(node); // NonTerminal Rule: AddressMode_Wrap
+                break;
+            case TokenType.Mirror:
+                ParseAddressMode_Mirror(node); // NonTerminal Rule: AddressMode_Mirror
+                break;
+            case TokenType.Border:
+                ParseAddressMode_Border(node); // NonTerminal Rule: AddressMode_Border
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Clamp, Wrap, Mirror, or Border.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -3151,21 +3151,21 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.None, TokenType.Linear, TokenType.Point, TokenType.Anisotropic); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.None:
-                    ParseTextureFilter_None(node); // NonTerminal Rule: TextureFilter_None
-                    break;
-                case TokenType.Linear:
-                    ParseTextureFilter_Linear(node); // NonTerminal Rule: TextureFilter_Linear
-                    break;
-                case TokenType.Point:
-                    ParseTextureFilter_Point(node); // NonTerminal Rule: TextureFilter_Point
-                    break;
-                case TokenType.Anisotropic:
-                    ParseTextureFilter_Anisotropic(node); // NonTerminal Rule: TextureFilter_Anisotropic
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected None, Linear, Point, or Anisotropic.", 0x0002, tok));
-                    break;
+            case TokenType.None:
+                ParseTextureFilter_None(node); // NonTerminal Rule: TextureFilter_None
+                break;
+            case TokenType.Linear:
+                ParseTextureFilter_Linear(node); // NonTerminal Rule: TextureFilter_Linear
+                break;
+            case TokenType.Point:
+                ParseTextureFilter_Point(node); // NonTerminal Rule: TextureFilter_Point
+                break;
+            case TokenType.Anisotropic:
+                ParseTextureFilter_Anisotropic(node); // NonTerminal Rule: TextureFilter_Anisotropic
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected None, Linear, Point, or Anisotropic.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -3205,31 +3205,31 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.LessThan, TokenType.OpenParenthesis); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.LessThan:
-                    tok = scanner.Scan(TokenType.LessThan); // Terminal Rule: LessThan
-                    n = node.CreateNode(tok, tok.ToString());
-                    node.Token.UpdateRange(tok);
-                    node.Nodes.Add(n);
-                    if (tok.Type != TokenType.LessThan)
-                    {
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.LessThan.ToString(), 0x1001, tok));
-                        return;
-                    }
-                    break;
-                case TokenType.OpenParenthesis:
-                    tok = scanner.Scan(TokenType.OpenParenthesis); // Terminal Rule: OpenParenthesis
-                    n = node.CreateNode(tok, tok.ToString());
-                    node.Token.UpdateRange(tok);
-                    node.Nodes.Add(n);
-                    if (tok.Type != TokenType.OpenParenthesis)
-                    {
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenParenthesis.ToString(), 0x1001, tok));
-                        return;
-                    }
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected LessThan or OpenParenthesis.", 0x0002, tok));
-                    break;
+            case TokenType.LessThan:
+                tok = scanner.Scan(TokenType.LessThan); // Terminal Rule: LessThan
+                n = node.CreateNode(tok, tok.ToString());
+                node.Token.UpdateRange(tok);
+                node.Nodes.Add(n);
+                if (tok.Type != TokenType.LessThan)
+                {
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.LessThan.ToString(), 0x1001, tok));
+                    return;
+                }
+                break;
+            case TokenType.OpenParenthesis:
+                tok = scanner.Scan(TokenType.OpenParenthesis); // Terminal Rule: OpenParenthesis
+                n = node.CreateNode(tok, tok.ToString());
+                node.Token.UpdateRange(tok);
+                node.Nodes.Add(n);
+                if (tok.Type != TokenType.OpenParenthesis)
+                {
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenParenthesis.ToString(), 0x1001, tok));
+                    return;
+                }
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected LessThan or OpenParenthesis.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             // Concat Rule
@@ -3247,31 +3247,31 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.GreaterThan, TokenType.CloseParenthesis); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.GreaterThan:
-                    tok = scanner.Scan(TokenType.GreaterThan); // Terminal Rule: GreaterThan
-                    n = node.CreateNode(tok, tok.ToString());
-                    node.Token.UpdateRange(tok);
-                    node.Nodes.Add(n);
-                    if (tok.Type != TokenType.GreaterThan)
-                    {
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.GreaterThan.ToString(), 0x1001, tok));
-                        return;
-                    }
-                    break;
-                case TokenType.CloseParenthesis:
-                    tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
-                    n = node.CreateNode(tok, tok.ToString());
-                    node.Token.UpdateRange(tok);
-                    node.Nodes.Add(n);
-                    if (tok.Type != TokenType.CloseParenthesis)
-                    {
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
-                        return;
-                    }
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected GreaterThan or CloseParenthesis.", 0x0002, tok));
-                    break;
+            case TokenType.GreaterThan:
+                tok = scanner.Scan(TokenType.GreaterThan); // Terminal Rule: GreaterThan
+                n = node.CreateNode(tok, tok.ToString());
+                node.Token.UpdateRange(tok);
+                node.Nodes.Add(n);
+                if (tok.Type != TokenType.GreaterThan)
+                {
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.GreaterThan.ToString(), 0x1001, tok));
+                    return;
+                }
+                break;
+            case TokenType.CloseParenthesis:
+                tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
+                n = node.CreateNode(tok, tok.ToString());
+                node.Token.UpdateRange(tok);
+                node.Nodes.Add(n);
+                if (tok.Type != TokenType.CloseParenthesis)
+                {
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
+                    return;
+                }
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected GreaterThan or CloseParenthesis.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             // Concat Rule
@@ -3847,45 +3847,45 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Texture, TokenType.MinFilter, TokenType.MagFilter, TokenType.MipFilter, TokenType.Filter, TokenType.AddressU, TokenType.AddressV, TokenType.AddressW, TokenType.BorderColor, TokenType.MaxMipLevel, TokenType.MaxAnisotropy, TokenType.MipLodBias); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Texture:
-                    ParseSampler_State_Texture(node); // NonTerminal Rule: Sampler_State_Texture
-                    break;
-                case TokenType.MinFilter:
-                    ParseSampler_State_MinFilter(node); // NonTerminal Rule: Sampler_State_MinFilter
-                    break;
-                case TokenType.MagFilter:
-                    ParseSampler_State_MagFilter(node); // NonTerminal Rule: Sampler_State_MagFilter
-                    break;
-                case TokenType.MipFilter:
-                    ParseSampler_State_MipFilter(node); // NonTerminal Rule: Sampler_State_MipFilter
-                    break;
-                case TokenType.Filter:
-                    ParseSampler_State_Filter(node); // NonTerminal Rule: Sampler_State_Filter
-                    break;
-                case TokenType.AddressU:
-                    ParseSampler_State_AddressU(node); // NonTerminal Rule: Sampler_State_AddressU
-                    break;
-                case TokenType.AddressV:
-                    ParseSampler_State_AddressV(node); // NonTerminal Rule: Sampler_State_AddressV
-                    break;
-                case TokenType.AddressW:
-                    ParseSampler_State_AddressW(node); // NonTerminal Rule: Sampler_State_AddressW
-                    break;
-                case TokenType.BorderColor:
-                    ParseSampler_State_BorderColor(node); // NonTerminal Rule: Sampler_State_BorderColor
-                    break;
-                case TokenType.MaxMipLevel:
-                    ParseSampler_State_MaxMipLevel(node); // NonTerminal Rule: Sampler_State_MaxMipLevel
-                    break;
-                case TokenType.MaxAnisotropy:
-                    ParseSampler_State_MaxAnisotropy(node); // NonTerminal Rule: Sampler_State_MaxAnisotropy
-                    break;
-                case TokenType.MipLodBias:
-                    ParseSampler_State_MipLodBias(node); // NonTerminal Rule: Sampler_State_MipLodBias
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Texture, MinFilter, MagFilter, MipFilter, Filter, AddressU, AddressV, AddressW, BorderColor, MaxMipLevel, MaxAnisotropy, or MipLodBias.", 0x0002, tok));
-                    break;
+            case TokenType.Texture:
+                ParseSampler_State_Texture(node); // NonTerminal Rule: Sampler_State_Texture
+                break;
+            case TokenType.MinFilter:
+                ParseSampler_State_MinFilter(node); // NonTerminal Rule: Sampler_State_MinFilter
+                break;
+            case TokenType.MagFilter:
+                ParseSampler_State_MagFilter(node); // NonTerminal Rule: Sampler_State_MagFilter
+                break;
+            case TokenType.MipFilter:
+                ParseSampler_State_MipFilter(node); // NonTerminal Rule: Sampler_State_MipFilter
+                break;
+            case TokenType.Filter:
+                ParseSampler_State_Filter(node); // NonTerminal Rule: Sampler_State_Filter
+                break;
+            case TokenType.AddressU:
+                ParseSampler_State_AddressU(node); // NonTerminal Rule: Sampler_State_AddressU
+                break;
+            case TokenType.AddressV:
+                ParseSampler_State_AddressV(node); // NonTerminal Rule: Sampler_State_AddressV
+                break;
+            case TokenType.AddressW:
+                ParseSampler_State_AddressW(node); // NonTerminal Rule: Sampler_State_AddressW
+                break;
+            case TokenType.BorderColor:
+                ParseSampler_State_BorderColor(node); // NonTerminal Rule: Sampler_State_BorderColor
+                break;
+            case TokenType.MaxMipLevel:
+                ParseSampler_State_MaxMipLevel(node); // NonTerminal Rule: Sampler_State_MaxMipLevel
+                break;
+            case TokenType.MaxAnisotropy:
+                ParseSampler_State_MaxAnisotropy(node); // NonTerminal Rule: Sampler_State_MaxAnisotropy
+                break;
+            case TokenType.MipLodBias:
+                ParseSampler_State_MipLodBias(node); // NonTerminal Rule: Sampler_State_MipLodBias
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Texture, MinFilter, MagFilter, MipFilter, Filter, AddressU, AddressV, AddressW, BorderColor, MaxMipLevel, MaxAnisotropy, or MipLodBias.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);
@@ -4154,42 +4154,42 @@ namespace MonoGame.Effect.TPGParser
             tok = scanner.LookAhead(TokenType.Semicolon, TokenType.Comma, TokenType.CloseParenthesis); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
-                case TokenType.Semicolon:
-                    tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-                    n = node.CreateNode(tok, tok.ToString());
-                    node.Token.UpdateRange(tok);
-                    node.Nodes.Add(n);
-                    if (tok.Type != TokenType.Semicolon)
-                    {
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
-                        return;
-                    }
-                    break;
-                case TokenType.Comma:
-                    tok = scanner.Scan(TokenType.Comma); // Terminal Rule: Comma
-                    n = node.CreateNode(tok, tok.ToString());
-                    node.Token.UpdateRange(tok);
-                    node.Nodes.Add(n);
-                    if (tok.Type != TokenType.Comma)
-                    {
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Comma.ToString(), 0x1001, tok));
-                        return;
-                    }
-                    break;
-                case TokenType.CloseParenthesis:
-                    tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
-                    n = node.CreateNode(tok, tok.ToString());
-                    node.Token.UpdateRange(tok);
-                    node.Nodes.Add(n);
-                    if (tok.Type != TokenType.CloseParenthesis)
-                    {
-                        tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
-                        return;
-                    }
-                    break;
-                default:
-                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Semicolon, Comma, or CloseParenthesis.", 0x0002, tok));
-                    break;
+            case TokenType.Semicolon:
+                tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
+                n = node.CreateNode(tok, tok.ToString());
+                node.Token.UpdateRange(tok);
+                node.Nodes.Add(n);
+                if (tok.Type != TokenType.Semicolon)
+                {
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
+                    return;
+                }
+                break;
+            case TokenType.Comma:
+                tok = scanner.Scan(TokenType.Comma); // Terminal Rule: Comma
+                n = node.CreateNode(tok, tok.ToString());
+                node.Token.UpdateRange(tok);
+                node.Nodes.Add(n);
+                if (tok.Type != TokenType.Comma)
+                {
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Comma.ToString(), 0x1001, tok));
+                    return;
+                }
+                break;
+            case TokenType.CloseParenthesis:
+                tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
+                n = node.CreateNode(tok, tok.ToString());
+                node.Token.UpdateRange(tok);
+                node.Nodes.Add(n);
+                if (tok.Type != TokenType.CloseParenthesis)
+                {
+                    tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
+                    return;
+                }
+                break;
+            default:
+                tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Semicolon, Comma, or CloseParenthesis.", 0x0002, tok));
+                break;
             } // Choice Rule
 
             parent.Token.UpdateRange(node.Token);

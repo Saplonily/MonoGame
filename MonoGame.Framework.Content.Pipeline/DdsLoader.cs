@@ -3,10 +3,10 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.IO;
 using Monogame.Content.Pipeline.Graphics;
 using Monogame.Graphics;
 using Monogame.Graphics.PackedVector;
-using System.IO;
 
 namespace Monogame.Content.Pipeline
 {
@@ -116,18 +116,18 @@ namespace Monogame.Content.Pipeline
             {
                 switch (pixelFormat.dwFourCC)
                 {
-                    case FourCC.A32B32G32R32F:
-                        return SurfaceFormat.Vector4;
-                    case FourCC.Dxt1:
-                        return SurfaceFormat.Dxt1;
-                    case FourCC.Dxt2:
-                        throw new ContentLoadException("Unsupported compression format DXT2");
-                    case FourCC.Dxt3:
-                        return SurfaceFormat.Dxt3;
-                    case FourCC.Dxt4:
-                        throw new ContentLoadException("Unsupported compression format DXT4");
-                    case FourCC.Dxt5:
-                        return SurfaceFormat.Dxt5;
+                case FourCC.A32B32G32R32F:
+                    return SurfaceFormat.Vector4;
+                case FourCC.Dxt1:
+                    return SurfaceFormat.Dxt1;
+                case FourCC.Dxt2:
+                    throw new ContentLoadException("Unsupported compression format DXT2");
+                case FourCC.Dxt3:
+                    return SurfaceFormat.Dxt3;
+                case FourCC.Dxt4:
+                    throw new ContentLoadException("Unsupported compression format DXT4");
+                case FourCC.Dxt5:
+                    return SurfaceFormat.Dxt5;
                 }
             }
             else if (pixelFormat.dwFlags.HasFlag(Ddpf.Rgb))
@@ -185,29 +185,29 @@ namespace Monogame.Content.Pipeline
         {
             switch (format)
             {
-                case SurfaceFormat.Color:
-                    return new PixelBitmapContent<Color>(width, height);
+            case SurfaceFormat.Color:
+                return new PixelBitmapContent<Color>(width, height);
 
-                case SurfaceFormat.Bgra4444:
-                    return new PixelBitmapContent<Bgra4444>(width, height);
+            case SurfaceFormat.Bgra4444:
+                return new PixelBitmapContent<Bgra4444>(width, height);
 
-                case SurfaceFormat.Bgra5551:
-                    return new PixelBitmapContent<Bgra5551>(width, height);
+            case SurfaceFormat.Bgra5551:
+                return new PixelBitmapContent<Bgra5551>(width, height);
 
-                case SurfaceFormat.Bgr565:
-                    return new PixelBitmapContent<Bgr565>(width, height);
+            case SurfaceFormat.Bgr565:
+                return new PixelBitmapContent<Bgr565>(width, height);
 
-                case SurfaceFormat.Dxt1:
-                    return new Dxt1BitmapContent(width, height);
+            case SurfaceFormat.Dxt1:
+                return new Dxt1BitmapContent(width, height);
 
-                case SurfaceFormat.Dxt3:
-                    return new Dxt3BitmapContent(width, height);
+            case SurfaceFormat.Dxt3:
+                return new Dxt3BitmapContent(width, height);
 
-                case SurfaceFormat.Dxt5:
-                    return new Dxt5BitmapContent(width, height);
+            case SurfaceFormat.Dxt5:
+                return new Dxt5BitmapContent(width, height);
 
-                case SurfaceFormat.Vector4:
-                    return new PixelBitmapContent<Vector4>(width, height);
+            case SurfaceFormat.Vector4:
+                return new PixelBitmapContent<Vector4>(width, height);
             }
             throw new ContentLoadException("Unsupported SurfaceFormat " + format);
         }
@@ -221,24 +221,24 @@ namespace Monogame.Content.Pipeline
 
             switch (format)
             {
-                case SurfaceFormat.Color:
-                case SurfaceFormat.Bgra4444:
-                case SurfaceFormat.Bgra5551:
-                case SurfaceFormat.Bgr565:
-                case SurfaceFormat.Vector4:
-                    pitch = width * format.GetSize();
-                    rows = height;
-                    break;
+            case SurfaceFormat.Color:
+            case SurfaceFormat.Bgra4444:
+            case SurfaceFormat.Bgra5551:
+            case SurfaceFormat.Bgr565:
+            case SurfaceFormat.Vector4:
+                pitch = width * format.GetSize();
+                rows = height;
+                break;
 
-                case SurfaceFormat.Dxt1:
-                case SurfaceFormat.Dxt3:
-                case SurfaceFormat.Dxt5:
-                    pitch = ((width + 3) / 4) * format.GetSize();
-                    rows = (height + 3) / 4;
-                    break;
+            case SurfaceFormat.Dxt1:
+            case SurfaceFormat.Dxt3:
+            case SurfaceFormat.Dxt5:
+                pitch = ((width + 3) / 4) * format.GetSize();
+                rows = (height + 3) / 4;
+                break;
 
-                default:
-                    throw new ContentLoadException("Unsupported SurfaceFormat " + format);
+            default:
+                throw new ContentLoadException("Unsupported SurfaceFormat " + format);
             }
 
             return pitch * rows;
@@ -335,21 +335,21 @@ namespace Monogame.Content.Pipeline
                         {
                             switch (format)
                             {
-                                case SurfaceFormat.Bgr565:
-                                    ByteSwapBGR565(bytes);
-                                    break;
-                                case SurfaceFormat.Bgra4444:
-                                    ByteSwapBGRA4444(bytes);
-                                    break;
-                                case SurfaceFormat.Bgra5551:
-                                    ByteSwapBGRA5551(bytes);
-                                    break;
-                                case SurfaceFormat.Color:
-                                    if (header.ddspf.dwRgbBitCount == 32)
-                                        ByteSwapRGBX(bytes);
-                                    else if (header.ddspf.dwRgbBitCount == 24)
-                                        ByteSwapRGB(bytes);
-                                    break;
+                            case SurfaceFormat.Bgr565:
+                                ByteSwapBGR565(bytes);
+                                break;
+                            case SurfaceFormat.Bgra4444:
+                                ByteSwapBGRA4444(bytes);
+                                break;
+                            case SurfaceFormat.Bgra5551:
+                                ByteSwapBGRA5551(bytes);
+                                break;
+                            case SurfaceFormat.Color:
+                                if (header.ddspf.dwRgbBitCount == 32)
+                                    ByteSwapRGBX(bytes);
+                                else if (header.ddspf.dwRgbBitCount == 24)
+                                    ByteSwapRGB(bytes);
+                                break;
                             }
                         }
                         if ((format == SurfaceFormat.Color) && header.ddspf.dwFlags.HasFlag(Ddpf.Rgb) && !header.ddspf.dwFlags.HasFlag(Ddpf.AlphaPixels))

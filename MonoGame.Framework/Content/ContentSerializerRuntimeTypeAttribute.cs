@@ -27,4 +27,3 @@ namespace Monogame.Content
         public string RuntimeType { get; private set; }
     }
 }
-

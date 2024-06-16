@@ -4,12 +4,12 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Monogame;
 using Monogame.Content;
 using Monogame.Content.Pipeline;
 using Monogame.Content.Pipeline.Graphics;
 using Monogame.Graphics;
-using System.Collections.Generic;
 
 #region The Basics
 public class TheBasics

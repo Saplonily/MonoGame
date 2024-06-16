@@ -4,8 +4,8 @@
 
 using System;
 using System.IO;
-using NUnitLite;
 using NUnit.Framework;
+using NUnitLite;
 
 namespace MonoGame.Tests
 {

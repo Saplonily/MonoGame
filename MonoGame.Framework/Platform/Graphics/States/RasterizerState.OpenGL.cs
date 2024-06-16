@@ -82,18 +82,18 @@ namespace Monogame.Graphics
                     int depthMul;
                     switch (device.ActiveDepthFormat)
                     {
-                        case DepthFormat.None:
-                            depthMul = 0;
-                            break;
-                        case DepthFormat.Depth16:
-                            depthMul = 1 << 16 - 1;
-                            break;
-                        case DepthFormat.Depth24:
-                        case DepthFormat.Depth24Stencil8:
-                            depthMul = 1 << 24 - 1;
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
+                    case DepthFormat.None:
+                        depthMul = 0;
+                        break;
+                    case DepthFormat.Depth16:
+                        depthMul = 1 << 16 - 1;
+                        break;
+                    case DepthFormat.Depth24:
+                    case DepthFormat.Depth24Stencil8:
+                        depthMul = 1 << 24 - 1;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                     }
                     GL.Enable(EnableCap.PolygonOffsetFill);
                     GL.PolygonOffset(this.SlopeScaleDepthBias, this.DepthBias * depthMul);

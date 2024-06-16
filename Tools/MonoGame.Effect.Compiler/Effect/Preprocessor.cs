@@ -36,34 +36,34 @@ namespace MonoGame.Effect
                 var token = pp.token();
                 switch (token.getType())
                 {
-                    case CppNet.Token.EOF:
-                        endOfStream = true;
-                        break;
-                    case CppNet.Token.CPPCOMMENT:
-                        if (token.getText().StartsWith("//--WORKAROUND#line"))
-                        {
-                            result.Append(token.getText().Replace("//--WORKAROUND#line", "#line"));
-                        }
-                        break;
-                    case CppNet.Token.CCOMMENT:
-                        {
-                            var tokenText = token.getText();
-                            if (tokenText != null)
-                            {
-                                // Need to preserve line breaks so that line numbers are correct.
-                                foreach (var c in tokenText)
-                                    if (c == '\n')
-                                        result.Append(c);
-                            }
-                            break;
-                        }
-                    default:
-                        {
-                            var tokenText = token.getText();
-                            if (tokenText != null)
-                                result.Append(tokenText);
-                            break;
-                        }
+                case CppNet.Token.EOF:
+                    endOfStream = true;
+                    break;
+                case CppNet.Token.CPPCOMMENT:
+                    if (token.getText().StartsWith("//--WORKAROUND#line"))
+                    {
+                        result.Append(token.getText().Replace("//--WORKAROUND#line", "#line"));
+                    }
+                    break;
+                case CppNet.Token.CCOMMENT:
+                {
+                    var tokenText = token.getText();
+                    if (tokenText != null)
+                    {
+                        // Need to preserve line breaks so that line numbers are correct.
+                        foreach (var c in tokenText)
+                            if (c == '\n')
+                                result.Append(c);
+                    }
+                    break;
+                }
+                default:
+                {
+                    var tokenText = token.getText();
+                    if (tokenText != null)
+                        result.Append(tokenText);
+                    break;
+                }
                 }
             }
 

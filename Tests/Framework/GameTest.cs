@@ -524,9 +524,9 @@ namespace MonoGame.Tests
                     char actionInitial;
                     switch (Action)
                     {
-                        case RunLoopAction.Draw: actionInitial = 'd'; break;
-                        case RunLoopAction.Update: actionInitial = 'u'; break;
-                        default: throw new NotSupportedException(Action.ToString());
+                    case RunLoopAction.Draw: actionInitial = 'd'; break;
+                    case RunLoopAction.Update: actionInitial = 'u'; break;
+                    default: throw new NotSupportedException(Action.ToString());
                     }
 
                     return string.Format(

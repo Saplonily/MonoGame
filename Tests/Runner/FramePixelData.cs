@@ -30,4 +30,3 @@ namespace MonoGame.Tests
         public int Height { get { return _height; } }
     }
 }
-

@@ -3,8 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using SharpDX.DXGI;
 using SharpDX.Direct3D11;
+using SharpDX.DXGI;
 
 namespace Monogame.Graphics
 {

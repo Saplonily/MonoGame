@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Monogame.Graphics;
-using System.Globalization;
 
 namespace MonoGame.Effect.TPGParser
 {
@@ -23,14 +23,14 @@ namespace MonoGame.Effect.TPGParser
         {
             switch (blend)
             {
-                case Blend.SourceColor:
-                    return Blend.SourceAlpha;
-                case Blend.InverseSourceColor:
-                    return Blend.InverseSourceAlpha;
-                case Blend.DestinationColor:
-                    return Blend.DestinationAlpha;
-                case Blend.InverseDestinationColor:
-                    return Blend.InverseDestinationAlpha;
+            case Blend.SourceColor:
+                return Blend.SourceAlpha;
+            case Blend.InverseSourceColor:
+                return Blend.InverseSourceAlpha;
+            case Blend.DestinationColor:
+                return Blend.DestinationAlpha;
+            case Blend.InverseDestinationColor:
+                return Blend.InverseDestinationAlpha;
             }
             return blend;
         }

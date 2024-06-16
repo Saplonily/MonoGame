@@ -70,38 +70,38 @@ namespace MonoGame.Tests.ContentPipeline
             var textureType = output.Texture.Faces[0][0].GetType();
             switch (format)
             {
-                case TextureProcessorOutputFormat.Color:
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Color>));
+            case TextureProcessorOutputFormat.Color:
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Color>));
+                break;
+            case TextureProcessorOutputFormat.Color16Bit:
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgr565>));
+                break;
+            case TextureProcessorOutputFormat.Compressed:
+                switch (platform)
+                {
+                case TargetPlatform.Windows:
+                case TargetPlatform.DesktopGL:
+                    Assert.IsTrue(textureType == typeof(Dxt3BitmapContent));
                     break;
-                case TextureProcessorOutputFormat.Color16Bit:
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgr565>));
-                    break;
-                case TextureProcessorOutputFormat.Compressed:
-                    switch (platform)
-                    {
-                        case TargetPlatform.Windows:
-                        case TargetPlatform.DesktopGL:
-                            Assert.IsTrue(textureType == typeof(Dxt3BitmapContent));
-                            break;
-                        case TargetPlatform.iOS:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
-                            break;
-                        case TargetPlatform.Android:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
-                            break;
-                    }
-                    break;
-                case TextureProcessorOutputFormat.PvrCompressed:
-                    // because the font is not power of 2 we should use Brga4444
+                case TargetPlatform.iOS:
                     Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
-                case TextureProcessorOutputFormat.Etc1Compressed:
-                    // because the font has Alpha we should use Brga4444
+                case TargetPlatform.Android:
                     Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
-                default:
-                    Assert.Fail("Test not written for " + format);
-                    break;
+                }
+                break;
+            case TextureProcessorOutputFormat.PvrCompressed:
+                // because the font is not power of 2 we should use Brga4444
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
+                break;
+            case TextureProcessorOutputFormat.Etc1Compressed:
+                // because the font has Alpha we should use Brga4444
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
+                break;
+            default:
+                Assert.Fail("Test not written for " + format);
+                break;
             }
         }
 
@@ -128,38 +128,38 @@ namespace MonoGame.Tests.ContentPipeline
             var textureType = output.Texture.Faces[0][0].GetType();
             switch (format)
             {
-                case TextureProcessorOutputFormat.Color:
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Color>));
+            case TextureProcessorOutputFormat.Color:
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Color>));
+                break;
+            case TextureProcessorOutputFormat.Color16Bit:
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgr565>));
+                break;
+            case TextureProcessorOutputFormat.Compressed:
+                switch (platform)
+                {
+                case TargetPlatform.Windows:
+                case TargetPlatform.DesktopGL:
+                    Assert.IsTrue(textureType == typeof(Dxt3BitmapContent));
                     break;
-                case TextureProcessorOutputFormat.Color16Bit:
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgr565>));
-                    break;
-                case TextureProcessorOutputFormat.Compressed:
-                    switch (platform)
-                    {
-                        case TargetPlatform.Windows:
-                        case TargetPlatform.DesktopGL:
-                            Assert.IsTrue(textureType == typeof(Dxt3BitmapContent));
-                            break;
-                        case TargetPlatform.iOS:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
-                            break;
-                        case TargetPlatform.Android:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
-                            break;
-                    }
-                    break;
-                case TextureProcessorOutputFormat.PvrCompressed:
-                    // because the font is not power of 2 we should use Brga4444
+                case TargetPlatform.iOS:
                     Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
-                case TextureProcessorOutputFormat.Etc1Compressed:
-                    // because the font has Alpha we should use Brga4444
+                case TargetPlatform.Android:
                     Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
-                default:
-                    Assert.Fail("Test not written for " + format);
-                    break;
+                }
+                break;
+            case TextureProcessorOutputFormat.PvrCompressed:
+                // because the font is not power of 2 we should use Brga4444
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
+                break;
+            case TextureProcessorOutputFormat.Etc1Compressed:
+                // because the font has Alpha we should use Brga4444
+                Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
+                break;
+            default:
+                Assert.Fail("Test not written for " + format);
+                break;
             }
         }
 

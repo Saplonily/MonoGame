@@ -134,69 +134,69 @@ namespace Monogame.Input
 
                 switch (split[0])
                 {
-                    case "a":
-                        caps.HasAButton = true;
-                        break;
-                    case "b":
-                        caps.HasBButton = true;
-                        break;
-                    case "x":
-                        caps.HasXButton = true;
-                        break;
-                    case "y":
-                        caps.HasYButton = true;
-                        break;
-                    case "back":
-                        caps.HasBackButton = true;
-                        break;
-                    case "guide":
-                        caps.HasBigButton = true;
-                        break;
-                    case "start":
-                        caps.HasStartButton = true;
-                        break;
-                    case "dpleft":
-                        caps.HasDPadLeftButton = true;
-                        break;
-                    case "dpdown":
-                        caps.HasDPadDownButton = true;
-                        break;
-                    case "dpright":
-                        caps.HasDPadRightButton = true;
-                        break;
-                    case "dpup":
-                        caps.HasDPadUpButton = true;
-                        break;
-                    case "leftshoulder":
-                        caps.HasLeftShoulderButton = true;
-                        break;
-                    case "lefttrigger":
-                        caps.HasLeftTrigger = true;
-                        break;
-                    case "rightshoulder":
-                        caps.HasRightShoulderButton = true;
-                        break;
-                    case "righttrigger":
-                        caps.HasRightTrigger = true;
-                        break;
-                    case "leftstick":
-                        caps.HasLeftStickButton = true;
-                        break;
-                    case "rightstick":
-                        caps.HasRightStickButton = true;
-                        break;
-                    case "leftx":
-                        caps.HasLeftXThumbStick = true;
-                        break;
-                    case "lefty":
-                        caps.HasLeftYThumbStick = true;
-                        break;
-                    case "rightx":
-                        caps.HasRightXThumbStick = true;
-                        break;
-                    case "righty":
-                        caps.HasRightYThumbStick = true;
-                        break;
+                case "a":
+                    caps.HasAButton = true;
+                    break;
+                case "b":
+                    caps.HasBButton = true;
+                    break;
+                case "x":
+                    caps.HasXButton = true;
+                    break;
+                case "y":
+                    caps.HasYButton = true;
+                    break;
+                case "back":
+                    caps.HasBackButton = true;
+                    break;
+                case "guide":
+                    caps.HasBigButton = true;
+                    break;
+                case "start":
+                    caps.HasStartButton = true;
+                    break;
+                case "dpleft":
+                    caps.HasDPadLeftButton = true;
+                    break;
+                case "dpdown":
+                    caps.HasDPadDownButton = true;
+                    break;
+                case "dpright":
+                    caps.HasDPadRightButton = true;
+                    break;
+                case "dpup":
+                    caps.HasDPadUpButton = true;
+                    break;
+                case "leftshoulder":
+                    caps.HasLeftShoulderButton = true;
+                    break;
+                case "lefttrigger":
+                    caps.HasLeftTrigger = true;
+                    break;
+                case "rightshoulder":
+                    caps.HasRightShoulderButton = true;
+                    break;
+                case "righttrigger":
+                    caps.HasRightTrigger = true;
+                    break;
+                case "leftstick":
+                    caps.HasLeftStickButton = true;
+                    break;
+                case "rightstick":
+                    caps.HasRightStickButton = true;
+                    break;
+                case "leftx":
+                    caps.HasLeftXThumbStick = true;
+                    break;
+                case "lefty":
+                    caps.HasLeftYThumbStick = true;
+                    break;
+                case "rightx":
+                    caps.HasRightXThumbStick = true;
+                    break;
+                case "righty":
+                    caps.HasRightYThumbStick = true;
+                    break;
                 }
             }
 

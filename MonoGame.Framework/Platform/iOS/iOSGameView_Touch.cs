@@ -5,13 +5,11 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using Foundation;
-using ObjCRuntime;
-using UIKit;
-
 using Monogame.Input;
 using Monogame.Input.Touch;
+using ObjCRuntime;
+using UIKit;
 
 namespace Monogame
 {
@@ -88,36 +86,36 @@ namespace Monogame
             var position = GetOffsetPosition(new Vector2((float)location.X, (float)location.Y), true);
             switch (touch.Phase)
             {
-                case UITouchPhase.Stationary:
-                    if (coalesced)
-                        TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Moved, position);
-                    break;
-                case UITouchPhase.Moved:
-                    if (coalesced)
-                        TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Moved, position);
-                    else
-                        TouchPanel.AddEvent(id, TouchLocationState.Moved, position);
-                    break;
-                case UITouchPhase.Began:
-                    if (coalesced)
-                        TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Pressed, position);
-                    else
-                        TouchPanel.AddEvent(id, TouchLocationState.Pressed, position);
-                    break;
-                case UITouchPhase.Ended:
-                    if (coalesced)
-                        TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Released, position);
-                    else
-                        TouchPanel.AddEvent(id, TouchLocationState.Released, position);
-                    break;
-                case UITouchPhase.Cancelled:
-                    if (coalesced)
-                        TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Released, position);
-                    else
-                        TouchPanel.AddEvent(id, TouchLocationState.Released, position);
-                    break;
-                default:
-                    break;
+            case UITouchPhase.Stationary:
+                if (coalesced)
+                    TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Moved, position);
+                break;
+            case UITouchPhase.Moved:
+                if (coalesced)
+                    TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Moved, position);
+                else
+                    TouchPanel.AddEvent(id, TouchLocationState.Moved, position);
+                break;
+            case UITouchPhase.Began:
+                if (coalesced)
+                    TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Pressed, position);
+                else
+                    TouchPanel.AddEvent(id, TouchLocationState.Pressed, position);
+                break;
+            case UITouchPhase.Ended:
+                if (coalesced)
+                    TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Released, position);
+                else
+                    TouchPanel.AddEvent(id, TouchLocationState.Released, position);
+                break;
+            case UITouchPhase.Cancelled:
+                if (coalesced)
+                    TouchPanel.AddHighResolutionTouchEvent(id, TouchLocationState.Released, position);
+                else
+                    TouchPanel.AddEvent(id, TouchLocationState.Released, position);
+                break;
+            default:
+                break;
             }
         }
 

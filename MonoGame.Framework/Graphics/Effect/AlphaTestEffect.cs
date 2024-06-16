@@ -8,9 +8,9 @@
 #endregion
 
 #region Using Statements
+using System;
 using Monogame;
 using Monogame.Graphics;
-using System;
 #endregion
 
 namespace Monogame.Graphics
@@ -342,64 +342,64 @@ namespace Monogame.Graphics
 
                 switch (alphaFunction)
                 {
-                    case CompareFunction.Less:
-                        // Shader will evaluate: clip((a < x) ? z : w)
-                        alphaTest.X = reference - threshold;
-                        alphaTest.Z = 1;
-                        alphaTest.W = -1;
-                        break;
+                case CompareFunction.Less:
+                    // Shader will evaluate: clip((a < x) ? z : w)
+                    alphaTest.X = reference - threshold;
+                    alphaTest.Z = 1;
+                    alphaTest.W = -1;
+                    break;
 
-                    case CompareFunction.LessEqual:
-                        // Shader will evaluate: clip((a < x) ? z : w)
-                        alphaTest.X = reference + threshold;
-                        alphaTest.Z = 1;
-                        alphaTest.W = -1;
-                        break;
+                case CompareFunction.LessEqual:
+                    // Shader will evaluate: clip((a < x) ? z : w)
+                    alphaTest.X = reference + threshold;
+                    alphaTest.Z = 1;
+                    alphaTest.W = -1;
+                    break;
 
-                    case CompareFunction.GreaterEqual:
-                        // Shader will evaluate: clip((a < x) ? z : w)
-                        alphaTest.X = reference - threshold;
-                        alphaTest.Z = -1;
-                        alphaTest.W = 1;
-                        break;
+                case CompareFunction.GreaterEqual:
+                    // Shader will evaluate: clip((a < x) ? z : w)
+                    alphaTest.X = reference - threshold;
+                    alphaTest.Z = -1;
+                    alphaTest.W = 1;
+                    break;
 
-                    case CompareFunction.Greater:
-                        // Shader will evaluate: clip((a < x) ? z : w)
-                        alphaTest.X = reference + threshold;
-                        alphaTest.Z = -1;
-                        alphaTest.W = 1;
-                        break;
+                case CompareFunction.Greater:
+                    // Shader will evaluate: clip((a < x) ? z : w)
+                    alphaTest.X = reference + threshold;
+                    alphaTest.Z = -1;
+                    alphaTest.W = 1;
+                    break;
 
-                    case CompareFunction.Equal:
-                        // Shader will evaluate: clip((abs(a - x) < Y) ? z : w)
-                        alphaTest.X = reference;
-                        alphaTest.Y = threshold;
-                        alphaTest.Z = 1;
-                        alphaTest.W = -1;
-                        eqNe = true;
-                        break;
+                case CompareFunction.Equal:
+                    // Shader will evaluate: clip((abs(a - x) < Y) ? z : w)
+                    alphaTest.X = reference;
+                    alphaTest.Y = threshold;
+                    alphaTest.Z = 1;
+                    alphaTest.W = -1;
+                    eqNe = true;
+                    break;
 
-                    case CompareFunction.NotEqual:
-                        // Shader will evaluate: clip((abs(a - x) < Y) ? z : w)
-                        alphaTest.X = reference;
-                        alphaTest.Y = threshold;
-                        alphaTest.Z = -1;
-                        alphaTest.W = 1;
-                        eqNe = true;
-                        break;
+                case CompareFunction.NotEqual:
+                    // Shader will evaluate: clip((abs(a - x) < Y) ? z : w)
+                    alphaTest.X = reference;
+                    alphaTest.Y = threshold;
+                    alphaTest.Z = -1;
+                    alphaTest.W = 1;
+                    eqNe = true;
+                    break;
 
-                    case CompareFunction.Never:
-                        // Shader will evaluate: clip((a < x) ? z : w)
-                        alphaTest.Z = -1;
-                        alphaTest.W = -1;
-                        break;
+                case CompareFunction.Never:
+                    // Shader will evaluate: clip((a < x) ? z : w)
+                    alphaTest.Z = -1;
+                    alphaTest.W = -1;
+                    break;
 
-                    case CompareFunction.Always:
-                    default:
-                        // Shader will evaluate: clip((a < x) ? z : w)
-                        alphaTest.Z = 1;
-                        alphaTest.W = 1;
-                        break;
+                case CompareFunction.Always:
+                default:
+                    // Shader will evaluate: clip((a < x) ? z : w)
+                    alphaTest.Z = 1;
+                    alphaTest.W = 1;
+                    break;
                 }
 
                 alphaTestParam.SetValue(alphaTest);

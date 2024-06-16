@@ -1,9 +1,7 @@
 using System;
-
-using Monogame;
-
 using CoreMotion;
 using Foundation;
+using Monogame;
 
 namespace Microsoft.Devices.Sensors
 {
@@ -97,4 +95,3 @@ namespace Microsoft.Devices.Sensors
         }
     }
 }
-

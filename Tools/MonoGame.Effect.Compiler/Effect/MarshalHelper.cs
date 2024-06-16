@@ -36,4 +36,3 @@ namespace MonoGame.Effect
         }
     }
 }
-

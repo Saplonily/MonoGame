@@ -187,4 +187,3 @@ namespace Monogame.Graphics
         #endregion
     }
 }
-

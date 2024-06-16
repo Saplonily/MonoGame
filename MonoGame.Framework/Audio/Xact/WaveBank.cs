@@ -418,4 +418,3 @@ namespace Monogame.Audio
         }
     }
 }
-

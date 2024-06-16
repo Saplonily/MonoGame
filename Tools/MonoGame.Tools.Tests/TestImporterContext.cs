@@ -1,6 +1,6 @@
-﻿using Monogame.Content.Pipeline;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Monogame.Content.Pipeline;
 
 namespace MonoGame.Tests.ContentPipeline
 {

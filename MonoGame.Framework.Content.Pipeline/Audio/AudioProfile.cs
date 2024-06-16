@@ -56,10 +56,10 @@ namespace Monogame.Content.Pipeline.Audio
         {
             switch (quality)
             {
-                case ConversionQuality.Low:
-                    return Math.Max(8000, (int)Math.Floor(sourceSampleRate / 2.0));
-                case ConversionQuality.Medium:
-                    return Math.Max(8000, (int)Math.Floor((sourceSampleRate / 4.0) * 3));
+            case ConversionQuality.Low:
+                return Math.Max(8000, (int)Math.Floor(sourceSampleRate / 2.0));
+            case ConversionQuality.Medium:
+                return Math.Max(8000, (int)Math.Floor((sourceSampleRate / 4.0) * 3));
             }
 
             return Math.Max(8000, sourceSampleRate);
@@ -69,10 +69,10 @@ namespace Monogame.Content.Pipeline.Audio
         {
             switch (quality)
             {
-                case ConversionQuality.Low:
-                    return 96000;
-                case ConversionQuality.Medium:
-                    return 128000;
+            case ConversionQuality.Low:
+                return 96000;
+            case ConversionQuality.Medium:
+                return 128000;
             }
 
             return 192000;

@@ -1,10 +1,10 @@
-﻿using Monogame.Content;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Monogame.Content;
 using Monogame.Content.Pipeline;
 using Monogame.Content.Pipeline.Serialization.Compiler;
 using Monogame.Graphics;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace MonoGame.Tests.ContentPipeline
 {

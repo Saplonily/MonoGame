@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Monogame.Graphics;
 using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
 
 namespace Monogame.Content.Pipeline.Processors
 {

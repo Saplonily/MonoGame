@@ -107,60 +107,60 @@ namespace Monogame.Audio
             {
                 switch (_variation)
                 {
-                    case VariationType.Ordered:
-                        _wavIndex = (_wavIndex + 1) % trackCount;
-                        break;
+                case VariationType.Ordered:
+                    _wavIndex = (_wavIndex + 1) % trackCount;
+                    break;
 
-                    case VariationType.OrderedFromRandom:
-                        _wavIndex = (_wavIndex + 1) % trackCount;
-                        break;
+                case VariationType.OrderedFromRandom:
+                    _wavIndex = (_wavIndex + 1) % trackCount;
+                    break;
 
-                    case VariationType.Random:
-                        if (_weights == null || trackCount == 1)
-                            _wavIndex = XactHelpers.Random.Next() % trackCount;
-                        else
-                        {
-                            var sum = XactHelpers.Random.Next(_totalWeights);
-                            for (var i = 0; i < trackCount; i++)
-                            {
-                                sum -= _weights[i];
-                                if (sum <= 0)
-                                {
-                                    _wavIndex = i;
-                                    break;
-                                }
-                            }
-                        }
-                        break;
-
-                    case VariationType.RandomNoImmediateRepeats:
-                        {
-                            if (_weights == null || trackCount == 1)
-                                _wavIndex = XactHelpers.Random.Next() % trackCount;
-                            else
-                            {
-                                var last = _wavIndex;
-                                var sum = XactHelpers.Random.Next(_totalWeights);
-                                for (var i = 0; i < trackCount; i++)
-                                {
-                                    sum -= _weights[i];
-                                    if (sum <= 0)
-                                    {
-                                        _wavIndex = i;
-                                        break;
-                                    }
-                                }
-
-                                if (_wavIndex == last)
-                                    _wavIndex = (_wavIndex + 1) % trackCount;
-                            }
-                            break;
-                        }
-
-                    case VariationType.Shuffle:
-                        // TODO: Need some sort of deck implementation.
+                case VariationType.Random:
+                    if (_weights == null || trackCount == 1)
                         _wavIndex = XactHelpers.Random.Next() % trackCount;
-                        break;
+                    else
+                    {
+                        var sum = XactHelpers.Random.Next(_totalWeights);
+                        for (var i = 0; i < trackCount; i++)
+                        {
+                            sum -= _weights[i];
+                            if (sum <= 0)
+                            {
+                                _wavIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                    break;
+
+                case VariationType.RandomNoImmediateRepeats:
+                {
+                    if (_weights == null || trackCount == 1)
+                        _wavIndex = XactHelpers.Random.Next() % trackCount;
+                    else
+                    {
+                        var last = _wavIndex;
+                        var sum = XactHelpers.Random.Next(_totalWeights);
+                        for (var i = 0; i < trackCount; i++)
+                        {
+                            sum -= _weights[i];
+                            if (sum <= 0)
+                            {
+                                _wavIndex = i;
+                                break;
+                            }
+                        }
+
+                        if (_wavIndex == last)
+                            _wavIndex = (_wavIndex + 1) % trackCount;
+                    }
+                    break;
+                }
+
+                case VariationType.Shuffle:
+                    // TODO: Need some sort of deck implementation.
+                    _wavIndex = XactHelpers.Random.Next() % trackCount;
+                    break;
                 };
             }
 
@@ -300,4 +300,3 @@ namespace Monogame.Audio
         }
     }
 }
-

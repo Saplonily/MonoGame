@@ -4,9 +4,8 @@
 
 using System;
 using System.IO;
-
-using MediaPlayer;
 using Foundation;
+using MediaPlayer;
 using Monogame.Graphics;
 
 namespace Monogame.Media

@@ -3,8 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Monogame.Graphics;
 using ATI.TextureConverter;
+using Monogame.Graphics;
 
 namespace Monogame.Content.Pipeline.Graphics
 {
@@ -74,14 +74,14 @@ namespace Monogame.Content.Pipeline.Graphics
             ATICompressor.CompressionFormat targetFormat;
             switch (format)
             {
-                case SurfaceFormat.RgbaAtcExplicitAlpha:
-                    targetFormat = ATICompressor.CompressionFormat.AtcRgbaExplicitAlpha;
-                    break;
-                case SurfaceFormat.RgbaAtcInterpolatedAlpha:
-                    targetFormat = ATICompressor.CompressionFormat.AtcRgbaInterpolatedAlpha;
-                    break;
-                default:
-                    return false;
+            case SurfaceFormat.RgbaAtcExplicitAlpha:
+                targetFormat = ATICompressor.CompressionFormat.AtcRgbaExplicitAlpha;
+                break;
+            case SurfaceFormat.RgbaAtcInterpolatedAlpha:
+                targetFormat = ATICompressor.CompressionFormat.AtcRgbaInterpolatedAlpha;
+                break;
+            default:
+                return false;
             }
 
             var sourceData = sourceBitmap.GetPixelData();

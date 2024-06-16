@@ -588,54 +588,54 @@ namespace Monogame
 
             switch (currentState)
             {
-                // exit states
-                case InternalState.Exiting: // when ui thread wants to exit
-                    processStateExiting();
-                    break;
+            // exit states
+            case InternalState.Exiting: // when ui thread wants to exit
+                processStateExiting();
+                break;
 
-                case InternalState.Exited_GameThread: // when game thread processed exiting event
-                    lock (_lockObject)
-                    {
-                        _waitForExitedStateProcessed.Set();
-                        cts.Cancel();
-                    }
-                    break;
-
-                // pause states
-                case InternalState.Pausing_UIThread: // when ui thread wants to pause              
-                    processStatePausing();
-                    break;
-
-                case InternalState.Paused_GameThread: // when game thread processed pausing event
-
-                    // this must be processed outside of this loop, in the new task thread!
-                    return true; // trigger pause of worker thread
-
-                // other states
-                case InternalState.Resuming_UIThread: // when ui thread wants to resume
-                    processStateResuming();
-
-                    // pause must wait for resume in case pause/resume is called in very quick succession
-                    lock (_lockObject)
-                    {
-                        _waitForResumedStateProcessed.Set();
-                    }
-                    break;
-
-                case InternalState.Running_GameThread: // when we are running game 
-                    processStateRunning(token);
-
-                    break;
-
-                case InternalState.ForceRecreateSurface:
-                    processStateForceSurfaceRecreation();
-                    break;
-
-                // default case, error
-                default:
-                    processStateDefault();
+            case InternalState.Exited_GameThread: // when game thread processed exiting event
+                lock (_lockObject)
+                {
+                    _waitForExitedStateProcessed.Set();
                     cts.Cancel();
-                    break;
+                }
+                break;
+
+            // pause states
+            case InternalState.Pausing_UIThread: // when ui thread wants to pause              
+                processStatePausing();
+                break;
+
+            case InternalState.Paused_GameThread: // when game thread processed pausing event
+
+                // this must be processed outside of this loop, in the new task thread!
+                return true; // trigger pause of worker thread
+
+            // other states
+            case InternalState.Resuming_UIThread: // when ui thread wants to resume
+                processStateResuming();
+
+                // pause must wait for resume in case pause/resume is called in very quick succession
+                lock (_lockObject)
+                {
+                    _waitForResumedStateProcessed.Set();
+                }
+                break;
+
+            case InternalState.Running_GameThread: // when we are running game 
+                processStateRunning(token);
+
+                break;
+
+            case InternalState.ForceRecreateSurface:
+                processStateForceSurfaceRecreation();
+                break;
+
+            // default case, error
+            default:
+                processStateDefault();
+                cts.Cancel();
+                break;
             }
 
             return false;
@@ -897,18 +897,18 @@ namespace Monogame
             int samples = 0;
             switch (_game.graphicsDeviceManager.PreferredDepthStencilFormat)
             {
-                case DepthFormat.Depth16:
-                    depth = 16;
-                    break;
-                case DepthFormat.Depth24:
-                    depth = 24;
-                    break;
-                case DepthFormat.Depth24Stencil8:
-                    depth = 24;
-                    stencil = 8;
-                    break;
-                case DepthFormat.None:
-                    break;
+            case DepthFormat.Depth16:
+                depth = 16;
+                break;
+            case DepthFormat.Depth24:
+                depth = 24;
+                break;
+            case DepthFormat.Depth24Stencil8:
+                depth = 24;
+                stencil = 8;
+                break;
+            case DepthFormat.None:
+                break;
             }
 
             if (_game.graphicsDeviceManager.PreferMultiSampling)
@@ -1002,39 +1002,39 @@ namespace Monogame
         {
             switch (egl.EglGetError())
             {
-                case EGL10.EglSuccess:
-                    return "Success";
+            case EGL10.EglSuccess:
+                return "Success";
 
-                case EGL10.EglNotInitialized:
-                    return "Not Initialized";
+            case EGL10.EglNotInitialized:
+                return "Not Initialized";
 
-                case EGL10.EglBadAccess:
-                    return "Bad Access";
-                case EGL10.EglBadAlloc:
-                    return "Bad Allocation";
-                case EGL10.EglBadAttribute:
-                    return "Bad Attribute";
-                case EGL10.EglBadConfig:
-                    return "Bad Config";
-                case EGL10.EglBadContext:
-                    return "Bad Context";
-                case EGL10.EglBadCurrentSurface:
-                    return "Bad Current Surface";
-                case EGL10.EglBadDisplay:
-                    return "Bad Display";
-                case EGL10.EglBadMatch:
-                    return "Bad Match";
-                case EGL10.EglBadNativePixmap:
-                    return "Bad Native Pixmap";
-                case EGL10.EglBadNativeWindow:
-                    return "Bad Native Window";
-                case EGL10.EglBadParameter:
-                    return "Bad Parameter";
-                case EGL10.EglBadSurface:
-                    return "Bad Surface";
+            case EGL10.EglBadAccess:
+                return "Bad Access";
+            case EGL10.EglBadAlloc:
+                return "Bad Allocation";
+            case EGL10.EglBadAttribute:
+                return "Bad Attribute";
+            case EGL10.EglBadConfig:
+                return "Bad Config";
+            case EGL10.EglBadContext:
+                return "Bad Context";
+            case EGL10.EglBadCurrentSurface:
+                return "Bad Current Surface";
+            case EGL10.EglBadDisplay:
+                return "Bad Display";
+            case EGL10.EglBadMatch:
+                return "Bad Match";
+            case EGL10.EglBadNativePixmap:
+                return "Bad Native Pixmap";
+            case EGL10.EglBadNativeWindow:
+                return "Bad Native Window";
+            case EGL10.EglBadParameter:
+                return "Bad Parameter";
+            case EGL10.EglBadSurface:
+                return "Bad Surface";
 
-                default:
-                    return "Unknown Error";
+            default:
+                return "Unknown Error";
             }
         }
 

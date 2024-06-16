@@ -152,4 +152,3 @@ namespace MonoGame.Tests.Components
 
     }
 }
-

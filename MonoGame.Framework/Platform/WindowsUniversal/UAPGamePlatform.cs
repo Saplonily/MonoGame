@@ -4,22 +4,21 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
-
 //using Monogame.Audio;
 using Monogame.Graphics;
+using Monogame.Input;
 using Monogame.Input.Touch;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using Windows.System.Threading;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml;
 using Windows.UI.Core;
-using Monogame.Input;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 namespace Monogame
 {

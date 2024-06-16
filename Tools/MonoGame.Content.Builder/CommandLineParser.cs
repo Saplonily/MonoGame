@@ -3,13 +3,13 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.IO;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace MonoGame.Content.Builder
 {
@@ -486,11 +486,11 @@ namespace MonoGame.Content.Builder
         {
             switch (Environment.OSVersion.Platform)
             {
-                case PlatformID.Win32NT:
-                case PlatformID.Win32S:
-                case PlatformID.Win32Windows:
-                case PlatformID.WinCE:
-                    return true;
+            case PlatformID.Win32NT:
+            case PlatformID.Win32S:
+            case PlatformID.Win32Windows:
+            case PlatformID.WinCE:
+                return true;
             }
             return false;
         }

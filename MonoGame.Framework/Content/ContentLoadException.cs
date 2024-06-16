@@ -36,4 +36,3 @@ namespace Monogame.Content
         }
     }
 }
-

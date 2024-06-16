@@ -3,18 +3,16 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-
 using Monogame;
 using Monogame.Graphics;
-
 using NUnit.Framework;
 
 // TODO: It's likely that a more sophisticated approach will be required for
@@ -224,12 +222,12 @@ namespace MonoGame.Tests.Components
         {
             switch (State)
             {
-                case RunState.DidScheduleFrameCapture:
-                    // By this point, IFrameSource is processing the
-                    // capture request, and will have finished by
-                    // the next call to Update.
-                    State = RunState.DidCaptureFrame;
-                    break;
+            case RunState.DidScheduleFrameCapture:
+                // By this point, IFrameSource is processing the
+                // capture request, and will have finished by
+                // the next call to Update.
+                State = RunState.DidCaptureFrame;
+                break;
             }
         }
 

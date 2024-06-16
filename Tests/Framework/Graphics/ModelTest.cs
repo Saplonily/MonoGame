@@ -2,12 +2,12 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Monogame;
-using Monogame.Graphics;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Monogame;
+using Monogame.Graphics;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.Graphics
 {

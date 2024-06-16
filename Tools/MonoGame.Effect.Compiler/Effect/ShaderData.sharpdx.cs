@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using SharpDX.Direct3D;
 using MonoGame.Effect.TPGParser;
+using SharpDX.Direct3D;
 
 namespace MonoGame.Effect
 {
@@ -96,26 +96,26 @@ namespace MonoGame.Effect
 
                             switch (rdesc.Dimension)
                             {
-                                case ShaderResourceViewDimension.Texture1D:
-                                case ShaderResourceViewDimension.Texture1DArray:
-                                    sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_1D;
-                                    break;
+                            case ShaderResourceViewDimension.Texture1D:
+                            case ShaderResourceViewDimension.Texture1DArray:
+                                sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_1D;
+                                break;
 
-                                case ShaderResourceViewDimension.Texture2D:
-                                case ShaderResourceViewDimension.Texture2DArray:
-                                case ShaderResourceViewDimension.Texture2DMultisampled:
-                                case ShaderResourceViewDimension.Texture2DMultisampledArray:
-                                    sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_2D;
-                                    break;
+                            case ShaderResourceViewDimension.Texture2D:
+                            case ShaderResourceViewDimension.Texture2DArray:
+                            case ShaderResourceViewDimension.Texture2DMultisampled:
+                            case ShaderResourceViewDimension.Texture2DMultisampledArray:
+                                sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_2D;
+                                break;
 
-                                case ShaderResourceViewDimension.Texture3D:
-                                    sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_VOLUME;
-                                    break;
+                            case ShaderResourceViewDimension.Texture3D:
+                                sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_VOLUME;
+                                break;
 
-                                case ShaderResourceViewDimension.TextureCube:
-                                case ShaderResourceViewDimension.TextureCubeArray:
-                                    sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_CUBE;
-                                    break;
+                            case ShaderResourceViewDimension.TextureCube:
+                            case ShaderResourceViewDimension.TextureCubeArray:
+                                sampler.type = MojoShader.MOJOSHADER_samplerType.MOJOSHADER_SAMPLER_CUBE;
+                                break;
                             }
 
                             samplers.Add(sampler);

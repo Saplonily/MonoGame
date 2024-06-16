@@ -160,14 +160,14 @@ namespace Monogame.Graphics
         {
             switch (ReflectionHelpers.ManagedSizeOf(type))
             {
-                case 2:
-                    return IndexElementSize.SixteenBits;
-                case 4:
-                    if (graphicsDevice.GraphicsProfile == GraphicsProfile.Reach)
-                        throw new NotSupportedException("The profile does not support an elementSize of IndexElementSize.ThirtyTwoBits; use IndexElementSize.SixteenBits or a type that has a size of two bytes.");
-                    return IndexElementSize.ThirtyTwoBits;
-                default:
-                    throw new ArgumentOutOfRangeException("type", "Index buffers can only be created for types that are sixteen or thirty two bits in length");
+            case 2:
+                return IndexElementSize.SixteenBits;
+            case 4:
+                if (graphicsDevice.GraphicsProfile == GraphicsProfile.Reach)
+                    throw new NotSupportedException("The profile does not support an elementSize of IndexElementSize.ThirtyTwoBits; use IndexElementSize.SixteenBits or a type that has a size of two bytes.");
+                return IndexElementSize.ThirtyTwoBits;
+            default:
+                throw new ArgumentOutOfRangeException("type", "Index buffers can only be created for types that are sixteen or thirty two bits in length");
             }
         }
 

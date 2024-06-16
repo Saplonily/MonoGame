@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Monogame.Graphics;
-using MediaPlayer;
 using Foundation;
+using MediaPlayer;
+using Monogame.Graphics;
 using UIKit;
 
 namespace Monogame.Media

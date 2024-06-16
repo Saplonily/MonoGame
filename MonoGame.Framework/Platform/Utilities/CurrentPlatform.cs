@@ -2,8 +2,8 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using System.Runtime.InteropServices;
 using System;
+using System.Runtime.InteropServices;
 
 namespace MonoGame.Framework.Utilities
 {
@@ -32,40 +32,40 @@ namespace MonoGame.Framework.Utilities
 
             switch (pid)
             {
-                case PlatformID.Win32NT:
-                case PlatformID.Win32S:
-                case PlatformID.Win32Windows:
-                case PlatformID.WinCE:
-                    _os = OS.Windows;
-                    break;
-                case PlatformID.MacOSX:
-                    _os = OS.MacOSX;
-                    break;
-                case PlatformID.Unix:
-                    _os = OS.MacOSX;
+            case PlatformID.Win32NT:
+            case PlatformID.Win32S:
+            case PlatformID.Win32Windows:
+            case PlatformID.WinCE:
+                _os = OS.Windows;
+                break;
+            case PlatformID.MacOSX:
+                _os = OS.MacOSX;
+                break;
+            case PlatformID.Unix:
+                _os = OS.MacOSX;
 
-                    var buf = IntPtr.Zero;
+                var buf = IntPtr.Zero;
 
-                    try
-                    {
-                        buf = Marshal.AllocHGlobal(8192);
+                try
+                {
+                    buf = Marshal.AllocHGlobal(8192);
 
-                        if (uname(buf) == 0 && Marshal.PtrToStringAnsi(buf) == "Linux")
-                            _os = OS.Linux;
-                    }
-                    catch
-                    {
-                    }
-                    finally
-                    {
-                        if (buf != IntPtr.Zero)
-                            Marshal.FreeHGlobal(buf);
-                    }
+                    if (uname(buf) == 0 && Marshal.PtrToStringAnsi(buf) == "Linux")
+                        _os = OS.Linux;
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    if (buf != IntPtr.Zero)
+                        Marshal.FreeHGlobal(buf);
+                }
 
-                    break;
-                default:
-                    _os = OS.Unknown;
-                    break;
+                break;
+            default:
+                _os = OS.Unknown;
+                break;
             }
 
             _init = true;
@@ -98,4 +98,3 @@ namespace MonoGame.Framework.Utilities
         }
     }
 }
-

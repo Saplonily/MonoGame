@@ -5,17 +5,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-using Foundation;
-using OpenGLES;
-using UIKit;
 using CoreAnimation;
-using ObjCRuntime;
-
+using Foundation;
 using Monogame.Audio;
 using Monogame.Graphics;
 using Monogame.Input;
 using Monogame.Input.Touch;
+using ObjCRuntime;
+using OpenGLES;
+using UIKit;
 //using Monogame.GamerServices;
 
 namespace Monogame

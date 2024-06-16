@@ -39,4 +39,3 @@ namespace Monogame.Graphics
 		float FogStart { get; set; }
     }
 }
-

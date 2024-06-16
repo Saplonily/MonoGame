@@ -77,12 +77,12 @@ namespace Monogame
 
             switch (Game.Activity.Resources.Configuration.Orientation)
             {
-                case Android.Content.Res.Orientation.Portrait:
-                    this._gameWindow.SetOrientation(currentOrientation == DisplayOrientation.PortraitDown ? DisplayOrientation.PortraitDown : DisplayOrientation.Portrait, false);
-                    break;
-                default:
-                    this._gameWindow.SetOrientation(currentOrientation == DisplayOrientation.LandscapeRight ? DisplayOrientation.LandscapeRight : DisplayOrientation.LandscapeLeft, false);
-                    break;
+            case Android.Content.Res.Orientation.Portrait:
+                this._gameWindow.SetOrientation(currentOrientation == DisplayOrientation.PortraitDown ? DisplayOrientation.PortraitDown : DisplayOrientation.Portrait, false);
+                break;
+            default:
+                this._gameWindow.SetOrientation(currentOrientation == DisplayOrientation.LandscapeRight ? DisplayOrientation.LandscapeRight : DisplayOrientation.LandscapeLeft, false);
+                break;
             }
             base.BeforeInitialize();
             _gameWindow.GameView.TouchEnabled = true;

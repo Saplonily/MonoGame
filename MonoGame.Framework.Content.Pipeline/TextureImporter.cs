@@ -4,9 +4,9 @@
 
 using System;
 using System.IO;
+using FreeImageAPI;
 using Monogame.Content.Pipeline.Graphics;
 using Monogame.Graphics.PackedVector;
-using FreeImageAPI;
 using MonoGame.Framework.Utilities;
 using StbImageSharp;
 
@@ -72,10 +72,10 @@ namespace Monogame.Content.Pipeline
             // Special case for loading some formats
             switch (ext)
             {
-                case ".dds":
-                    return DdsLoader.Import(filename, context);
-                case ".bmp":
-                    return LoadImage(filename);
+            case ".dds":
+                return DdsLoader.Import(filename, context);
+            case ".bmp":
+                return LoadImage(filename);
             }
 
             var output = new Texture2DContent { Identity = new ContentIdentity(filename) };
@@ -113,16 +113,16 @@ namespace Monogame.Content.Pipeline
             // Create the Pixel bitmap content depending on the image type
             switch (imageType)
             {
-                //case FREE_IMAGE_TYPE.FIT_BITMAP:
-                default:
-                    face = new PixelBitmapContent<Color>(width, height);
-                    break;
-                case FREE_IMAGE_TYPE.FIT_RGBA16:
-                    face = new PixelBitmapContent<Rgba64>(width, height);
-                    break;
-                case FREE_IMAGE_TYPE.FIT_RGBAF:
-                    face = new PixelBitmapContent<Vector4>(width, height);
-                    break;
+            //case FREE_IMAGE_TYPE.FIT_BITMAP:
+            default:
+                face = new PixelBitmapContent<Color>(width, height);
+                break;
+            case FREE_IMAGE_TYPE.FIT_RGBA16:
+                face = new PixelBitmapContent<Rgba64>(width, height);
+                break;
+            case FREE_IMAGE_TYPE.FIT_RGBAF:
+                face = new PixelBitmapContent<Vector4>(width, height);
+                break;
             }
             FreeImage.Unload(fBitmap);
 
@@ -141,37 +141,37 @@ namespace Monogame.Content.Pipeline
             IntPtr bgra;
             switch (imageType)
             {
-                // Return BGRA images as is
+            // Return BGRA images as is
 
-                case FREE_IMAGE_TYPE.FIT_RGBAF:
-                case FREE_IMAGE_TYPE.FIT_RGBA16:
-                    break;
+            case FREE_IMAGE_TYPE.FIT_RGBAF:
+            case FREE_IMAGE_TYPE.FIT_RGBA16:
+                break;
 
-                // Add an alpha channel to BGRA images without one
+            // Add an alpha channel to BGRA images without one
 
-                case FREE_IMAGE_TYPE.FIT_RGBF:
-                    bgra = FreeImage.ConvertToType(fBitmap, FREE_IMAGE_TYPE.FIT_RGBAF, true);
-                    FreeImage.Unload(fBitmap);
-                    fBitmap = bgra;
-                    break;
+            case FREE_IMAGE_TYPE.FIT_RGBF:
+                bgra = FreeImage.ConvertToType(fBitmap, FREE_IMAGE_TYPE.FIT_RGBAF, true);
+                FreeImage.Unload(fBitmap);
+                fBitmap = bgra;
+                break;
 
-                case FREE_IMAGE_TYPE.FIT_RGB16:
-                    bgra = FreeImage.ConvertToType(fBitmap, FREE_IMAGE_TYPE.FIT_RGBA16, true);
-                    FreeImage.Unload(fBitmap);
-                    fBitmap = bgra;
-                    break;
+            case FREE_IMAGE_TYPE.FIT_RGB16:
+                bgra = FreeImage.ConvertToType(fBitmap, FREE_IMAGE_TYPE.FIT_RGBA16, true);
+                FreeImage.Unload(fBitmap);
+                fBitmap = bgra;
+                break;
 
 
-                // Add an alpha channel to RGB images
-                // Swap the red and blue channels of RGBA images
+            // Add an alpha channel to RGB images
+            // Swap the red and blue channels of RGBA images
 
-                default:
-                    // Bitmap and other formats are converted to 32-bit by default
-                    bgra = FreeImage.ConvertTo32Bits(fBitmap);
-                    SwitchRedAndBlueChannels(bgra);
-                    FreeImage.Unload(fBitmap);
-                    fBitmap = bgra;
-                    break;
+            default:
+                // Bitmap and other formats are converted to 32-bit by default
+                bgra = FreeImage.ConvertTo32Bits(fBitmap);
+                SwitchRedAndBlueChannels(bgra);
+                FreeImage.Unload(fBitmap);
+                fBitmap = bgra;
+                break;
             }
 
             return fBitmap;

@@ -4,10 +4,10 @@
 
 using System;
 using System.Runtime.InteropServices;
-using ObjCRuntime;
 using System.Security;
-using OpenGLES;
 using MonoGame.Framework.Utilities;
+using ObjCRuntime;
+using OpenGLES;
 
 namespace MonoGame.OpenGL
 {
@@ -103,4 +103,3 @@ namespace MonoGame.OpenGL
         internal EAGLContext Context { get; private set; }
     }
 }
-

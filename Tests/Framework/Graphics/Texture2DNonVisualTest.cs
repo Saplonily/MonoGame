@@ -440,19 +440,19 @@ namespace MonoGame.Tests.Graphics
         {
             switch (surfaceFormat)
             {
-                case SurfaceFormat.Alpha8:
-                    return 1;
-                case SurfaceFormat.HalfSingle:
-                    return 2;
-                case SurfaceFormat.Single:
-                case SurfaceFormat.Color:
-                    return 4;
-                case SurfaceFormat.Vector2:
-                    return 8;
-                case SurfaceFormat.Vector4:
-                    return 16;
-                default:
-                    throw new ArgumentException();
+            case SurfaceFormat.Alpha8:
+                return 1;
+            case SurfaceFormat.HalfSingle:
+                return 2;
+            case SurfaceFormat.Single:
+            case SurfaceFormat.Color:
+                return 4;
+            case SurfaceFormat.Vector2:
+                return 8;
+            case SurfaceFormat.Vector4:
+                return 16;
+            default:
+                throw new ArgumentException();
             }
         }
 

@@ -1,7 +1,6 @@
 ﻿using System;
-
-using SharpDX.DXGI;
 using SharpDX.Direct3D11;
+using SharpDX.DXGI;
 
 
 namespace Monogame.Graphics

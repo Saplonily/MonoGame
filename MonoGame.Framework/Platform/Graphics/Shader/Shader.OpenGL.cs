@@ -3,8 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 using MonoGame.OpenGL;
 
 namespace Monogame.Graphics

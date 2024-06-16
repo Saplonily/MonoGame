@@ -5,8 +5,8 @@
 using Android.App;
 using Android.Content;
 using Android.Hardware;
-using Android.Views;
 using Android.Provider;
+using Android.Views;
 
 namespace Monogame
 {

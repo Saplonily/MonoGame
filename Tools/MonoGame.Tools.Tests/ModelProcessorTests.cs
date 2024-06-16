@@ -2,12 +2,12 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
+using System;
 using Monogame;
 using Monogame.Content.Pipeline;
 using Monogame.Content.Pipeline.Graphics;
 using Monogame.Content.Pipeline.Processors;
 using NUnit.Framework;
-using System;
 
 namespace MonoGame.Tests.ContentPipeline
 {

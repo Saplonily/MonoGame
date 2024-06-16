@@ -4,18 +4,15 @@
 
 using System;
 using System.Drawing;
-
 using CoreAnimation;
+using CoreGraphics;
 using Foundation;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
+using MonoGame.OpenGL;
 using ObjCRuntime;
 using OpenGLES;
 using UIKit;
-using CoreGraphics;
-
-using MonoGame.OpenGL;
-
-using Monogame.Graphics;
-using Monogame.Input.Touch;
 
 namespace Monogame
 {

@@ -34,37 +34,37 @@ namespace Monogame.Input.Touch
             int id = e.GetPointerId(e.ActionIndex);
             switch (e.ActionMasked)
             {
-                // DOWN                
-                case MotionEventActions.Down:
-                case MotionEventActions.PointerDown:
-                    TouchPanel.AddEvent(id, TouchLocationState.Pressed, position);
-                    break;
-                // UP                
-                case MotionEventActions.Up:
-                case MotionEventActions.PointerUp:
-                    TouchPanel.AddEvent(id, TouchLocationState.Released, position);
-                    break;
-                // MOVE                
-                case MotionEventActions.Move:
-                    for (int i = 0; i < e.PointerCount; i++)
-                    {
-                        id = e.GetPointerId(i);
-                        position.X = e.GetX(i);
-                        position.Y = e.GetY(i);
-                        UpdateTouchPosition(ref position);
-                        TouchPanel.AddEvent(id, TouchLocationState.Moved, position);
-                    }
-                    break;
+            // DOWN                
+            case MotionEventActions.Down:
+            case MotionEventActions.PointerDown:
+                TouchPanel.AddEvent(id, TouchLocationState.Pressed, position);
+                break;
+            // UP                
+            case MotionEventActions.Up:
+            case MotionEventActions.PointerUp:
+                TouchPanel.AddEvent(id, TouchLocationState.Released, position);
+                break;
+            // MOVE                
+            case MotionEventActions.Move:
+                for (int i = 0; i < e.PointerCount; i++)
+                {
+                    id = e.GetPointerId(i);
+                    position.X = e.GetX(i);
+                    position.Y = e.GetY(i);
+                    UpdateTouchPosition(ref position);
+                    TouchPanel.AddEvent(id, TouchLocationState.Moved, position);
+                }
+                break;
 
-                // CANCEL, OUTSIDE                
-                case MotionEventActions.Cancel:
-                case MotionEventActions.Outside:
-                    for (int i = 0; i < e.PointerCount; i++)
-                    {
-                        id = e.GetPointerId(i);
-                        TouchPanel.AddEvent(id, TouchLocationState.Released, position);
-                    }
-                    break;
+            // CANCEL, OUTSIDE                
+            case MotionEventActions.Cancel:
+            case MotionEventActions.Outside:
+                for (int i = 0; i < e.PointerCount; i++)
+                {
+                    id = e.GetPointerId(i);
+                    TouchPanel.AddEvent(id, TouchLocationState.Released, position);
+                }
+                break;
             }
         }
 

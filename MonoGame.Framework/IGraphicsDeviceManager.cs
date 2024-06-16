@@ -27,4 +27,3 @@ namespace Monogame
         void EndDraw();
     }
 }
-

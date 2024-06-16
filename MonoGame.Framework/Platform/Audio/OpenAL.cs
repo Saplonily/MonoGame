@@ -3,10 +3,10 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using Monogame.Audio;
 using MonoGame.Framework.Utilities;
-using System.IO;
 
 namespace MonoGame.OpenAL
 {

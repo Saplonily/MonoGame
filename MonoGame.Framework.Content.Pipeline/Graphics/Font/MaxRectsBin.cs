@@ -119,24 +119,24 @@ namespace Monogame.Content.Pipeline.Graphics
         {
             switch (Grow)
             {
-                case GrowRule.None:
-                    break;
-                case GrowRule.Width:
+            case GrowRule.None:
+                break;
+            case GrowRule.Width:
+                GrowWidth();
+                break;
+            case GrowRule.Height:
+                GrowHeight();
+                break;
+            case GrowRule.Both:
+                // alternate between growing width and height
+                if (_growWidth)
                     GrowWidth();
-                    break;
-                case GrowRule.Height:
+                else
                     GrowHeight();
-                    break;
-                case GrowRule.Both:
-                    // alternate between growing width and height
-                    if (_growWidth)
-                        GrowWidth();
-                    else
-                        GrowHeight();
-                    _growWidth = !_growWidth;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                _growWidth = !_growWidth;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -180,23 +180,23 @@ namespace Monogame.Content.Pipeline.Graphics
                 var score2 = 0;
                 switch (heuristic)
                 {
-                    case MaxRectsHeuristic.Bssf:
-                        rect = FindPositionForNewNodeBestShortSideFit(width, height, ref score1, ref score2);
-                        break;
-                    case MaxRectsHeuristic.Bl:
-                        rect = FindPositionForNewNodeBottomLeft(width, height, ref score1, ref score2);
-                        break;
-                    case MaxRectsHeuristic.RectContactPointRule:
-                        rect = FindPositionForNewNodeContactPoint(width, height, ref score1);
-                        break;
-                    case MaxRectsHeuristic.Blsf:
-                        rect = FindPositionForNewNodeBestLongSideFit(width, height, ref score2, ref score1);
-                        break;
-                    case MaxRectsHeuristic.Baf:
-                        rect = FindPositionForNewNodeBestAreaFit(width, height, ref score1, ref score2);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(heuristic), heuristic, null);
+                case MaxRectsHeuristic.Bssf:
+                    rect = FindPositionForNewNodeBestShortSideFit(width, height, ref score1, ref score2);
+                    break;
+                case MaxRectsHeuristic.Bl:
+                    rect = FindPositionForNewNodeBottomLeft(width, height, ref score1, ref score2);
+                    break;
+                case MaxRectsHeuristic.RectContactPointRule:
+                    rect = FindPositionForNewNodeContactPoint(width, height, ref score1);
+                    break;
+                case MaxRectsHeuristic.Blsf:
+                    rect = FindPositionForNewNodeBestLongSideFit(width, height, ref score2, ref score1);
+                    break;
+                case MaxRectsHeuristic.Baf:
+                    rect = FindPositionForNewNodeBestAreaFit(width, height, ref score1, ref score2);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(heuristic), heuristic, null);
                 }
             }
 
@@ -362,24 +362,24 @@ namespace Monogame.Content.Pipeline.Graphics
             score2 = int.MaxValue;
             switch (method)
             {
-                case MaxRectsHeuristic.Bssf:
-                    newNode = FindPositionForNewNodeBestShortSideFit(width, height, ref score1, ref score2);
-                    break;
-                case MaxRectsHeuristic.Bl:
-                    newNode = FindPositionForNewNodeBottomLeft(width, height, ref score1, ref score2);
-                    break;
-                case MaxRectsHeuristic.RectContactPointRule:
-                    newNode = FindPositionForNewNodeContactPoint(width, height, ref score1);
-                    score1 = -score1; // Reverse since we are minimizing, but for contact point score bigger is better.
-                    break;
-                case MaxRectsHeuristic.Blsf:
-                    newNode = FindPositionForNewNodeBestLongSideFit(width, height, ref score2, ref score1);
-                    break;
-                case MaxRectsHeuristic.Baf:
-                    newNode = FindPositionForNewNodeBestAreaFit(width, height, ref score1, ref score2);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(method), method, null);
+            case MaxRectsHeuristic.Bssf:
+                newNode = FindPositionForNewNodeBestShortSideFit(width, height, ref score1, ref score2);
+                break;
+            case MaxRectsHeuristic.Bl:
+                newNode = FindPositionForNewNodeBottomLeft(width, height, ref score1, ref score2);
+                break;
+            case MaxRectsHeuristic.RectContactPointRule:
+                newNode = FindPositionForNewNodeContactPoint(width, height, ref score1);
+                score1 = -score1; // Reverse since we are minimizing, but for contact point score bigger is better.
+                break;
+            case MaxRectsHeuristic.Blsf:
+                newNode = FindPositionForNewNodeBestLongSideFit(width, height, ref score2, ref score1);
+                break;
+            case MaxRectsHeuristic.Baf:
+                newNode = FindPositionForNewNodeBestAreaFit(width, height, ref score1, ref score2);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(method), method, null);
             }
 
             // Cannot fit the current rectangle.

@@ -96,40 +96,40 @@ namespace Monogame.Content.Pipeline.Audio
 
                     switch (kv[0])
                     {
-                        case "streams.stream.0.sample_rate":
-                            sampleRate = int.Parse(kv[1].Trim('"'), numberFormat);
-                            break;
-                        case "streams.stream.0.bits_per_sample":
-                            bitsPerSample = int.Parse(kv[1].Trim('"'), numberFormat);
-                            break;
-                        case "streams.stream.0.start_time":
-                            {
-                                double seconds;
-                                if (double.TryParse(kv[1].Trim('"'), NumberStyles.Any, numberFormat, out seconds))
-                                    durationInSeconds += seconds;
-                                break;
-                            }
-                        case "streams.stream.0.duration":
-                            durationInSeconds += double.Parse(kv[1].Trim('"'), numberFormat);
-                            break;
-                        case "streams.stream.0.channels":
-                            channelCount = int.Parse(kv[1].Trim('"'), numberFormat);
-                            break;
-                        case "streams.stream.0.sample_fmt":
-                            sampleFormat = kv[1].Trim('"').ToLowerInvariant();
-                            break;
-                        case "streams.stream.0.bit_rate":
-                            averageBytesPerSecond = (int.Parse(kv[1].Trim('"'), numberFormat) / 8);
-                            break;
-                        case "format.format_name":
-                            formatName = kv[1].Trim('"').ToLowerInvariant();
-                            break;
-                        case "streams.stream.0.codec_tag":
-                            {
-                                var hex = kv[1].Substring(3, kv[1].Length - 4);
-                                format = int.Parse(hex, NumberStyles.HexNumber);
-                                break;
-                            }
+                    case "streams.stream.0.sample_rate":
+                        sampleRate = int.Parse(kv[1].Trim('"'), numberFormat);
+                        break;
+                    case "streams.stream.0.bits_per_sample":
+                        bitsPerSample = int.Parse(kv[1].Trim('"'), numberFormat);
+                        break;
+                    case "streams.stream.0.start_time":
+                    {
+                        double seconds;
+                        if (double.TryParse(kv[1].Trim('"'), NumberStyles.Any, numberFormat, out seconds))
+                            durationInSeconds += seconds;
+                        break;
+                    }
+                    case "streams.stream.0.duration":
+                        durationInSeconds += double.Parse(kv[1].Trim('"'), numberFormat);
+                        break;
+                    case "streams.stream.0.channels":
+                        channelCount = int.Parse(kv[1].Trim('"'), numberFormat);
+                        break;
+                    case "streams.stream.0.sample_fmt":
+                        sampleFormat = kv[1].Trim('"').ToLowerInvariant();
+                        break;
+                    case "streams.stream.0.bit_rate":
+                        averageBytesPerSecond = (int.Parse(kv[1].Trim('"'), numberFormat) / 8);
+                        break;
+                    case "format.format_name":
+                        formatName = kv[1].Trim('"').ToLowerInvariant();
+                        break;
+                    case "streams.stream.0.codec_tag":
+                    {
+                        var hex = kv[1].Substring(3, kv[1].Length - 4);
+                        format = int.Parse(hex, NumberStyles.HexNumber);
+                        break;
+                    }
                     }
                 }
             }
@@ -144,24 +144,24 @@ namespace Monogame.Content.Pipeline.Audio
             {
                 switch (sampleFormat)
                 {
-                    case "u8":
-                    case "u8p":
-                        bitsPerSample = 8;
-                        break;
-                    case "s16":
-                    case "s16p":
-                        bitsPerSample = 16;
-                        break;
-                    case "s32":
-                    case "s32p":
-                    case "flt":
-                    case "fltp":
-                        bitsPerSample = 32;
-                        break;
-                    case "dbl":
-                    case "dblp":
-                        bitsPerSample = 64;
-                        break;
+                case "u8":
+                case "u8p":
+                    bitsPerSample = 8;
+                    break;
+                case "s16":
+                case "s16p":
+                    bitsPerSample = 16;
+                    break;
+                case "s32":
+                case "s32p":
+                case "flt":
+                case "fltp":
+                    bitsPerSample = 32;
+                    break;
+                case "dbl":
+                case "dblp":
+                    bitsPerSample = 64;
+                    break;
                 }
             }
 
@@ -305,61 +305,61 @@ namespace Monogame.Content.Pipeline.Audio
                 //int format;
                 switch (formatType)
                 {
-                    case ConversionFormat.Adpcm:
-                        // ADPCM Microsoft 
-                        ffmpegCodecName = "adpcm_ms";
-                        ffmpegMuxerName = "wav";
-                        //format = 0x0002; /* WAVE_FORMAT_ADPCM */
-                        break;
-                    case ConversionFormat.Pcm:
-                        // XNA seems to preserve the bit size of the input
-                        // format when converting to PCM.
-                        if (content.Format.BitsPerSample == 8)
-                            ffmpegCodecName = "pcm_u8";
-                        else if (content.Format.BitsPerSample == 32 && content.Format.Format == 3)
-                            ffmpegCodecName = "pcm_f32le";
-                        else
-                            ffmpegCodecName = "pcm_s16le";
-                        ffmpegMuxerName = "wav";
-                        //format = 0x0001; /* WAVE_FORMAT_PCM */
-                        break;
-                    case ConversionFormat.WindowsMedia:
-                        // Windows Media Audio 2
-                        ffmpegCodecName = "wmav2";
-                        ffmpegMuxerName = "asf";
-                        //format = 0x0161; /* WAVE_FORMAT_WMAUDIO2 */
-                        break;
-                    case ConversionFormat.Xma:
-                        throw new NotSupportedException(
-                            "XMA is not a supported encoding format. It is specific to the Xbox 360.");
-                    case ConversionFormat.ImaAdpcm:
-                        // ADPCM IMA WAV
-                        ffmpegCodecName = "adpcm_ima_wav";
-                        ffmpegMuxerName = "wav";
-                        //format = 0x0011; /* WAVE_FORMAT_IMA_ADPCM */
-                        break;
-                    case ConversionFormat.Aac:
-                        // AAC (Advanced Audio Coding)
-                        // Requires -strict experimental
-                        ffmpegCodecName = "aac";
-                        ffmpegMuxerName = "ipod";
-                        //format = 0x0000; /* WAVE_FORMAT_UNKNOWN */
-                        break;
-                    case ConversionFormat.Vorbis:
-                        // Vorbis
-                        ffmpegCodecName = "libvorbis";
-                        ffmpegMuxerName = "ogg";
-                        //format = 0x0000; /* WAVE_FORMAT_UNKNOWN */
-                        break;
-                    case ConversionFormat.Mp3:
-                        // Vorbis
-                        ffmpegCodecName = "libmp3lame";
-                        ffmpegMuxerName = "mp3";
-                        //format = 0x0000; /* WAVE_FORMAT_UNKNOWN */
-                        break;
-                    default:
-                        // Unknown format
-                        throw new NotSupportedException();
+                case ConversionFormat.Adpcm:
+                    // ADPCM Microsoft 
+                    ffmpegCodecName = "adpcm_ms";
+                    ffmpegMuxerName = "wav";
+                    //format = 0x0002; /* WAVE_FORMAT_ADPCM */
+                    break;
+                case ConversionFormat.Pcm:
+                    // XNA seems to preserve the bit size of the input
+                    // format when converting to PCM.
+                    if (content.Format.BitsPerSample == 8)
+                        ffmpegCodecName = "pcm_u8";
+                    else if (content.Format.BitsPerSample == 32 && content.Format.Format == 3)
+                        ffmpegCodecName = "pcm_f32le";
+                    else
+                        ffmpegCodecName = "pcm_s16le";
+                    ffmpegMuxerName = "wav";
+                    //format = 0x0001; /* WAVE_FORMAT_PCM */
+                    break;
+                case ConversionFormat.WindowsMedia:
+                    // Windows Media Audio 2
+                    ffmpegCodecName = "wmav2";
+                    ffmpegMuxerName = "asf";
+                    //format = 0x0161; /* WAVE_FORMAT_WMAUDIO2 */
+                    break;
+                case ConversionFormat.Xma:
+                    throw new NotSupportedException(
+                        "XMA is not a supported encoding format. It is specific to the Xbox 360.");
+                case ConversionFormat.ImaAdpcm:
+                    // ADPCM IMA WAV
+                    ffmpegCodecName = "adpcm_ima_wav";
+                    ffmpegMuxerName = "wav";
+                    //format = 0x0011; /* WAVE_FORMAT_IMA_ADPCM */
+                    break;
+                case ConversionFormat.Aac:
+                    // AAC (Advanced Audio Coding)
+                    // Requires -strict experimental
+                    ffmpegCodecName = "aac";
+                    ffmpegMuxerName = "ipod";
+                    //format = 0x0000; /* WAVE_FORMAT_UNKNOWN */
+                    break;
+                case ConversionFormat.Vorbis:
+                    // Vorbis
+                    ffmpegCodecName = "libvorbis";
+                    ffmpegMuxerName = "ogg";
+                    //format = 0x0000; /* WAVE_FORMAT_UNKNOWN */
+                    break;
+                case ConversionFormat.Mp3:
+                    // Vorbis
+                    ffmpegCodecName = "libmp3lame";
+                    ffmpegMuxerName = "mp3";
+                    //format = 0x0000; /* WAVE_FORMAT_UNKNOWN */
+                    break;
+                default:
+                    // Unknown format
+                    throw new NotSupportedException();
                 }
 
                 string ffmpegStdout, ffmpegStderr;
@@ -440,10 +440,10 @@ namespace Monogame.Content.Pipeline.Audio
         {
             switch (format.Format)
             {
-                case 2:     // MS-ADPCM
-                    return (format.BlockAlign / format.ChannelCount - 7) * 2 + 2;
-                case 17:    // IMA/ADPCM
-                    return (format.BlockAlign / format.ChannelCount - 4) / 4 * 8 + 1;
+            case 2:     // MS-ADPCM
+                return (format.BlockAlign / format.ChannelCount - 7) * 2 + 2;
+            case 17:    // IMA/ADPCM
+                return (format.BlockAlign / format.ChannelCount - 4) / 4 * 8 + 1;
             }
             return 0;
         }

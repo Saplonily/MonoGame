@@ -264,4 +264,3 @@ namespace MonoGame.Tests.Components
         }
     }
 }
-

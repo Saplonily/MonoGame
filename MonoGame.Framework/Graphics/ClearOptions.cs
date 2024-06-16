@@ -26,4 +26,3 @@ namespace Monogame.Graphics
         Stencil = 4
     }
 }
-

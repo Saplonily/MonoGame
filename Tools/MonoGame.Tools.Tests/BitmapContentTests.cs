@@ -1,11 +1,11 @@
-﻿using Monogame;
-using Monogame.Content.Pipeline.Graphics;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Monogame;
+using Monogame.Content.Pipeline.Graphics;
 using Monogame.Graphics;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.ContentPipeline
 {

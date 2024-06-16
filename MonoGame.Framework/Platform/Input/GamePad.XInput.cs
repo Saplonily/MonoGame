@@ -90,29 +90,29 @@ namespace Monogame.Input
                     ret.GamePadType = Input.GamePadType.Unknown;
                     break;
 #endif
-                case SharpDX.XInput.DeviceSubType.ArcadeStick:
-                    ret.GamePadType = GamePadType.ArcadeStick;
-                    break;
-                case SharpDX.XInput.DeviceSubType.DancePad:
-                    ret.GamePadType = GamePadType.DancePad;
-                    break;
-                case SharpDX.XInput.DeviceSubType.DrumKit:
-                    ret.GamePadType = GamePadType.DrumKit;
-                    break;
+            case SharpDX.XInput.DeviceSubType.ArcadeStick:
+                ret.GamePadType = GamePadType.ArcadeStick;
+                break;
+            case SharpDX.XInput.DeviceSubType.DancePad:
+                ret.GamePadType = GamePadType.DancePad;
+                break;
+            case SharpDX.XInput.DeviceSubType.DrumKit:
+                ret.GamePadType = GamePadType.DrumKit;
+                break;
 
-                case SharpDX.XInput.DeviceSubType.Gamepad:
-                    ret.GamePadType = GamePadType.GamePad;
-                    break;
-                case SharpDX.XInput.DeviceSubType.Guitar:
-                    ret.GamePadType = GamePadType.Guitar;
-                    break;
-                case SharpDX.XInput.DeviceSubType.Wheel:
-                    ret.GamePadType = GamePadType.Wheel;
-                    break;
-                default:
-                    Debug.WriteLine("unexpected XInput DeviceSubType: {0}", capabilities.SubType.ToString());
-                    ret.GamePadType = GamePadType.Unknown;
-                    break;
+            case SharpDX.XInput.DeviceSubType.Gamepad:
+                ret.GamePadType = GamePadType.GamePad;
+                break;
+            case SharpDX.XInput.DeviceSubType.Guitar:
+                ret.GamePadType = GamePadType.Guitar;
+                break;
+            case SharpDX.XInput.DeviceSubType.Wheel:
+                ret.GamePadType = GamePadType.Wheel;
+                break;
+            default:
+                Debug.WriteLine("unexpected XInput DeviceSubType: {0}", capabilities.SubType.ToString());
+                ret.GamePadType = GamePadType.Unknown;
+                break;
             }
 
             var gamepad = capabilities.Gamepad;

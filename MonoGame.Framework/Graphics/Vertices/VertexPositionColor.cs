@@ -1,6 +1,6 @@
 using System;
-using System.Runtime.Serialization;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 
 namespace Monogame.Graphics
 {

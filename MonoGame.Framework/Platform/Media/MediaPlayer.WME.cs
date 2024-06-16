@@ -5,8 +5,8 @@
 using System;
 using SharpDX.MediaFoundation;
 using SharpDX.Multimedia;
-using Windows.UI.Core;
 using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 
 namespace Monogame.Media
 {
@@ -151,4 +151,3 @@ namespace Monogame.Media
         }
     }
 }
-

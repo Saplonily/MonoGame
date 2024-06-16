@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Framework.Content.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj", "{4800B20B-2D5B-4BD4-AB03-4B5B959C84EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.DesktopGL", "Test.DesktopGL\Test.DesktopGL.csproj", "{3A74D6EC-0546-4254-B3DF-218C8E32B04F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.DesktopGL", "Test.DesktopGL\Test.DesktopGL.csproj", "{3A74D6EC-0546-4254-B3DF-218C8E32B04F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Content.Builder.Task", "Tools\MonoGame.Content.Builder.Task\MonoGame.Content.Builder.Task.csproj", "{2B6BD3F6-EF0D-4CCC-98E4-B2A8EB3B315A}"
 EndProject
@@ -42,6 +42,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Effect.Compiler", "Tools\MonoGame.Effect.Compiler\MonoGame.Effect.Compiler.csproj", "{EF20D15C-19EE-45C2-B481-D5E678E4BA8A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Tools.Tests", "Tools\MonoGame.Tools.Tests\MonoGame.Tools.Tests.csproj", "{EE772F05-830D-4914-B473-A6B4D0968EF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8F856B18-81A6-4EFF-9590-702D5214AC7C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,10 +2,10 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Monogame.Content.Pipeline.Graphics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Monogame.Content.Pipeline.Graphics;
 
 namespace Monogame.Content.Pipeline.Processors
 {
@@ -202,18 +202,18 @@ namespace Monogame.Content.Pipeline.Processors
         {
             switch (effect)
             {
-                case MaterialProcessorDefaultEffect.BasicEffect:
-                    return new BasicMaterialContent();
-                case MaterialProcessorDefaultEffect.SkinnedEffect:
-                    return new SkinnedMaterialContent();
-                case MaterialProcessorDefaultEffect.EnvironmentMapEffect:
-                    return new EnvironmentMapMaterialContent();
-                case MaterialProcessorDefaultEffect.DualTextureEffect:
-                    return new DualTextureMaterialContent();
-                case MaterialProcessorDefaultEffect.AlphaTestEffect:
-                    return new AlphaTestMaterialContent();
-                default:
-                    throw new ArgumentOutOfRangeException();
+            case MaterialProcessorDefaultEffect.BasicEffect:
+                return new BasicMaterialContent();
+            case MaterialProcessorDefaultEffect.SkinnedEffect:
+                return new SkinnedMaterialContent();
+            case MaterialProcessorDefaultEffect.EnvironmentMapEffect:
+                return new EnvironmentMapMaterialContent();
+            case MaterialProcessorDefaultEffect.DualTextureEffect:
+                return new DualTextureMaterialContent();
+            case MaterialProcessorDefaultEffect.AlphaTestEffect:
+                return new AlphaTestMaterialContent();
+            default:
+                throw new ArgumentOutOfRangeException();
             }
         }
 

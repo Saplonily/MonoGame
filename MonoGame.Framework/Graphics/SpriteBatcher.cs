@@ -161,11 +161,11 @@ namespace Monogame.Graphics
             // sort the batch items
             switch (sortMode)
             {
-                case SpriteSortMode.Texture:
-                case SpriteSortMode.FrontToBack:
-                case SpriteSortMode.BackToFront:
-                    Array.Sort(_batchItemList, 0, _batchItemCount);
-                    break;
+            case SpriteSortMode.Texture:
+            case SpriteSortMode.FrontToBack:
+            case SpriteSortMode.BackToFront:
+                Array.Sort(_batchItemList, 0, _batchItemCount);
+                break;
             }
 
             // Determine how many iterations through the drawing code we need to make
@@ -285,4 +285,3 @@ namespace Monogame.Graphics
         }
     }
 }
-

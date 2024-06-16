@@ -2,10 +2,10 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Monogame.Input;
-using Monogame.Input.Touch;
 using System;
 using System.ComponentModel;
+using Monogame.Input;
+using Monogame.Input.Touch;
 
 namespace Monogame
 {

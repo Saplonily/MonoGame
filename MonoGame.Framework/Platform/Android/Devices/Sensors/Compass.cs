@@ -186,17 +186,17 @@ namespace Microsoft.Devices.Sensors
                 {
                     switch (e.Sensor.Type)
                     {
-                        case SensorType.Accelerometer:
-                            valuesAccelerometer[0] = e.Values[0];
-                            valuesAccelerometer[1] = e.Values[1];
-                            valuesAccelerometer[2] = e.Values[2];
-                            break;
+                    case SensorType.Accelerometer:
+                        valuesAccelerometer[0] = e.Values[0];
+                        valuesAccelerometer[1] = e.Values[1];
+                        valuesAccelerometer[2] = e.Values[2];
+                        break;
 
-                        case SensorType.MagneticField:
-                            valuesMagenticField[0] = e.Values[0];
-                            valuesMagenticField[1] = e.Values[1];
-                            valuesMagenticField[2] = e.Values[2];
-                            break;
+                    case SensorType.MagneticField:
+                        valuesMagenticField[0] = e.Values[0];
+                        valuesMagenticField[1] = e.Values[1];
+                        valuesMagenticField[2] = e.Values[2];
+                        break;
                     }
 
                     compass.IsDataValid = SensorManager.GetRotationMatrix(matrixR, matrixI, valuesAccelerometer, valuesMagenticField);
@@ -225,4 +225,3 @@ namespace Microsoft.Devices.Sensors
         }
     }
 }
-

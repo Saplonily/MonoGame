@@ -1,7 +1,7 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
 
 namespace Monogame.Graphics
 {
@@ -177,43 +177,43 @@ namespace Monogame.Graphics
             {
                 switch (ParameterClass)
                 {
-                    // Object types are stored directly in the Data property.
-                    // Display Data's string value.
-                    case EffectParameterClass.Object:
-                        valueStr = Data.ToString();
-                        break;
+                // Object types are stored directly in the Data property.
+                // Display Data's string value.
+                case EffectParameterClass.Object:
+                    valueStr = Data.ToString();
+                    break;
 
-                    // Matrix types are stored in a float[16] which we don't really have room for.
-                    // Display "...".
-                    case EffectParameterClass.Matrix:
-                        valueStr = "...";
-                        break;
+                // Matrix types are stored in a float[16] which we don't really have room for.
+                // Display "...".
+                case EffectParameterClass.Matrix:
+                    valueStr = "...";
+                    break;
 
-                    // Scalar types are stored as a float[1].
-                    // Display the first (and only) element's string value.                    
-                    case EffectParameterClass.Scalar:
-                        valueStr = (Data as Array).GetValue(0).ToString();
-                        break;
+                // Scalar types are stored as a float[1].
+                // Display the first (and only) element's string value.                    
+                case EffectParameterClass.Scalar:
+                    valueStr = (Data as Array).GetValue(0).ToString();
+                    break;
 
-                    // Vector types are stored as an Array<Type>.
-                    // Display the string value of each array element.
-                    case EffectParameterClass.Vector:
-                        var array = Data as Array;
-                        var arrayStr = new string[array.Length];
-                        var idx = 0;
-                        foreach (var e in array)
-                        {
-                            arrayStr[idx] = array.GetValue(idx).ToString();
-                            idx++;
-                        }
+                // Vector types are stored as an Array<Type>.
+                // Display the string value of each array element.
+                case EffectParameterClass.Vector:
+                    var array = Data as Array;
+                    var arrayStr = new string[array.Length];
+                    var idx = 0;
+                    foreach (var e in array)
+                    {
+                        arrayStr[idx] = array.GetValue(idx).ToString();
+                        idx++;
+                    }
 
-                        valueStr = string.Join(" ", arrayStr);
-                        break;
+                    valueStr = string.Join(" ", arrayStr);
+                    break;
 
-                    // Handle additional cases here...
-                    default:
-                        valueStr = Data.ToString();
-                        break;
+                // Handle additional cases here...
+                default:
+                    valueStr = Data.ToString();
+                    break;
                 }
             }
 
@@ -287,10 +287,10 @@ namespace Monogame.Graphics
 
             switch (ParameterClass)
             {
-                case EffectParameterClass.Scalar:
-                    return new int[] { GetValueInt32() };
-                default:
-                    throw new NotImplementedException();
+            case EffectParameterClass.Scalar:
+                return new int[] { GetValueInt32() };
+            default:
+                throw new NotImplementedException();
             }
         }
 
@@ -391,16 +391,16 @@ namespace Monogame.Graphics
 
             switch (ParameterClass)
             {
-                case EffectParameterClass.Scalar:
-                    return new Single[] { GetValueSingle() };
-                case EffectParameterClass.Vector:
-                case EffectParameterClass.Matrix:
-                    if (Data is Matrix)
-                        return Matrix.ToFloatArray((Matrix)Data);
-                    else
-                        return (float[])Data;
-                default:
-                    throw new NotImplementedException();
+            case EffectParameterClass.Scalar:
+                return new Single[] { GetValueSingle() };
+            case EffectParameterClass.Vector:
+            case EffectParameterClass.Matrix:
+                if (Data is Matrix)
+                    return Matrix.ToFloatArray((Matrix)Data);
+                else
+                    return (float[])Data;
+            default:
+                throw new NotImplementedException();
             }
         }
 

@@ -32,4 +32,3 @@ namespace Monogame
         public PresentationParameters PresentationParameters { get; set; }
     }
 }
-

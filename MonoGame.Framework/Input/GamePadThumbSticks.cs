@@ -92,14 +92,14 @@ namespace Monogame.Input
             // Apply dead zone
             switch (deadZoneMode)
             {
-                case GamePadDeadZone.None:
-                    break;
-                case GamePadDeadZone.IndependentAxes:
-                    thumbstickPosition = ExcludeIndependentAxesDeadZone(thumbstickPosition, deadZone);
-                    break;
-                case GamePadDeadZone.Circular:
-                    thumbstickPosition = ExcludeCircularDeadZone(thumbstickPosition, deadZone);
-                    break;
+            case GamePadDeadZone.None:
+                break;
+            case GamePadDeadZone.IndependentAxes:
+                thumbstickPosition = ExcludeIndependentAxesDeadZone(thumbstickPosition, deadZone);
+                break;
+            case GamePadDeadZone.Circular:
+                thumbstickPosition = ExcludeCircularDeadZone(thumbstickPosition, deadZone);
+                break;
             }
 
             // Apply clamp

@@ -272,23 +272,23 @@ namespace Monogame
         {
             switch (inkey)
             {
-                // WinRT does not distinguish between left/right keys
-                // We have to check for special keys such as control/shift/alt/ etc
-                case Windows.System.VirtualKey.Control:
-                    // we can detect right Control by checking the IsExtendedKey value.
-                    return (keyStatus.IsExtendedKey) ? Keys.RightControl : Keys.LeftControl;
-                case Windows.System.VirtualKey.Shift:
-                    // we can detect right shift by checking the scancode value.
-                    // left shift is 0x2A, right shift is 0x36. IsExtendedKey is always false.
-                    return (keyStatus.ScanCode == 0x36) ? Keys.RightShift : Keys.LeftShift;
-                // Note that the Alt key is now referred to as Menu.
-                // ALT key doesn't get fired by KeyUp/KeyDown events.
-                // One solution could be to check CoreWindow.GetKeyState(...) on every tick.
-                case Windows.System.VirtualKey.Menu:
-                    return Keys.LeftAlt;
+            // WinRT does not distinguish between left/right keys
+            // We have to check for special keys such as control/shift/alt/ etc
+            case Windows.System.VirtualKey.Control:
+                // we can detect right Control by checking the IsExtendedKey value.
+                return (keyStatus.IsExtendedKey) ? Keys.RightControl : Keys.LeftControl;
+            case Windows.System.VirtualKey.Shift:
+                // we can detect right shift by checking the scancode value.
+                // left shift is 0x2A, right shift is 0x36. IsExtendedKey is always false.
+                return (keyStatus.ScanCode == 0x36) ? Keys.RightShift : Keys.LeftShift;
+            // Note that the Alt key is now referred to as Menu.
+            // ALT key doesn't get fired by KeyUp/KeyDown events.
+            // One solution could be to check CoreWindow.GetKeyState(...) on every tick.
+            case Windows.System.VirtualKey.Menu:
+                return Keys.LeftAlt;
 
-                default:
-                    return (Keys)inkey;
+            default:
+                return (Keys)inkey;
             }
         }
 

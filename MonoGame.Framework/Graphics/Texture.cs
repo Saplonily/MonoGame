@@ -104,28 +104,28 @@ namespace Monogame.Graphics
 
             switch (_format)
             {
-                case SurfaceFormat.Dxt1:
-                case SurfaceFormat.Dxt1SRgb:
-                case SurfaceFormat.Dxt1a:
-                case SurfaceFormat.RgbPvrtc2Bpp:
-                case SurfaceFormat.RgbaPvrtc2Bpp:
-                case SurfaceFormat.RgbEtc1:
-                case SurfaceFormat.Rgb8Etc2:
-                case SurfaceFormat.Srgb8Etc2:
-                case SurfaceFormat.Rgb8A1Etc2:
-                case SurfaceFormat.Srgb8A1Etc2:
-                case SurfaceFormat.Dxt3:
-                case SurfaceFormat.Dxt3SRgb:
-                case SurfaceFormat.Dxt5:
-                case SurfaceFormat.Dxt5SRgb:
-                case SurfaceFormat.RgbPvrtc4Bpp:
-                case SurfaceFormat.RgbaPvrtc4Bpp:
-                    pitch = ((width + 3) / 4) * _format.GetSize();
-                    break;
+            case SurfaceFormat.Dxt1:
+            case SurfaceFormat.Dxt1SRgb:
+            case SurfaceFormat.Dxt1a:
+            case SurfaceFormat.RgbPvrtc2Bpp:
+            case SurfaceFormat.RgbaPvrtc2Bpp:
+            case SurfaceFormat.RgbEtc1:
+            case SurfaceFormat.Rgb8Etc2:
+            case SurfaceFormat.Srgb8Etc2:
+            case SurfaceFormat.Rgb8A1Etc2:
+            case SurfaceFormat.Srgb8A1Etc2:
+            case SurfaceFormat.Dxt3:
+            case SurfaceFormat.Dxt3SRgb:
+            case SurfaceFormat.Dxt5:
+            case SurfaceFormat.Dxt5SRgb:
+            case SurfaceFormat.RgbPvrtc4Bpp:
+            case SurfaceFormat.RgbaPvrtc4Bpp:
+                pitch = ((width + 3) / 4) * _format.GetSize();
+                break;
 
-                default:
-                    pitch = width * _format.GetSize();
-                    break;
+            default:
+                pitch = width * _format.GetSize();
+                break;
             };
 
             return pitch;
@@ -138,4 +138,3 @@ namespace Monogame.Graphics
         }
     }
 }
-

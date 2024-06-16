@@ -3,11 +3,11 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.IO;
 using Monogame;
 using Monogame.Content.Pipeline;
 using Monogame.Content.Pipeline.Graphics;
 using NUnit.Framework;
-using System.IO;
 
 namespace MonoGame.Tests.ContentPipeline
 {

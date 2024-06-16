@@ -10,8 +10,8 @@ using MonoGame.Framework.Utilities;
 using SharpDX;
 using SharpDX.Direct3D;
 using SharpDX.Direct3D11;
-using SharpDX.Mathematics.Interop;
 using SharpDX.DXGI;
+using SharpDX.Mathematics.Interop;
 
 #if WINDOWS_UAP
 using Windows.UI.Xaml.Controls;
@@ -591,13 +591,13 @@ namespace Monogame.Graphics
             var driverType = DriverType.Hardware;   //Default value
             switch (GraphicsAdapter.UseDriverType)
             {
-                case GraphicsAdapter.DriverType.Reference:
-                    driverType = DriverType.Reference;
-                    break;
+            case GraphicsAdapter.DriverType.Reference:
+                driverType = DriverType.Reference;
+                break;
 
-                case GraphicsAdapter.DriverType.FastSoftware:
-                    driverType = DriverType.Warp;
-                    break;
+            case GraphicsAdapter.DriverType.FastSoftware:
+                driverType = DriverType.Warp;
+                break;
             }
 
             try
@@ -1231,16 +1231,16 @@ namespace Monogame.Graphics
         {
             switch (primitiveType)
             {
-                case PrimitiveType.LineList:
-                    return PrimitiveTopology.LineList;
-                case PrimitiveType.LineStrip:
-                    return PrimitiveTopology.LineStrip;
-                case PrimitiveType.TriangleList:
-                    return PrimitiveTopology.TriangleList;
-                case PrimitiveType.TriangleStrip:
-                    return PrimitiveTopology.TriangleStrip;
-                case PrimitiveType.PointList:
-                    return PrimitiveTopology.PointList;
+            case PrimitiveType.LineList:
+                return PrimitiveTopology.LineList;
+            case PrimitiveType.LineStrip:
+                return PrimitiveTopology.LineStrip;
+            case PrimitiveType.TriangleList:
+                return PrimitiveTopology.TriangleList;
+            case PrimitiveType.TriangleStrip:
+                return PrimitiveTopology.TriangleStrip;
+            case PrimitiveType.PointList:
+                return PrimitiveTopology.PointList;
             }
 
             throw new ArgumentException();

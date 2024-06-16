@@ -132,26 +132,26 @@ namespace Monogame.Audio
         {
             switch (format)
             {
-                case ALFormat.Mono8:
-                case ALFormat.Mono16:
-                case ALFormat.Stereo8:
-                case ALFormat.Stereo16:
-                    PlatformInitializePcm(buffer, 0, bufferSize, bitsPerSample, sampleRate, (AudioChannels)channels, loopStart, loopLength);
-                    break;
-                case ALFormat.MonoMSAdpcm:
-                case ALFormat.StereoMSAdpcm:
-                    PlatformInitializeAdpcm(buffer, 0, bufferSize, sampleRate, (AudioChannels)channels, blockAlignment, loopStart, loopLength);
-                    break;
-                case ALFormat.MonoFloat32:
-                case ALFormat.StereoFloat32:
-                    PlatformInitializeIeeeFloat(buffer, 0, bufferSize, sampleRate, (AudioChannels)channels, loopStart, loopLength);
-                    break;
-                case ALFormat.MonoIma4:
-                case ALFormat.StereoIma4:
-                    PlatformInitializeIma4(buffer, 0, bufferSize, sampleRate, (AudioChannels)channels, blockAlignment, loopStart, loopLength);
-                    break;
-                default:
-                    throw new NotSupportedException("Unsupported wave format!");
+            case ALFormat.Mono8:
+            case ALFormat.Mono16:
+            case ALFormat.Stereo8:
+            case ALFormat.Stereo16:
+                PlatformInitializePcm(buffer, 0, bufferSize, bitsPerSample, sampleRate, (AudioChannels)channels, loopStart, loopLength);
+                break;
+            case ALFormat.MonoMSAdpcm:
+            case ALFormat.StereoMSAdpcm:
+                PlatformInitializeAdpcm(buffer, 0, bufferSize, sampleRate, (AudioChannels)channels, blockAlignment, loopStart, loopLength);
+                break;
+            case ALFormat.MonoFloat32:
+            case ALFormat.StereoFloat32:
+                PlatformInitializeIeeeFloat(buffer, 0, bufferSize, sampleRate, (AudioChannels)channels, loopStart, loopLength);
+                break;
+            case ALFormat.MonoIma4:
+            case ALFormat.StereoIma4:
+                PlatformInitializeIma4(buffer, 0, bufferSize, sampleRate, (AudioChannels)channels, blockAlignment, loopStart, loopLength);
+                break;
+            default:
+                throw new NotSupportedException("Unsupported wave format!");
             }
         }
 
@@ -251,4 +251,3 @@ namespace Monogame.Audio
         }
     }
 }
-

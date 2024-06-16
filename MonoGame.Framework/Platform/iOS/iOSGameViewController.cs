@@ -4,11 +4,10 @@
 
 using System;
 using System.Drawing;
-
-using UIKit;
-using Foundation;
 using CoreGraphics;
+using Foundation;
 using ObjCRuntime;
+using UIKit;
 
 namespace Monogame
 {

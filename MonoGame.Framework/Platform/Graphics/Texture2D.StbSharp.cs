@@ -2,11 +2,11 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using StbImageSharp;
-using StbImageWriteSharp;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using StbImageSharp;
+using StbImageWriteSharp;
 
 namespace Monogame.Graphics
 {
@@ -89,12 +89,12 @@ namespace Monogame.Graphics
                     var writer = new ImageWriter();
                     switch (format)
                     {
-                        case ImageWriterFormat.Jpg:
-                            writer.WriteJpg(ptr, width, height, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, stream, 90);
-                            break;
-                        case ImageWriterFormat.Png:
-                            writer.WritePng(ptr, width, height, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, stream);
-                            break;
+                    case ImageWriterFormat.Jpg:
+                        writer.WriteJpg(ptr, width, height, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, stream, 90);
+                        break;
+                    case ImageWriterFormat.Png:
+                        writer.WritePng(ptr, width, height, StbImageWriteSharp.ColorComponents.RedGreenBlueAlpha, stream);
+                        break;
                     }
                 }
             }

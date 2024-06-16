@@ -38,4 +38,3 @@ namespace Monogame.Graphics
         event EventHandler<EventArgs> DeviceResetting;
     }
 }
-

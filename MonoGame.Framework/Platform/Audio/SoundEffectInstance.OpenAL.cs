@@ -245,18 +245,18 @@ namespace Monogame.Audio
 
             switch (alState)
             {
-                case ALSourceState.Initial:
-                case ALSourceState.Stopped:
-                    SoundState = SoundState.Stopped;
-                    break;
+            case ALSourceState.Initial:
+            case ALSourceState.Stopped:
+                SoundState = SoundState.Stopped;
+                break;
 
-                case ALSourceState.Paused:
-                    SoundState = SoundState.Paused;
-                    break;
+            case ALSourceState.Paused:
+                SoundState = SoundState.Paused;
+                break;
 
-                case ALSourceState.Playing:
-                    SoundState = SoundState.Playing;
-                    break;
+            case ALSourceState.Playing:
+                SoundState = SoundState.Playing;
+                break;
             }
 
             return SoundState;
@@ -305,20 +305,20 @@ namespace Monogame.Audio
                 ALHelper.CheckError("Failed to set filter.");
                 switch (filterType)
                 {
-                    case EfxFilterType.Lowpass:
-                        efx.Filter(controller.Filter, EfxFilterf.LowpassGainHF, freq);
-                        ALHelper.CheckError("Failed to set LowpassGainHF.");
-                        break;
-                    case EfxFilterType.Highpass:
-                        efx.Filter(controller.Filter, EfxFilterf.HighpassGainLF, freq);
-                        ALHelper.CheckError("Failed to set HighpassGainLF.");
-                        break;
-                    case EfxFilterType.Bandpass:
-                        efx.Filter(controller.Filter, EfxFilterf.BandpassGainHF, freq);
-                        ALHelper.CheckError("Failed to set BandpassGainHF.");
-                        efx.Filter(controller.Filter, EfxFilterf.BandpassGainLF, lf);
-                        ALHelper.CheckError("Failed to set BandpassGainLF.");
-                        break;
+                case EfxFilterType.Lowpass:
+                    efx.Filter(controller.Filter, EfxFilterf.LowpassGainHF, freq);
+                    ALHelper.CheckError("Failed to set LowpassGainHF.");
+                    break;
+                case EfxFilterType.Highpass:
+                    efx.Filter(controller.Filter, EfxFilterf.HighpassGainLF, freq);
+                    ALHelper.CheckError("Failed to set HighpassGainLF.");
+                    break;
+                case EfxFilterType.Bandpass:
+                    efx.Filter(controller.Filter, EfxFilterf.BandpassGainHF, freq);
+                    ALHelper.CheckError("Failed to set BandpassGainHF.");
+                    efx.Filter(controller.Filter, EfxFilterf.BandpassGainLF, lf);
+                    ALHelper.CheckError("Failed to set BandpassGainLF.");
+                    break;
                 }
                 AL.Source(SourceId, ALSourcei.EfxDirectFilter, controller.Filter);
                 ALHelper.CheckError("Failed to set DirectFilter.");
@@ -333,15 +333,15 @@ namespace Monogame.Audio
             applyFilter = true;
             switch (mode)
             {
-                case FilterMode.BandPass:
-                    filterType = EfxFilterType.Bandpass;
-                    break;
-                case FilterMode.LowPass:
-                    filterType = EfxFilterType.Lowpass;
-                    break;
-                case FilterMode.HighPass:
-                    filterType = EfxFilterType.Highpass;
-                    break;
+            case FilterMode.BandPass:
+                filterType = EfxFilterType.Bandpass;
+                break;
+            case FilterMode.LowPass:
+                filterType = EfxFilterType.Lowpass;
+                break;
+            case FilterMode.HighPass:
+                filterType = EfxFilterType.Highpass;
+                break;
             }
             this.filterQ = filterQ;
             this.frequency = frequency;

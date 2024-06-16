@@ -437,8 +437,8 @@ namespace Monogame.Graphics
                 {
                     switch (type)
                     {
-                        case EffectParameterType.Bool:
-                        case EffectParameterType.Int32:
+                    case EffectParameterType.Bool:
+                    case EffectParameterType.Int32:
 #if !OPENGL
                             // Under most platforms we properly store integers and 
                             // booleans in an integer type.
@@ -454,25 +454,25 @@ namespace Monogame.Graphics
 					        }
 #endif
 
-                        case EffectParameterType.Single:
-                            {
-                                var buffer = new float[rowCount * columnCount];
-                                for (var j = 0; j < buffer.Length; j++)
-                                    buffer[j] = reader.ReadSingle();
-                                data = buffer;
-                                break;
-                            }
+                    case EffectParameterType.Single:
+                    {
+                        var buffer = new float[rowCount * columnCount];
+                        for (var j = 0; j < buffer.Length; j++)
+                            buffer[j] = reader.ReadSingle();
+                        data = buffer;
+                        break;
+                    }
 
-                        case EffectParameterType.String:
-                            // TODO: We have not investigated what a string
-                            // type should do in the parameter list.  Till then
-                            // throw to let the user know.
-                            throw new NotSupportedException();
+                    case EffectParameterType.String:
+                        // TODO: We have not investigated what a string
+                        // type should do in the parameter list.  Till then
+                        // throw to let the user know.
+                        throw new NotSupportedException();
 
-                        default:
-                            // NOTE: We skip over all other types as they 
-                            // don't get added to the constant buffer.
-                            break;
+                    default:
+                        // NOTE: We skip over all other types as they 
+                        // don't get added to the constant buffer.
+                        break;
                     }
                 }
 

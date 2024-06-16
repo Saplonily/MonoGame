@@ -1,11 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using Monogame.Graphics;
 using SharpDX;
 using SharpDX.MediaFoundation;
 using SharpDX.Win32;
-using System;
-using System.Runtime.InteropServices;
 
 namespace Monogame.Media
 {
@@ -89,13 +89,13 @@ namespace Monogame.Media
 
                 switch (state)
                 {
-                    case ClockState.Running:
-                        result = MediaState.Playing;
-                        return;
+                case ClockState.Running:
+                    result = MediaState.Playing;
+                    return;
 
-                    case ClockState.Paused:
-                        result = MediaState.Paused;
-                        return;
+                case ClockState.Paused:
+                    result = MediaState.Paused;
+                    return;
                 }
             }
 

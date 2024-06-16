@@ -8,9 +8,9 @@
 #endregion
 
 #region Using Statements
+using System;
 using Monogame;
 using Monogame.Graphics;
-using System;
 #endregion
 
 namespace Monogame.Graphics

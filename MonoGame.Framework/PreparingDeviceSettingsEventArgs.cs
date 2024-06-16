@@ -26,4 +26,3 @@ namespace Monogame
         public GraphicsDeviceInformation GraphicsDeviceInformation { get; private set; }
     }
 }
-

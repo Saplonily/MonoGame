@@ -430,14 +430,14 @@ namespace Monogame.Graphics
 
             switch (graphicsProfile)
             {
-                case GraphicsProfile.Reach:
-                    return true;
-                case GraphicsProfile.HiDef:
-                    bool result = true;
-                    // TODO: check adapter capabilities...
-                    return result;
-                default:
-                    throw new InvalidOperationException();
+            case GraphicsProfile.Reach:
+                return true;
+            case GraphicsProfile.HiDef:
+                bool result = true;
+                // TODO: check adapter capabilities...
+                return result;
+            default:
+                throw new InvalidOperationException();
             }
         }
 

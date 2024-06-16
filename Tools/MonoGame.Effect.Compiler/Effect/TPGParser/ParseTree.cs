@@ -180,334 +180,334 @@ namespace MonoGame.Effect.TPGParser
 
             switch (Token.Type)
             {
-                case TokenType.Start:
-                    Value = EvalStart(tree, paramlist);
-                    break;
-                case TokenType.Technique_Declaration:
-                    Value = EvalTechnique_Declaration(tree, paramlist);
-                    break;
-                case TokenType.FillMode_Solid:
-                    Value = EvalFillMode_Solid(tree, paramlist);
-                    break;
-                case TokenType.FillMode_WireFrame:
-                    Value = EvalFillMode_WireFrame(tree, paramlist);
-                    break;
-                case TokenType.FillModes:
-                    Value = EvalFillModes(tree, paramlist);
-                    break;
-                case TokenType.CullMode_None:
-                    Value = EvalCullMode_None(tree, paramlist);
-                    break;
-                case TokenType.CullMode_Cw:
-                    Value = EvalCullMode_Cw(tree, paramlist);
-                    break;
-                case TokenType.CullMode_Ccw:
-                    Value = EvalCullMode_Ccw(tree, paramlist);
-                    break;
-                case TokenType.CullModes:
-                    Value = EvalCullModes(tree, paramlist);
-                    break;
-                case TokenType.Colors_None:
-                    Value = EvalColors_None(tree, paramlist);
-                    break;
-                case TokenType.Colors_Red:
-                    Value = EvalColors_Red(tree, paramlist);
-                    break;
-                case TokenType.Colors_Green:
-                    Value = EvalColors_Green(tree, paramlist);
-                    break;
-                case TokenType.Colors_Blue:
-                    Value = EvalColors_Blue(tree, paramlist);
-                    break;
-                case TokenType.Colors_Alpha:
-                    Value = EvalColors_Alpha(tree, paramlist);
-                    break;
-                case TokenType.Colors_All:
-                    Value = EvalColors_All(tree, paramlist);
-                    break;
-                case TokenType.Colors_Boolean:
-                    Value = EvalColors_Boolean(tree, paramlist);
-                    break;
-                case TokenType.Colors:
-                    Value = EvalColors(tree, paramlist);
-                    break;
-                case TokenType.ColorsMasks:
-                    Value = EvalColorsMasks(tree, paramlist);
-                    break;
-                case TokenType.Blend_Zero:
-                    Value = EvalBlend_Zero(tree, paramlist);
-                    break;
-                case TokenType.Blend_One:
-                    Value = EvalBlend_One(tree, paramlist);
-                    break;
-                case TokenType.Blend_SrcColor:
-                    Value = EvalBlend_SrcColor(tree, paramlist);
-                    break;
-                case TokenType.Blend_InvSrcColor:
-                    Value = EvalBlend_InvSrcColor(tree, paramlist);
-                    break;
-                case TokenType.Blend_SrcAlpha:
-                    Value = EvalBlend_SrcAlpha(tree, paramlist);
-                    break;
-                case TokenType.Blend_InvSrcAlpha:
-                    Value = EvalBlend_InvSrcAlpha(tree, paramlist);
-                    break;
-                case TokenType.Blend_DestAlpha:
-                    Value = EvalBlend_DestAlpha(tree, paramlist);
-                    break;
-                case TokenType.Blend_InvDestAlpha:
-                    Value = EvalBlend_InvDestAlpha(tree, paramlist);
-                    break;
-                case TokenType.Blend_DestColor:
-                    Value = EvalBlend_DestColor(tree, paramlist);
-                    break;
-                case TokenType.Blend_InvDestColor:
-                    Value = EvalBlend_InvDestColor(tree, paramlist);
-                    break;
-                case TokenType.Blend_SrcAlphaSat:
-                    Value = EvalBlend_SrcAlphaSat(tree, paramlist);
-                    break;
-                case TokenType.Blend_BlendFactor:
-                    Value = EvalBlend_BlendFactor(tree, paramlist);
-                    break;
-                case TokenType.Blend_InvBlendFactor:
-                    Value = EvalBlend_InvBlendFactor(tree, paramlist);
-                    break;
-                case TokenType.Blends:
-                    Value = EvalBlends(tree, paramlist);
-                    break;
-                case TokenType.BlendOp_Add:
-                    Value = EvalBlendOp_Add(tree, paramlist);
-                    break;
-                case TokenType.BlendOp_Subtract:
-                    Value = EvalBlendOp_Subtract(tree, paramlist);
-                    break;
-                case TokenType.BlendOp_RevSubtract:
-                    Value = EvalBlendOp_RevSubtract(tree, paramlist);
-                    break;
-                case TokenType.BlendOp_Min:
-                    Value = EvalBlendOp_Min(tree, paramlist);
-                    break;
-                case TokenType.BlendOp_Max:
-                    Value = EvalBlendOp_Max(tree, paramlist);
-                    break;
-                case TokenType.BlendOps:
-                    Value = EvalBlendOps(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_Never:
-                    Value = EvalCmpFunc_Never(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_Less:
-                    Value = EvalCmpFunc_Less(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_Equal:
-                    Value = EvalCmpFunc_Equal(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_LessEqual:
-                    Value = EvalCmpFunc_LessEqual(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_Greater:
-                    Value = EvalCmpFunc_Greater(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_NotEqual:
-                    Value = EvalCmpFunc_NotEqual(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_GreaterEqual:
-                    Value = EvalCmpFunc_GreaterEqual(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc_Always:
-                    Value = EvalCmpFunc_Always(tree, paramlist);
-                    break;
-                case TokenType.CmpFunc:
-                    Value = EvalCmpFunc(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_Keep:
-                    Value = EvalStencilOp_Keep(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_Zero:
-                    Value = EvalStencilOp_Zero(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_Replace:
-                    Value = EvalStencilOp_Replace(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_IncrSat:
-                    Value = EvalStencilOp_IncrSat(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_DecrSat:
-                    Value = EvalStencilOp_DecrSat(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_Invert:
-                    Value = EvalStencilOp_Invert(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_Incr:
-                    Value = EvalStencilOp_Incr(tree, paramlist);
-                    break;
-                case TokenType.StencilOp_Decr:
-                    Value = EvalStencilOp_Decr(tree, paramlist);
-                    break;
-                case TokenType.StencilOp:
-                    Value = EvalStencilOp(tree, paramlist);
-                    break;
-                case TokenType.Render_State_CullMode:
-                    Value = EvalRender_State_CullMode(tree, paramlist);
-                    break;
-                case TokenType.Render_State_FillMode:
-                    Value = EvalRender_State_FillMode(tree, paramlist);
-                    break;
-                case TokenType.Render_State_AlphaBlendEnable:
-                    Value = EvalRender_State_AlphaBlendEnable(tree, paramlist);
-                    break;
-                case TokenType.Render_State_SrcBlend:
-                    Value = EvalRender_State_SrcBlend(tree, paramlist);
-                    break;
-                case TokenType.Render_State_DestBlend:
-                    Value = EvalRender_State_DestBlend(tree, paramlist);
-                    break;
-                case TokenType.Render_State_BlendOp:
-                    Value = EvalRender_State_BlendOp(tree, paramlist);
-                    break;
-                case TokenType.Render_State_ColorWriteEnable:
-                    Value = EvalRender_State_ColorWriteEnable(tree, paramlist);
-                    break;
-                case TokenType.Render_State_DepthBias:
-                    Value = EvalRender_State_DepthBias(tree, paramlist);
-                    break;
-                case TokenType.Render_State_SlopeScaleDepthBias:
-                    Value = EvalRender_State_SlopeScaleDepthBias(tree, paramlist);
-                    break;
-                case TokenType.Render_State_ZEnable:
-                    Value = EvalRender_State_ZEnable(tree, paramlist);
-                    break;
-                case TokenType.Render_State_ZWriteEnable:
-                    Value = EvalRender_State_ZWriteEnable(tree, paramlist);
-                    break;
-                case TokenType.Render_State_ZFunc:
-                    Value = EvalRender_State_ZFunc(tree, paramlist);
-                    break;
-                case TokenType.Render_State_MultiSampleAntiAlias:
-                    Value = EvalRender_State_MultiSampleAntiAlias(tree, paramlist);
-                    break;
-                case TokenType.Render_State_ScissorTestEnable:
-                    Value = EvalRender_State_ScissorTestEnable(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilEnable:
-                    Value = EvalRender_State_StencilEnable(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilFail:
-                    Value = EvalRender_State_StencilFail(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilFunc:
-                    Value = EvalRender_State_StencilFunc(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilMask:
-                    Value = EvalRender_State_StencilMask(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilPass:
-                    Value = EvalRender_State_StencilPass(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilRef:
-                    Value = EvalRender_State_StencilRef(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilWriteMask:
-                    Value = EvalRender_State_StencilWriteMask(tree, paramlist);
-                    break;
-                case TokenType.Render_State_StencilZFail:
-                    Value = EvalRender_State_StencilZFail(tree, paramlist);
-                    break;
-                case TokenType.Render_State_Expression:
-                    Value = EvalRender_State_Expression(tree, paramlist);
-                    break;
-                case TokenType.Pass_Declaration:
-                    Value = EvalPass_Declaration(tree, paramlist);
-                    break;
-                case TokenType.VertexShader_Pass_Expression:
-                    Value = EvalVertexShader_Pass_Expression(tree, paramlist);
-                    break;
-                case TokenType.PixelShader_Pass_Expression:
-                    Value = EvalPixelShader_Pass_Expression(tree, paramlist);
-                    break;
-                case TokenType.AddressMode_Clamp:
-                    Value = EvalAddressMode_Clamp(tree, paramlist);
-                    break;
-                case TokenType.AddressMode_Wrap:
-                    Value = EvalAddressMode_Wrap(tree, paramlist);
-                    break;
-                case TokenType.AddressMode_Mirror:
-                    Value = EvalAddressMode_Mirror(tree, paramlist);
-                    break;
-                case TokenType.AddressMode_Border:
-                    Value = EvalAddressMode_Border(tree, paramlist);
-                    break;
-                case TokenType.AddressMode:
-                    Value = EvalAddressMode(tree, paramlist);
-                    break;
-                case TokenType.TextureFilter_None:
-                    Value = EvalTextureFilter_None(tree, paramlist);
-                    break;
-                case TokenType.TextureFilter_Linear:
-                    Value = EvalTextureFilter_Linear(tree, paramlist);
-                    break;
-                case TokenType.TextureFilter_Point:
-                    Value = EvalTextureFilter_Point(tree, paramlist);
-                    break;
-                case TokenType.TextureFilter_Anisotropic:
-                    Value = EvalTextureFilter_Anisotropic(tree, paramlist);
-                    break;
-                case TokenType.TextureFilter:
-                    Value = EvalTextureFilter(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_Texture:
-                    Value = EvalSampler_State_Texture(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_MinFilter:
-                    Value = EvalSampler_State_MinFilter(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_MagFilter:
-                    Value = EvalSampler_State_MagFilter(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_MipFilter:
-                    Value = EvalSampler_State_MipFilter(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_Filter:
-                    Value = EvalSampler_State_Filter(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_AddressU:
-                    Value = EvalSampler_State_AddressU(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_AddressV:
-                    Value = EvalSampler_State_AddressV(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_AddressW:
-                    Value = EvalSampler_State_AddressW(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_BorderColor:
-                    Value = EvalSampler_State_BorderColor(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_MaxMipLevel:
-                    Value = EvalSampler_State_MaxMipLevel(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_MaxAnisotropy:
-                    Value = EvalSampler_State_MaxAnisotropy(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_MipLodBias:
-                    Value = EvalSampler_State_MipLodBias(tree, paramlist);
-                    break;
-                case TokenType.Sampler_State_Expression:
-                    Value = EvalSampler_State_Expression(tree, paramlist);
-                    break;
-                case TokenType.Sampler_Register_Expression:
-                    Value = EvalSampler_Register_Expression(tree, paramlist);
-                    break;
-                case TokenType.Sampler_Declaration_States:
-                    Value = EvalSampler_Declaration_States(tree, paramlist);
-                    break;
-                case TokenType.Sampler_Declaration:
-                    Value = EvalSampler_Declaration(tree, paramlist);
-                    break;
+            case TokenType.Start:
+                Value = EvalStart(tree, paramlist);
+                break;
+            case TokenType.Technique_Declaration:
+                Value = EvalTechnique_Declaration(tree, paramlist);
+                break;
+            case TokenType.FillMode_Solid:
+                Value = EvalFillMode_Solid(tree, paramlist);
+                break;
+            case TokenType.FillMode_WireFrame:
+                Value = EvalFillMode_WireFrame(tree, paramlist);
+                break;
+            case TokenType.FillModes:
+                Value = EvalFillModes(tree, paramlist);
+                break;
+            case TokenType.CullMode_None:
+                Value = EvalCullMode_None(tree, paramlist);
+                break;
+            case TokenType.CullMode_Cw:
+                Value = EvalCullMode_Cw(tree, paramlist);
+                break;
+            case TokenType.CullMode_Ccw:
+                Value = EvalCullMode_Ccw(tree, paramlist);
+                break;
+            case TokenType.CullModes:
+                Value = EvalCullModes(tree, paramlist);
+                break;
+            case TokenType.Colors_None:
+                Value = EvalColors_None(tree, paramlist);
+                break;
+            case TokenType.Colors_Red:
+                Value = EvalColors_Red(tree, paramlist);
+                break;
+            case TokenType.Colors_Green:
+                Value = EvalColors_Green(tree, paramlist);
+                break;
+            case TokenType.Colors_Blue:
+                Value = EvalColors_Blue(tree, paramlist);
+                break;
+            case TokenType.Colors_Alpha:
+                Value = EvalColors_Alpha(tree, paramlist);
+                break;
+            case TokenType.Colors_All:
+                Value = EvalColors_All(tree, paramlist);
+                break;
+            case TokenType.Colors_Boolean:
+                Value = EvalColors_Boolean(tree, paramlist);
+                break;
+            case TokenType.Colors:
+                Value = EvalColors(tree, paramlist);
+                break;
+            case TokenType.ColorsMasks:
+                Value = EvalColorsMasks(tree, paramlist);
+                break;
+            case TokenType.Blend_Zero:
+                Value = EvalBlend_Zero(tree, paramlist);
+                break;
+            case TokenType.Blend_One:
+                Value = EvalBlend_One(tree, paramlist);
+                break;
+            case TokenType.Blend_SrcColor:
+                Value = EvalBlend_SrcColor(tree, paramlist);
+                break;
+            case TokenType.Blend_InvSrcColor:
+                Value = EvalBlend_InvSrcColor(tree, paramlist);
+                break;
+            case TokenType.Blend_SrcAlpha:
+                Value = EvalBlend_SrcAlpha(tree, paramlist);
+                break;
+            case TokenType.Blend_InvSrcAlpha:
+                Value = EvalBlend_InvSrcAlpha(tree, paramlist);
+                break;
+            case TokenType.Blend_DestAlpha:
+                Value = EvalBlend_DestAlpha(tree, paramlist);
+                break;
+            case TokenType.Blend_InvDestAlpha:
+                Value = EvalBlend_InvDestAlpha(tree, paramlist);
+                break;
+            case TokenType.Blend_DestColor:
+                Value = EvalBlend_DestColor(tree, paramlist);
+                break;
+            case TokenType.Blend_InvDestColor:
+                Value = EvalBlend_InvDestColor(tree, paramlist);
+                break;
+            case TokenType.Blend_SrcAlphaSat:
+                Value = EvalBlend_SrcAlphaSat(tree, paramlist);
+                break;
+            case TokenType.Blend_BlendFactor:
+                Value = EvalBlend_BlendFactor(tree, paramlist);
+                break;
+            case TokenType.Blend_InvBlendFactor:
+                Value = EvalBlend_InvBlendFactor(tree, paramlist);
+                break;
+            case TokenType.Blends:
+                Value = EvalBlends(tree, paramlist);
+                break;
+            case TokenType.BlendOp_Add:
+                Value = EvalBlendOp_Add(tree, paramlist);
+                break;
+            case TokenType.BlendOp_Subtract:
+                Value = EvalBlendOp_Subtract(tree, paramlist);
+                break;
+            case TokenType.BlendOp_RevSubtract:
+                Value = EvalBlendOp_RevSubtract(tree, paramlist);
+                break;
+            case TokenType.BlendOp_Min:
+                Value = EvalBlendOp_Min(tree, paramlist);
+                break;
+            case TokenType.BlendOp_Max:
+                Value = EvalBlendOp_Max(tree, paramlist);
+                break;
+            case TokenType.BlendOps:
+                Value = EvalBlendOps(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_Never:
+                Value = EvalCmpFunc_Never(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_Less:
+                Value = EvalCmpFunc_Less(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_Equal:
+                Value = EvalCmpFunc_Equal(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_LessEqual:
+                Value = EvalCmpFunc_LessEqual(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_Greater:
+                Value = EvalCmpFunc_Greater(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_NotEqual:
+                Value = EvalCmpFunc_NotEqual(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_GreaterEqual:
+                Value = EvalCmpFunc_GreaterEqual(tree, paramlist);
+                break;
+            case TokenType.CmpFunc_Always:
+                Value = EvalCmpFunc_Always(tree, paramlist);
+                break;
+            case TokenType.CmpFunc:
+                Value = EvalCmpFunc(tree, paramlist);
+                break;
+            case TokenType.StencilOp_Keep:
+                Value = EvalStencilOp_Keep(tree, paramlist);
+                break;
+            case TokenType.StencilOp_Zero:
+                Value = EvalStencilOp_Zero(tree, paramlist);
+                break;
+            case TokenType.StencilOp_Replace:
+                Value = EvalStencilOp_Replace(tree, paramlist);
+                break;
+            case TokenType.StencilOp_IncrSat:
+                Value = EvalStencilOp_IncrSat(tree, paramlist);
+                break;
+            case TokenType.StencilOp_DecrSat:
+                Value = EvalStencilOp_DecrSat(tree, paramlist);
+                break;
+            case TokenType.StencilOp_Invert:
+                Value = EvalStencilOp_Invert(tree, paramlist);
+                break;
+            case TokenType.StencilOp_Incr:
+                Value = EvalStencilOp_Incr(tree, paramlist);
+                break;
+            case TokenType.StencilOp_Decr:
+                Value = EvalStencilOp_Decr(tree, paramlist);
+                break;
+            case TokenType.StencilOp:
+                Value = EvalStencilOp(tree, paramlist);
+                break;
+            case TokenType.Render_State_CullMode:
+                Value = EvalRender_State_CullMode(tree, paramlist);
+                break;
+            case TokenType.Render_State_FillMode:
+                Value = EvalRender_State_FillMode(tree, paramlist);
+                break;
+            case TokenType.Render_State_AlphaBlendEnable:
+                Value = EvalRender_State_AlphaBlendEnable(tree, paramlist);
+                break;
+            case TokenType.Render_State_SrcBlend:
+                Value = EvalRender_State_SrcBlend(tree, paramlist);
+                break;
+            case TokenType.Render_State_DestBlend:
+                Value = EvalRender_State_DestBlend(tree, paramlist);
+                break;
+            case TokenType.Render_State_BlendOp:
+                Value = EvalRender_State_BlendOp(tree, paramlist);
+                break;
+            case TokenType.Render_State_ColorWriteEnable:
+                Value = EvalRender_State_ColorWriteEnable(tree, paramlist);
+                break;
+            case TokenType.Render_State_DepthBias:
+                Value = EvalRender_State_DepthBias(tree, paramlist);
+                break;
+            case TokenType.Render_State_SlopeScaleDepthBias:
+                Value = EvalRender_State_SlopeScaleDepthBias(tree, paramlist);
+                break;
+            case TokenType.Render_State_ZEnable:
+                Value = EvalRender_State_ZEnable(tree, paramlist);
+                break;
+            case TokenType.Render_State_ZWriteEnable:
+                Value = EvalRender_State_ZWriteEnable(tree, paramlist);
+                break;
+            case TokenType.Render_State_ZFunc:
+                Value = EvalRender_State_ZFunc(tree, paramlist);
+                break;
+            case TokenType.Render_State_MultiSampleAntiAlias:
+                Value = EvalRender_State_MultiSampleAntiAlias(tree, paramlist);
+                break;
+            case TokenType.Render_State_ScissorTestEnable:
+                Value = EvalRender_State_ScissorTestEnable(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilEnable:
+                Value = EvalRender_State_StencilEnable(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilFail:
+                Value = EvalRender_State_StencilFail(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilFunc:
+                Value = EvalRender_State_StencilFunc(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilMask:
+                Value = EvalRender_State_StencilMask(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilPass:
+                Value = EvalRender_State_StencilPass(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilRef:
+                Value = EvalRender_State_StencilRef(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilWriteMask:
+                Value = EvalRender_State_StencilWriteMask(tree, paramlist);
+                break;
+            case TokenType.Render_State_StencilZFail:
+                Value = EvalRender_State_StencilZFail(tree, paramlist);
+                break;
+            case TokenType.Render_State_Expression:
+                Value = EvalRender_State_Expression(tree, paramlist);
+                break;
+            case TokenType.Pass_Declaration:
+                Value = EvalPass_Declaration(tree, paramlist);
+                break;
+            case TokenType.VertexShader_Pass_Expression:
+                Value = EvalVertexShader_Pass_Expression(tree, paramlist);
+                break;
+            case TokenType.PixelShader_Pass_Expression:
+                Value = EvalPixelShader_Pass_Expression(tree, paramlist);
+                break;
+            case TokenType.AddressMode_Clamp:
+                Value = EvalAddressMode_Clamp(tree, paramlist);
+                break;
+            case TokenType.AddressMode_Wrap:
+                Value = EvalAddressMode_Wrap(tree, paramlist);
+                break;
+            case TokenType.AddressMode_Mirror:
+                Value = EvalAddressMode_Mirror(tree, paramlist);
+                break;
+            case TokenType.AddressMode_Border:
+                Value = EvalAddressMode_Border(tree, paramlist);
+                break;
+            case TokenType.AddressMode:
+                Value = EvalAddressMode(tree, paramlist);
+                break;
+            case TokenType.TextureFilter_None:
+                Value = EvalTextureFilter_None(tree, paramlist);
+                break;
+            case TokenType.TextureFilter_Linear:
+                Value = EvalTextureFilter_Linear(tree, paramlist);
+                break;
+            case TokenType.TextureFilter_Point:
+                Value = EvalTextureFilter_Point(tree, paramlist);
+                break;
+            case TokenType.TextureFilter_Anisotropic:
+                Value = EvalTextureFilter_Anisotropic(tree, paramlist);
+                break;
+            case TokenType.TextureFilter:
+                Value = EvalTextureFilter(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_Texture:
+                Value = EvalSampler_State_Texture(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_MinFilter:
+                Value = EvalSampler_State_MinFilter(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_MagFilter:
+                Value = EvalSampler_State_MagFilter(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_MipFilter:
+                Value = EvalSampler_State_MipFilter(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_Filter:
+                Value = EvalSampler_State_Filter(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_AddressU:
+                Value = EvalSampler_State_AddressU(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_AddressV:
+                Value = EvalSampler_State_AddressV(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_AddressW:
+                Value = EvalSampler_State_AddressW(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_BorderColor:
+                Value = EvalSampler_State_BorderColor(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_MaxMipLevel:
+                Value = EvalSampler_State_MaxMipLevel(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_MaxAnisotropy:
+                Value = EvalSampler_State_MaxAnisotropy(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_MipLodBias:
+                Value = EvalSampler_State_MipLodBias(tree, paramlist);
+                break;
+            case TokenType.Sampler_State_Expression:
+                Value = EvalSampler_State_Expression(tree, paramlist);
+                break;
+            case TokenType.Sampler_Register_Expression:
+                Value = EvalSampler_Register_Expression(tree, paramlist);
+                break;
+            case TokenType.Sampler_Declaration_States:
+                Value = EvalSampler_Declaration_States(tree, paramlist);
+                break;
+            case TokenType.Sampler_Declaration:
+                Value = EvalSampler_Declaration(tree, paramlist);
+                break;
 
-                default:
-                    Value = Token.Text;
-                    break;
+            default:
+                Value = Token.Text;
+                break;
             }
             return Value;
         }

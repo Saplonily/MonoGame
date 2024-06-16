@@ -58,38 +58,38 @@ namespace MonoGame.Effect
 
             switch (type.Description.Class)
             {
-                case SharpDX.D3DCompiler.ShaderVariableClass.Scalar:
-                    param.class_ = EffectObject.D3DXPARAMETER_CLASS.SCALAR;
-                    break;
+            case SharpDX.D3DCompiler.ShaderVariableClass.Scalar:
+                param.class_ = EffectObject.D3DXPARAMETER_CLASS.SCALAR;
+                break;
 
-                case SharpDX.D3DCompiler.ShaderVariableClass.Vector:
-                    param.class_ = EffectObject.D3DXPARAMETER_CLASS.VECTOR;
-                    break;
+            case SharpDX.D3DCompiler.ShaderVariableClass.Vector:
+                param.class_ = EffectObject.D3DXPARAMETER_CLASS.VECTOR;
+                break;
 
-                case SharpDX.D3DCompiler.ShaderVariableClass.MatrixColumns:
-                    param.class_ = EffectObject.D3DXPARAMETER_CLASS.MATRIX_COLUMNS;
-                    break;
+            case SharpDX.D3DCompiler.ShaderVariableClass.MatrixColumns:
+                param.class_ = EffectObject.D3DXPARAMETER_CLASS.MATRIX_COLUMNS;
+                break;
 
-                default:
-                    throw new Exception("Unsupported parameter class!");
+            default:
+                throw new Exception("Unsupported parameter class!");
             }
 
             switch (type.Description.Type)
             {
-                case SharpDX.D3DCompiler.ShaderVariableType.Bool:
-                    param.type = EffectObject.D3DXPARAMETER_TYPE.BOOL;
-                    break;
+            case SharpDX.D3DCompiler.ShaderVariableType.Bool:
+                param.type = EffectObject.D3DXPARAMETER_TYPE.BOOL;
+                break;
 
-                case SharpDX.D3DCompiler.ShaderVariableType.Float:
-                    param.type = EffectObject.D3DXPARAMETER_TYPE.FLOAT;
-                    break;
+            case SharpDX.D3DCompiler.ShaderVariableType.Float:
+                param.type = EffectObject.D3DXPARAMETER_TYPE.FLOAT;
+                break;
 
-                case SharpDX.D3DCompiler.ShaderVariableType.Int:
-                    param.type = EffectObject.D3DXPARAMETER_TYPE.INT;
-                    break;
+            case SharpDX.D3DCompiler.ShaderVariableType.Int:
+                param.type = EffectObject.D3DXPARAMETER_TYPE.INT;
+                break;
 
-                default:
-                    throw new Exception("Unsupported parameter type!");
+            default:
+                throw new Exception("Unsupported parameter type!");
             }
 
             param.member_count = (uint)type.Description.MemberCount;

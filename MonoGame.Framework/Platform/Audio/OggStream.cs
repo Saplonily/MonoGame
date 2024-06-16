@@ -11,8 +11,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using NVorbis;
 using MonoGame.OpenAL;
+using NVorbis;
 
 namespace Monogame.Audio
 {
@@ -65,17 +65,17 @@ namespace Monogame.Audio
             {
                 switch (state)
                 {
-                    case ALSourceState.Playing:
-                    case ALSourceState.Paused:
-                        return;
+                case ALSourceState.Playing:
+                case ALSourceState.Paused:
+                    return;
 
-                    case ALSourceState.Stopped:
-                        lock (prepareMutex)
-                        {
-                            Close();
-                            Empty();
-                        }
-                        break;
+                case ALSourceState.Stopped:
+                    lock (prepareMutex)
+                    {
+                        Close();
+                        Empty();
+                    }
+                    break;
                 }
 
                 if (!Ready)
@@ -96,10 +96,10 @@ namespace Monogame.Audio
 
             switch (state)
             {
-                case ALSourceState.Playing: return;
-                case ALSourceState.Paused:
-                    Resume();
-                    return;
+            case ALSourceState.Playing: return;
+            case ALSourceState.Paused:
+                Resume();
+                return;
             }
 
             Prepare();

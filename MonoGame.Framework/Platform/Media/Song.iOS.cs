@@ -4,10 +4,10 @@
 
 using System;
 using System.IO;
-using Foundation;
 using AVFoundation;
-using MediaPlayer;
 using CoreMedia;
+using Foundation;
+using MediaPlayer;
 
 namespace Monogame.Media
 {
@@ -233,4 +233,3 @@ namespace Monogame.Media
         }
     }
 }
-

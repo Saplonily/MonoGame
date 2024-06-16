@@ -175,40 +175,40 @@ namespace Monogame.Content
 
                     switch (m_state.block_type)
                     {
-                        case LzxConstants.BLOCKTYPE.ALIGNED:
-                            for (i = 0, j = 0; i < 8; i++) { j = bitbuf.ReadBits(3); m_state.ALIGNED_len[i] = (byte)j; }
-                            MakeDecodeTable(LzxConstants.ALIGNED_MAXSYMBOLS, LzxConstants.ALIGNED_TABLEBITS,
-                                            m_state.ALIGNED_len, m_state.ALIGNED_table);
-                            /* rest of aligned header is same as verbatim */
-                            goto case LzxConstants.BLOCKTYPE.VERBATIM;
+                    case LzxConstants.BLOCKTYPE.ALIGNED:
+                        for (i = 0, j = 0; i < 8; i++) { j = bitbuf.ReadBits(3); m_state.ALIGNED_len[i] = (byte)j; }
+                        MakeDecodeTable(LzxConstants.ALIGNED_MAXSYMBOLS, LzxConstants.ALIGNED_TABLEBITS,
+                                        m_state.ALIGNED_len, m_state.ALIGNED_table);
+                        /* rest of aligned header is same as verbatim */
+                        goto case LzxConstants.BLOCKTYPE.VERBATIM;
 
-                        case LzxConstants.BLOCKTYPE.VERBATIM:
-                            ReadLengths(m_state.MAINTREE_len, 0, 256, bitbuf);
-                            ReadLengths(m_state.MAINTREE_len, 256, m_state.main_elements, bitbuf);
-                            MakeDecodeTable(LzxConstants.MAINTREE_MAXSYMBOLS, LzxConstants.MAINTREE_TABLEBITS,
-                                            m_state.MAINTREE_len, m_state.MAINTREE_table);
-                            if (m_state.MAINTREE_len[0xE8] != 0) m_state.intel_started = 1;
+                    case LzxConstants.BLOCKTYPE.VERBATIM:
+                        ReadLengths(m_state.MAINTREE_len, 0, 256, bitbuf);
+                        ReadLengths(m_state.MAINTREE_len, 256, m_state.main_elements, bitbuf);
+                        MakeDecodeTable(LzxConstants.MAINTREE_MAXSYMBOLS, LzxConstants.MAINTREE_TABLEBITS,
+                                        m_state.MAINTREE_len, m_state.MAINTREE_table);
+                        if (m_state.MAINTREE_len[0xE8] != 0) m_state.intel_started = 1;
 
-                            ReadLengths(m_state.LENGTH_len, 0, LzxConstants.NUM_SECONDARY_LENGTHS, bitbuf);
-                            MakeDecodeTable(LzxConstants.LENGTH_MAXSYMBOLS, LzxConstants.LENGTH_TABLEBITS,
-                                            m_state.LENGTH_len, m_state.LENGTH_table);
-                            break;
+                        ReadLengths(m_state.LENGTH_len, 0, LzxConstants.NUM_SECONDARY_LENGTHS, bitbuf);
+                        MakeDecodeTable(LzxConstants.LENGTH_MAXSYMBOLS, LzxConstants.LENGTH_TABLEBITS,
+                                        m_state.LENGTH_len, m_state.LENGTH_table);
+                        break;
 
-                        case LzxConstants.BLOCKTYPE.UNCOMPRESSED:
-                            m_state.intel_started = 1; /* because we can't assume otherwise */
-                            bitbuf.EnsureBits(16); /* get up to 16 pad bits into the buffer */
-                            if (bitbuf.GetBitsLeft() > 16) inData.Seek(-2, SeekOrigin.Current); /* and align the bitstream! */
-                            byte hi, mh, ml, lo;
-                            lo = (byte)inData.ReadByte(); ml = (byte)inData.ReadByte(); mh = (byte)inData.ReadByte(); hi = (byte)inData.ReadByte();
-                            R0 = (uint)(lo | ml << 8 | mh << 16 | hi << 24);
-                            lo = (byte)inData.ReadByte(); ml = (byte)inData.ReadByte(); mh = (byte)inData.ReadByte(); hi = (byte)inData.ReadByte();
-                            R1 = (uint)(lo | ml << 8 | mh << 16 | hi << 24);
-                            lo = (byte)inData.ReadByte(); ml = (byte)inData.ReadByte(); mh = (byte)inData.ReadByte(); hi = (byte)inData.ReadByte();
-                            R2 = (uint)(lo | ml << 8 | mh << 16 | hi << 24);
-                            break;
+                    case LzxConstants.BLOCKTYPE.UNCOMPRESSED:
+                        m_state.intel_started = 1; /* because we can't assume otherwise */
+                        bitbuf.EnsureBits(16); /* get up to 16 pad bits into the buffer */
+                        if (bitbuf.GetBitsLeft() > 16) inData.Seek(-2, SeekOrigin.Current); /* and align the bitstream! */
+                        byte hi, mh, ml, lo;
+                        lo = (byte)inData.ReadByte(); ml = (byte)inData.ReadByte(); mh = (byte)inData.ReadByte(); hi = (byte)inData.ReadByte();
+                        R0 = (uint)(lo | ml << 8 | mh << 16 | hi << 24);
+                        lo = (byte)inData.ReadByte(); ml = (byte)inData.ReadByte(); mh = (byte)inData.ReadByte(); hi = (byte)inData.ReadByte();
+                        R1 = (uint)(lo | ml << 8 | mh << 16 | hi << 24);
+                        lo = (byte)inData.ReadByte(); ml = (byte)inData.ReadByte(); mh = (byte)inData.ReadByte(); hi = (byte)inData.ReadByte();
+                        R2 = (uint)(lo | ml << 8 | mh << 16 | hi << 24);
+                        break;
 
-                        default:
-                            return -1; // TODO throw proper exception
+                    default:
+                        return -1; // TODO throw proper exception
                     }
                 }
 
@@ -242,219 +242,219 @@ namespace Monogame.Content
 
                     switch (m_state.block_type)
                     {
-                        case LzxConstants.BLOCKTYPE.VERBATIM:
-                            while (this_run > 0)
+                    case LzxConstants.BLOCKTYPE.VERBATIM:
+                        while (this_run > 0)
+                        {
+                            main_element = (int)ReadHuffSym(m_state.MAINTREE_table, m_state.MAINTREE_len,
+                                                       LzxConstants.MAINTREE_MAXSYMBOLS, LzxConstants.MAINTREE_TABLEBITS,
+                                                       bitbuf);
+                            if (main_element < LzxConstants.NUM_CHARS)
                             {
-                                main_element = (int)ReadHuffSym(m_state.MAINTREE_table, m_state.MAINTREE_len,
-                                                           LzxConstants.MAINTREE_MAXSYMBOLS, LzxConstants.MAINTREE_TABLEBITS,
-                                                           bitbuf);
-                                if (main_element < LzxConstants.NUM_CHARS)
-                                {
-                                    /* literal: 0 to NUM_CHARS-1 */
-                                    window[window_posn++] = (byte)main_element;
-                                    this_run--;
-                                }
-                                else
-                                {
-                                    /* match: NUM_CHARS + ((slot<<3) | length_header (3 bits)) */
-                                    main_element -= LzxConstants.NUM_CHARS;
-
-                                    match_length = main_element & LzxConstants.NUM_PRIMARY_LENGTHS;
-                                    if (match_length == LzxConstants.NUM_PRIMARY_LENGTHS)
-                                    {
-                                        length_footer = (int)ReadHuffSym(m_state.LENGTH_table, m_state.LENGTH_len,
-                                                                    LzxConstants.LENGTH_MAXSYMBOLS, LzxConstants.LENGTH_TABLEBITS,
-                                                                    bitbuf);
-                                        match_length += length_footer;
-                                    }
-                                    match_length += LzxConstants.MIN_MATCH;
-
-                                    match_offset = main_element >> 3;
-
-                                    if (match_offset > 2)
-                                    {
-                                        /* not repeated offset */
-                                        if (match_offset != 3)
-                                        {
-                                            extra = extra_bits[match_offset];
-                                            verbatim_bits = (int)bitbuf.ReadBits((byte)extra);
-                                            match_offset = (int)position_base[match_offset] - 2 + verbatim_bits;
-                                        }
-                                        else
-                                        {
-                                            match_offset = 1;
-                                        }
-
-                                        /* update repeated offset LRU queue */
-                                        R2 = R1; R1 = R0; R0 = (uint)match_offset;
-                                    }
-                                    else if (match_offset == 0)
-                                    {
-                                        match_offset = (int)R0;
-                                    }
-                                    else if (match_offset == 1)
-                                    {
-                                        match_offset = (int)R1;
-                                        R1 = R0; R0 = (uint)match_offset;
-                                    }
-                                    else /* match_offset == 2 */
-                                    {
-                                        match_offset = (int)R2;
-                                        R2 = R0; R0 = (uint)match_offset;
-                                    }
-
-                                    rundest = (int)window_posn;
-                                    this_run -= match_length;
-
-                                    /* copy any wrapped around source data */
-                                    if (window_posn >= match_offset)
-                                    {
-                                        /* no wrap */
-                                        runsrc = rundest - match_offset;
-                                    }
-                                    else
-                                    {
-                                        runsrc = rundest + ((int)window_size - match_offset);
-                                        copy_length = match_offset - (int)window_posn;
-                                        if (copy_length < match_length)
-                                        {
-                                            match_length -= copy_length;
-                                            window_posn += (uint)copy_length;
-                                            while (copy_length-- > 0) window[rundest++] = window[runsrc++];
-                                            runsrc = 0;
-                                        }
-                                    }
-                                    window_posn += (uint)match_length;
-
-                                    /* copy match data - no worries about destination wraps */
-                                    while (match_length-- > 0) window[rundest++] = window[runsrc++];
-                                }
+                                /* literal: 0 to NUM_CHARS-1 */
+                                window[window_posn++] = (byte)main_element;
+                                this_run--;
                             }
-                            break;
-
-                        case LzxConstants.BLOCKTYPE.ALIGNED:
-                            while (this_run > 0)
+                            else
                             {
-                                main_element = (int)ReadHuffSym(m_state.MAINTREE_table, m_state.MAINTREE_len,
-                                                                             LzxConstants.MAINTREE_MAXSYMBOLS, LzxConstants.MAINTREE_TABLEBITS,
-                                                                             bitbuf);
+                                /* match: NUM_CHARS + ((slot<<3) | length_header (3 bits)) */
+                                main_element -= LzxConstants.NUM_CHARS;
 
-                                if (main_element < LzxConstants.NUM_CHARS)
+                                match_length = main_element & LzxConstants.NUM_PRIMARY_LENGTHS;
+                                if (match_length == LzxConstants.NUM_PRIMARY_LENGTHS)
                                 {
-                                    /* literal 0 to NUM_CHARS-1 */
-                                    window[window_posn++] = (byte)main_element;
-                                    this_run--;
+                                    length_footer = (int)ReadHuffSym(m_state.LENGTH_table, m_state.LENGTH_len,
+                                                                LzxConstants.LENGTH_MAXSYMBOLS, LzxConstants.LENGTH_TABLEBITS,
+                                                                bitbuf);
+                                    match_length += length_footer;
                                 }
-                                else
+                                match_length += LzxConstants.MIN_MATCH;
+
+                                match_offset = main_element >> 3;
+
+                                if (match_offset > 2)
                                 {
-                                    /* match: NUM_CHARS + ((slot<<3) | length_header (3 bits)) */
-                                    main_element -= LzxConstants.NUM_CHARS;
-
-                                    match_length = main_element & LzxConstants.NUM_PRIMARY_LENGTHS;
-                                    if (match_length == LzxConstants.NUM_PRIMARY_LENGTHS)
+                                    /* not repeated offset */
+                                    if (match_offset != 3)
                                     {
-                                        length_footer = (int)ReadHuffSym(m_state.LENGTH_table, m_state.LENGTH_len,
-                                                                         LzxConstants.LENGTH_MAXSYMBOLS, LzxConstants.LENGTH_TABLEBITS,
-                                                                         bitbuf);
-                                        match_length += length_footer;
-                                    }
-                                    match_length += LzxConstants.MIN_MATCH;
-
-                                    match_offset = main_element >> 3;
-
-                                    if (match_offset > 2)
-                                    {
-                                        /* not repeated offset */
                                         extra = extra_bits[match_offset];
-                                        match_offset = (int)position_base[match_offset] - 2;
-                                        if (extra > 3)
-                                        {
-                                            /* verbatim and aligned bits */
-                                            extra -= 3;
-                                            verbatim_bits = (int)bitbuf.ReadBits((byte)extra);
-                                            match_offset += (verbatim_bits << 3);
-                                            aligned_bits = (int)ReadHuffSym(m_state.ALIGNED_table, m_state.ALIGNED_len,
-                                                                       LzxConstants.ALIGNED_MAXSYMBOLS, LzxConstants.ALIGNED_TABLEBITS,
-                                                                       bitbuf);
-                                            match_offset += aligned_bits;
-                                        }
-                                        else if (extra == 3)
-                                        {
-                                            /* aligned bits only */
-                                            aligned_bits = (int)ReadHuffSym(m_state.ALIGNED_table, m_state.ALIGNED_len,
-                                                                       LzxConstants.ALIGNED_MAXSYMBOLS, LzxConstants.ALIGNED_TABLEBITS,
-                                                                       bitbuf);
-                                            match_offset += aligned_bits;
-                                        }
-                                        else if (extra > 0) /* extra==1, extra==2 */
-                                        {
-                                            /* verbatim bits only */
-                                            verbatim_bits = (int)bitbuf.ReadBits((byte)extra);
-                                            match_offset += verbatim_bits;
-                                        }
-                                        else /* extra == 0 */
-                                        {
-                                            /* ??? */
-                                            match_offset = 1;
-                                        }
-
-                                        /* update repeated offset LRU queue */
-                                        R2 = R1; R1 = R0; R0 = (uint)match_offset;
-                                    }
-                                    else if (match_offset == 0)
-                                    {
-                                        match_offset = (int)R0;
-                                    }
-                                    else if (match_offset == 1)
-                                    {
-                                        match_offset = (int)R1;
-                                        R1 = R0; R0 = (uint)match_offset;
-                                    }
-                                    else /* match_offset == 2 */
-                                    {
-                                        match_offset = (int)R2;
-                                        R2 = R0; R0 = (uint)match_offset;
-                                    }
-
-                                    rundest = (int)window_posn;
-                                    this_run -= match_length;
-
-                                    /* copy any wrapped around source data */
-                                    if (window_posn >= match_offset)
-                                    {
-                                        /* no wrap */
-                                        runsrc = rundest - match_offset;
+                                        verbatim_bits = (int)bitbuf.ReadBits((byte)extra);
+                                        match_offset = (int)position_base[match_offset] - 2 + verbatim_bits;
                                     }
                                     else
                                     {
-                                        runsrc = rundest + ((int)window_size - match_offset);
-                                        copy_length = match_offset - (int)window_posn;
-                                        if (copy_length < match_length)
-                                        {
-                                            match_length -= copy_length;
-                                            window_posn += (uint)copy_length;
-                                            while (copy_length-- > 0) window[rundest++] = window[runsrc++];
-                                            runsrc = 0;
-                                        }
+                                        match_offset = 1;
                                     }
-                                    window_posn += (uint)match_length;
 
-                                    /* copy match data - no worries about destination wraps */
-                                    while (match_length-- > 0) window[rundest++] = window[runsrc++];
+                                    /* update repeated offset LRU queue */
+                                    R2 = R1; R1 = R0; R0 = (uint)match_offset;
                                 }
+                                else if (match_offset == 0)
+                                {
+                                    match_offset = (int)R0;
+                                }
+                                else if (match_offset == 1)
+                                {
+                                    match_offset = (int)R1;
+                                    R1 = R0; R0 = (uint)match_offset;
+                                }
+                                else /* match_offset == 2 */
+                                {
+                                    match_offset = (int)R2;
+                                    R2 = R0; R0 = (uint)match_offset;
+                                }
+
+                                rundest = (int)window_posn;
+                                this_run -= match_length;
+
+                                /* copy any wrapped around source data */
+                                if (window_posn >= match_offset)
+                                {
+                                    /* no wrap */
+                                    runsrc = rundest - match_offset;
+                                }
+                                else
+                                {
+                                    runsrc = rundest + ((int)window_size - match_offset);
+                                    copy_length = match_offset - (int)window_posn;
+                                    if (copy_length < match_length)
+                                    {
+                                        match_length -= copy_length;
+                                        window_posn += (uint)copy_length;
+                                        while (copy_length-- > 0) window[rundest++] = window[runsrc++];
+                                        runsrc = 0;
+                                    }
+                                }
+                                window_posn += (uint)match_length;
+
+                                /* copy match data - no worries about destination wraps */
+                                while (match_length-- > 0) window[rundest++] = window[runsrc++];
                             }
-                            break;
+                        }
+                        break;
 
-                        case LzxConstants.BLOCKTYPE.UNCOMPRESSED:
-                            if ((inData.Position + this_run) > endpos) return -1; //TODO throw proper exception
-                            byte[] temp_buffer = new byte[this_run];
-                            inData.Read(temp_buffer, 0, this_run);
-                            temp_buffer.CopyTo(window, (int)window_posn);
-                            window_posn += (uint)this_run;
-                            break;
+                    case LzxConstants.BLOCKTYPE.ALIGNED:
+                        while (this_run > 0)
+                        {
+                            main_element = (int)ReadHuffSym(m_state.MAINTREE_table, m_state.MAINTREE_len,
+                                                                         LzxConstants.MAINTREE_MAXSYMBOLS, LzxConstants.MAINTREE_TABLEBITS,
+                                                                         bitbuf);
 
-                        default:
-                            return -1; //TODO throw proper exception
+                            if (main_element < LzxConstants.NUM_CHARS)
+                            {
+                                /* literal 0 to NUM_CHARS-1 */
+                                window[window_posn++] = (byte)main_element;
+                                this_run--;
+                            }
+                            else
+                            {
+                                /* match: NUM_CHARS + ((slot<<3) | length_header (3 bits)) */
+                                main_element -= LzxConstants.NUM_CHARS;
+
+                                match_length = main_element & LzxConstants.NUM_PRIMARY_LENGTHS;
+                                if (match_length == LzxConstants.NUM_PRIMARY_LENGTHS)
+                                {
+                                    length_footer = (int)ReadHuffSym(m_state.LENGTH_table, m_state.LENGTH_len,
+                                                                     LzxConstants.LENGTH_MAXSYMBOLS, LzxConstants.LENGTH_TABLEBITS,
+                                                                     bitbuf);
+                                    match_length += length_footer;
+                                }
+                                match_length += LzxConstants.MIN_MATCH;
+
+                                match_offset = main_element >> 3;
+
+                                if (match_offset > 2)
+                                {
+                                    /* not repeated offset */
+                                    extra = extra_bits[match_offset];
+                                    match_offset = (int)position_base[match_offset] - 2;
+                                    if (extra > 3)
+                                    {
+                                        /* verbatim and aligned bits */
+                                        extra -= 3;
+                                        verbatim_bits = (int)bitbuf.ReadBits((byte)extra);
+                                        match_offset += (verbatim_bits << 3);
+                                        aligned_bits = (int)ReadHuffSym(m_state.ALIGNED_table, m_state.ALIGNED_len,
+                                                                   LzxConstants.ALIGNED_MAXSYMBOLS, LzxConstants.ALIGNED_TABLEBITS,
+                                                                   bitbuf);
+                                        match_offset += aligned_bits;
+                                    }
+                                    else if (extra == 3)
+                                    {
+                                        /* aligned bits only */
+                                        aligned_bits = (int)ReadHuffSym(m_state.ALIGNED_table, m_state.ALIGNED_len,
+                                                                   LzxConstants.ALIGNED_MAXSYMBOLS, LzxConstants.ALIGNED_TABLEBITS,
+                                                                   bitbuf);
+                                        match_offset += aligned_bits;
+                                    }
+                                    else if (extra > 0) /* extra==1, extra==2 */
+                                    {
+                                        /* verbatim bits only */
+                                        verbatim_bits = (int)bitbuf.ReadBits((byte)extra);
+                                        match_offset += verbatim_bits;
+                                    }
+                                    else /* extra == 0 */
+                                    {
+                                        /* ??? */
+                                        match_offset = 1;
+                                    }
+
+                                    /* update repeated offset LRU queue */
+                                    R2 = R1; R1 = R0; R0 = (uint)match_offset;
+                                }
+                                else if (match_offset == 0)
+                                {
+                                    match_offset = (int)R0;
+                                }
+                                else if (match_offset == 1)
+                                {
+                                    match_offset = (int)R1;
+                                    R1 = R0; R0 = (uint)match_offset;
+                                }
+                                else /* match_offset == 2 */
+                                {
+                                    match_offset = (int)R2;
+                                    R2 = R0; R0 = (uint)match_offset;
+                                }
+
+                                rundest = (int)window_posn;
+                                this_run -= match_length;
+
+                                /* copy any wrapped around source data */
+                                if (window_posn >= match_offset)
+                                {
+                                    /* no wrap */
+                                    runsrc = rundest - match_offset;
+                                }
+                                else
+                                {
+                                    runsrc = rundest + ((int)window_size - match_offset);
+                                    copy_length = match_offset - (int)window_posn;
+                                    if (copy_length < match_length)
+                                    {
+                                        match_length -= copy_length;
+                                        window_posn += (uint)copy_length;
+                                        while (copy_length-- > 0) window[rundest++] = window[runsrc++];
+                                        runsrc = 0;
+                                    }
+                                }
+                                window_posn += (uint)match_length;
+
+                                /* copy match data - no worries about destination wraps */
+                                while (match_length-- > 0) window[rundest++] = window[runsrc++];
+                            }
+                        }
+                        break;
+
+                    case LzxConstants.BLOCKTYPE.UNCOMPRESSED:
+                        if ((inData.Position + this_run) > endpos) return -1; //TODO throw proper exception
+                        byte[] temp_buffer = new byte[this_run];
+                        inData.Read(temp_buffer, 0, this_run);
+                        temp_buffer.CopyTo(window, (int)window_posn);
+                        window_posn += (uint)this_run;
+                        break;
+
+                    default:
+                        return -1; //TODO throw proper exception
                     }
                 }
             }

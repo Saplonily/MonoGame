@@ -253,22 +253,22 @@ namespace Monogame
                         _currentOrientation = value;
                         switch (value)
                         {
-                            case DisplayOrientation.LandscapeLeft:
-                                requestedOrientation = (ScreenOrientation)ScreenOrientationAll.Landscape;
-                                requestPortrait = false;
-                                break;
-                            case DisplayOrientation.LandscapeRight:
-                                requestedOrientation = (ScreenOrientation)ScreenOrientationAll.ReverseLandscape;
-                                requestPortrait = false;
-                                break;
-                            case DisplayOrientation.Portrait:
-                                requestedOrientation = (ScreenOrientation)ScreenOrientationAll.Portrait;
-                                requestPortrait = true;
-                                break;
-                            case DisplayOrientation.PortraitDown:
-                                requestedOrientation = (ScreenOrientation)ScreenOrientationAll.ReversePortrait;
-                                requestPortrait = true;
-                                break;
+                        case DisplayOrientation.LandscapeLeft:
+                            requestedOrientation = (ScreenOrientation)ScreenOrientationAll.Landscape;
+                            requestPortrait = false;
+                            break;
+                        case DisplayOrientation.LandscapeRight:
+                            requestedOrientation = (ScreenOrientation)ScreenOrientationAll.ReverseLandscape;
+                            requestPortrait = false;
+                            break;
+                        case DisplayOrientation.Portrait:
+                            requestedOrientation = (ScreenOrientation)ScreenOrientationAll.Portrait;
+                            requestPortrait = true;
+                            break;
+                        case DisplayOrientation.PortraitDown:
+                            requestedOrientation = (ScreenOrientation)ScreenOrientationAll.ReversePortrait;
+                            requestPortrait = true;
+                            break;
                         }
                     }
                 }

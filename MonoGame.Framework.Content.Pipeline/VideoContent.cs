@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using Monogame.Media;
-using System.Globalization;
 
 namespace Monogame.Content.Pipeline
 {
@@ -80,26 +80,26 @@ namespace Monogame.Content.Pipeline
                 var value = line.Substring(line.IndexOf('=') + 1);
                 switch (key)
                 {
-                    case "duration":
-                        _duration = TimeSpan.FromSeconds(double.Parse(value, CultureInfo.InvariantCulture));
-                        break;
+                case "duration":
+                    _duration = TimeSpan.FromSeconds(double.Parse(value, CultureInfo.InvariantCulture));
+                    break;
 
-                    case "bit_rate":
-                        _bitsPerSecond = int.Parse(value, CultureInfo.InvariantCulture);
-                        break;
+                case "bit_rate":
+                    _bitsPerSecond = int.Parse(value, CultureInfo.InvariantCulture);
+                    break;
 
-                    case "width":
-                        _width = int.Parse(value, CultureInfo.InvariantCulture);
-                        break;
+                case "width":
+                    _width = int.Parse(value, CultureInfo.InvariantCulture);
+                    break;
 
-                    case "height":
-                        _height = int.Parse(value, CultureInfo.InvariantCulture);
-                        break;
+                case "height":
+                    _height = int.Parse(value, CultureInfo.InvariantCulture);
+                    break;
 
-                    case "r_frame_rate":
-                        var frac = value.Split('/');
-                        _framesPerSecond = float.Parse(frac[0], CultureInfo.InvariantCulture) / float.Parse(frac[1], CultureInfo.InvariantCulture);
-                        break;
+                case "r_frame_rate":
+                    var frac = value.Split('/');
+                    _framesPerSecond = float.Parse(frac[0], CultureInfo.InvariantCulture) / float.Parse(frac[1], CultureInfo.InvariantCulture);
+                    break;
                 }
             }
         }

@@ -16,4 +16,3 @@ namespace Monogame.Graphics
         void SetBoneTransforms(Matrix[] boneTransforms);
     }
 }
-

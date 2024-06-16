@@ -4,10 +4,10 @@
 
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
-using Monogame.Content.Pipeline.Graphics;
 using Monogame;
 using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.ContentPipeline
 {

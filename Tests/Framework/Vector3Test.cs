@@ -1,7 +1,7 @@
-﻿using Monogame;
-using NUnit.Framework;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
+using Monogame;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework
 {

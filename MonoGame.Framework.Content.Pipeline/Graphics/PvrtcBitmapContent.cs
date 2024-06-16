@@ -23,13 +23,13 @@ namespace Monogame.Content.Pipeline.Graphics
             TryGetFormat(out format);
             switch (format)
             {
-                case SurfaceFormat.RgbPvrtc2Bpp:
-                case SurfaceFormat.RgbaPvrtc2Bpp:
-                    return (Math.Max(Width, 16) * Math.Max(Height, 8) * 2 + 7) / 8;
+            case SurfaceFormat.RgbPvrtc2Bpp:
+            case SurfaceFormat.RgbaPvrtc2Bpp:
+                return (Math.Max(Width, 16) * Math.Max(Height, 8) * 2 + 7) / 8;
 
-                case SurfaceFormat.RgbPvrtc4Bpp:
-                case SurfaceFormat.RgbaPvrtc4Bpp:
-                    return (Math.Max(Width, 8) * Math.Max(Height, 8) * 4 + 7) / 8;
+            case SurfaceFormat.RgbPvrtc4Bpp:
+            case SurfaceFormat.RgbaPvrtc4Bpp:
+                return (Math.Max(Width, 8) * Math.Max(Height, 8) * 4 + 7) / 8;
             }
 
             return 0;
@@ -91,20 +91,20 @@ namespace Monogame.Content.Pipeline.Graphics
             PixelFormat targetFormat;
             switch (format)
             {
-                case SurfaceFormat.RgbPvrtc2Bpp:
-                    targetFormat = PixelFormat.PVRTCI_2bpp_RGB;
-                    break;
-                case SurfaceFormat.RgbaPvrtc2Bpp:
-                    targetFormat = PixelFormat.PVRTCI_2bpp_RGBA;
-                    break;
-                case SurfaceFormat.RgbPvrtc4Bpp:
-                    targetFormat = PixelFormat.PVRTCI_4bpp_RGB;
-                    break;
-                case SurfaceFormat.RgbaPvrtc4Bpp:
-                    targetFormat = PixelFormat.PVRTCI_4bpp_RGBA;
-                    break;
-                default:
-                    return false;
+            case SurfaceFormat.RgbPvrtc2Bpp:
+                targetFormat = PixelFormat.PVRTCI_2bpp_RGB;
+                break;
+            case SurfaceFormat.RgbaPvrtc2Bpp:
+                targetFormat = PixelFormat.PVRTCI_2bpp_RGBA;
+                break;
+            case SurfaceFormat.RgbPvrtc4Bpp:
+                targetFormat = PixelFormat.PVRTCI_4bpp_RGB;
+                break;
+            case SurfaceFormat.RgbaPvrtc4Bpp:
+                targetFormat = PixelFormat.PVRTCI_4bpp_RGBA;
+                break;
+            default:
+                return false;
             }
 
             // Create the texture object in the PVR library

@@ -205,4 +205,3 @@ namespace Microsoft.Devices.Sensors
         }
     }
 }
-

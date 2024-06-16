@@ -2,8 +2,8 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using SharpDX.Direct3D11;
 using System.Collections.Generic;
+using SharpDX.Direct3D11;
 
 namespace Monogame.Graphics
 {

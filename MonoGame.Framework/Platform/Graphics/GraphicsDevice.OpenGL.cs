@@ -74,30 +74,30 @@ namespace Monogame.Graphics
             {
                 switch (type)
                 {
-                    case ResourceType.Texture:
-                        GL.DeleteTextures(1, ref handle);
-                        break;
-                    case ResourceType.Buffer:
-                        GL.DeleteBuffers(1, ref handle);
-                        break;
-                    case ResourceType.Shader:
-                        if (GL.IsShader(handle))
-                            GL.DeleteShader(handle);
-                        break;
-                    case ResourceType.Program:
-                        if (GL.IsProgram(handle))
-                        {
-                            GL.DeleteProgram(handle);
-                        }
-                        break;
-                    case ResourceType.Query:
+                case ResourceType.Texture:
+                    GL.DeleteTextures(1, ref handle);
+                    break;
+                case ResourceType.Buffer:
+                    GL.DeleteBuffers(1, ref handle);
+                    break;
+                case ResourceType.Shader:
+                    if (GL.IsShader(handle))
+                        GL.DeleteShader(handle);
+                    break;
+                case ResourceType.Program:
+                    if (GL.IsProgram(handle))
+                    {
+                        GL.DeleteProgram(handle);
+                    }
+                    break;
+                case ResourceType.Query:
 #if !GLES
                         GL.DeleteQueries(1, ref handle);
 #endif
-                        break;
-                    case ResourceType.Framebuffer:
-                        GL.DeleteFramebuffers(1, ref handle);
-                        break;
+                    break;
+                case ResourceType.Framebuffer:
+                    GL.DeleteFramebuffers(1, ref handle);
+                    break;
                 }
                 GraphicsExtensions.CheckGLError();
             }
@@ -649,33 +649,33 @@ namespace Monogame.Graphics
                 var stencilInternalFormat = (RenderbufferStorage)0;
                 switch (preferredDepthFormat)
                 {
-                    case DepthFormat.Depth16:
-                        depthInternalFormat = RenderbufferStorage.DepthComponent16;
-                        break;
+                case DepthFormat.Depth16:
+                    depthInternalFormat = RenderbufferStorage.DepthComponent16;
+                    break;
 #if GLES
-                    case DepthFormat.Depth24:
+                case DepthFormat.Depth24:
+                    if (GraphicsCapabilities.SupportsDepth24)
+                        depthInternalFormat = RenderbufferStorage.DepthComponent24Oes;
+                    else if (GraphicsCapabilities.SupportsDepthNonLinear)
+                        depthInternalFormat = (RenderbufferStorage)0x8E2C;
+                    else
+                        depthInternalFormat = RenderbufferStorage.DepthComponent16;
+                    break;
+                case DepthFormat.Depth24Stencil8:
+                    if (GraphicsCapabilities.SupportsPackedDepthStencil)
+                        depthInternalFormat = RenderbufferStorage.Depth24Stencil8Oes;
+                    else
+                    {
                         if (GraphicsCapabilities.SupportsDepth24)
                             depthInternalFormat = RenderbufferStorage.DepthComponent24Oes;
                         else if (GraphicsCapabilities.SupportsDepthNonLinear)
                             depthInternalFormat = (RenderbufferStorage)0x8E2C;
                         else
                             depthInternalFormat = RenderbufferStorage.DepthComponent16;
+                        stencilInternalFormat = RenderbufferStorage.StencilIndex8;
                         break;
-                    case DepthFormat.Depth24Stencil8:
-                        if (GraphicsCapabilities.SupportsPackedDepthStencil)
-                            depthInternalFormat = RenderbufferStorage.Depth24Stencil8Oes;
-                        else
-                        {
-                            if (GraphicsCapabilities.SupportsDepth24)
-                                depthInternalFormat = RenderbufferStorage.DepthComponent24Oes;
-                            else if (GraphicsCapabilities.SupportsDepthNonLinear)
-                                depthInternalFormat = (RenderbufferStorage)0x8E2C;
-                            else
-                                depthInternalFormat = RenderbufferStorage.DepthComponent16;
-                            stencilInternalFormat = RenderbufferStorage.StencilIndex8;
-                            break;
-                        }
-                        break;
+                    }
+                    break;
 #else
                     case DepthFormat.Depth24:
                         depthInternalFormat = RenderbufferStorage.DepthComponent24;
@@ -872,16 +872,16 @@ namespace Monogame.Graphics
         {
             switch (primitiveType)
             {
-                case PrimitiveType.PointList:
-                    return GLPrimitiveType.Points;
-                case PrimitiveType.LineList:
-                    return GLPrimitiveType.Lines;
-                case PrimitiveType.LineStrip:
-                    return GLPrimitiveType.LineStrip;
-                case PrimitiveType.TriangleList:
-                    return GLPrimitiveType.Triangles;
-                case PrimitiveType.TriangleStrip:
-                    return GLPrimitiveType.TriangleStrip;
+            case PrimitiveType.PointList:
+                return GLPrimitiveType.Points;
+            case PrimitiveType.LineList:
+                return GLPrimitiveType.Lines;
+            case PrimitiveType.LineStrip:
+                return GLPrimitiveType.LineStrip;
+            case PrimitiveType.TriangleList:
+                return GLPrimitiveType.Triangles;
+            case PrimitiveType.TriangleStrip:
+                return GLPrimitiveType.TriangleStrip;
             }
 
             throw new ArgumentException();

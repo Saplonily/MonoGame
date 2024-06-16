@@ -129,4 +129,3 @@ namespace Monogame.Graphics.PackedVector
         }
     }
 }
-

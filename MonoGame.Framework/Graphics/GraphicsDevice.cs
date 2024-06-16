@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using MonoGame.Framework.Utilities;
 using System.Runtime.InteropServices;
+using MonoGame.Framework.Utilities;
 
 
 namespace Monogame.Graphics
@@ -1611,16 +1611,16 @@ namespace Monogame.Graphics
         {
             switch (primitiveType)
             {
-                case PrimitiveType.LineList:
-                    return primitiveCount * 2;
-                case PrimitiveType.LineStrip:
-                    return primitiveCount + 1;
-                case PrimitiveType.TriangleList:
-                    return primitiveCount * 3;
-                case PrimitiveType.TriangleStrip:
-                    return primitiveCount + 2;
-                case PrimitiveType.PointList:
-                    return primitiveCount;
+            case PrimitiveType.LineList:
+                return primitiveCount * 2;
+            case PrimitiveType.LineStrip:
+                return primitiveCount + 1;
+            case PrimitiveType.TriangleList:
+                return primitiveCount * 3;
+            case PrimitiveType.TriangleStrip:
+                return primitiveCount + 2;
+            case PrimitiveType.PointList:
+                return primitiveCount;
             }
 
             throw new NotSupportedException();

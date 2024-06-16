@@ -30,15 +30,15 @@ namespace Monogame.Input
             uint element;
             switch (((int)key) >> 5)
             {
-                case 0: element = _keys0; break;
-                case 1: element = _keys1; break;
-                case 2: element = _keys2; break;
-                case 3: element = _keys3; break;
-                case 4: element = _keys4; break;
-                case 5: element = _keys5; break;
-                case 6: element = _keys6; break;
-                case 7: element = _keys7; break;
-                default: element = 0; break;
+            case 0: element = _keys0; break;
+            case 1: element = _keys1; break;
+            case 2: element = _keys2; break;
+            case 3: element = _keys3; break;
+            case 4: element = _keys4; break;
+            case 5: element = _keys5; break;
+            case 6: element = _keys6; break;
+            case 7: element = _keys7; break;
+            default: element = 0; break;
             }
 
             return (element & mask) != 0;
@@ -49,14 +49,14 @@ namespace Monogame.Input
             uint mask = (uint)1 << (((int)key) & 0x1f);
             switch (((int)key) >> 5)
             {
-                case 0: _keys0 |= mask; break;
-                case 1: _keys1 |= mask; break;
-                case 2: _keys2 |= mask; break;
-                case 3: _keys3 |= mask; break;
-                case 4: _keys4 |= mask; break;
-                case 5: _keys5 |= mask; break;
-                case 6: _keys6 |= mask; break;
-                case 7: _keys7 |= mask; break;
+            case 0: _keys0 |= mask; break;
+            case 1: _keys1 |= mask; break;
+            case 2: _keys2 |= mask; break;
+            case 3: _keys3 |= mask; break;
+            case 4: _keys4 |= mask; break;
+            case 5: _keys5 |= mask; break;
+            case 6: _keys6 |= mask; break;
+            case 7: _keys7 |= mask; break;
             }
         }
 
@@ -65,14 +65,14 @@ namespace Monogame.Input
             uint mask = (uint)1 << (((int)key) & 0x1f);
             switch (((int)key) >> 5)
             {
-                case 0: _keys0 &= ~mask; break;
-                case 1: _keys1 &= ~mask; break;
-                case 2: _keys2 &= ~mask; break;
-                case 3: _keys3 &= ~mask; break;
-                case 4: _keys4 &= ~mask; break;
-                case 5: _keys5 &= ~mask; break;
-                case 6: _keys6 &= ~mask; break;
-                case 7: _keys7 &= ~mask; break;
+            case 0: _keys0 &= ~mask; break;
+            case 1: _keys1 &= ~mask; break;
+            case 2: _keys2 &= ~mask; break;
+            case 3: _keys3 &= ~mask; break;
+            case 4: _keys4 &= ~mask; break;
+            case 5: _keys5 &= ~mask; break;
+            case 6: _keys6 &= ~mask; break;
+            case 7: _keys7 &= ~mask; break;
             }
         }
 

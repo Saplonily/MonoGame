@@ -1,9 +1,7 @@
 using System;
-
-using Monogame;
-
 using CoreMotion;
 using Foundation;
+using Monogame;
 
 namespace Microsoft.Devices.Sensors
 {
@@ -91,15 +89,15 @@ namespace Microsoft.Devices.Sensors
                 reading.MagneticHeading = reading.TrueHeading;
                 switch (data.MagneticField.Accuracy)
                 {
-                    case CMMagneticFieldCalibrationAccuracy.High:
-                        reading.HeadingAccuracy = 5d;
-                        break;
-                    case CMMagneticFieldCalibrationAccuracy.Medium:
-                        reading.HeadingAccuracy = 30d;
-                        break;
-                    case CMMagneticFieldCalibrationAccuracy.Low:
-                        reading.HeadingAccuracy = 45d;
-                        break;
+                case CMMagneticFieldCalibrationAccuracy.High:
+                    reading.HeadingAccuracy = 5d;
+                    break;
+                case CMMagneticFieldCalibrationAccuracy.Medium:
+                    reading.HeadingAccuracy = 30d;
+                    break;
+                case CMMagneticFieldCalibrationAccuracy.Low:
+                    reading.HeadingAccuracy = 45d;
+                    break;
                 }
 
                 // Send calibrate event if needed
@@ -123,4 +121,3 @@ namespace Microsoft.Devices.Sensors
         }
     }
 }
-

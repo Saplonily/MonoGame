@@ -27,4 +27,3 @@ namespace Monogame.Content
         public int TypeVersion { get; private set; }
     }
 }
-

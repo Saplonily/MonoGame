@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using System.IO;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using MonoGame.Framework.Utilities;
 
 namespace Monogame.Audio
@@ -153,50 +153,50 @@ namespace Monogame.Audio
                             {
                                 switch (tableType)
                                 {
-                                    case 0: //Wave
-                                        {
-                                            int trackIndex = reader.ReadUInt16();
-                                            int waveBankIndex = reader.ReadByte();
-                                            reader.ReadByte(); // weightMin
-                                            reader.ReadByte(); // weightMax
+                                case 0: //Wave
+                                {
+                                    int trackIndex = reader.ReadUInt16();
+                                    int waveBankIndex = reader.ReadByte();
+                                    reader.ReadByte(); // weightMin
+                                    reader.ReadByte(); // weightMax
 
-                                            cueSounds[j] = new XactSound(this, waveBankIndex, trackIndex);
-                                            break;
-                                        }
-                                    case 1:
-                                        {
-                                            uint soundOffset = reader.ReadUInt32();
-                                            reader.ReadByte(); // weightMin
-                                            reader.ReadByte(); // weightMax
+                                    cueSounds[j] = new XactSound(this, waveBankIndex, trackIndex);
+                                    break;
+                                }
+                                case 1:
+                                {
+                                    uint soundOffset = reader.ReadUInt32();
+                                    reader.ReadByte(); // weightMin
+                                    reader.ReadByte(); // weightMax
 
-                                            var oldPosition = stream.Position;
-                                            stream.Seek(soundOffset, SeekOrigin.Begin);
-                                            cueSounds[j] = new XactSound(audioEngine, this, reader);
-                                            stream.Seek(oldPosition, SeekOrigin.Begin);
-                                            break;
-                                        }
-                                    case 3:
-                                        {
-                                            uint soundOffset = reader.ReadUInt32();
-                                            reader.ReadSingle(); // weightMin
-                                            reader.ReadSingle(); // weightMax
-                                            reader.ReadUInt32(); // flags
+                                    var oldPosition = stream.Position;
+                                    stream.Seek(soundOffset, SeekOrigin.Begin);
+                                    cueSounds[j] = new XactSound(audioEngine, this, reader);
+                                    stream.Seek(oldPosition, SeekOrigin.Begin);
+                                    break;
+                                }
+                                case 3:
+                                {
+                                    uint soundOffset = reader.ReadUInt32();
+                                    reader.ReadSingle(); // weightMin
+                                    reader.ReadSingle(); // weightMax
+                                    reader.ReadUInt32(); // flags
 
-                                            var oldPosition = stream.Position;
-                                            stream.Seek(soundOffset, SeekOrigin.Begin);
-                                            cueSounds[j] = new XactSound(audioEngine, this, reader);
-                                            stream.Seek(oldPosition, SeekOrigin.Begin);
-                                            break;
-                                        }
-                                    case 4: //CompactWave
-                                        {
-                                            int trackIndex = reader.ReadUInt16();
-                                            int waveBankIndex = reader.ReadByte();
-                                            cueSounds[j] = new XactSound(this, waveBankIndex, trackIndex);
-                                            break;
-                                        }
-                                    default:
-                                        throw new NotSupportedException();
+                                    var oldPosition = stream.Position;
+                                    stream.Seek(soundOffset, SeekOrigin.Begin);
+                                    cueSounds[j] = new XactSound(audioEngine, this, reader);
+                                    stream.Seek(oldPosition, SeekOrigin.Begin);
+                                    break;
+                                }
+                                case 4: //CompactWave
+                                {
+                                    int trackIndex = reader.ReadUInt16();
+                                    int waveBankIndex = reader.ReadByte();
+                                    cueSounds[j] = new XactSound(this, waveBankIndex, trackIndex);
+                                    break;
+                                }
+                                default:
+                                    throw new NotSupportedException();
                                 }
                             }
 
@@ -353,4 +353,3 @@ namespace Monogame.Audio
         }
     }
 }
-

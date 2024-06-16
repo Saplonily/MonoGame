@@ -7,16 +7,14 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-
-using Windows.UI.Core;
-using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.Graphics.Display;
-using Windows.Phone.UI.Input;
-
 using Monogame.Graphics;
 using Monogame.Input;
 using Monogame.Input.Touch;
+using Windows.Graphics.Display;
+using Windows.Phone.UI.Input;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace Monogame
@@ -221,16 +219,16 @@ namespace Monogame
             var key = InputEvents.KeyTranslate(args.VirtualKey, args.KeyStatus);
             switch (args.EventType)
             {
-                case CoreAcceleratorKeyEventType.KeyDown:
-                case CoreAcceleratorKeyEventType.SystemKeyDown:
-                    OnKeyDown(new InputKeyEventArgs(key));
-                    break;
-                case CoreAcceleratorKeyEventType.KeyUp:
-                case CoreAcceleratorKeyEventType.SystemKeyUp:
-                    OnKeyUp(new InputKeyEventArgs(key));
-                    break;
-                default:
-                    break;
+            case CoreAcceleratorKeyEventType.KeyDown:
+            case CoreAcceleratorKeyEventType.SystemKeyDown:
+                OnKeyDown(new InputKeyEventArgs(key));
+                break;
+            case CoreAcceleratorKeyEventType.KeyUp:
+            case CoreAcceleratorKeyEventType.SystemKeyUp:
+                OnKeyUp(new InputKeyEventArgs(key));
+                break;
+            default:
+                break;
             }
         }
 
@@ -440,4 +438,3 @@ namespace Monogame
         #endregion
     }
 }
-

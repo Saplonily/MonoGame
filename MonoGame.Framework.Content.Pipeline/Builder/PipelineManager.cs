@@ -5,15 +5,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Builder.Convertors;
 using Monogame.Content.Pipeline.Serialization.Compiler;
 using Monogame.Graphics;
-using System.Globalization;
-using Monogame.Content.Pipeline.Builder.Convertors;
-using System.Diagnostics;
 
 namespace MonoGame.Framework.Content.Pipeline.Builder
 {

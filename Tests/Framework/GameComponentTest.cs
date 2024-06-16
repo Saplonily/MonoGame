@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Monogame;
-using NUnit.Framework;
 using MonoGame.Tests.Framework.Components;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework
 {

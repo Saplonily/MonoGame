@@ -1,6 +1,6 @@
-﻿using SharpDX;
+﻿using System;
+using SharpDX;
 using SharpDX.MediaFoundation;
-using System;
 
 namespace Monogame.Media
 {

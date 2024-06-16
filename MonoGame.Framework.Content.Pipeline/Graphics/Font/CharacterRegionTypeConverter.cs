@@ -37,16 +37,16 @@ namespace Monogame.Content.Pipeline.Graphics
 
             switch (split.Length)
             {
-                case 1:
-                    // Only a single character (eg. "a").
-                    return new CharacterRegion(split[0], split[0]);
+            case 1:
+                // Only a single character (eg. "a").
+                return new CharacterRegion(split[0], split[0]);
 
-                case 2:
-                    // Range of characters (eg. "a-z").
-                    return new CharacterRegion(split[0], split[1]);
+            case 2:
+                // Range of characters (eg. "a-z").
+                return new CharacterRegion(split[0], split[1]);
 
-                default:
-                    throw new ArgumentException();
+            default:
+                throw new ArgumentException();
             }
         }
 

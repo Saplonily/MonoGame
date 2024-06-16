@@ -223,4 +223,3 @@ namespace Monogame.Input
         }
     }
 }
-

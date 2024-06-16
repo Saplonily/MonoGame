@@ -13,4 +13,3 @@ namespace Microsoft.Devices.Sensors
         public DateTimeOffset Timestamp { get; internal set; }
     }
 }
-

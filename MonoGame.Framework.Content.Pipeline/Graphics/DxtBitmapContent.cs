@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
+using System.Runtime.InteropServices;
 using Monogame.Graphics;
 using Nvidia.TextureTools;
-using System.Runtime.InteropServices;
 
 namespace Monogame.Content.Pipeline.Graphics
 {
@@ -138,34 +138,34 @@ namespace Monogame.Content.Pipeline.Graphics
             var alphaDither = false;
             switch (format)
             {
-                case SurfaceFormat.Dxt1:
-                case SurfaceFormat.Dxt1SRgb:
-                    {
-                        bool hasTransparency;
-                        PrepareNVTT_DXT1(sourceData, out hasTransparency);
-                        outputFormat = hasTransparency ? Format.DXT1a : Format.DXT1;
-                        alphaMode = hasTransparency ? AlphaMode.Transparency : AlphaMode.None;
-                        alphaDither = true;
-                        break;
-                    }
-                case SurfaceFormat.Dxt3:
-                case SurfaceFormat.Dxt3SRgb:
-                    {
-                        PrepareNVTT(sourceData);
-                        outputFormat = Format.DXT3;
-                        alphaMode = AlphaMode.Transparency;
-                        break;
-                    }
-                case SurfaceFormat.Dxt5:
-                case SurfaceFormat.Dxt5SRgb:
-                    {
-                        PrepareNVTT(sourceData);
-                        outputFormat = Format.DXT5;
-                        alphaMode = AlphaMode.Transparency;
-                        break;
-                    }
-                default:
-                    throw new InvalidOperationException("Invalid DXT surface format!");
+            case SurfaceFormat.Dxt1:
+            case SurfaceFormat.Dxt1SRgb:
+            {
+                bool hasTransparency;
+                PrepareNVTT_DXT1(sourceData, out hasTransparency);
+                outputFormat = hasTransparency ? Format.DXT1a : Format.DXT1;
+                alphaMode = hasTransparency ? AlphaMode.Transparency : AlphaMode.None;
+                alphaDither = true;
+                break;
+            }
+            case SurfaceFormat.Dxt3:
+            case SurfaceFormat.Dxt3SRgb:
+            {
+                PrepareNVTT(sourceData);
+                outputFormat = Format.DXT3;
+                alphaMode = AlphaMode.Transparency;
+                break;
+            }
+            case SurfaceFormat.Dxt5:
+            case SurfaceFormat.Dxt5SRgb:
+            {
+                PrepareNVTT(sourceData);
+                outputFormat = Format.DXT5;
+                alphaMode = AlphaMode.Transparency;
+                break;
+            }
+            default:
+                throw new InvalidOperationException("Invalid DXT surface format!");
             }
 
             // Do all the calls to the NVTT wrapper within this handler

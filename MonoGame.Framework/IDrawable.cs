@@ -39,4 +39,3 @@ namespace Monogame
         void Draw(GameTime gameTime);
     }
 }
-

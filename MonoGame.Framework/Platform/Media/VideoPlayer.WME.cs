@@ -42,20 +42,20 @@ namespace Monogame.Media
 
             switch (mediaEvent)
             {
-                case MediaEngineEvent.Play:
-                    _lastFrame = null;
-                    break;
+            case MediaEngineEvent.Play:
+                _lastFrame = null;
+                break;
 
-                case MediaEngineEvent.Ended:
+            case MediaEngineEvent.Ended:
 
-                    if (IsLooped)
-                    {
-                        PlatformPlay();
-                        return;
-                    }
+                if (IsLooped)
+                {
+                    PlatformPlay();
+                    return;
+                }
 
-                    _state = MediaState.Stopped;
-                    break;
+                _state = MediaState.Stopped;
+                break;
             }
         }
 

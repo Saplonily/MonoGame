@@ -40,6 +40,3 @@ namespace Monogame.Graphics.PackedVector
     }
 
 }
-
-
-

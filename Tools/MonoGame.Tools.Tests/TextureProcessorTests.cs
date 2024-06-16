@@ -5,8 +5,8 @@ using Monogame;
 using Monogame.Content.Pipeline;
 using Monogame.Content.Pipeline.Graphics;
 using Monogame.Content.Pipeline.Processors;
-using NUnit.Framework;
 using Monogame.Graphics.PackedVector;
+using NUnit.Framework;
 
 namespace MonoGame.Tests.ContentPipeline
 {

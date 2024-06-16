@@ -130,12 +130,12 @@ namespace Monogame.Graphics
 
             switch (graphicsProfile)
             {
-                case GraphicsProfile.Reach:
-                    return (highestSupportedLevel >= FeatureLevel.Level_9_1);
-                case GraphicsProfile.HiDef:
-                    return (highestSupportedLevel >= FeatureLevel.Level_10_0);
-                default:
-                    throw new InvalidOperationException();
+            case GraphicsProfile.Reach:
+                return (highestSupportedLevel >= FeatureLevel.Level_9_1);
+            case GraphicsProfile.HiDef:
+                return (highestSupportedLevel >= FeatureLevel.Level_10_0);
+            default:
+                throw new InvalidOperationException();
             }
         }
     }

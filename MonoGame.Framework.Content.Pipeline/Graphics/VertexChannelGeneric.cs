@@ -2,13 +2,13 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Monogame.Design;
-using Monogame.Graphics.PackedVector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Monogame.Design;
+using Monogame.Graphics.PackedVector;
 
 namespace Monogame.Content.Pipeline.Graphics
 {

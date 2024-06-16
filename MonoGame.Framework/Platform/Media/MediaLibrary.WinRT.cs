@@ -4,10 +4,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
-using Windows.Storage;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.Storage.FileProperties;
 
 namespace Monogame.Media
