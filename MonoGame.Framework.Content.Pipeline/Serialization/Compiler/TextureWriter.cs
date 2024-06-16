@@ -4,17 +4,16 @@
 
 using Monogame.Content.Pipeline.Graphics;
 
-namespace Monogame.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler;
+
+[ContentTypeWriter]
+internal class TextureWriter : BuiltInContentWriter<TextureContent>
 {
-    [ContentTypeWriter]
-    internal class TextureWriter : BuiltInContentWriter<TextureContent>
+    protected internal override void Write(ContentWriter output, TextureContent value)
     {
-        protected internal override void Write(ContentWriter output, TextureContent value)
-        {
-            // Do nothing.
-            // The TextureWriter is not used to write anything, but it is used by
-            // the ExternalReferenceWriter when an ExternalReference<TextureContent>
-            // is written! (See ExternalReferenceWriter implementation.)
-        }
+        // Do nothing.
+        // The TextureWriter is not used to write anything, but it is used by
+        // the ExternalReferenceWriter when an ExternalReference<TextureContent>
+        // is written! (See ExternalReferenceWriter implementation.)
     }
 }

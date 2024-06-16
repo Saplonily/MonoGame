@@ -4,16 +4,15 @@
 
 using System;
 
-namespace Monogame.Audio
+namespace Monogame.Audio;
+
+/// <summary>
+/// Represents how many channels are used in the audio data.
+/// </summary>
+public enum AudioChannels
 {
-    /// <summary>
-    /// Represents how many channels are used in the audio data.
-    /// </summary>
-    public enum AudioChannels
-    {
-        /// <summary>Single channel.</summary> 
-        Mono = 1,
-        /// <summary>Two channels.</summary> 
-        Stereo = 2
-    }
+    /// <summary>Single channel.</summary> 
+    Mono = 1,
+    /// <summary>Two channels.</summary> 
+    Stereo = 2
 }

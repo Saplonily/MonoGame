@@ -4,13 +4,12 @@
 
 using System;
 
-namespace MonoGame.Effect
+namespace MonoGame.Effect;
+
+public class ShaderCompilerException : Exception
 {
-    public class ShaderCompilerException : Exception
+    public ShaderCompilerException()
+        : base("A shader failed to compile!")
     {
-        public ShaderCompilerException()
-            : base("A shader failed to compile!")
-        {
-        }
     }
 }

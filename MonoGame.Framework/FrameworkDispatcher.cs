@@ -5,40 +5,39 @@
 using System;
 using Monogame.Audio;
 
-namespace Monogame
+namespace Monogame;
+
+/// <summary>
+/// Helper class for processing internal framework events.
+/// </summary>
+/// <remarks>
+/// If you use <see cref="Game"/> class, <see cref="Update()"/> is called automatically.
+/// Otherwise you must call it as part of your game loop.
+/// </remarks>
+public static class FrameworkDispatcher
 {
+    private static bool _initialized = false;
+
     /// <summary>
-    /// Helper class for processing internal framework events.
+    /// Processes framework events.
     /// </summary>
-    /// <remarks>
-    /// If you use <see cref="Game"/> class, <see cref="Update()"/> is called automatically.
-    /// Otherwise you must call it as part of your game loop.
-    /// </remarks>
-    public static class FrameworkDispatcher
+    public static void Update()
     {
-        private static bool _initialized = false;
+        if (!_initialized)
+            Initialize();
 
-        /// <summary>
-        /// Processes framework events.
-        /// </summary>
-        public static void Update()
-        {
-            if (!_initialized)
-                Initialize();
+        DoUpdate();
+    }
 
-            DoUpdate();
-        }
+    private static void DoUpdate()
+    {
+        DynamicSoundEffectInstanceManager.UpdatePlayingInstances();
+        SoundEffectInstancePool.Update();
+        Microphone.UpdateMicrophones();
+    }
 
-        private static void DoUpdate()
-        {
-            DynamicSoundEffectInstanceManager.UpdatePlayingInstances();
-            SoundEffectInstancePool.Update();
-            Microphone.UpdateMicrophones();
-        }
-
-        private static void Initialize()
-        {
-            _initialized = true;
-        }
+    private static void Initialize()
+    {
+        _initialized = true;
     }
 }

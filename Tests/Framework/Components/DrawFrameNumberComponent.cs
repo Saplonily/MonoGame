@@ -10,41 +10,40 @@ using System.Text;
 using Monogame;
 using Monogame.Graphics;
 
-namespace MonoGame.Tests.Components
+namespace MonoGame.Tests.Components;
+
+class DrawFrameNumberComponent : DrawableGameComponent
 {
-    class DrawFrameNumberComponent : DrawableGameComponent
+    private SpriteBatch _batch;
+    private SpriteFont _font;
+
+    public DrawFrameNumberComponent(Game game)
+        : base(game)
     {
-        private SpriteBatch _batch;
-        private SpriteFont _font;
+    }
 
-        public DrawFrameNumberComponent(Game game)
-            : base(game)
-        {
-        }
+    protected override void LoadContent()
+    {
+        _batch = new SpriteBatch(Game.GraphicsDevice);
+        _font = Game.Content.Load<SpriteFont>(Paths.Font("Default"));
+    }
 
-        protected override void LoadContent()
-        {
-            _batch = new SpriteBatch(Game.GraphicsDevice);
-            _font = Game.Content.Load<SpriteFont>(Paths.Font("Default"));
-        }
+    protected override void UnloadContent()
+    {
+        _batch.Dispose();
+        _batch = null;
 
-        protected override void UnloadContent()
-        {
-            _batch.Dispose();
-            _batch = null;
+        _font = null;
+    }
 
-            _font = null;
-        }
+    public override void Draw(GameTime gameTime)
+    {
+        var frameInfoSource = Game.Services.RequireService<IFrameInfoSource>();
+        var frameInfo = frameInfoSource.FrameInfo;
 
-        public override void Draw(GameTime gameTime)
-        {
-            var frameInfoSource = Game.Services.RequireService<IFrameInfoSource>();
-            var frameInfo = frameInfoSource.FrameInfo;
-
-            // TODO: Add support for different placements and colors.
-            _batch.Begin();
-            _batch.DrawString(_font, frameInfo.DrawNumber.ToString(), Vector2.Zero, Color.White);
-            _batch.End();
-        }
+        // TODO: Add support for different placements and colors.
+        _batch.Begin();
+        _batch.DrawString(_font, frameInfo.DrawNumber.ToString(), Vector2.Zero, Color.White);
+        _batch.End();
     }
 }

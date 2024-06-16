@@ -4,17 +4,16 @@
 
 using System;
 
-namespace Monogame.Content
-{
-    internal class Vector4Reader : ContentTypeReader<Vector4>
-    {
-        public Vector4Reader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override Vector4 Read(ContentReader input, Vector4 existingInstance)
-        {
-            return input.ReadVector4();
-        }
+internal class Vector4Reader : ContentTypeReader<Vector4>
+{
+    public Vector4Reader()
+    {
+    }
+
+    protected internal override Vector4 Read(ContentReader input, Vector4 existingInstance)
+    {
+        return input.ReadVector4();
     }
 }

@@ -4,24 +4,23 @@
 
 using System;
 
-namespace Monogame.Media
+namespace Monogame.Media;
+
+/// <summary>
+/// Media playback state
+/// </summary>
+public enum MediaState
 {
     /// <summary>
-    /// Media playback state
+    /// Media playback is stopped.
     /// </summary>
-    public enum MediaState
-    {
-        /// <summary>
-        /// Media playback is stopped.
-        /// </summary>
-        Stopped,
-        /// <summary>
-        /// Media is currently playing and not paused.
-        /// </summary>
-        Playing,
-        /// <summary>
-        /// Media playback is paused.
-        /// </summary>
-        Paused
-    }
+    Stopped,
+    /// <summary>
+    /// Media is currently playing and not paused.
+    /// </summary>
+    Playing,
+    /// <summary>
+    /// Media playback is paused.
+    /// </summary>
+    Paused
 }

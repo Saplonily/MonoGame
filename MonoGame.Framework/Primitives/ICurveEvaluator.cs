@@ -4,18 +4,17 @@
 
 using System;
 
-namespace Monogame
+namespace Monogame;
+
+/// <summary>
+/// Interface for curve evaluation. Implemented by <see cref="Curve"/>
+/// </summary>    
+	public interface ICurveEvaluator<T>
 {
     /// <summary>
-    /// Interface for curve evaluation. Implemented by <see cref="Curve"/>
-    /// </summary>    
-	public interface ICurveEvaluator<T>
-    {
-        /// <summary>
-        /// Evaluate the value at a position of this <see cref="ICurveEvaluator{T}"/>.
-        /// </summary>
-        /// <param name="position">The position on this <see cref="ICurveEvaluator{T}"/>.</param>
-        /// <returns>Value at the position on this <see cref="ICurveEvaluator{T}"/>.</returns>
-        T Evaluate(float position);
-    }
+    /// Evaluate the value at a position of this <see cref="ICurveEvaluator{T}"/>.
+    /// </summary>
+    /// <param name="position">The position on this <see cref="ICurveEvaluator{T}"/>.</param>
+    /// <returns>Value at the position on this <see cref="ICurveEvaluator{T}"/>.</returns>
+    T Evaluate(float position);
 }

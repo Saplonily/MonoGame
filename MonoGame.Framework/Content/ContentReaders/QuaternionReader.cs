@@ -4,17 +4,16 @@
 
 using System;
 
-namespace Monogame.Content
-{
-    internal class QuaternionReader : ContentTypeReader<Quaternion>
-    {
-        public QuaternionReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override Quaternion Read(ContentReader input, Quaternion existingInstance)
-        {
-            return input.ReadQuaternion();
-        }
+internal class QuaternionReader : ContentTypeReader<Quaternion>
+{
+    public QuaternionReader()
+    {
+    }
+
+    protected internal override Quaternion Read(ContentReader input, Quaternion existingInstance)
+    {
+        return input.ReadQuaternion();
     }
 }

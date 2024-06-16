@@ -4,23 +4,22 @@
 
 using Monogame.Graphics;
 
-namespace Monogame.Content
-{
-    internal class EffectReader : ContentTypeReader<Effect>
-    {
-        public EffectReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override Effect Read(ContentReader input, Effect existingInstance)
-        {
-            int dataSize = input.ReadInt32();
-            byte[] data = ContentManager.ScratchBufferPool.Get(dataSize);
-            input.Read(data, 0, dataSize);
-            var effect = new Effect(input.GetGraphicsDevice(), data, 0, dataSize);
-            ContentManager.ScratchBufferPool.Return(data);
-            effect.Name = input.AssetName;
-            return effect;
-        }
+internal class EffectReader : ContentTypeReader<Effect>
+{
+    public EffectReader()
+    {
+    }
+
+    protected internal override Effect Read(ContentReader input, Effect existingInstance)
+    {
+        int dataSize = input.ReadInt32();
+        byte[] data = ContentManager.ScratchBufferPool.Get(dataSize);
+        input.Read(data, 0, dataSize);
+        var effect = new Effect(input.GetGraphicsDevice(), data, 0, dataSize);
+        ContentManager.ScratchBufferPool.Return(data);
+        effect.Name = input.AssetName;
+        return effect;
     }
 }

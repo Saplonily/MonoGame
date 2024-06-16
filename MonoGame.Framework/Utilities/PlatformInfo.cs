@@ -2,65 +2,64 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace MonoGame.Framework.Utilities
+namespace MonoGame.Framework.Utilities;
+
+/// <summary>
+/// Utility class that returns information about the underlying platform
+/// </summary>
+public static partial class PlatformInfo
 {
     /// <summary>
-    /// Utility class that returns information about the underlying platform
+    /// Underlying game platform type
     /// </summary>
-    public static partial class PlatformInfo
+    public static MonoGamePlatform MonoGamePlatform
     {
-        /// <summary>
-        /// Underlying game platform type
-        /// </summary>
-        public static MonoGamePlatform MonoGamePlatform
+        get
         {
-            get
-            {
 #if ANDROID
-                return MonoGamePlatform.Android;
+            return MonoGamePlatform.Android;
 #elif DESKTOPGL
-                return MonoGamePlatform.DesktopGL;
+            return MonoGamePlatform.DesktopGL;
 #elif IOS && !TVOS
-                return MonoGamePlatform.iOS;
+            return MonoGamePlatform.iOS;
 #elif TVOS
-                return MonoGamePlatform.tvOS;
+            return MonoGamePlatform.tvOS;
 #elif WEB
-                return MonoGamePlatform.WebGL;
+            return MonoGamePlatform.WebGL;
 #elif WINDOWS && DIRECTX
-                return MonoGamePlatform.Windows;
+            return MonoGamePlatform.Windows;
 #elif WINDOWS_UAP
-                return MonoGamePlatform.WindowsUniversal;
+            return MonoGamePlatform.WindowsUniversal;
 #elif SWITCH
-                return MonoGamePlatform.NintendoSwitch;
+            return MonoGamePlatform.NintendoSwitch;
 #elif XB1
-                return MonoGamePlatform.XboxOne;
+            return MonoGamePlatform.XboxOne;
 #elif PLAYSTATION4
-                return MonoGamePlatform.PlayStation4;
+            return MonoGamePlatform.PlayStation4;
 #elif PLAYSTATION5
-                return MonoGamePlatform.PlayStation5;
+            return MonoGamePlatform.PlayStation5;
 #elif STADIA
-                return MonoGamePlatform.Stadia;
+            return MonoGamePlatform.Stadia;
 #else
-                return PlatformGetMonoGamePlatform();
+            return PlatformGetMonoGamePlatform();
 #endif
-            }
         }
+    }
 
-        /// <summary>
-        /// Graphics backend
-        /// </summary>
-        public static GraphicsBackend GraphicsBackend
+    /// <summary>
+    /// Graphics backend
+    /// </summary>
+    public static GraphicsBackend GraphicsBackend
+    {
+        get
         {
-            get
-            {
 #if DIRECTX
-                return GraphicsBackend.DirectX;
+            return GraphicsBackend.DirectX;
 #elif OPENGL
-                return GraphicsBackend.OpenGL;
+            return GraphicsBackend.OpenGL;
 #else
-                return PlatformGetGraphicsBackend();
+            return PlatformGetGraphicsBackend();
 #endif
-            }
         }
     }
 }

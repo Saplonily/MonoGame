@@ -2,12 +2,11 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Monogame.Audio
+namespace Monogame.Audio;
+
+enum CrossfadeType
 {
-    enum CrossfadeType
-    {
-        Linear,
-        Logarithmic,
-        EqualPower,
-    }
+    Linear,
+    Logarithmic,
+    EqualPower,
 }

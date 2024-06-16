@@ -5,19 +5,18 @@
 using System;
 using Monogame;
 
-namespace Monogame.Content
-{
-    internal class BoundingSphereReader : ContentTypeReader<BoundingSphere>
-    {
-        public BoundingSphereReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override BoundingSphere Read(ContentReader input, BoundingSphere existingInstance)
-        {
-            Vector3 center = input.ReadVector3();
-            float radius = input.ReadSingle();
-            return new BoundingSphere(center, radius);
-        }
+internal class BoundingSphereReader : ContentTypeReader<BoundingSphere>
+{
+    public BoundingSphereReader()
+    {
+    }
+
+    protected internal override BoundingSphere Read(ContentReader input, BoundingSphere existingInstance)
+    {
+        Vector3 center = input.ReadVector3();
+        float radius = input.ReadSingle();
+        return new BoundingSphere(center, radius);
     }
 }

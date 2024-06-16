@@ -4,25 +4,24 @@
 
 using System;
 
-namespace Monogame.Content.Pipeline.Processors
-{
-    /// <summary>
-    /// Represents a processed Song object.
-    /// </summary>
-    public sealed class SongContent
-    {
-        internal string fileName;
-        internal TimeSpan duration;
+namespace Monogame.Content.Pipeline.Processors;
 
-        /// <summary>
-        /// Creates a new instance of the SongContent class
-        /// </summary>
-        /// <param name="fileName">Filename of the song</param>
-        /// <param name="duration">Duration of the song</param>
-        internal SongContent(string fileName, TimeSpan duration)
-        {
-            this.fileName = fileName;
-            this.duration = duration;
-        }
+/// <summary>
+/// Represents a processed Song object.
+/// </summary>
+public sealed class SongContent
+{
+    internal string fileName;
+    internal TimeSpan duration;
+
+    /// <summary>
+    /// Creates a new instance of the SongContent class
+    /// </summary>
+    /// <param name="fileName">Filename of the song</param>
+    /// <param name="duration">Duration of the song</param>
+    internal SongContent(string fileName, TimeSpan duration)
+    {
+        this.fileName = fileName;
+        this.duration = duration;
     }
 }

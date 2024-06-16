@@ -4,17 +4,16 @@
 
 using System;
 
-namespace Monogame.Content
-{
-    internal class DoubleReader : ContentTypeReader<double>
-    {
-        public DoubleReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override double Read(ContentReader input, double existingInstance)
-        {
-            return input.ReadDouble();
-        }
+internal class DoubleReader : ContentTypeReader<double>
+{
+    public DoubleReader()
+    {
+    }
+
+    protected internal override double Read(ContentReader input, double existingInstance)
+    {
+        return input.ReadDouble();
     }
 }

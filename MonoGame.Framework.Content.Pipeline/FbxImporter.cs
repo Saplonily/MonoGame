@@ -5,23 +5,22 @@
 using System;
 using Monogame.Content.Pipeline.Graphics;
 
-namespace Monogame.Content.Pipeline
-{
-    /// <summary>
-    /// Provides methods for reading AutoDesk (.fbx) files for use in the Content Pipeline.
-    /// </summary>
-    [ContentImporter(".fbx", DisplayName = "Fbx Importer - MonoGame", DefaultProcessor = "ModelProcessor")]
-    public class FbxImporter : ContentImporter<NodeContent>
-    {
-        public override NodeContent Import(string filename, ContentImporterContext context)
-        {
-            if (filename == null)
-                throw new ArgumentNullException("filename");
-            if (context == null)
-                throw new ArgumentNullException("context");
+namespace Monogame.Content.Pipeline;
 
-            var importer = new OpenAssetImporter("FbxImporter", true);
-            return importer.Import(filename, context);
-        }
+/// <summary>
+/// Provides methods for reading AutoDesk (.fbx) files for use in the Content Pipeline.
+/// </summary>
+[ContentImporter(".fbx", DisplayName = "Fbx Importer - MonoGame", DefaultProcessor = "ModelProcessor")]
+public class FbxImporter : ContentImporter<NodeContent>
+{
+    public override NodeContent Import(string filename, ContentImporterContext context)
+    {
+        if (filename == null)
+            throw new ArgumentNullException("filename");
+        if (context == null)
+            throw new ArgumentNullException("context");
+
+        var importer = new OpenAssetImporter("FbxImporter", true);
+        return importer.Import(filename, context);
     }
 }

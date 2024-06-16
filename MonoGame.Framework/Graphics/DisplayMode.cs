@@ -32,135 +32,134 @@ using System;
 using System.Globalization;
 using System.Runtime.Serialization;
 
-namespace Monogame.Graphics
+namespace Monogame.Graphics;
+
+/// <summary>
+/// Describes the display mode.
+/// </summary>
+[DataContract]
+public class DisplayMode
 {
+    #region Fields
+
+    private SurfaceFormat format;
+    private int height;
+    private int width;
+
+    #endregion Fields
+
+    #region Properties
+
     /// <summary>
-    /// Describes the display mode.
+    /// Gets a value indicating the aspect ratio of the display mode
     /// </summary>
-    [DataContract]
-    public class DisplayMode
+    public float AspectRatio
     {
-        #region Fields
-
-        private SurfaceFormat format;
-        private int height;
-        private int width;
-
-        #endregion Fields
-
-        #region Properties
-
-        /// <summary>
-        /// Gets a value indicating the aspect ratio of the display mode
-        /// </summary>
-        public float AspectRatio
-        {
-            get { return (float)width / (float)height; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating the surface format of the display mode.
-        /// </summary>
-        public SurfaceFormat Format
-        {
-            get { return format; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating the screen height, in pixels.
-        /// </summary>
-        public int Height
-        {
-            get { return this.height; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating the screen width, in pixels.
-        /// </summary>
-        public int Width
-        {
-            get { return this.width; }
-        }
-
-        /// <summary>
-        /// Gets the bounds of the display that is guaranteed to be visible by the users screen.
-        /// </summary>
-        public Rectangle TitleSafeArea
-        {
-            get { return GraphicsDevice.GetTitleSafeArea(0, 0, width, height); }
-        }
-
-        #endregion Properties
-
-        #region Constructors
-
-        internal DisplayMode(int width, int height, SurfaceFormat format)
-        {
-            this.width = width;
-            this.height = height;
-            this.format = format;
-        }
-
-        #endregion Constructors
-
-        #region Operators
-
-        /// <summary>
-        /// Compares the current instance of the DisplayMode class to another instance to determine whether they are
-        /// different.
-        /// </summary>
-        /// <param name="left">The DisplayMode object on the left of the inequality operator.</param>
-        /// <param name="right">The DisplayMode object on the right of the inequality operator.</param>
-        /// <returns>true if the objects are different; otherwise, false.</returns>
-        public static bool operator !=(DisplayMode left, DisplayMode right)
-        {
-            return !(left == right);
-        }
-
-        /// <summary>
-        /// Compares the current instance of the DisplayMode class to another instance to determine whether they are
-        /// equal.
-        /// </summary>
-        /// <param name="left">The DisplayMode object on the left of the equality operator.</param>
-        /// <param name="right">The DisplayMode object on the right of the equality operator.</param>
-        /// <returns>true if the objects are equal; otherwise, false.</returns>
-        public static bool operator ==(DisplayMode left, DisplayMode right)
-        {
-            if (ReferenceEquals(left, right)) //Same object or both are null
-            {
-                return true;
-            }
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
-            {
-                return false;
-            }
-            return (left.format == right.format) &&
-                (left.height == right.height) &&
-                (left.width == right.width);
-        }
-
-        #endregion Operators
-
-        #region Public Methods
-
-        /// <inheritdoc />
-        public override bool Equals(object obj)
-        {
-            return obj is DisplayMode && this == (DisplayMode)obj;
-        }
-
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            return (this.width.GetHashCode() ^ this.height.GetHashCode() ^ this.format.GetHashCode());
-        }
-
-        /// <inheritdoc />
-        public override string ToString()
-        {
-            return "{Width:" + this.width + " Height:" + this.height + " Format:" + this.Format + " AspectRatio:" + this.AspectRatio + "}";
-        }
-
-        #endregion Public Methods
+        get { return (float)width / (float)height; }
     }
+
+    /// <summary>
+    /// Gets a value indicating the surface format of the display mode.
+    /// </summary>
+    public SurfaceFormat Format
+    {
+        get { return format; }
+    }
+
+    /// <summary>
+    /// Gets a value indicating the screen height, in pixels.
+    /// </summary>
+    public int Height
+    {
+        get { return this.height; }
+    }
+
+    /// <summary>
+    /// Gets a value indicating the screen width, in pixels.
+    /// </summary>
+    public int Width
+    {
+        get { return this.width; }
+    }
+
+    /// <summary>
+    /// Gets the bounds of the display that is guaranteed to be visible by the users screen.
+    /// </summary>
+    public Rectangle TitleSafeArea
+    {
+        get { return GraphicsDevice.GetTitleSafeArea(0, 0, width, height); }
+    }
+
+    #endregion Properties
+
+    #region Constructors
+
+    internal DisplayMode(int width, int height, SurfaceFormat format)
+    {
+        this.width = width;
+        this.height = height;
+        this.format = format;
+    }
+
+    #endregion Constructors
+
+    #region Operators
+
+    /// <summary>
+    /// Compares the current instance of the DisplayMode class to another instance to determine whether they are
+    /// different.
+    /// </summary>
+    /// <param name="left">The DisplayMode object on the left of the inequality operator.</param>
+    /// <param name="right">The DisplayMode object on the right of the inequality operator.</param>
+    /// <returns>true if the objects are different; otherwise, false.</returns>
+    public static bool operator !=(DisplayMode left, DisplayMode right)
+    {
+        return !(left == right);
+    }
+
+    /// <summary>
+    /// Compares the current instance of the DisplayMode class to another instance to determine whether they are
+    /// equal.
+    /// </summary>
+    /// <param name="left">The DisplayMode object on the left of the equality operator.</param>
+    /// <param name="right">The DisplayMode object on the right of the equality operator.</param>
+    /// <returns>true if the objects are equal; otherwise, false.</returns>
+    public static bool operator ==(DisplayMode left, DisplayMode right)
+    {
+        if (ReferenceEquals(left, right)) //Same object or both are null
+        {
+            return true;
+        }
+        if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
+        {
+            return false;
+        }
+        return (left.format == right.format) &&
+            (left.height == right.height) &&
+            (left.width == right.width);
+    }
+
+    #endregion Operators
+
+    #region Public Methods
+
+    /// <inheritdoc />
+    public override bool Equals(object obj)
+    {
+        return obj is DisplayMode && this == (DisplayMode)obj;
+    }
+
+    /// <inheritdoc />
+    public override int GetHashCode()
+    {
+        return (this.width.GetHashCode() ^ this.height.GetHashCode() ^ this.format.GetHashCode());
+    }
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return "{Width:" + this.width + " Height:" + this.height + " Format:" + this.Format + " AspectRatio:" + this.AspectRatio + "}";
+    }
+
+    #endregion Public Methods
 }

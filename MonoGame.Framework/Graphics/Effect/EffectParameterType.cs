@@ -2,52 +2,51 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Monogame.Graphics
+namespace Monogame.Graphics;
+
+/// <summary>
+/// Defines types for effect parameters and shader constants.
+/// </summary>
+public enum EffectParameterType
 {
     /// <summary>
-    /// Defines types for effect parameters and shader constants.
+    /// Pointer to void type.
     /// </summary>
-    public enum EffectParameterType
-    {
-        /// <summary>
-        /// Pointer to void type.
-        /// </summary>
 		Void,
-        /// <summary>
-        /// Boolean type. Any non-zero will be <c>true</c>; <c>false</c> otherwise.
-        /// </summary>
+    /// <summary>
+    /// Boolean type. Any non-zero will be <c>true</c>; <c>false</c> otherwise.
+    /// </summary>
 		Bool,
-        /// <summary>
-        /// 32-bit integer type.
-        /// </summary>
+    /// <summary>
+    /// 32-bit integer type.
+    /// </summary>
 		Int32,
-        /// <summary>
-        /// Float type.
-        /// </summary>
+    /// <summary>
+    /// Float type.
+    /// </summary>
 		Single,
-        /// <summary>
-        /// String type.
-        /// </summary>
+    /// <summary>
+    /// String type.
+    /// </summary>
 		String,
-        /// <summary>
-        /// Any texture type.
-        /// </summary>
+    /// <summary>
+    /// Any texture type.
+    /// </summary>
 		Texture,
-        /// <summary>
-        /// 1D-texture type.
-        /// </summary>
-        Texture1D,
-        /// <summary>
-        /// 2D-texture type.
-        /// </summary>
-        Texture2D,
-        /// <summary>
-        /// 3D-texture type.
-        /// </summary>
-        Texture3D,
-        /// <summary>
-        /// Cubic texture type.
-        /// </summary>
+    /// <summary>
+    /// 1D-texture type.
+    /// </summary>
+    Texture1D,
+    /// <summary>
+    /// 2D-texture type.
+    /// </summary>
+    Texture2D,
+    /// <summary>
+    /// 3D-texture type.
+    /// </summary>
+    Texture3D,
+    /// <summary>
+    /// Cubic texture type.
+    /// </summary>
 		TextureCube
-    }
 }

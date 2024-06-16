@@ -3,16 +3,15 @@
 // file 'LICENSE.txt', which is part of this source code package.
 using System;
 
-namespace Monogame.Graphics
+namespace Monogame.Graphics;
+
+/// <summary>
+/// Interface for Effects that support bone transforms.
+/// </summary>
+public interface IEffectBones
 {
     /// <summary>
-    /// Interface for Effects that support bone transforms.
+    /// Sets an array of skinning bone transform matrices.
     /// </summary>
-    public interface IEffectBones
-    {
-        /// <summary>
-        /// Sets an array of skinning bone transform matrices.
-        /// </summary>
-        void SetBoneTransforms(Matrix[] boneTransforms);
-    }
+    void SetBoneTransforms(Matrix[] boneTransforms);
 }

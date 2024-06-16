@@ -5,68 +5,67 @@
 using System;
 using Monogame.Graphics;
 
-namespace Monogame.Media
+namespace Monogame.Media;
+
+public sealed partial class VideoPlayer : IDisposable
 {
-    public sealed partial class VideoPlayer : IDisposable
+    private void PlatformInitialize()
     {
-        private void PlatformInitialize()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private Texture2D PlatformGetTexture()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private Texture2D PlatformGetTexture()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformGetState(ref MediaState result)
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformGetState(ref MediaState result)
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformPause()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformPause()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformResume()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformResume()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformPlay()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformPlay()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformStop()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformStop()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformSetIsLooped()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformSetIsLooped()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformSetIsMuted()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformSetIsMuted()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private TimeSpan PlatformGetPlayPosition()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private TimeSpan PlatformGetPlayPosition()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformSetVolume()
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformSetVolume()
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
+    }
 
-        private void PlatformDispose(bool disposing)
-        {
-            throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
-        }
+    private void PlatformDispose(bool disposing)
+    {
+        throw new NotImplementedException("VideoPlayer is not implemented on this platform.");
     }
 }

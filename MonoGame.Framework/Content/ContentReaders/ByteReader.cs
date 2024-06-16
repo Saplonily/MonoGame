@@ -4,17 +4,16 @@
 
 using System;
 
-namespace Monogame.Content
-{
-    internal class ByteReader : ContentTypeReader<byte>
-    {
-        public ByteReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override byte Read(ContentReader input, byte existingInstance)
-        {
-            return input.ReadByte();
-        }
+internal class ByteReader : ContentTypeReader<byte>
+{
+    public ByteReader()
+    {
+    }
+
+    protected internal override byte Read(ContentReader input, byte existingInstance)
+    {
+        return input.ReadByte();
     }
 }

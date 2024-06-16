@@ -4,43 +4,42 @@
 
 using MonoGame.OpenGL;
 
-namespace Monogame.Graphics
-{
-    public abstract partial class Texture
-    {
-        internal int glTexture = -1;
-        internal TextureTarget glTarget;
-        internal TextureUnit glTextureUnit = TextureUnit.Texture0;
-        internal PixelInternalFormat glInternalFormat;
-        internal PixelFormat glFormat;
-        internal PixelType glType;
-        internal SamplerState glLastSamplerState;
+namespace Monogame.Graphics;
 
-        private void PlatformGraphicsDeviceResetting()
+public abstract partial class Texture
+{
+    internal int glTexture = -1;
+    internal TextureTarget glTarget;
+    internal TextureUnit glTextureUnit = TextureUnit.Texture0;
+    internal PixelInternalFormat glInternalFormat;
+    internal PixelFormat glFormat;
+    internal PixelType glType;
+    internal SamplerState glLastSamplerState;
+
+    private void PlatformGraphicsDeviceResetting()
+    {
+        DeleteGLTexture();
+        glLastSamplerState = null;
+    }
+
+    /// <summary/>
+    protected override void Dispose(bool disposing)
+    {
+        if (!IsDisposed)
         {
             DeleteGLTexture();
             glLastSamplerState = null;
         }
 
-        /// <summary/>
-        protected override void Dispose(bool disposing)
-        {
-            if (!IsDisposed)
-            {
-                DeleteGLTexture();
-                glLastSamplerState = null;
-            }
+        base.Dispose(disposing);
+    }
 
-            base.Dispose(disposing);
-        }
-
-        private void DeleteGLTexture()
+    private void DeleteGLTexture()
+    {
+        if (glTexture > 0)
         {
-            if (glTexture > 0)
-            {
-                GraphicsDevice.DisposeTexture(glTexture);
-            }
-            glTexture = -1;
+            GraphicsDevice.DisposeTexture(glTexture);
         }
+        glTexture = -1;
     }
 }

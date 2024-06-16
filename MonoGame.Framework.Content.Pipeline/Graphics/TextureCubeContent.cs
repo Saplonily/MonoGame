@@ -5,18 +5,17 @@
 using System;
 using Monogame.Graphics;
 
-namespace Monogame.Content.Pipeline.Graphics
-{
-    public class TextureCubeContent : TextureContent
-    {
-        public TextureCubeContent() :
-            base(new MipmapChainCollection(6, true))
-        {
-        }
+namespace Monogame.Content.Pipeline.Graphics;
 
-        public override void Validate(GraphicsProfile? targetProf)
-        {
-            throw new NotImplementedException();
-        }
+public class TextureCubeContent : TextureContent
+{
+    public TextureCubeContent() :
+        base(new MipmapChainCollection(6, true))
+    {
+    }
+
+    public override void Validate(GraphicsProfile? targetProf)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -9,21 +9,20 @@ using System.Text;
 
 using NUnit.Framework;
 
-namespace MonoGame.Tests
+namespace MonoGame.Tests;
+
+partial class GameTest
 {
-    partial class GameTest
+    public static class Methods
     {
-        public static class Methods
+        [TestFixture]
+        public class Run : FixtureBase
         {
-            [TestFixture]
-            public class Run : FixtureBase
+            [Test, Ignore("Fix me!")]
+            public void Can_only_be_called_once()
             {
-                [Test, Ignore("Fix me!")]
-                public void Can_only_be_called_once()
-                {
-                    Game.Run();
-                    Assert.Throws<InvalidOperationException>(() => Game.Run());
-                }
+                Game.Run();
+                Assert.Throws<InvalidOperationException>(() => Game.Run());
             }
         }
     }

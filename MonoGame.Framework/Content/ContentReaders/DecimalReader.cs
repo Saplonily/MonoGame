@@ -4,17 +4,16 @@
 
 using System;
 
-namespace Monogame.Content
-{
-    internal class DecimalReader : ContentTypeReader<decimal>
-    {
-        public DecimalReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override decimal Read(ContentReader input, decimal existingInstance)
-        {
-            return input.ReadDecimal();
-        }
+internal class DecimalReader : ContentTypeReader<decimal>
+{
+    public DecimalReader()
+    {
+    }
+
+    protected internal override decimal Read(ContentReader input, decimal existingInstance)
+    {
+        return input.ReadDecimal();
     }
 }

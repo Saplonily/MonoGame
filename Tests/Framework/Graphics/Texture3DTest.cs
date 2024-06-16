@@ -5,31 +5,30 @@ using Monogame;
 using Monogame.Graphics;
 using NUnit.Framework;
 
-namespace MonoGame.Tests.Graphics
-{
+namespace MonoGame.Tests.Graphics;
+
 #if !WINDOWS
-    [Ignore("Texture3D is not implemented for the OpenGL backend.")]
+[Ignore("Texture3D is not implemented for the OpenGL backend.")]
 #endif
-    [TestFixture]
-    class Texture3DTest : GraphicsDeviceTestFixtureBase
+[TestFixture]
+class Texture3DTest : GraphicsDeviceTestFixtureBase
+{
+    [TestCase(1, 1, 1)]
+    [TestCase(8, 8, 8)]
+    [TestCase(31, 7, 13)]
+    public void ShouldSetAndGetData(int width, int height, int depth)
     {
-        [TestCase(1, 1, 1)]
-        [TestCase(8, 8, 8)]
-        [TestCase(31, 7, 13)]
-        public void ShouldSetAndGetData(int width, int height, int depth)
-        {
-            var dataSize = width * height * depth;
-            var texture3D = new Texture3D(gd, width, height, depth, false, SurfaceFormat.Color);
-            var savedData = new Color[dataSize];
-            for (var index = 0; index < dataSize; index++) savedData[index] = new Color(index, index, index);
-            texture3D.SetData(savedData);
+        var dataSize = width * height * depth;
+        var texture3D = new Texture3D(gd, width, height, depth, false, SurfaceFormat.Color);
+        var savedData = new Color[dataSize];
+        for (var index = 0; index < dataSize; index++) savedData[index] = new Color(index, index, index);
+        texture3D.SetData(savedData);
 
-            var readData = new Color[dataSize];
-            texture3D.GetData(readData);
+        var readData = new Color[dataSize];
+        texture3D.GetData(readData);
 
-            Assert.AreEqual(savedData, readData);
+        Assert.AreEqual(savedData, readData);
 
-            texture3D.Dispose();
-        }
+        texture3D.Dispose();
     }
 }

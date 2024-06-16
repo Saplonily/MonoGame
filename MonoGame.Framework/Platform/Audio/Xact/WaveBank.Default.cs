@@ -4,13 +4,12 @@
 
 using System;
 
-namespace Monogame.Audio
+namespace Monogame.Audio;
+
+partial class WaveBank
 {
-    partial class WaveBank
+    private SoundEffectInstance PlatformCreateStream(StreamInfo stream)
     {
-        private SoundEffectInstance PlatformCreateStream(StreamInfo stream)
-        {
-            throw new NotImplementedException("XACT streaming is not implemented on this platform.");
-        }
+        throw new NotImplementedException("XACT streaming is not implemented on this platform.");
     }
 }

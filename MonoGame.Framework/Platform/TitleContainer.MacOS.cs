@@ -11,46 +11,45 @@ using UIKit;
 using Foundation;
 #endif
 
-namespace Monogame
+namespace Monogame;
+
+partial class TitleContainer
 {
-    partial class TitleContainer
+    static partial void PlatformInit()
     {
-        static partial void PlatformInit()
-        {
-            Location = NSBundle.MainBundle.ResourcePath;
+        Location = NSBundle.MainBundle.ResourcePath;
 #if IOS
-            SupportRetina = UIScreen.MainScreen.Scale >= 2.0f;
-            RetinaScale = (int)Math.Round(UIScreen.MainScreen.Scale);
+        SupportRetina = UIScreen.MainScreen.Scale >= 2.0f;
+        RetinaScale = (int)Math.Round(UIScreen.MainScreen.Scale);
 #endif
-        }
+    }
 
 #if IOS
-        static internal bool SupportRetina { get; private set; }
-        static internal int RetinaScale { get; private set; }
+    static internal bool SupportRetina { get; private set; }
+    static internal int RetinaScale { get; private set; }
 #endif
 
-        private static Stream PlatformOpenStream(string safeName)
-        {
+    private static Stream PlatformOpenStream(string safeName)
+    {
 #if IOS
-            var absolutePath = Path.Combine(Location, safeName);
-            if (SupportRetina)
+        var absolutePath = Path.Combine(Location, safeName);
+        if (SupportRetina)
+        {
+            for (var scale = RetinaScale; scale >= 2; scale--)
             {
-                for (var scale = RetinaScale; scale >= 2; scale--)
-                {
-                    // Insert the @#x immediately prior to the extension. If this file exists
-                    // and we are on a Retina device, return this file instead.
-                    var absolutePathX = Path.Combine(Path.GetDirectoryName(absolutePath),
-                                                      Path.GetFileNameWithoutExtension(absolutePath)
-                                                      + "@" + scale + "x" + Path.GetExtension(absolutePath));
-                    if (File.Exists(absolutePathX))
-                        return File.OpenRead(absolutePathX);
-                }
+                // Insert the @#x immediately prior to the extension. If this file exists
+                // and we are on a Retina device, return this file instead.
+                var absolutePathX = Path.Combine(Path.GetDirectoryName(absolutePath),
+                                                  Path.GetFileNameWithoutExtension(absolutePath)
+                                                  + "@" + scale + "x" + Path.GetExtension(absolutePath));
+                if (File.Exists(absolutePathX))
+                    return File.OpenRead(absolutePathX);
             }
-            return File.OpenRead(absolutePath);
-#else
-            var absolutePath = Path.Combine(Location, safeName);
-            return File.OpenRead(absolutePath);
-#endif
         }
+        return File.OpenRead(absolutePath);
+#else
+        var absolutePath = Path.Combine(Location, safeName);
+        return File.OpenRead(absolutePath);
+#endif
     }
 }

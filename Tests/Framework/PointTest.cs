@@ -1,21 +1,20 @@
 ﻿using Monogame;
 using NUnit.Framework;
 
-namespace MonoGame.Tests.Framework
+namespace MonoGame.Tests.Framework;
+
+public class PointTest
 {
-    public class PointTest
+    [Test]
+    public void Deconstruct()
     {
-        [Test]
-        public void Deconstruct()
-        {
-            Point point = new Point(int.MinValue, int.MaxValue);
+        Point point = new Point(int.MinValue, int.MaxValue);
 
-            int x, y;
+        int x, y;
 
-            point.Deconstruct(out x, out y);
+        point.Deconstruct(out x, out y);
 
-            Assert.AreEqual(x, point.X);
-            Assert.AreEqual(y, point.Y);
-        }
+        Assert.AreEqual(x, point.X);
+        Assert.AreEqual(y, point.Y);
     }
 }

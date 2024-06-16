@@ -6,10 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonoGame.Tests
+namespace MonoGame.Tests;
+
+static class Constants
 {
-    static class Constants
-    {
-        public const float StandardRequiredSimilarity = 0.99f;
-    }
+    public const float StandardRequiredSimilarity = 0.99f;
 }

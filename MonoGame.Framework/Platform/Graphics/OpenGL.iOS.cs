@@ -9,97 +9,96 @@ using MonoGame.Framework.Utilities;
 using ObjCRuntime;
 using OpenGLES;
 
-namespace MonoGame.OpenGL
+namespace MonoGame.OpenGL;
+
+internal partial class GL
 {
-    internal partial class GL
+    public static IntPtr Library = FuncLoader.LoadLibrary("/System/Library/Frameworks/OpenGLES.framework/OpenGLES");
+
+    static partial void LoadPlatformEntryPoints()
     {
-        public static IntPtr Library = FuncLoader.LoadLibrary("/System/Library/Frameworks/OpenGLES.framework/OpenGLES");
+        BoundApi = RenderApi.ES;
+    }
 
-        static partial void LoadPlatformEntryPoints()
+    private static T LoadFunction<T>(string function, bool throwIfNotFound = false)
+    {
+        return FuncLoader.LoadFunction<T>(Library, function, throwIfNotFound);
+    }
+
+    private static IGraphicsContext PlatformCreateContext(IWindowInfo info)
+    {
+        return new GraphicsContext();
+    }
+}
+
+public class GraphicsContext : IGraphicsContext
+{
+    public GraphicsContext()
+    {
+        try
         {
-            BoundApi = RenderApi.ES;
+            Context = new EAGLContext(EAGLRenderingAPI.OpenGLES3);
         }
-
-        private static T LoadFunction<T>(string function, bool throwIfNotFound = false)
+        catch
         {
-            return FuncLoader.LoadFunction<T>(Library, function, throwIfNotFound);
-        }
-
-        private static IGraphicsContext PlatformCreateContext(IWindowInfo info)
-        {
-            return new GraphicsContext();
+            // Fall back to GLES 2.0
+            Context = new EAGLContext(EAGLRenderingAPI.OpenGLES2);
         }
     }
 
-    public class GraphicsContext : IGraphicsContext
+    public bool IsCurrent
     {
-        public GraphicsContext()
+        get
         {
-            try
-            {
-                Context = new EAGLContext(EAGLRenderingAPI.OpenGLES3);
-            }
-            catch
-            {
-                // Fall back to GLES 2.0
-                Context = new EAGLContext(EAGLRenderingAPI.OpenGLES2);
-            }
+            return EAGLContext.CurrentContext == this.Context;
         }
-
-        public bool IsCurrent
-        {
-            get
-            {
-                return EAGLContext.CurrentContext == this.Context;
-            }
-        }
-
-        public bool IsDisposed
-        {
-            get
-            {
-                return this.Context == null;
-            }
-        }
-
-        public int SwapInterval
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public void Dispose()
-        {
-            if (this.Context != null)
-            {
-                this.Context.Dispose();
-            }
-            this.Context = null;
-        }
-
-        public void MakeCurrent(IWindowInfo info)
-        {
-            if (!EAGLContext.SetCurrentContext(this.Context))
-            {
-                throw new InvalidOperationException("Unable to change current EAGLContext.");
-            }
-        }
-
-        public void SwapBuffers()
-        {
-            if (!this.Context.PresentRenderBuffer(36161u))
-            {
-                throw new InvalidOperationException("EAGLContext.PresentRenderbuffer failed.");
-            }
-        }
-
-        internal EAGLContext Context { get; private set; }
     }
+
+    public bool IsDisposed
+    {
+        get
+        {
+            return this.Context == null;
+        }
+    }
+
+    public int SwapInterval
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+
+        set
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public void Dispose()
+    {
+        if (this.Context != null)
+        {
+            this.Context.Dispose();
+        }
+        this.Context = null;
+    }
+
+    public void MakeCurrent(IWindowInfo info)
+    {
+        if (!EAGLContext.SetCurrentContext(this.Context))
+        {
+            throw new InvalidOperationException("Unable to change current EAGLContext.");
+        }
+    }
+
+    public void SwapBuffers()
+    {
+        if (!this.Context.PresentRenderBuffer(36161u))
+        {
+            throw new InvalidOperationException("EAGLContext.PresentRenderbuffer failed.");
+        }
+    }
+
+    internal EAGLContext Context { get; private set; }
 }

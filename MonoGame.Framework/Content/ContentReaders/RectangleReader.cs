@@ -8,22 +8,21 @@ using System.Text;
 
 using Monogame.Content;
 
-namespace Monogame.Content
+namespace Monogame.Content;
+
+
+internal class RectangleReader : ContentTypeReader<Rectangle>
 {
-
-    internal class RectangleReader : ContentTypeReader<Rectangle>
+    public RectangleReader()
     {
-        public RectangleReader()
-        {
-        }
+    }
 
-        protected internal override Rectangle Read(ContentReader input, Rectangle existingInstance)
-        {
-            int left = input.ReadInt32();
-            int top = input.ReadInt32();
-            int width = input.ReadInt32();
-            int height = input.ReadInt32();
-            return new Rectangle(left, top, width, height);
-        }
+    protected internal override Rectangle Read(ContentReader input, Rectangle existingInstance)
+    {
+        int left = input.ReadInt32();
+        int top = input.ReadInt32();
+        int width = input.ReadInt32();
+        int height = input.ReadInt32();
+        return new Rectangle(left, top, width, height);
     }
 }

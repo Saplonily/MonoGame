@@ -5,19 +5,18 @@
 using System;
 using Monogame;
 
-namespace Monogame.Content
-{
-    internal class RayReader : ContentTypeReader<Ray>
-    {
-        public RayReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override Ray Read(ContentReader input, Ray existingInstance)
-        {
-            Vector3 position = input.ReadVector3();
-            Vector3 direction = input.ReadVector3();
-            return new Ray(position, direction);
-        }
+internal class RayReader : ContentTypeReader<Ray>
+{
+    public RayReader()
+    {
+    }
+
+    protected internal override Ray Read(ContentReader input, Ray existingInstance)
+    {
+        Vector3 position = input.ReadVector3();
+        Vector3 direction = input.ReadVector3();
+        return new Ray(position, direction);
     }
 }

@@ -31,58 +31,57 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Monogame.Graphics
+namespace Monogame.Graphics;
+
+/// <summary>
+/// A collection that manipulates <see cref="DisplayMode"/> instances.
+/// </summary>
+public class DisplayModeCollection : IEnumerable<DisplayMode>
 {
+    private readonly List<DisplayMode> _modes;
+
     /// <summary>
-    /// A collection that manipulates <see cref="DisplayMode"/> instances.
+    /// Gets the <see cref="DisplayMode"/> instance with the specified format.
     /// </summary>
-    public class DisplayModeCollection : IEnumerable<DisplayMode>
+    public IEnumerable<DisplayMode> this[SurfaceFormat format]
     {
-        private readonly List<DisplayMode> _modes;
-
-        /// <summary>
-        /// Gets the <see cref="DisplayMode"/> instance with the specified format.
-        /// </summary>
-        public IEnumerable<DisplayMode> this[SurfaceFormat format]
+        get
         {
-            get
+            var list = new List<DisplayMode>();
+            foreach (var mode in _modes)
             {
-                var list = new List<DisplayMode>();
-                foreach (var mode in _modes)
-                {
-                    if (mode.Format == format)
-                        list.Add(mode);
-                }
-                return list;
+                if (mode.Format == format)
+                    list.Add(mode);
             }
+            return list;
         }
+    }
 
-        /// <inheritdoc />
-        public IEnumerator<DisplayMode> GetEnumerator()
+    /// <inheritdoc />
+    public IEnumerator<DisplayMode> GetEnumerator()
+    {
+        return _modes.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return _modes.GetEnumerator();
+    }
+
+    internal DisplayModeCollection(List<DisplayMode> modes)
+    {
+        // Sort the modes in a consistent way that happens
+        // to match XNA behavior on some graphics devices.
+
+        modes.Sort(delegate (DisplayMode a, DisplayMode b)
         {
-            return _modes.GetEnumerator();
-        }
+            if (a == b)
+                return 0;
+            if (a.Format <= b.Format && a.Width <= b.Width && a.Height <= b.Height)
+                return -1;
+            return 1;
+        });
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _modes.GetEnumerator();
-        }
-
-        internal DisplayModeCollection(List<DisplayMode> modes)
-        {
-            // Sort the modes in a consistent way that happens
-            // to match XNA behavior on some graphics devices.
-
-            modes.Sort(delegate (DisplayMode a, DisplayMode b)
-            {
-                if (a == b)
-                    return 0;
-                if (a.Format <= b.Format && a.Width <= b.Width && a.Height <= b.Height)
-                    return -1;
-                return 1;
-            });
-
-            _modes = modes;
-        }
+        _modes = modes;
     }
 }

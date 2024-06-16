@@ -5,24 +5,23 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace Monogame.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate;
+
+[ContentTypeSerializer]
+class UShortSerializer : ElementSerializer<ushort>
 {
-    [ContentTypeSerializer]
-    class UShortSerializer : ElementSerializer<ushort>
+    public UShortSerializer() :
+        base("ushort", 1)
     {
-        public UShortSerializer() :
-            base("ushort", 1)
-        {
-        }
+    }
 
-        protected internal override ushort Deserialize(string[] inputs, ref int index)
-        {
-            return XmlConvert.ToUInt16(inputs[index++]);
-        }
+    protected internal override ushort Deserialize(string[] inputs, ref int index)
+    {
+        return XmlConvert.ToUInt16(inputs[index++]);
+    }
 
-        protected internal override void Serialize(ushort value, List<string> results)
-        {
-            results.Add(XmlConvert.ToString(value));
-        }
+    protected internal override void Serialize(ushort value, List<string> results)
+    {
+        results.Add(XmlConvert.ToString(value));
     }
 }

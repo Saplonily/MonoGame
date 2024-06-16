@@ -4,12 +4,11 @@
 
 using System.Collections.Generic;
 
-namespace Monogame
+namespace Monogame;
+
+/// <summary>
+/// The parameters for launching a <see cref="Game"/>.
+/// </summary>
+public class LaunchParameters : Dictionary<string, string>
 {
-    /// <summary>
-    /// The parameters for launching a <see cref="Game"/>.
-    /// </summary>
-    public class LaunchParameters : Dictionary<string, string>
-    {
-    }
 }

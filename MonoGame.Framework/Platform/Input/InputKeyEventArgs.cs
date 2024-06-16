@@ -5,25 +5,24 @@
 using System;
 using Monogame.Input;
 
-namespace Monogame
+namespace Monogame;
+
+/// <summary>
+/// Provides data for the <see cref="GameWindow.KeyUp"/> and <see cref="GameWindow.KeyDown"/> events.
+/// </summary>
+public struct InputKeyEventArgs
 {
     /// <summary>
-    /// Provides data for the <see cref="GameWindow.KeyUp"/> and <see cref="GameWindow.KeyDown"/> events.
+    /// The key that was either pressed or released.
     /// </summary>
-    public struct InputKeyEventArgs
-    {
-        /// <summary>
-        /// The key that was either pressed or released.
-        /// </summary>
-        public readonly Keys Key;
+    public readonly Keys Key;
 
-        /// <summary>
-        /// Create a new keyboard input event
-        /// </summary>
-        /// <param name="key">The key involved in this event</param>
-        public InputKeyEventArgs(Keys key = Keys.None)
-        {
-            Key = key;
-        }
+    /// <summary>
+    /// Create a new keyboard input event
+    /// </summary>
+    /// <param name="key">The key involved in this event</param>
+    public InputKeyEventArgs(Keys key = Keys.None)
+    {
+        Key = key;
     }
 }

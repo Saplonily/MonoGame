@@ -4,17 +4,16 @@
 
 using System;
 
-namespace Monogame.Content
-{
-    internal class UInt32Reader : ContentTypeReader<uint>
-    {
-        public UInt32Reader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override uint Read(ContentReader input, uint existingInstance)
-        {
-            return input.ReadUInt32();
-        }
+internal class UInt32Reader : ContentTypeReader<uint>
+{
+    public UInt32Reader()
+    {
+    }
+
+    protected internal override uint Read(ContentReader input, uint existingInstance)
+    {
+        return input.ReadUInt32();
     }
 }

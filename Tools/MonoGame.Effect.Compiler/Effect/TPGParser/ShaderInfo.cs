@@ -6,12 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MonoGame.Effect.TPGParser
-{
-    public class ShaderInfo
-    {
-        public List<TechniqueInfo> Techniques = new List<TechniqueInfo>();
+namespace MonoGame.Effect.TPGParser;
 
-        public Dictionary<string, SamplerStateInfo> SamplerStates = new Dictionary<string, SamplerStateInfo>();
-    }
+public class ShaderInfo
+{
+    public List<TechniqueInfo> Techniques = new List<TechniqueInfo>();
+
+    public Dictionary<string, SamplerStateInfo> SamplerStates = new Dictionary<string, SamplerStateInfo>();
 }

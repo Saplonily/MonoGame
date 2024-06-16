@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace MonoGame.Effect.TPGParser
-{
-    public class TechniqueInfo
-    {
-        public int startPos;
-        public int length;
+namespace MonoGame.Effect.TPGParser;
 
-        public string name;
-        public List<PassInfo> Passes = new List<PassInfo>();
-    }
+public class TechniqueInfo
+{
+    public int startPos;
+    public int length;
+
+    public string name;
+    public List<PassInfo> Passes = new List<PassInfo>();
 }

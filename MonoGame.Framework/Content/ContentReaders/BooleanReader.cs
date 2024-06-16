@@ -8,17 +8,16 @@ using System.Text;
 
 using Monogame.Content;
 
-namespace Monogame.Content
-{
-    internal class BooleanReader : ContentTypeReader<bool>
-    {
-        public BooleanReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override bool Read(ContentReader input, bool existingInstance)
-        {
-            return input.ReadBoolean();
-        }
+internal class BooleanReader : ContentTypeReader<bool>
+{
+    public BooleanReader()
+    {
+    }
+
+    protected internal override bool Read(ContentReader input, bool existingInstance)
+    {
+        return input.ReadBoolean();
     }
 }

@@ -8,17 +8,16 @@ using System.Text;
 
 using Monogame.Content;
 
-namespace Monogame.Content
-{
-    internal class CharReader : ContentTypeReader<char>
-    {
-        public CharReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override char Read(ContentReader input, char existingInstance)
-        {
-            return input.ReadChar();
-        }
+internal class CharReader : ContentTypeReader<char>
+{
+    public CharReader()
+    {
+    }
+
+    protected internal override char Read(ContentReader input, char existingInstance)
+    {
+        return input.ReadChar();
     }
 }

@@ -8,19 +8,18 @@ using System;
 using Windows.UI.ViewManagement;
 #endif
 
-namespace Monogame
+namespace Monogame;
+
+partial class GamePlatform
 {
-    partial class GamePlatform
+    internal static GamePlatform PlatformCreate(Game game)
     {
-        internal static GamePlatform PlatformCreate(Game game)
-        {
 #if DESKTOPGL || ANGLE
-            return new SdlGamePlatform(game);
+        return new SdlGamePlatform(game);
 #elif WINDOWS && DIRECTX
-            return new MonoGame.Framework.WinFormsGamePlatform(game);
+        return new MonoGame.Framework.WinFormsGamePlatform(game);
 #elif WINDOWS_UAP
-            return new UAPGamePlatform(game);
+        return new UAPGamePlatform(game);
 #endif
-        }
     }
 }

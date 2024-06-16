@@ -1,8 +1,7 @@
-﻿namespace Monogame.Graphics
+﻿namespace Monogame.Graphics;
+
+internal enum ShaderStage
 {
-    internal enum ShaderStage
-    {
-        Vertex,
-        Pixel,
-    }
+    Vertex,
+    Pixel,
 }

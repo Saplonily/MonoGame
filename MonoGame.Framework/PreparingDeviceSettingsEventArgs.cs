@@ -4,25 +4,24 @@
 
 using System;
 
-namespace Monogame
+namespace Monogame;
+
+/// <summary>
+/// The arguments to the <see cref="GraphicsDeviceManager.PreparingDeviceSettings"/> event.
+/// </summary>
+public class PreparingDeviceSettingsEventArgs : EventArgs
 {
     /// <summary>
-    /// The arguments to the <see cref="GraphicsDeviceManager.PreparingDeviceSettings"/> event.
+    /// Create a new instance of the event.
     /// </summary>
-    public class PreparingDeviceSettingsEventArgs : EventArgs
+    /// <param name="graphicsDeviceInformation">The default settings to be used in device creation.</param>
+    public PreparingDeviceSettingsEventArgs(GraphicsDeviceInformation graphicsDeviceInformation)
     {
-        /// <summary>
-        /// Create a new instance of the event.
-        /// </summary>
-        /// <param name="graphicsDeviceInformation">The default settings to be used in device creation.</param>
-        public PreparingDeviceSettingsEventArgs(GraphicsDeviceInformation graphicsDeviceInformation)
-        {
-            GraphicsDeviceInformation = graphicsDeviceInformation;
-        }
-
-        /// <summary>
-        /// The default settings that will be used in device creation.
-        /// </summary>
-        public GraphicsDeviceInformation GraphicsDeviceInformation { get; private set; }
+        GraphicsDeviceInformation = graphicsDeviceInformation;
     }
+
+    /// <summary>
+    /// The default settings that will be used in device creation.
+    /// </summary>
+    public GraphicsDeviceInformation GraphicsDeviceInformation { get; private set; }
 }

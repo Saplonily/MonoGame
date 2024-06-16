@@ -4,21 +4,20 @@
 
 using Monogame.Graphics;
 
-namespace Monogame.Content
-{
-    class AlphaTestEffectReader : ContentTypeReader<AlphaTestEffect>
-    {
-        protected internal override AlphaTestEffect Read(ContentReader input, AlphaTestEffect existingInstance)
-        {
-            var effect = new AlphaTestEffect(input.GetGraphicsDevice());
+namespace Monogame.Content;
 
-            effect.Texture = input.ReadExternalReference<Texture>() as Texture2D;
-            effect.AlphaFunction = (CompareFunction)input.ReadInt32();
-            effect.ReferenceAlpha = (int)input.ReadUInt32();
-            effect.DiffuseColor = input.ReadVector3();
-            effect.Alpha = input.ReadSingle();
-            effect.VertexColorEnabled = input.ReadBoolean();
-            return effect;
-        }
+class AlphaTestEffectReader : ContentTypeReader<AlphaTestEffect>
+{
+    protected internal override AlphaTestEffect Read(ContentReader input, AlphaTestEffect existingInstance)
+    {
+        var effect = new AlphaTestEffect(input.GetGraphicsDevice());
+
+        effect.Texture = input.ReadExternalReference<Texture>() as Texture2D;
+        effect.AlphaFunction = (CompareFunction)input.ReadInt32();
+        effect.ReferenceAlpha = (int)input.ReadUInt32();
+        effect.DiffuseColor = input.ReadVector3();
+        effect.Alpha = input.ReadSingle();
+        effect.VertexColorEnabled = input.ReadBoolean();
+        return effect;
     }
 }

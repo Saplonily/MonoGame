@@ -5,30 +5,29 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace Monogame.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate;
+
+[ContentTypeSerializer]
+class Vector4Serializer : ElementSerializer<Vector4>
 {
-    [ContentTypeSerializer]
-    class Vector4Serializer : ElementSerializer<Vector4>
+    public Vector4Serializer() :
+        base("Vector4", 4)
     {
-        public Vector4Serializer() :
-            base("Vector4", 4)
-        {
-        }
+    }
 
-        protected internal override Vector4 Deserialize(string[] inputs, ref int index)
-        {
-            return new Vector4(XmlConvert.ToSingle(inputs[index++]),
-                                XmlConvert.ToSingle(inputs[index++]),
-                                XmlConvert.ToSingle(inputs[index++]),
-                                XmlConvert.ToSingle(inputs[index++]));
-        }
+    protected internal override Vector4 Deserialize(string[] inputs, ref int index)
+    {
+        return new Vector4(XmlConvert.ToSingle(inputs[index++]),
+                            XmlConvert.ToSingle(inputs[index++]),
+                            XmlConvert.ToSingle(inputs[index++]),
+                            XmlConvert.ToSingle(inputs[index++]));
+    }
 
-        protected internal override void Serialize(Vector4 value, List<string> results)
-        {
-            results.Add(XmlConvert.ToString(value.X));
-            results.Add(XmlConvert.ToString(value.Y));
-            results.Add(XmlConvert.ToString(value.Z));
-            results.Add(XmlConvert.ToString(value.W));
-        }
+    protected internal override void Serialize(Vector4 value, List<string> results)
+    {
+        results.Add(XmlConvert.ToString(value.X));
+        results.Add(XmlConvert.ToString(value.Y));
+        results.Add(XmlConvert.ToString(value.Z));
+        results.Add(XmlConvert.ToString(value.W));
     }
 }

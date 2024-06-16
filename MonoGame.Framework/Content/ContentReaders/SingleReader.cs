@@ -4,17 +4,16 @@
 
 using System;
 
-namespace Monogame.Content
-{
-    internal class SingleReader : ContentTypeReader<float>
-    {
-        public SingleReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override float Read(ContentReader input, float existingInstance)
-        {
-            return input.ReadSingle();
-        }
+internal class SingleReader : ContentTypeReader<float>
+{
+    public SingleReader()
+    {
+    }
+
+    protected internal override float Read(ContentReader input, float existingInstance)
+    {
+        return input.ReadSingle();
     }
 }

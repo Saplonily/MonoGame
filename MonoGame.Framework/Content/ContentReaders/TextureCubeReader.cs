@@ -5,44 +5,43 @@
 using System;
 using Monogame.Graphics;
 
-namespace Monogame.Content
+namespace Monogame.Content;
+
+internal class TextureCubeReader : ContentTypeReader<TextureCube>
 {
-    internal class TextureCubeReader : ContentTypeReader<TextureCube>
+
+    protected internal override TextureCube Read(ContentReader reader, TextureCube existingInstance)
     {
+        TextureCube textureCube = null;
 
-        protected internal override TextureCube Read(ContentReader reader, TextureCube existingInstance)
+        SurfaceFormat surfaceFormat = (SurfaceFormat)reader.ReadInt32();
+        int size = reader.ReadInt32();
+        int levels = reader.ReadInt32();
+
+        if (existingInstance == null)
+            textureCube = new TextureCube(reader.GetGraphicsDevice(), size, levels > 1, surfaceFormat);
+        else
+            textureCube = existingInstance;
+
+#if OPENGL
+        Threading.BlockOnUIThread(() =>
         {
-            TextureCube textureCube = null;
-
-            SurfaceFormat surfaceFormat = (SurfaceFormat)reader.ReadInt32();
-            int size = reader.ReadInt32();
-            int levels = reader.ReadInt32();
-
-            if (existingInstance == null)
-                textureCube = new TextureCube(reader.GetGraphicsDevice(), size, levels > 1, surfaceFormat);
-            else
-                textureCube = existingInstance;
-
-#if OPENGL
-            Threading.BlockOnUIThread(() =>
+#endif
+            for (int face = 0; face < 6; face++)
             {
-#endif
-                for (int face = 0; face < 6; face++)
+                for (int i = 0; i < levels; i++)
                 {
-                    for (int i = 0; i < levels; i++)
-                    {
-                        int faceSize = reader.ReadInt32();
-                        byte[] faceData = ContentManager.ScratchBufferPool.Get(faceSize);
-                        reader.Read(faceData, 0, faceSize);
-                        textureCube.SetData<byte>((CubeMapFace)face, i, null, faceData, 0, faceSize);
-                        ContentManager.ScratchBufferPool.Return(faceData);
-                    }
+                    int faceSize = reader.ReadInt32();
+                    byte[] faceData = ContentManager.ScratchBufferPool.Get(faceSize);
+                    reader.Read(faceData, 0, faceSize);
+                    textureCube.SetData<byte>((CubeMapFace)face, i, null, faceData, 0, faceSize);
+                    ContentManager.ScratchBufferPool.Return(faceData);
                 }
+            }
 #if OPENGL
-            });
+        });
 #endif
 
-            return textureCube;
-        }
+        return textureCube;
     }
 }

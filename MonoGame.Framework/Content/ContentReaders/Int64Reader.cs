@@ -6,17 +6,16 @@ using System;
 
 using Monogame.Content;
 
-namespace Monogame.Content
-{
-    internal class Int64Reader : ContentTypeReader<long>
-    {
-        public Int64Reader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override long Read(ContentReader input, long existingInstance)
-        {
-            return input.ReadInt64();
-        }
+internal class Int64Reader : ContentTypeReader<long>
+{
+    public Int64Reader()
+    {
+    }
+
+    protected internal override long Read(ContentReader input, long existingInstance)
+    {
+        return input.ReadInt64();
     }
 }

@@ -2,14 +2,13 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Monogame.Audio
+namespace Monogame.Audio;
+
+enum MaxInstanceBehavior
 {
-    enum MaxInstanceBehavior
-    {
-        FailToPlay,
-        Queue,
-        ReplaceOldest,
-        ReplaceQuietest,
-        ReplaceLowestPriority,
-    }
+    FailToPlay,
+    Queue,
+    ReplaceOldest,
+    ReplaceQuietest,
+    ReplaceLowestPriority,
 }

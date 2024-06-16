@@ -10,74 +10,73 @@ using Monogame;
 using Monogame.Audio;
 using NUnit.Framework;
 
-namespace MonoGame.Tests.Framework
+namespace MonoGame.Tests.Framework;
+
+class FrameworkDispatcherTest
 {
-    class FrameworkDispatcherTest
+    [Test]
+    public void CallOnPrimaryThread()
     {
-        [Test]
-        public void CallOnPrimaryThread()
+        FrameworkDispatcher.Update();
+    }
+
+    [Test]
+    public void CallOnAnotherThread()
+    {
+        // Ensure that FrameworkDispatcher is initialized on the main thread.
+        FrameworkDispatcher.Update();
+
+        _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.NotRun;
+
+        var thread = new Thread(() =>
         {
+            _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.Exception;
             FrameworkDispatcher.Update();
-        }
 
-        [Test]
-        public void CallOnAnotherThread()
-        {
-            // Ensure that FrameworkDispatcher is initialized on the main thread.
-            FrameworkDispatcher.Update();
+            // If executing this line, no exception was thrown.
+            _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.NoException;
 
-            _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.NotRun;
+        });
 
-            var thread = new Thread(() =>
-            {
-                _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.Exception;
-                FrameworkDispatcher.Update();
+        thread.Start();
+        if (!thread.Join(1000))
+            Assert.Fail("Secondary thread did not terminate in time.");
 
-                // If executing this line, no exception was thrown.
-                _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.NoException;
+        Assert.AreEqual(CallOnAnotherThreadTestResult.NoException, _callOnAnotherThreadResult);
+    }
+    private static CallOnAnotherThreadTestResult _callOnAnotherThreadResult;
 
-            });
-
-            thread.Start();
-            if (!thread.Join(1000))
-                Assert.Fail("Secondary thread did not terminate in time.");
-
-            Assert.AreEqual(CallOnAnotherThreadTestResult.NoException, _callOnAnotherThreadResult);
-        }
-        private static CallOnAnotherThreadTestResult _callOnAnotherThreadResult;
-
-        enum CallOnAnotherThreadTestResult
-        {
-            NotRun,
-            NoException,
-            Exception
-        }
+    enum CallOnAnotherThreadTestResult
+    {
+        NotRun,
+        NoException,
+        Exception
+    }
 
 #if !XNA
-        [Test]
-        public void UpdatesSoundEffectInstancePool()
-        {
-            FrameworkDispatcher.Update();
-            var sfx = new SoundEffect(new byte[] { 0, 0 }, 44100, AudioChannels.Mono);
+    [Test]
+    public void UpdatesSoundEffectInstancePool()
+    {
+        FrameworkDispatcher.Update();
+        var sfx = new SoundEffect(new byte[] { 0, 0 }, 44100, AudioChannels.Mono);
 
-            sfx.Play();
-            Assert.AreEqual(1, GetPlayingSoundCount());
-            Thread.Sleep(25); // Give the sound effect time to play
+        sfx.Play();
+        Assert.AreEqual(1, GetPlayingSoundCount());
+        Thread.Sleep(25); // Give the sound effect time to play
 
-            FrameworkDispatcher.Update();
-            Assert.AreEqual(0, GetPlayingSoundCount());
-        }
-
-        private int GetPlayingSoundCount()
-        {
-            // SoundEffectInstancePool._playingInstances is private
-            // and not worth making internal only for this test.
-            // Use reflection to get it.
-            var fieldInfo = typeof(SoundEffectInstancePool).GetField("_playingInstances", BindingFlags.NonPublic | BindingFlags.Static);
-            var field = (List<SoundEffectInstance>)fieldInfo.GetValue(null);
-
-            return field.Count;
-        }
-#endif
+        FrameworkDispatcher.Update();
+        Assert.AreEqual(0, GetPlayingSoundCount());
     }
+
+    private int GetPlayingSoundCount()
+    {
+        // SoundEffectInstancePool._playingInstances is private
+        // and not worth making internal only for this test.
+        // Use reflection to get it.
+        var fieldInfo = typeof(SoundEffectInstancePool).GetField("_playingInstances", BindingFlags.NonPublic | BindingFlags.Static);
+        var field = (List<SoundEffectInstance>)fieldInfo.GetValue(null);
+
+        return field.Count;
+    }
+#endif
 }

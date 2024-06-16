@@ -4,15 +4,14 @@
 
 using System;
 
-namespace Monogame.Graphics
-{
-    internal class PresentationEventArgs : EventArgs
-    {
-        public PresentationParameters PresentationParameters { get; private set; }
+namespace Monogame.Graphics;
 
-        public PresentationEventArgs(PresentationParameters presentationParameters)
-        {
-            PresentationParameters = presentationParameters;
-        }
+internal class PresentationEventArgs : EventArgs
+{
+    public PresentationParameters PresentationParameters { get; private set; }
+
+    public PresentationEventArgs(PresentationParameters presentationParameters)
+    {
+        PresentationParameters = presentationParameters;
     }
 }

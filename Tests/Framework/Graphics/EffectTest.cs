@@ -6,135 +6,134 @@ using Monogame;
 using Monogame.Graphics;
 using NUnit.Framework;
 
-namespace MonoGame.Tests.Graphics
+namespace MonoGame.Tests.Graphics;
+
+[TestFixture]
+internal class EffectTest : GraphicsDeviceTestFixtureBase
 {
-    [TestFixture]
-    internal class EffectTest : GraphicsDeviceTestFixtureBase
+    [Test]
+    public void EffectConstructorShouldAllowIndexAndCount()
     {
-        [Test]
-        public void EffectConstructorShouldAllowIndexAndCount()
-        {
-            byte[] mgfxo = EffectResource.BasicEffect.Bytecode;
-            var index = 100000;
-            var byteArray = new byte[index + mgfxo.Length];
-            mgfxo.CopyTo(byteArray, index);
-            Effect effect = null;
-            Assert.DoesNotThrow(() => { effect = new Effect(game.GraphicsDevice, byteArray, index, mgfxo.Length); });
-            effect.Dispose();
-        }
+        byte[] mgfxo = EffectResource.BasicEffect.Bytecode;
+        var index = 100000;
+        var byteArray = new byte[index + mgfxo.Length];
+        mgfxo.CopyTo(byteArray, index);
+        Effect effect = null;
+        Assert.DoesNotThrow(() => { effect = new Effect(game.GraphicsDevice, byteArray, index, mgfxo.Length); });
+        effect.Dispose();
+    }
 
-        [Test]
-        public void EffectPassShouldSetTexture()
-        {
-            var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            game.GraphicsDevice.Textures[0] = null;
+    [Test]
+    public void EffectPassShouldSetTexture()
+    {
+        var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+        game.GraphicsDevice.Textures[0] = null;
 
-            var effect = new BasicEffect(game.GraphicsDevice);
-            effect.TextureEnabled = true;
-            effect.Texture = texture;
+        var effect = new BasicEffect(game.GraphicsDevice);
+        effect.TextureEnabled = true;
+        effect.Texture = texture;
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
+        Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
 
-            var effectPass = effect.CurrentTechnique.Passes[0];
-            effectPass.Apply();
+        var effectPass = effect.CurrentTechnique.Passes[0];
+        effectPass.Apply();
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
+        Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
 
-            texture.Dispose();
-            effect.Dispose();
-        }
+        texture.Dispose();
+        effect.Dispose();
+    }
 
-        [Test]
-        public void EffectPassShouldSetTextureOnSubsequentCalls()
-        {
-            var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            game.GraphicsDevice.Textures[0] = null;
+    [Test]
+    public void EffectPassShouldSetTextureOnSubsequentCalls()
+    {
+        var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+        game.GraphicsDevice.Textures[0] = null;
 
-            var effect = new BasicEffect(game.GraphicsDevice);
-            effect.TextureEnabled = true;
-            effect.Texture = texture;
+        var effect = new BasicEffect(game.GraphicsDevice);
+        effect.TextureEnabled = true;
+        effect.Texture = texture;
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
+        Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
 
-            var effectPass = effect.CurrentTechnique.Passes[0];
-            effectPass.Apply();
+        var effectPass = effect.CurrentTechnique.Passes[0];
+        effectPass.Apply();
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
+        Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
 
-            game.GraphicsDevice.Textures[0] = null;
+        game.GraphicsDevice.Textures[0] = null;
 
-            effectPass = effect.CurrentTechnique.Passes[0];
-            effectPass.Apply();
+        effectPass = effect.CurrentTechnique.Passes[0];
+        effectPass.Apply();
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
+        Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
 
-            texture.Dispose();
-            effect.Dispose();
-        }
+        texture.Dispose();
+        effect.Dispose();
+    }
 
-        [Test]
-        public void EffectPassShouldSetTextureEvenIfNull()
-        {
-            var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            game.GraphicsDevice.Textures[0] = texture;
+    [Test]
+    public void EffectPassShouldSetTextureEvenIfNull()
+    {
+        var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+        game.GraphicsDevice.Textures[0] = texture;
 
-            var effect = new BasicEffect(game.GraphicsDevice);
-            effect.TextureEnabled = true;
-            effect.Texture = null;
+        var effect = new BasicEffect(game.GraphicsDevice);
+        effect.TextureEnabled = true;
+        effect.Texture = null;
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
+        Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
 
-            var effectPass = effect.CurrentTechnique.Passes[0];
-            effectPass.Apply();
+        var effectPass = effect.CurrentTechnique.Passes[0];
+        effectPass.Apply();
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
+        Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
 
-            texture.Dispose();
-            effect.Dispose();
-        }
+        texture.Dispose();
+        effect.Dispose();
+    }
 
-        [Test]
-        public void EffectPassShouldOverrideTextureIfNotExplicitlySet()
-        {
-            var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            game.GraphicsDevice.Textures[0] = texture;
+    [Test]
+    public void EffectPassShouldOverrideTextureIfNotExplicitlySet()
+    {
+        var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+        game.GraphicsDevice.Textures[0] = texture;
 
-            var effect = new BasicEffect(game.GraphicsDevice);
-            effect.TextureEnabled = true;
+        var effect = new BasicEffect(game.GraphicsDevice);
+        effect.TextureEnabled = true;
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
+        Assert.That(game.GraphicsDevice.Textures[0], Is.SameAs(texture));
 
-            var effectPass = effect.CurrentTechnique.Passes[0];
-            effectPass.Apply();
+        var effectPass = effect.CurrentTechnique.Passes[0];
+        effectPass.Apply();
 
-            Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
+        Assert.That(game.GraphicsDevice.Textures[0], Is.Null);
 
-            texture.Dispose();
-            effect.Dispose();
-        }
+        texture.Dispose();
+        effect.Dispose();
+    }
 
-        [Test]
+    [Test]
 #if DESKTOPGL
-        [Ignore("Fails under OpenGL!")]
+    [Ignore("Fails under OpenGL!")]
 #endif
-        public void EffectParameterShouldBeSetIfSetByNameAndGetByIndex()
-        {
-            // This relies on the parameters permanently being on the same index.
-            // Should be no problem except when adding parameters.
-            var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            game.GraphicsDevice.Textures[0] = texture;
+    public void EffectParameterShouldBeSetIfSetByNameAndGetByIndex()
+    {
+        // This relies on the parameters permanently being on the same index.
+        // Should be no problem except when adding parameters.
+        var texture = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+        game.GraphicsDevice.Textures[0] = texture;
 
-            var effect = new BasicEffect(game.GraphicsDevice);
-            effect.TextureEnabled = true;
-            effect.Texture = null;
-            effect.Parameters["DiffuseColor"].SetValue(Color.HotPink.ToVector3());
-            effect.Parameters["FogColor"].SetValue(Color.Honeydew.ToVector3());
+        var effect = new BasicEffect(game.GraphicsDevice);
+        effect.TextureEnabled = true;
+        effect.Texture = null;
+        effect.Parameters["DiffuseColor"].SetValue(Color.HotPink.ToVector3());
+        effect.Parameters["FogColor"].SetValue(Color.Honeydew.ToVector3());
 
-            Assert.That(effect.Parameters[0].GetValueVector3().Equals(Color.HotPink.ToVector3()));
-            Assert.That(effect.Parameters[14].GetValueVector3().Equals(Color.Honeydew.ToVector3()));
+        Assert.That(effect.Parameters[0].GetValueVector3().Equals(Color.HotPink.ToVector3()));
+        Assert.That(effect.Parameters[14].GetValueVector3().Equals(Color.Honeydew.ToVector3()));
 
-            texture.Dispose();
-            effect.Dispose();
-        }
+        texture.Dispose();
+        effect.Dispose();
     }
 }

@@ -4,18 +4,17 @@
 
 using System;
 
-namespace Monogame.Media
-{
-    public sealed partial class Video : IDisposable
-    {
-        private void PlatformInitialize()
-        {
-            throw new NotImplementedException("Video is not implemented on this platform.");
-        }
+namespace Monogame.Media;
 
-        private void PlatformDispose(bool disposing)
-        {
-            throw new NotImplementedException("Video is not implemented on this platform.");
-        }
+public sealed partial class Video : IDisposable
+{
+    private void PlatformInitialize()
+    {
+        throw new NotImplementedException("Video is not implemented on this platform.");
+    }
+
+    private void PlatformDispose(bool disposing)
+    {
+        throw new NotImplementedException("Video is not implemented on this platform.");
     }
 }

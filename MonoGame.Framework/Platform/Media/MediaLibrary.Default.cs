@@ -4,28 +4,27 @@
 
 using System;
 
-namespace Monogame.Media
+namespace Monogame.Media;
+
+public partial class MediaLibrary
 {
-    public partial class MediaLibrary
+    private void PlatformLoad(Action<int> progressCallback)
     {
-        private void PlatformLoad(Action<int> progressCallback)
-        {
 
-        }
+    }
 
-        private AlbumCollection PlatformGetAlbums()
-        {
-            return null;
-        }
+    private AlbumCollection PlatformGetAlbums()
+    {
+        return null;
+    }
 
-        private SongCollection PlatformGetSongs()
-        {
-            return null;
-        }
+    private SongCollection PlatformGetSongs()
+    {
+        return null;
+    }
 
-        private void PlatformDispose()
-        {
+    private void PlatformDispose()
+    {
 
-        }
     }
 }

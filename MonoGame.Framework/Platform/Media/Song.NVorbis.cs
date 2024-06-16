@@ -7,158 +7,157 @@ using System.IO;
 using Monogame.Audio;
 using MonoGame.OpenAL;
 
-namespace Monogame.Media
+namespace Monogame.Media;
+
+public sealed partial class Song : IEquatable<Song>, IDisposable
 {
-    public sealed partial class Song : IEquatable<Song>, IDisposable
+    private OggStream stream;
+    private float _volume = 1f;
+    private readonly object _sourceMutex = new object();
+
+    private void PlatformInitialize(string fileName)
     {
-        private OggStream stream;
-        private float _volume = 1f;
-        private readonly object _sourceMutex = new object();
+        // init OpenAL if need be
+        OpenALSoundController.EnsureInitialized();
 
-        private void PlatformInitialize(string fileName)
-        {
-            // init OpenAL if need be
-            OpenALSoundController.EnsureInitialized();
+        stream = new OggStream(fileName, OnFinishedPlaying);
+        stream.Prepare();
 
-            stream = new OggStream(fileName, OnFinishedPlaying);
-            stream.Prepare();
+        _duration = stream.GetLength();
+    }
 
-            _duration = stream.GetLength();
-        }
+    internal void SetEventHandler(FinishedPlayingHandler handler) { }
 
-        internal void SetEventHandler(FinishedPlayingHandler handler) { }
+    internal void OnFinishedPlaying()
+    {
+        MediaPlayer.OnSongFinishedPlaying(null, null);
+    }
 
-        internal void OnFinishedPlaying()
-        {
-            MediaPlayer.OnSongFinishedPlaying(null, null);
-        }
-
-        void PlatformDispose(bool disposing)
-        {
-            lock (_sourceMutex)
-            {
-                if (stream == null)
-                    return;
-
-                stream.Dispose();
-                stream = null;
-            }
-        }
-
-        internal void Play(TimeSpan? startPosition)
+    void PlatformDispose(bool disposing)
+    {
+        lock (_sourceMutex)
         {
             if (stream == null)
                 return;
 
-            stream.Play();
-            if (startPosition != null)
-                stream.SeekToPosition((TimeSpan)startPosition);
-
-            _playCount++;
+            stream.Dispose();
+            stream = null;
         }
+    }
 
-        internal void Resume()
+    internal void Play(TimeSpan? startPosition)
+    {
+        if (stream == null)
+            return;
+
+        stream.Play();
+        if (startPosition != null)
+            stream.SeekToPosition((TimeSpan)startPosition);
+
+        _playCount++;
+    }
+
+    internal void Resume()
+    {
+        if (stream == null)
+            return;
+
+        stream.Resume();
+    }
+
+    internal void Pause()
+    {
+        if (stream == null)
+            return;
+
+        stream.Pause();
+    }
+
+    internal void Stop()
+    {
+        if (stream == null)
+            return;
+
+        stream.Stop();
+        _playCount = 0;
+    }
+
+    internal float Volume
+    {
+        get
         {
             if (stream == null)
-                return;
-
-            stream.Resume();
+                return 0.0f;
+            return _volume;
         }
+        set
+        {
+            _volume = value;
+            if (stream != null)
+                stream.Volume = _volume;
+        }
+    }
 
-        internal void Pause()
+    /// <summary>
+    /// Gets the position of the Song.
+    /// </summary>
+    public TimeSpan Position
+    {
+        get
         {
             if (stream == null)
-                return;
-
-            stream.Pause();
+                return TimeSpan.FromSeconds(0.0);
+            return stream.GetPosition();
         }
+    }
 
-        internal void Stop()
-        {
-            if (stream == null)
-                return;
+    private Album PlatformGetAlbum()
+    {
+        return null;
+    }
 
-            stream.Stop();
-            _playCount = 0;
-        }
+    private Artist PlatformGetArtist()
+    {
+        return null;
+    }
 
-        internal float Volume
-        {
-            get
-            {
-                if (stream == null)
-                    return 0.0f;
-                return _volume;
-            }
-            set
-            {
-                _volume = value;
-                if (stream != null)
-                    stream.Volume = _volume;
-            }
-        }
+    private Genre PlatformGetGenre()
+    {
+        return null;
+    }
 
-        /// <summary>
-        /// Gets the position of the Song.
-        /// </summary>
-        public TimeSpan Position
-        {
-            get
-            {
-                if (stream == null)
-                    return TimeSpan.FromSeconds(0.0);
-                return stream.GetPosition();
-            }
-        }
+    private TimeSpan PlatformGetDuration()
+    {
+        return _duration;
+    }
 
-        private Album PlatformGetAlbum()
-        {
-            return null;
-        }
+    private bool PlatformIsProtected()
+    {
+        return false;
+    }
 
-        private Artist PlatformGetArtist()
-        {
-            return null;
-        }
+    private bool PlatformIsRated()
+    {
+        return false;
+    }
 
-        private Genre PlatformGetGenre()
-        {
-            return null;
-        }
+    private string PlatformGetName()
+    {
+        return Path.GetFileNameWithoutExtension(_name);
+    }
 
-        private TimeSpan PlatformGetDuration()
-        {
-            return _duration;
-        }
+    private int PlatformGetPlayCount()
+    {
+        return _playCount;
+    }
 
-        private bool PlatformIsProtected()
-        {
-            return false;
-        }
+    private int PlatformGetRating()
+    {
+        return 0;
+    }
 
-        private bool PlatformIsRated()
-        {
-            return false;
-        }
-
-        private string PlatformGetName()
-        {
-            return Path.GetFileNameWithoutExtension(_name);
-        }
-
-        private int PlatformGetPlayCount()
-        {
-            return _playCount;
-        }
-
-        private int PlatformGetRating()
-        {
-            return 0;
-        }
-
-        private int PlatformGetTrackNumber()
-        {
-            return 0;
-        }
+    private int PlatformGetTrackNumber()
+    {
+        return 0;
     }
 }

@@ -7,68 +7,67 @@ using System.Xml.Serialization;
 using Monogame.Content.Pipeline;
 using Monogame.Graphics;
 
-namespace MonoGame.Content.Builder
+namespace MonoGame.Content.Builder;
+
+[XmlRoot(ElementName = "SourceFileCollection")]
+public sealed class SourceFileCollection
 {
-    [XmlRoot(ElementName = "SourceFileCollection")]
-    public sealed class SourceFileCollection
+    public GraphicsProfile Profile { get; set; }
+
+    public TargetPlatform Platform { get; set; }
+
+    public string Config { get; set; }
+
+    [XmlArrayItem("File")]
+    public List<string> SourceFiles { get; set; }
+
+    [XmlArrayItem("File")]
+    public List<string> DestFiles { get; set; }
+
+
+    public SourceFileCollection()
     {
-        public GraphicsProfile Profile { get; set; }
+        SourceFiles = new List<string>();
+        DestFiles = new List<string>();
+        Config = string.Empty;
+    }
 
-        public TargetPlatform Platform { get; set; }
-
-        public string Config { get; set; }
-
-        [XmlArrayItem("File")]
-        public List<string> SourceFiles { get; set; }
-
-        [XmlArrayItem("File")]
-        public List<string> DestFiles { get; set; }
-
-
-        public SourceFileCollection()
+    static public SourceFileCollection Read(string filePath)
+    {
+        var deserializer = new XmlSerializer(typeof(SourceFileCollection));
+        try
         {
-            SourceFiles = new List<string>();
-            DestFiles = new List<string>();
-            Config = string.Empty;
+            using (var textReader = new StreamReader(filePath))
+                return (SourceFileCollection)deserializer.Deserialize(textReader);
+        }
+        catch (Exception)
+        {
         }
 
-        static public SourceFileCollection Read(string filePath)
-        {
-            var deserializer = new XmlSerializer(typeof(SourceFileCollection));
-            try
-            {
-                using (var textReader = new StreamReader(filePath))
-                    return (SourceFileCollection)deserializer.Deserialize(textReader);
-            }
-            catch (Exception)
-            {
-            }
+        return new SourceFileCollection();
+    }
 
-            return new SourceFileCollection();
+    public void Write(string filePath)
+    {
+        var serializer = new XmlSerializer(typeof(SourceFileCollection));
+        using (var textWriter = new StreamWriter(filePath, false, new UTF8Encoding(false)))
+            serializer.Serialize(textWriter, this);
+    }
+
+    public void Merge(SourceFileCollection other)
+    {
+        foreach (var sourceFile in other.SourceFiles)
+        {
+            var inContent = SourceFiles.Any(e => string.Equals(e, sourceFile, StringComparison.InvariantCultureIgnoreCase));
+            if (!inContent)
+                SourceFiles.Add(sourceFile);
         }
 
-        public void Write(string filePath)
+        foreach (var destFile in other.DestFiles)
         {
-            var serializer = new XmlSerializer(typeof(SourceFileCollection));
-            using (var textWriter = new StreamWriter(filePath, false, new UTF8Encoding(false)))
-                serializer.Serialize(textWriter, this);
-        }
-
-        public void Merge(SourceFileCollection other)
-        {
-            foreach (var sourceFile in other.SourceFiles)
-            {
-                var inContent = SourceFiles.Any(e => string.Equals(e, sourceFile, StringComparison.InvariantCultureIgnoreCase));
-                if (!inContent)
-                    SourceFiles.Add(sourceFile);
-            }
-
-            foreach (var destFile in other.DestFiles)
-            {
-                var inContent = DestFiles.Any(e => string.Equals(e, destFile, StringComparison.InvariantCultureIgnoreCase));
-                if (!inContent)
-                    DestFiles.Add(destFile);
-            }
+            var inContent = DestFiles.Any(e => string.Equals(e, destFile, StringComparison.InvariantCultureIgnoreCase));
+            if (!inContent)
+                DestFiles.Add(destFile);
         }
     }
 }

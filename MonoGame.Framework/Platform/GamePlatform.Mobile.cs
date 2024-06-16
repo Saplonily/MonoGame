@@ -4,21 +4,20 @@
 
 using System;
 
-namespace Monogame
+namespace Monogame;
+
+partial class GamePlatform
 {
-    partial class GamePlatform
+    internal static GamePlatform PlatformCreate(Game game)
     {
-        internal static GamePlatform PlatformCreate(Game game)
-        {
 #if IOS
-            return new iOSGamePlatform(game);
+        return new iOSGamePlatform(game);
 #elif ANDROID
-            return new AndroidGamePlatform(game);
+        return new AndroidGamePlatform(game);
 #elif WINDOWS_PHONE81
-            return new MetroGamePlatform(game);
+        return new MetroGamePlatform(game);
 #elif WEB
-            return new WebGamePlatform(game);
+        return new WebGamePlatform(game);
 #endif
-        }
     }
 }

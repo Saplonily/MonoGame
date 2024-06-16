@@ -1,15 +1,14 @@
 ﻿using System;
 
-namespace Monogame.Graphics
+namespace Monogame.Graphics;
+
+/// <summary>
+/// Provides data for the <see cref="GraphicsDevice.ResourceCreated"/> event. This class cannot be inherited.
+/// </summary>
+public sealed class ResourceCreatedEventArgs : EventArgs
 {
     /// <summary>
-    /// Provides data for the <see cref="GraphicsDevice.ResourceCreated"/> event. This class cannot be inherited.
+    /// The newly created resource object.
     /// </summary>
-    public sealed class ResourceCreatedEventArgs : EventArgs
-    {
-        /// <summary>
-        /// The newly created resource object.
-        /// </summary>
-        public Object Resource { get; internal set; }
-    }
+    public Object Resource { get; internal set; }
 }

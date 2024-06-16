@@ -5,13 +5,12 @@
 using System;
 using System.IO;
 
-namespace Monogame
+namespace Monogame;
+
+partial class TitleContainer
 {
-    partial class TitleContainer
+    private static Stream PlatformOpenStream(string safeName)
     {
-        private static Stream PlatformOpenStream(string safeName)
-        {
-            return Android.App.Application.Context.Assets.Open(safeName);
-        }
+        return Android.App.Application.Context.Assets.Open(safeName);
     }
 }

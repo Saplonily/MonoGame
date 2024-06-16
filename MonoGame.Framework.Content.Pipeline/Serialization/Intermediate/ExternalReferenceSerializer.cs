@@ -4,26 +4,25 @@
 
 using System;
 
-namespace Monogame.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate;
+
+[ContentTypeSerializer]
+class ExternalReferenceSerializer<T> : ContentTypeSerializer<ExternalReference<T>>
 {
-    [ContentTypeSerializer]
-    class ExternalReferenceSerializer<T> : ContentTypeSerializer<ExternalReference<T>>
+    public ExternalReferenceSerializer() :
+        base("ExternalReference")
     {
-        public ExternalReferenceSerializer() :
-            base("ExternalReference")
-        {
-        }
+    }
 
-        protected internal override ExternalReference<T> Deserialize(IntermediateReader input, ContentSerializerAttribute format, ExternalReference<T> existingInstance)
-        {
-            var result = existingInstance ?? new ExternalReference<T>();
-            input.ReadExternalReference(result);
-            return result;
-        }
+    protected internal override ExternalReference<T> Deserialize(IntermediateReader input, ContentSerializerAttribute format, ExternalReference<T> existingInstance)
+    {
+        var result = existingInstance ?? new ExternalReference<T>();
+        input.ReadExternalReference(result);
+        return result;
+    }
 
-        protected internal override void Serialize(IntermediateWriter output, ExternalReference<T> value, ContentSerializerAttribute format)
-        {
-            output.WriteExternalReference(value);
-        }
+    protected internal override void Serialize(IntermediateWriter output, ExternalReference<T> value, ContentSerializerAttribute format)
+    {
+        output.WriteExternalReference(value);
     }
 }

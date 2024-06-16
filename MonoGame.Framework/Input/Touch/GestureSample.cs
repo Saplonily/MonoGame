@@ -5,107 +5,106 @@
 using System;
 using Monogame;
 
-namespace Monogame.Input.Touch
+namespace Monogame.Input.Touch;
+
+/// <summary>
+/// Represents data from a multi-touch gesture over a span of time.
+/// </summary>
+public struct GestureSample
 {
+    // attributes
+    private GestureType _gestureType;
+    private TimeSpan _timestamp;
+    private Vector2 _position;
+    private Vector2 _position2;
+    private Vector2 _delta;
+    private Vector2 _delta2;
+
+    #region Properties
+
     /// <summary>
-    /// Represents data from a multi-touch gesture over a span of time.
+    /// Gets the type of the gesture.
     /// </summary>
-    public struct GestureSample
+    public GestureType GestureType
     {
-        // attributes
-        private GestureType _gestureType;
-        private TimeSpan _timestamp;
-        private Vector2 _position;
-        private Vector2 _position2;
-        private Vector2 _delta;
-        private Vector2 _delta2;
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the type of the gesture.
-        /// </summary>
-        public GestureType GestureType
+        get
         {
-            get
-            {
-                return this._gestureType;
-            }
+            return this._gestureType;
         }
+    }
 
-        /// <summary>
-        /// Gets the starting time for this multi-touch gesture sample.
-        /// </summary>
-        public TimeSpan Timestamp
+    /// <summary>
+    /// Gets the starting time for this multi-touch gesture sample.
+    /// </summary>
+    public TimeSpan Timestamp
+    {
+        get
         {
-            get
-            {
-                return this._timestamp;
-            }
+            return this._timestamp;
         }
+    }
 
-        /// <summary>
-        /// Gets the position of the first touch-point in the gesture sample.
-        /// </summary>
-        public Vector2 Position
+    /// <summary>
+    /// Gets the position of the first touch-point in the gesture sample.
+    /// </summary>
+    public Vector2 Position
+    {
+        get
         {
-            get
-            {
-                return this._position;
-            }
+            return this._position;
         }
+    }
 
-        /// <summary>
-        /// Gets the position of the second touch-point in the gesture sample.
-        /// </summary>
-        public Vector2 Position2
+    /// <summary>
+    /// Gets the position of the second touch-point in the gesture sample.
+    /// </summary>
+    public Vector2 Position2
+    {
+        get
         {
-            get
-            {
-                return this._position2;
-            }
+            return this._position2;
         }
+    }
 
-        /// <summary>
-        /// Gets the delta information for the first touch-point in the gesture sample.
-        /// </summary>
-        public Vector2 Delta
+    /// <summary>
+    /// Gets the delta information for the first touch-point in the gesture sample.
+    /// </summary>
+    public Vector2 Delta
+    {
+        get
         {
-            get
-            {
-                return this._delta;
-            }
+            return this._delta;
         }
+    }
 
-        /// <summary>
-        /// Gets the delta information for the second touch-point in the gesture sample.
-        /// </summary>
-        public Vector2 Delta2
+    /// <summary>
+    /// Gets the delta information for the second touch-point in the gesture sample.
+    /// </summary>
+    public Vector2 Delta2
+    {
+        get
         {
-            get
-            {
-                return this._delta2;
-            }
+            return this._delta2;
         }
-        #endregion
+    }
+    #endregion
 
-        /// <summary>
-        /// Initializes a new <see cref="GestureSample"/>.
-        /// </summary>
-        /// <param name="gestureType"><see cref="GestureType"/></param>
-        /// <param name="timestamp"></param>
-        /// <param name="position"></param>
-        /// <param name="position2"></param>
-        /// <param name="delta"></param>
-        /// <param name="delta2"></param>
-        public GestureSample(GestureType gestureType, TimeSpan timestamp, Vector2 position, Vector2 position2, Vector2 delta, Vector2 delta2)
-        {
-            this._gestureType = gestureType;
-            this._timestamp = timestamp;
-            this._position = position;
-            this._position2 = position2;
-            this._delta = delta;
-            this._delta2 = delta2;
-        }
+    /// <summary>
+    /// Initializes a new <see cref="GestureSample"/>.
+    /// </summary>
+    /// <param name="gestureType"><see cref="GestureType"/></param>
+    /// <param name="timestamp"></param>
+    /// <param name="position"></param>
+    /// <param name="position2"></param>
+    /// <param name="delta"></param>
+    /// <param name="delta2"></param>
+    public GestureSample(GestureType gestureType, TimeSpan timestamp, Vector2 position, Vector2 position2, Vector2 delta, Vector2 delta2)
+    {
+        this._gestureType = gestureType;
+        this._timestamp = timestamp;
+        this._position = position;
+        this._position2 = position2;
+        this._delta = delta;
+        this._delta2 = delta2;
     }
 }

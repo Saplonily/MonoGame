@@ -6,28 +6,27 @@ using System;
 using System.IO;
 using MonoGame.Framework.Utilities;
 
-namespace Monogame
+namespace Monogame;
+
+partial class TitleContainer
 {
-    partial class TitleContainer
+    static partial void PlatformInit()
     {
-        static partial void PlatformInit()
-        {
 #if WINDOWS || DESKTOPGL
 #if DESKTOPGL
-            // Check for the package Resources Folder first. This is where the assets
-            // will be bundled.
-            if (CurrentPlatform.OS == OS.MacOSX)
-                Location = Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "..", "Resources");
-            if (!Directory.Exists (Location))
+        // Check for the package Resources Folder first. This is where the assets
+        // will be bundled.
+        if (CurrentPlatform.OS == OS.MacOSX)
+            Location = Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "..", "Resources");
+        if (!Directory.Exists (Location))
 #endif
-            Location = AppDomain.CurrentDomain.BaseDirectory;
+        Location = AppDomain.CurrentDomain.BaseDirectory;
 #endif
-        }
+    }
 
-        private static Stream PlatformOpenStream(string safeName)
-        {
-            var absolutePath = Path.Combine(Location, safeName);
-            return File.OpenRead(absolutePath);
-        }
+    private static Stream PlatformOpenStream(string safeName)
+    {
+        var absolutePath = Path.Combine(Location, safeName);
+        return File.OpenRead(absolutePath);
     }
 }

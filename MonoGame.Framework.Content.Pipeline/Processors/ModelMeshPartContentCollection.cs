@@ -5,13 +5,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Monogame.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors;
+
+public sealed class ModelMeshPartContentCollection : ReadOnlyCollection<ModelMeshPartContent>
 {
-    public sealed class ModelMeshPartContentCollection : ReadOnlyCollection<ModelMeshPartContent>
+    internal ModelMeshPartContentCollection(IList<ModelMeshPartContent> list)
+        : base(list)
     {
-        internal ModelMeshPartContentCollection(IList<ModelMeshPartContent> list)
-            : base(list)
-        {
-        }
     }
 }

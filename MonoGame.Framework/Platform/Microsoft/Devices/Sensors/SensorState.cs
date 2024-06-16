@@ -4,15 +4,14 @@
 
 using System;
 
-namespace Microsoft.Devices.Sensors
+namespace Microsoft.Devices.Sensors;
+
+public enum SensorState
 {
-    public enum SensorState
-    {
-        NotSupported,
-        Ready,
-        Initializing,
-        NoData,
-        NoPermissions,
-        Disabled
-    }
+    NotSupported,
+    Ready,
+    Initializing,
+    NoData,
+    NoPermissions,
+    Disabled
 }

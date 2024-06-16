@@ -4,24 +4,23 @@
 
 using System;
 
-namespace Monogame.Media
+namespace Monogame.Media;
+
+/// <summary>
+/// Type of the media source.
+/// </summary>
+/// <remarks>
+/// Indicates the type of the current media source.
+/// The type can be either a local device, or a device connected through Windows Media Connect.
+/// </remarks>
+	public enum MediaSourceType
 {
     /// <summary>
-    /// Type of the media source.
+    /// A local device.
     /// </summary>
-    /// <remarks>
-    /// Indicates the type of the current media source.
-    /// The type can be either a local device, or a device connected through Windows Media Connect.
-    /// </remarks>
- 	public enum MediaSourceType
-    {
-        /// <summary>
-        /// A local device.
-        /// </summary>
-        LocalDevice = 0,
-        /// <summary>
-        /// A Windows Media Connect device.
-        /// </summary>
-        WindowsMediaConnect = 4
-    }
+    LocalDevice = 0,
+    /// <summary>
+    /// A Windows Media Connect device.
+    /// </summary>
+    WindowsMediaConnect = 4
 }

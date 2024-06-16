@@ -5,17 +5,16 @@
 using System;
 using Monogame;
 
-namespace Monogame.Content
-{
-    internal class BoundingFrustumReader : ContentTypeReader<BoundingFrustum>
-    {
-        public BoundingFrustumReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override BoundingFrustum Read(ContentReader input, BoundingFrustum existingInstance)
-        {
-            return new BoundingFrustum(input.ReadMatrix());
-        }
+internal class BoundingFrustumReader : ContentTypeReader<BoundingFrustum>
+{
+    public BoundingFrustumReader()
+    {
+    }
+
+    protected internal override BoundingFrustum Read(ContentReader input, BoundingFrustum existingInstance)
+    {
+        return new BoundingFrustum(input.ReadMatrix());
     }
 }

@@ -7,13 +7,12 @@ using System.IO;
 using Monogame.Content;
 using Monogame.Graphics;
 
-namespace MonoGame.Tests
+namespace MonoGame.Tests;
+
+internal static class AssetTestUtility
 {
-    internal static class AssetTestUtility
+    public static Monogame.Graphics.Effect LoadEffect(ContentManager content, string name)
     {
-        public static Monogame.Graphics.Effect LoadEffect(ContentManager content, string name)
-        {
-            return content.Load<Monogame.Graphics.Effect>(Paths.CompiledEffect(name));
-        }
+        return content.Load<Monogame.Graphics.Effect>(Paths.CompiledEffect(name));
     }
 }

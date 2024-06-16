@@ -21,109 +21,109 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 #endif
 
-namespace MonoGame.Tests
+namespace MonoGame.Tests;
+
+class TestGameBase : Game, IFrameInfoSource
 {
-    class TestGameBase : Game, IFrameInfoSource
+    private bool _isExiting;
+
+    public TestGameBase()
     {
-        private bool _isExiting;
-
-        public TestGameBase()
-        {
 #if XNA
-            Content.RootDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        Content.RootDirectory = AppDomain.CurrentDomain.BaseDirectory;
 #endif
-            // We do all the tests using the reference/warp device to
-            // avoid driver glitches and get consistent rendering.
-            GraphicsAdapter.UseReferenceDevice = true;
-            GraphicsAdapter.UseDriverType = GraphicsAdapter.DriverType.FastSoftware;
+        // We do all the tests using the reference/warp device to
+        // avoid driver glitches and get consistent rendering.
+        GraphicsAdapter.UseReferenceDevice = true;
+        GraphicsAdapter.UseDriverType = GraphicsAdapter.DriverType.FastSoftware;
 
-            Services.AddService<IFrameInfoSource>(this);
-            SuppressExtraUpdatesAndDraws = true;
-        }
+        Services.AddService<IFrameInfoSource>(this);
+        SuppressExtraUpdatesAndDraws = true;
+    }
 
-        #region IFrameInfoSource Implementation
+    #region IFrameInfoSource Implementation
 
-        private FrameInfo _frameInfo;
-        public FrameInfo FrameInfo
+    private FrameInfo _frameInfo;
+    public FrameInfo FrameInfo
+    {
+        get { return _frameInfo; }
+    }
+
+    #endregion IFrameInfoSource Implementation
+
+    public Predicate<FrameInfo> ExitCondition { get; set; }
+    public bool SuppressExtraUpdatesAndDraws { get; set; }
+
+    public event EventHandler<FrameInfoEventArgs> InitializeWith;
+    public event EventHandler<FrameInfoEventArgs> LoadContentWith;
+    public event EventHandler<FrameInfoEventArgs> UnloadContentWith;
+    public event EventHandler<FrameInfoEventArgs> DrawWith;
+    public event EventHandler<FrameInfoEventArgs> UpdateWith;
+    public event EventHandler<FrameInfoEventArgs> UpdateOncePerDrawWith;
+
+    public event EventHandler<FrameInfoEventArgs> PreInitializeWith;
+    public event EventHandler<FrameInfoEventArgs> PreLoadContentWith;
+    public event EventHandler<FrameInfoEventArgs> PreUnloadContentWith;
+    public event EventHandler<FrameInfoEventArgs> PreDrawWith;
+    public event EventHandler<FrameInfoEventArgs> PreUpdateWith;
+
+    public void ClearActions()
+    {
+        InitializeWith = null;
+        LoadContentWith = null;
+        UnloadContentWith = null;
+        DrawWith = null;
+        UpdateWith = null;
+        UpdateOncePerDrawWith = null;
+
+        PreInitializeWith = null;
+        PreLoadContentWith = null;
+        PreUnloadContentWith = null;
+        PreDrawWith = null;
+        PreUpdateWith = null;
+    }
+
+    private void SafeRaise(EventHandler<FrameInfoEventArgs> handler)
+    {
+        if (handler != null)
+            handler(this, new FrameInfoEventArgs(FrameInfo));
+    }
+
+    public void InitializeOnly()
+    {
+        if (GraphicsDevice == null)
         {
-            get { return _frameInfo; }
+            var graphicsDeviceManager = Services.GetService(typeof(IGraphicsDeviceManager)) as IGraphicsDeviceManager;
+            graphicsDeviceManager.CreateDevice();
         }
+        Initialize();
+    }
 
-        #endregion IFrameInfoSource Implementation
+    protected override void Initialize()
+    {
+        SafeRaise(PreInitializeWith);
+        base.Initialize();
+        SafeRaise(InitializeWith);
+    }
 
-        public Predicate<FrameInfo> ExitCondition { get; set; }
-        public bool SuppressExtraUpdatesAndDraws { get; set; }
+    protected override void LoadContent()
+    {
+        SafeRaise(PreLoadContentWith);
+        base.LoadContent();
+        SafeRaise(LoadContentWith);
+    }
 
-        public event EventHandler<FrameInfoEventArgs> InitializeWith;
-        public event EventHandler<FrameInfoEventArgs> LoadContentWith;
-        public event EventHandler<FrameInfoEventArgs> UnloadContentWith;
-        public event EventHandler<FrameInfoEventArgs> DrawWith;
-        public event EventHandler<FrameInfoEventArgs> UpdateWith;
-        public event EventHandler<FrameInfoEventArgs> UpdateOncePerDrawWith;
+    protected override void UnloadContent()
+    {
+        SafeRaise(PreUnloadContentWith);
+        base.UnloadContent();
+        SafeRaise(UnloadContentWith);
+    }
 
-        public event EventHandler<FrameInfoEventArgs> PreInitializeWith;
-        public event EventHandler<FrameInfoEventArgs> PreLoadContentWith;
-        public event EventHandler<FrameInfoEventArgs> PreUnloadContentWith;
-        public event EventHandler<FrameInfoEventArgs> PreDrawWith;
-        public event EventHandler<FrameInfoEventArgs> PreUpdateWith;
-
-        public void ClearActions()
-        {
-            InitializeWith = null;
-            LoadContentWith = null;
-            UnloadContentWith = null;
-            DrawWith = null;
-            UpdateWith = null;
-            UpdateOncePerDrawWith = null;
-
-            PreInitializeWith = null;
-            PreLoadContentWith = null;
-            PreUnloadContentWith = null;
-            PreDrawWith = null;
-            PreUpdateWith = null;
-        }
-
-        private void SafeRaise(EventHandler<FrameInfoEventArgs> handler)
-        {
-            if (handler != null)
-                handler(this, new FrameInfoEventArgs(FrameInfo));
-        }
-
-        public void InitializeOnly()
-        {
-            if (GraphicsDevice == null)
-            {
-                var graphicsDeviceManager = Services.GetService(typeof(IGraphicsDeviceManager)) as IGraphicsDeviceManager;
-                graphicsDeviceManager.CreateDevice();
-            }
-            Initialize();
-        }
-
-        protected override void Initialize()
-        {
-            SafeRaise(PreInitializeWith);
-            base.Initialize();
-            SafeRaise(InitializeWith);
-        }
-
-        protected override void LoadContent()
-        {
-            SafeRaise(PreLoadContentWith);
-            base.LoadContent();
-            SafeRaise(LoadContentWith);
-        }
-
-        protected override void UnloadContent()
-        {
-            SafeRaise(PreUnloadContentWith);
-            base.UnloadContent();
-            SafeRaise(UnloadContentWith);
-        }
-
-        public void Run(Predicate<FrameInfo> until = null)
-        {
-            if (until != null)
-                ExitCondition = until;
+    public void Run(Predicate<FrameInfo> until = null)
+    {
+        if (until != null)
+            ExitCondition = until;
 #if XNA
 			try {
 				base.Run ();
@@ -139,9 +139,9 @@ namespace MonoGame.Tests
 #elif IOS || ANDROID
 			RunOnMainThreadAndWait();
 #else
-            base.Run(GameRunBehavior.Synchronous);
+        base.Run(GameRunBehavior.Synchronous);
 #endif
-        }
+    }
 
 #if IOS || ANDROID
 		private void RunOnMainThreadAndWait()
@@ -191,72 +191,72 @@ namespace MonoGame.Tests
 		}
 #endif
 
-        private readonly UpdateGuard _updateGuard = new UpdateGuard();
-        protected override void Update(GameTime gameTime)
-        {
-            _frameInfo.AdvanceUpdate(gameTime);
-            EvaluateExitCondition();
+    private readonly UpdateGuard _updateGuard = new UpdateGuard();
+    protected override void Update(GameTime gameTime)
+    {
+        _frameInfo.AdvanceUpdate(gameTime);
+        EvaluateExitCondition();
 
-            if (_isExiting && SuppressExtraUpdatesAndDraws)
-                return;
+        if (_isExiting && SuppressExtraUpdatesAndDraws)
+            return;
 
-            SafeRaise(PreUpdateWith);
+        SafeRaise(PreUpdateWith);
 
-            base.Update(gameTime);
+        base.Update(gameTime);
 
-            if (_updateGuard.ShouldUpdate(FrameInfo))
-                UpdateOncePerDraw(gameTime);
+        if (_updateGuard.ShouldUpdate(FrameInfo))
+            UpdateOncePerDraw(gameTime);
 
-            SafeRaise(UpdateWith);
-        }
+        SafeRaise(UpdateWith);
+    }
 
-        protected virtual void UpdateOncePerDraw(GameTime gameTime)
-        {
-            SafeRaise(UpdateOncePerDrawWith);
-        }
+    protected virtual void UpdateOncePerDraw(GameTime gameTime)
+    {
+        SafeRaise(UpdateOncePerDrawWith);
+    }
 
-        protected override void Draw(GameTime gameTime)
-        {
-            _frameInfo.AdvanceDraw(gameTime);
-            EvaluateExitCondition();
+    protected override void Draw(GameTime gameTime)
+    {
+        _frameInfo.AdvanceDraw(gameTime);
+        EvaluateExitCondition();
 
-            if (_isExiting && SuppressExtraUpdatesAndDraws)
-                return;
+        if (_isExiting && SuppressExtraUpdatesAndDraws)
+            return;
 
-            SafeRaise(PreDrawWith);
-            base.Draw(gameTime);
-            SafeRaise(DrawWith);
-        }
+        SafeRaise(PreDrawWith);
+        base.Draw(gameTime);
+        SafeRaise(DrawWith);
+    }
 
-        protected void DoExit()
-        {
+    protected void DoExit()
+    {
 #if XNA
-            Exit();
+        Exit();
 #else
-            // NOTE: We avoid Game.Exit() here as we marked it
-            // obsolete on platforms that disallow exit in 
-            // shipping games.
-            //
-            // We however need it here to halt the app after we
-            // complete running all the unit tests.  So we do the
-            // next best thing can call the internal platform code
-            // directly which produces the same result.
-            Platform.Exit();
-            SuppressDraw();
+        // NOTE: We avoid Game.Exit() here as we marked it
+        // obsolete on platforms that disallow exit in 
+        // shipping games.
+        //
+        // We however need it here to halt the app after we
+        // complete running all the unit tests.  So we do the
+        // next best thing can call the internal platform code
+        // directly which produces the same result.
+        Platform.Exit();
+        SuppressDraw();
 #endif
-        }
+    }
 
-        private void EvaluateExitCondition()
+    private void EvaluateExitCondition()
+    {
+        if (_isExiting || ExitCondition == null)
+            return;
+
+        if (ExitCondition(_frameInfo))
         {
-            if (_isExiting || ExitCondition == null)
-                return;
-
-            if (ExitCondition(_frameInfo))
-            {
-                _isExiting = true;
-                DoExit();
-            }
+            _isExiting = true;
+            DoExit();
         }
+    }
 
 #if XNA
 		[StructLayout (LayoutKind.Sequential)]
@@ -294,5 +294,4 @@ namespace MonoGame.Tests
 			} while (msg.msg != WM_QUIT);
 		}
 #endif
-    }
 }

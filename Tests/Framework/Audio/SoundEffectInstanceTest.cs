@@ -12,68 +12,67 @@ using Monogame.Content;
 using Monogame.Graphics;
 using NUnit.Framework;
 
-namespace MonoGame.Tests.Audio
+namespace MonoGame.Tests.Audio;
+
+class SoundEffectInstanceTest
 {
-    class SoundEffectInstanceTest
+    [SetUp]
+    public void SetUp()
     {
-        [SetUp]
-        public void SetUp()
-        {
-            // Necessary to get audio initialised
-            FrameworkDispatcher.Update();
-        }
-
-        /// <summary>
-        /// Unit test for issue #7372 where the Sound effects instance does not play after Play()
-        /// is called after calling Pause(), Stop().
-        /// </summary>
-        [Test]
-        public void SoundEffectPauseStopPlay()
-        {
-
-            var se = new SoundEffect(new byte[16000], 8000, AudioChannels.Mono);
-
-            using (var instance = se.CreateInstance())
-            {
-                instance.IsLooped = true; //ensures that the sound effect does not stop unless Stop() is called.
-
-                //Test Initial State
-                Assert.AreEqual(SoundState.Stopped, instance.State);
-
-                //Test calling pause multiple times
-                instance.Play();
-                Assert.AreEqual(SoundState.Playing, instance.State);
-                instance.Pause();
-                Assert.AreEqual(SoundState.Paused, instance.State);
-                instance.Stop();
-                SleepWhileDispatching(10);// XNA Requires Dispatcher to be updated
-                Assert.AreEqual(SoundState.Stopped, instance.State);
-                instance.Play();
-                Assert.AreEqual(SoundState.Playing, instance.State);
-                instance.Pause();
-                Assert.AreEqual(SoundState.Paused, instance.State);
-            }
-        }
-
-
-        private static void SleepWhileDispatching(int ms)
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            int cycles = ms / 10;
-            for (int i = 0; i < cycles; i++)
-            {
-                FrameworkDispatcher.Update();
-                Thread.Sleep(10);
-
-                if (stopwatch.Elapsed.TotalMilliseconds > ms)
-                {
-                    stopwatch.Stop();
-                    break;
-                }
-            }
-        }
-
+        // Necessary to get audio initialised
+        FrameworkDispatcher.Update();
     }
+
+    /// <summary>
+    /// Unit test for issue #7372 where the Sound effects instance does not play after Play()
+    /// is called after calling Pause(), Stop().
+    /// </summary>
+    [Test]
+    public void SoundEffectPauseStopPlay()
+    {
+
+        var se = new SoundEffect(new byte[16000], 8000, AudioChannels.Mono);
+
+        using (var instance = se.CreateInstance())
+        {
+            instance.IsLooped = true; //ensures that the sound effect does not stop unless Stop() is called.
+
+            //Test Initial State
+            Assert.AreEqual(SoundState.Stopped, instance.State);
+
+            //Test calling pause multiple times
+            instance.Play();
+            Assert.AreEqual(SoundState.Playing, instance.State);
+            instance.Pause();
+            Assert.AreEqual(SoundState.Paused, instance.State);
+            instance.Stop();
+            SleepWhileDispatching(10);// XNA Requires Dispatcher to be updated
+            Assert.AreEqual(SoundState.Stopped, instance.State);
+            instance.Play();
+            Assert.AreEqual(SoundState.Playing, instance.State);
+            instance.Pause();
+            Assert.AreEqual(SoundState.Paused, instance.State);
+        }
+    }
+
+
+    private static void SleepWhileDispatching(int ms)
+    {
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+        int cycles = ms / 10;
+        for (int i = 0; i < cycles; i++)
+        {
+            FrameworkDispatcher.Update();
+            Thread.Sleep(10);
+
+            if (stopwatch.Elapsed.TotalMilliseconds > ms)
+            {
+                stopwatch.Stop();
+                break;
+            }
+        }
+    }
+
 }

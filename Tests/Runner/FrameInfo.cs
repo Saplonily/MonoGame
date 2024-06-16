@@ -8,60 +8,59 @@ using System.Text;
 
 using Monogame;
 
-namespace MonoGame.Tests
+namespace MonoGame.Tests;
+
+struct FrameInfo
 {
-    struct FrameInfo
+    public int UpdateNumber;
+    public int DrawNumber;
+    public TimeSpan ElapsedGameTime;
+    public TimeSpan TotalGameTime;
+    public bool IsRunningSlowly;
+    public GameTime GameTime;
+
+    public void AdvanceUpdate(GameTime gameTime)
     {
-        public int UpdateNumber;
-        public int DrawNumber;
-        public TimeSpan ElapsedGameTime;
-        public TimeSpan TotalGameTime;
-        public bool IsRunningSlowly;
-        public GameTime GameTime;
-
-        public void AdvanceUpdate(GameTime gameTime)
-        {
-            UpdateNumber++;
-            UpdateGameTime(gameTime);
-        }
-
-        public void AdvanceDraw(GameTime gameTime)
-        {
-            DrawNumber++;
-            UpdateGameTime(gameTime);
-        }
-
-        public void Reset()
-        {
-            UpdateNumber = 0;
-            DrawNumber = 0;
-            ElapsedGameTime = TimeSpan.Zero;
-            TotalGameTime = TimeSpan.Zero;
-            IsRunningSlowly = false;
-        }
-
-        public void UpdateGameTime(GameTime gameTime)
-        {
-            GameTime = gameTime;
-            ElapsedGameTime = gameTime.ElapsedGameTime;
-            TotalGameTime = gameTime.TotalGameTime;
-            IsRunningSlowly = gameTime.IsRunningSlowly;
-        }
+        UpdateNumber++;
+        UpdateGameTime(gameTime);
     }
 
-    interface IFrameInfoSource
+    public void AdvanceDraw(GameTime gameTime)
     {
-        FrameInfo FrameInfo { get; }
+        DrawNumber++;
+        UpdateGameTime(gameTime);
     }
 
-    class FrameInfoEventArgs : EventArgs
+    public void Reset()
     {
-        public FrameInfoEventArgs(FrameInfo frameInfo)
-        {
-            _frameInfo = frameInfo;
-        }
-
-        private readonly FrameInfo _frameInfo;
-        public FrameInfo FrameInfo { get { return _frameInfo; } }
+        UpdateNumber = 0;
+        DrawNumber = 0;
+        ElapsedGameTime = TimeSpan.Zero;
+        TotalGameTime = TimeSpan.Zero;
+        IsRunningSlowly = false;
     }
+
+    public void UpdateGameTime(GameTime gameTime)
+    {
+        GameTime = gameTime;
+        ElapsedGameTime = gameTime.ElapsedGameTime;
+        TotalGameTime = gameTime.TotalGameTime;
+        IsRunningSlowly = gameTime.IsRunningSlowly;
+    }
+}
+
+interface IFrameInfoSource
+{
+    FrameInfo FrameInfo { get; }
+}
+
+class FrameInfoEventArgs : EventArgs
+{
+    public FrameInfoEventArgs(FrameInfo frameInfo)
+    {
+        _frameInfo = frameInfo;
+    }
+
+    private readonly FrameInfo _frameInfo;
+    public FrameInfo FrameInfo { get { return _frameInfo; } }
 }

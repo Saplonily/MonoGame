@@ -8,19 +8,18 @@ using System.Text;
 
 using Monogame.Content;
 
-namespace Monogame.Content
-{
-    internal class PointReader : ContentTypeReader<Point>
-    {
-        public PointReader()
-        {
-        }
+namespace Monogame.Content;
 
-        protected internal override Point Read(ContentReader input, Point existingInstance)
-        {
-            int X = input.ReadInt32();
-            int Y = input.ReadInt32();
-            return new Point(X, Y);
-        }
+internal class PointReader : ContentTypeReader<Point>
+{
+    public PointReader()
+    {
+    }
+
+    protected internal override Point Read(ContentReader input, Point existingInstance)
+    {
+        int X = input.ReadInt32();
+        int Y = input.ReadInt32();
+        return new Point(X, Y);
     }
 }

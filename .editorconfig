@@ -111,8 +111,8 @@ csharp_style_prefer_readonly_struct_member = true
 # 代码块首选项
 csharp_prefer_braces = true
 csharp_prefer_simple_using_statement = true
-csharp_style_namespace_declarations = file_scoped
-csharp_style_prefer_method_group_conversion = true
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_style_prefer_method_group_conversion = true:suggestion
 csharp_style_prefer_primary_constructors = true
 csharp_style_prefer_top_level_statements = false
 
