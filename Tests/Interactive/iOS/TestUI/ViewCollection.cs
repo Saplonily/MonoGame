@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 
-using Microsoft.Xna.Framework;
+using Monogame;
 
 namespace MonoGame.InteractiveTests.TestUI {
 	class ViewCollection : Collection<View> {

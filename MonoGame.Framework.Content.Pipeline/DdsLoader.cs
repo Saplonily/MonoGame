@@ -3,12 +3,12 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
+using Monogame.Graphics.PackedVector;
 using System.IO;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Loader class for DDS format image files.

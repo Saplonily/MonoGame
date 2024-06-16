@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Monogame.Content;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Serialization.Compiler;
+using Monogame.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;

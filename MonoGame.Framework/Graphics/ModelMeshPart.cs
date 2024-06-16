@@ -1,6 +1,6 @@
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a batch of geometry information to submit to the graphics device during rendering.

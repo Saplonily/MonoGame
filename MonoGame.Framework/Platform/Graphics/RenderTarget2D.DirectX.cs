@@ -5,7 +5,7 @@
 using SharpDX.Direct3D11;
 using SharpDX.DXGI;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class RenderTarget2D
     {

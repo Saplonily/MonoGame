@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Provides methods and properties for maintaining a vertex channel.

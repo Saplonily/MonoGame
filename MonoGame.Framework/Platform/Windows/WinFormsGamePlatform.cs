@@ -5,10 +5,10 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using Microsoft.Xna.Framework;
+using Monogame;
 using System.Windows.Forms;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using Monogame.Graphics;
+using Monogame.Input;
 
 namespace MonoGame.Framework
 {
@@ -129,7 +129,7 @@ namespace MonoGame.Framework
                     _window = null;
                     Window = null;
                 }
-                Microsoft.Xna.Framework.Media.MediaManagerState.CheckShutdown();
+                Monogame.Media.MediaManagerState.CheckShutdown();
             }
 
             base.Dispose(disposing);

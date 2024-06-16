@@ -5,7 +5,7 @@
 using System;
 
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     partial class VertexBufferBindings
     {

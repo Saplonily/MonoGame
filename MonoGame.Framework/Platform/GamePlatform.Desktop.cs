@@ -8,7 +8,7 @@ using System;
 using Windows.UI.ViewManagement;
 #endif
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     partial class GamePlatform
     {

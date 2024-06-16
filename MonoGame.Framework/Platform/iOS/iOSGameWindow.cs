@@ -6,7 +6,7 @@ using System;
 
 using UIKit;
 
-namespace Microsoft.Xna.Framework {
+namespace Monogame {
 	class iOSGameWindow : GameWindow {
 		private readonly iOSGameViewController _viewController;
 

@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     /// <summary>
     /// A struct that represents which directions on the directional pad of a controller are being pressed.
@@ -34,7 +34,7 @@ namespace Microsoft.Xna.Framework.Input
         public ButtonState Up { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Microsoft.Xna.Framework.Input.GamePadDPad"/> struct.
+        /// Initializes a new instance of the <see cref="T:Monogame.Input.GamePadDPad"/> struct.
         /// </summary>
         /// <param name="upValue">Current state of directional pad up.</param>
         /// <param name="downValue">Current state of directional pad down.</param>
@@ -97,7 +97,7 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="T:Microsoft.Xna.Framework.Input.GamePadDPad"/> object.
+        /// Serves as a hash function for a <see cref="T:Monogame.Input.GamePadDPad"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>
@@ -111,10 +111,10 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadDPad"/>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadDPad"/>
         /// in a format of 0000 where each number represents a boolean value of each respecting object property: Left, Up, Right, Down.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadDPad"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadDPad"/>.</returns>
         public override string ToString()
         {
             return "" + (int)Left + (int)Up + (int)Right + (int)Down;

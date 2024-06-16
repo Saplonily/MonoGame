@@ -2,14 +2,14 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework.Content.Pipeline.Utilities;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Content.Pipeline.Utilities;
+using Monogame.Graphics;
+using Monogame.Graphics.PackedVector;
 using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     public class PixelBitmapContent<T> : BitmapContent where T : struct, IEquatable<T>
     {

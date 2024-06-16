@@ -4,11 +4,11 @@
 
 using System;
 using Microsoft.Xna;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Content;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     internal class Texture2DReader : ContentTypeReader<Texture2D>
     {

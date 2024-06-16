@@ -4,10 +4,10 @@
 
 using System;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame;
+using Monogame.GamerServices;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
 
 using MonoGame.InteractiveTests.TestUI;
 using System.Drawing;

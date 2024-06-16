@@ -5,7 +5,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     /// <summary>
     /// Describes current joystick state.
@@ -37,11 +37,11 @@ namespace Microsoft.Xna.Framework.Input
         public JoystickHat[] Hats{ get; internal set; }
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Microsoft.Xna.Framework.Input.JoystickState"/> is
-        /// equal to another specified <see cref="Microsoft.Xna.Framework.Input.JoystickState"/>.
+        /// Determines whether a specified instance of <see cref="Monogame.Input.JoystickState"/> is
+        /// equal to another specified <see cref="Monogame.Input.JoystickState"/>.
         /// </summary>
-        /// <param name="left">The first <see cref="Microsoft.Xna.Framework.Input.JoystickState"/> to compare.</param>
-        /// <param name="right">The second <see cref="Microsoft.Xna.Framework.Input.JoystickState"/> to compare.</param>
+        /// <param name="left">The first <see cref="Monogame.Input.JoystickState"/> to compare.</param>
+        /// <param name="right">The second <see cref="Monogame.Input.JoystickState"/> to compare.</param>
         /// <returns><c>true</c> if <c>left</c> and <c>right</c> are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(JoystickState left, JoystickState right)
         {
@@ -52,11 +52,11 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Microsoft.Xna.Framework.Input.JoystickState"/> is not
-        /// equal to another specified <see cref="Microsoft.Xna.Framework.Input.JoystickState"/>.
+        /// Determines whether a specified instance of <see cref="Monogame.Input.JoystickState"/> is not
+        /// equal to another specified <see cref="Monogame.Input.JoystickState"/>.
         /// </summary>
-        /// <param name="left">The first <see cref="Microsoft.Xna.Framework.Input.JoystickState"/> to compare.</param>
-        /// <param name="right">The second <see cref="Microsoft.Xna.Framework.Input.JoystickState"/> to compare.</param>
+        /// <param name="left">The first <see cref="Monogame.Input.JoystickState"/> to compare.</param>
+        /// <param name="right">The second <see cref="Monogame.Input.JoystickState"/> to compare.</param>
         /// <returns><c>true</c> if <c>left</c> and <c>right</c> are not equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(JoystickState left, JoystickState right)
         {
@@ -64,18 +64,18 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:Microsoft.Xna.Framework.Input.JoystickState"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:Monogame.Input.JoystickState"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:Microsoft.Xna.Framework.Input.JoystickState"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:Monogame.Input.JoystickState"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="T:Microsoft.Xna.Framework.Input.JoystickState"/>; otherwise, <c>false</c>.</returns>
+        /// <see cref="T:Monogame.Input.JoystickState"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             return (obj is JoystickState) && (this == (JoystickState)obj);
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="T:Microsoft.Xna.Framework.Input.JoystickState"/> object.
+        /// Serves as a hash function for a <see cref="T:Monogame.Input.JoystickState"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>
@@ -102,9 +102,9 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.JoystickState"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.JoystickState"/>.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.JoystickState"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.JoystickState"/>.</returns>
         public override string ToString()
         {
             var ret = new StringBuilder(54 - 2 + Axes.Length * 7 + Buttons.Length + Hats.Length * 5);

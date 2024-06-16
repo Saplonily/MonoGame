@@ -6,11 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
+using Monogame.Graphics.PackedVector;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// Processes a game asset mesh to a model content that is optimal for runtime.
@@ -405,7 +405,7 @@ namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
                         "Vertex channel \"{0}\" is the wrong type. It has element type {1}. Type {2} is expected.",
                         vertexChannel.Name,
                         vertexChannel.ElementType.FullName,
-                        "Microsoft.Xna.Framework.Content.Pipeline.Graphics.BoneWeightCollection"),
+                        "Monogame.Content.Pipeline.Graphics.BoneWeightCollection"),
                     identity);
             }
             var outputIndices = new Byte4[inputWeights.Count];

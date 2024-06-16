@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>Described the playback state of a SoundEffectInstance.</summary>
     public enum SoundState

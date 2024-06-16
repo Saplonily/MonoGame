@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 
 namespace MonoGame.InteractiveTests.TestUI {
 	class DrawContext : IDisposable {

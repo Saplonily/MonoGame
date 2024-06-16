@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Using Include="Microsoft.Xna.Framework.Audio" />
-    <Using Include="Microsoft.Xna.Framework" />
-    <Using Include="Microsoft.Xna.Framework.Content" />
-    <Using Include="Microsoft.Xna.Framework.Graphics" />
-    <Using Include="Microsoft.Xna.Framework.Media" />
-    <Using Include="Microsoft.Xna.Framework.Input" />
-    <Using Include="Microsoft.Xna.Framework.Input.Touch" />
+    <Using Include="Monogame.Audio" />
+    <Using Include="Monogame" />
+    <Using Include="Monogame.Content" />
+    <Using Include="Monogame.Graphics" />
+    <Using Include="Monogame.Media" />
+    <Using Include="Monogame.Input" />
+    <Using Include="Monogame.Input.Touch" />
     <Using Include="MonoGame.Framework.Utilities" />
   </ItemGroup>
 

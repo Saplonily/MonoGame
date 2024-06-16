@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Contains the rendering state for drawing with an effect. <para/>

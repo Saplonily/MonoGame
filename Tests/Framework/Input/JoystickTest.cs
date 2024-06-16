@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework.Input;
+using Monogame.Input;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Input

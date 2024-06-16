@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics.PackedVector
+namespace Monogame.Graphics.PackedVector
 {
     /// <summary>
     /// Packed vector type containing unsigned normalized values ranging from 0 to 1. The x and z components use 5 bits, and the y component uses 6 bits.

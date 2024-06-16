@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Xna.Framework.Windows
+namespace Monogame.Windows
 {
     internal class HorizontalMouseWheelEventArgs : EventArgs
     {

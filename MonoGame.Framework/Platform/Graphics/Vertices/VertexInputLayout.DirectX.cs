@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using SharpDX.Direct3D11;
 
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     partial class VertexInputLayout
     {

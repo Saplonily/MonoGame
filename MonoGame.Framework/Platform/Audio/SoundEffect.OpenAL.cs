@@ -13,7 +13,7 @@ using AudioToolbox;
 using AudioUnit;
 #endif
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     public sealed partial class SoundEffect : IDisposable
     {

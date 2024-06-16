@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Graphics;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     [ContentTypeWriter]
     class EffectMaterialWriter : BuiltInContentWriter<EffectMaterialContent>

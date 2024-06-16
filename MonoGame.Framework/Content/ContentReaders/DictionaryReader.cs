@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
 
     internal class DictionaryReader<TKey, TValue> : ContentTypeReader<Dictionary<TKey, TValue>>

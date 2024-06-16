@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content;
+using Monogame.Content;
 
 namespace MonoGame.Framework.Utilities
 {

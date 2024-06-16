@@ -10,7 +10,7 @@ using Foundation;
 using CoreGraphics;
 using ObjCRuntime;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     class iOSGameViewController : 
     #if TVOS
@@ -191,7 +191,7 @@ namespace Microsoft.Xna.Framework
                         }
                         else
                         {
-                            Microsoft.Xna.Framework.Input.GamePad.MenuPressed = true;
+                            Monogame.Input.GamePad.MenuPressed = true;
                         }
                     }
                     else

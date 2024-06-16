@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Monogame;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents bone data for a model.

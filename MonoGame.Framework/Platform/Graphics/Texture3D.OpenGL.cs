@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using MonoGame.Framework.Utilities;
 using MonoGame.OpenGL;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class Texture3D : Texture
     {

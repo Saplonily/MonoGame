@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework;
+using Monogame;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
 	// Assorted helpers for doing useful things with bitmaps.
 	internal static class BitmapUtils

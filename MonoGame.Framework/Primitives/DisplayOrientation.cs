@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Defines the orientation of the display.

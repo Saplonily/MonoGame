@@ -8,13 +8,13 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Xml;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
-using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Content;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Serialization.Compiler;
+using Monogame.Content.Pipeline.Serialization.Intermediate;
+using Monogame.Graphics;
 using NUnit.Framework;
 #if XNA
 using System.Reflection;
@@ -373,7 +373,7 @@ namespace MonoGame.Tests.ContentPipeline
             {
                 Texture = grassExternalReference,
                 Texture2 = grassExternalReference,
-                Shader = new ExternalReference<Microsoft.Xna.Framework.Graphics.Effect>(Path.GetFullPath("Assets/Xml/foliage.fx"))
+                Shader = new ExternalReference<Monogame.Graphics.Effect>(Path.GetFullPath("Assets/Xml/foliage.fx"))
             });
         }
 

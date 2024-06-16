@@ -6,7 +6,7 @@ This was adapted from a version I found online. Here's the original header:
  	This version is also public domain - do whatever you want with it.
 */
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Heuristic method to use to choose the rectangles positions.

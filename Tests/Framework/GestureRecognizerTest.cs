@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame;
+using Monogame.Input.Touch;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework

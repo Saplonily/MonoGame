@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     class ReflectiveWriter<T> : ContentTypeWriter
     {
@@ -169,7 +169,7 @@ namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
 
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
         {
-            return "Microsoft.Xna.Framework.Content.ReflectiveReader`1[[" + 
+            return "Monogame.Content.ReflectiveReader`1[[" + 
                         GetRuntimeType(targetPlatform) 
                     + "]]";
         }

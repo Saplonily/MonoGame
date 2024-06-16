@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Contains a collection of <see cref="CurveKey"/> points in 2D space and provides methods for evaluating features of the curve they define.
@@ -231,7 +231,7 @@ namespace Microsoft.Xna.Framework
         /// <param name="tangentOutType">The tangent out-type. <see cref="CurveKey.TangentOut"/> for more details.</param>
         public void ComputeTangent(int keyIndex, CurveTangent tangentInType, CurveTangent tangentOutType)
         {
-            // See http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.curvetangent.aspx
+            // See http://msdn.microsoft.com/en-us/library/Monogame.curvetangent.aspx
 
             var key = _keys[keyIndex];
 

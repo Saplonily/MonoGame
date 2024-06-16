@@ -6,7 +6,7 @@ using System;
 using System.Runtime.InteropServices;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a set of six 2D textures, one for each face of a cube.

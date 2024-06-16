@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame;
+using Monogame.Content.Pipeline;
 
 namespace MonoGame.Tests.ContentPipeline
 {

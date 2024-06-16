@@ -4,16 +4,16 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content;
+using Monogame.Graphics;
 
 namespace MonoGame.Tests
 {
     internal static class AssetTestUtility
     {
-        public static Microsoft.Xna.Framework.Graphics.Effect LoadEffect(ContentManager content, string name)
+        public static Monogame.Graphics.Effect LoadEffect(ContentManager content, string name)
         {
-            return content.Load<Microsoft.Xna.Framework.Graphics.Effect>(Paths.CompiledEffect(name));
+            return content.Load<Monogame.Graphics.Effect>(Paths.CompiledEffect(name));
         }
     }
 }

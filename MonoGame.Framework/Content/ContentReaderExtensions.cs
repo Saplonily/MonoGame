@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     /// <summary>
     /// Helper extension methods for <see cref="ContentReader"/>.

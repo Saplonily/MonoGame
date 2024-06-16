@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
 	internal class UInt64Reader : ContentTypeReader<ulong>
     {

@@ -10,7 +10,7 @@ using SharpDX.XAudio2;
 using SharpDX.Multimedia;
 using SharpDX.X3DAudio;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     partial class SoundEffect
     {

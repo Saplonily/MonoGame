@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// A collection of <see cref="ModelMeshPartContent"/> objects.

@@ -4,11 +4,11 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+using Monogame;
+using Monogame.Audio;
 using NUnit.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content;
+using Monogame.Graphics;
 using System.Threading;
 using System.Diagnostics;
 

@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     [ContentSerializerCollectionItemName("Data")]
     public sealed class OpaqueDataDictionary : NamedValueDictionary<Object>

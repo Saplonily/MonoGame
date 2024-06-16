@@ -5,12 +5,12 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame;
+using Monogame.Content;
+using Monogame.Input.Touch;
 using System.Diagnostics;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     using MonoGame.Web;
 

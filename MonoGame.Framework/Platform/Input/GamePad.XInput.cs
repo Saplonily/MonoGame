@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using GBF = SharpDX.XInput.GamepadButtonFlags;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     static partial class GamePad
     {

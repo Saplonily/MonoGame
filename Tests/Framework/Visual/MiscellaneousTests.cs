@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework;
+using Monogame;
 using MonoGame.Tests.Components;
 using NUnit.Framework;
 
@@ -19,7 +19,7 @@ namespace MonoGame.Tests.Visual {
         // succession using ReSharpers test runner
         [Ignore("Shader cleanup causes a crash, we should investigate this")]
 #else
-        [Ignore ("Microsoft.Xna.Framework.Graphics.MonoGameGLException : GL.GetError() returned 1286. Invesigate")]
+        [Ignore ("Monogame.Graphics.MonoGameGLException : GL.GetError() returned 1286. Invesigate")]
 #endif
 		public void DrawOrder_falls_back_to_order_of_addition_to_Game ()
 		{

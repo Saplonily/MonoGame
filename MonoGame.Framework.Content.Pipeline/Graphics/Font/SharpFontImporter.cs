@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using SharpFont;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     // Uses FreeType to rasterize TrueType fonts into a series of glyph bitmaps.
     internal class SharpFontImporter : IFontImporter

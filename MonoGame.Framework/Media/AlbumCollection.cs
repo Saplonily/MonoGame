@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// Represents a collection of albums in the device media library. 

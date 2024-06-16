@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Interface for curve evaluation. Implemented by <see cref="Curve"/>

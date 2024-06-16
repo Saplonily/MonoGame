@@ -1,4 +1,4 @@
-﻿namespace Microsoft.Xna.Framework.Graphics
+﻿namespace Monogame.Graphics
 {
     /// <summary>
     /// Vertex type interface which is implemented by a custom vertex type structure.

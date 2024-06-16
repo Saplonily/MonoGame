@@ -5,7 +5,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Key point on the <see cref="Curve"/>.

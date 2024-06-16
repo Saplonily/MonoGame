@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>
     /// Microphone state. 

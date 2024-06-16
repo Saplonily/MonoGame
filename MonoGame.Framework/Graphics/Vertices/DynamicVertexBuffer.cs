@@ -5,7 +5,7 @@
 using System;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a list of 3D vertices to be streamed to the graphics device.  Use <b>DynamicVertexBuffer</b> for

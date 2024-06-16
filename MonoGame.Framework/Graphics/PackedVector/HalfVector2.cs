@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics.PackedVector
+namespace Monogame.Graphics.PackedVector
 {
     /// <summary>
     /// Packed vector type containing two 16-bit floating-point values.

@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a texture resource

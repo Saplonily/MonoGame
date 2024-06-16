@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Provides methods and properties for managing a keyframe. A keyframe describes the position of an animation channel at a single point in time.

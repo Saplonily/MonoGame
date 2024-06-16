@@ -8,7 +8,7 @@ using Eto.Forms;
 
 namespace MonoGame.Tools.Pipeline
 {
-    [CellAttribute(typeof(Microsoft.Xna.Framework.Color))]
+    [CellAttribute(typeof(Monogame.Color))]
     public class CellColor : CellBase
     {
         private Color color;
@@ -19,7 +19,7 @@ namespace MonoGame.Tools.Pipeline
 
             if (Value != null)
             {
-                var tmp = (Microsoft.Xna.Framework.Color)Value;
+                var tmp = (Monogame.Color)Value;
                 color = new Color(tmp.R / 255f, tmp.G / 255f, tmp.B / 255f, tmp.A / 255f);
             }
             else
@@ -33,7 +33,7 @@ namespace MonoGame.Tools.Pipeline
 
             if (dialog.Show(control) == DialogResult.Ok && _eventHandler != null && dialog.Color != color)
             {
-                var col = new Microsoft.Xna.Framework.Color(dialog.Color.Rb, dialog.Color.Gb, dialog.Color.Bb, dialog.Color.Ab);
+                var col = new Monogame.Color(dialog.Color.Rb, dialog.Color.Gb, dialog.Color.Bb, dialog.Color.Ab);
                 _eventHandler(col, EventArgs.Empty);
             }
         }

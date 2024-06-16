@@ -5,7 +5,7 @@
 using MonoGame.OpenGL;
 using System;
 
-namespace Microsoft.Xna.Framework {
+namespace Monogame {
 	partial class iOSGameView {
         private interface IOpenGLApi
         {

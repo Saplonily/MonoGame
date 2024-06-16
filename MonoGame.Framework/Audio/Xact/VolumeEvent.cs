@@ -5,7 +5,7 @@
 using System;
 using System.IO;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
 	class VolumeEvent : ClipEvent
 	{

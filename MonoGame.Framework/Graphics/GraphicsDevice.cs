@@ -10,7 +10,7 @@ using MonoGame.Framework.Utilities;
 using System.Runtime.InteropServices;
 
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Performs primitive-based rendering, creates resources,

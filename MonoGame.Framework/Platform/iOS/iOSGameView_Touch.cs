@@ -10,10 +10,10 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Input;
+using Monogame.Input.Touch;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     partial class iOSGameView
     {

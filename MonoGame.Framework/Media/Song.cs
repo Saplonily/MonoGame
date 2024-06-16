@@ -5,7 +5,7 @@
 using System;
 using System.IO;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// Provides access to a song in the song library.

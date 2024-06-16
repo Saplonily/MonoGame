@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// An efficient mathematical representation for three dimensional rotations.

@@ -17,7 +17,7 @@ using Android.Runtime;
 // which should no longer be updated.  All new development
 // should go into the new one.
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Provides methods to retrieve and manipulate graphics adapters.

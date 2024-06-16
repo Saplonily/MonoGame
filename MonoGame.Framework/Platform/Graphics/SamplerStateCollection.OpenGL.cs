@@ -6,7 +6,7 @@
 
 using MonoGame.OpenGL;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public sealed partial class SamplerStateCollection
     {

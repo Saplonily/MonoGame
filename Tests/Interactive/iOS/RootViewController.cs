@@ -11,8 +11,8 @@ using System.Reflection;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame;
+using Monogame.Input.Touch;
 
 namespace MonoGame.InteractiveTests.iOS {
 	public class RootViewController : UIViewController {

@@ -16,7 +16,7 @@ using Android.Graphics;
 using Android.Provider;
 #endif
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// Provides access to an album in the media library
@@ -28,7 +28,7 @@ namespace Microsoft.Xna.Framework.Media
     /// </para>
     /// <para>
     /// You can obtain an <b>Album</b> object through the
-    /// <see cref="P:Microsoft.Xna.Framework.Media.AlbumCollection.Item(System.Int32)"/>
+    /// <see cref="P:Monogame.Media.AlbumCollection.Item(System.Int32)"/>
     /// indexer and the <see cref="Song.Album">Song.Album</see> property.
     /// </para>
     /// </remarks>

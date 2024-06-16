@@ -1,7 +1,7 @@
 using System;
-using Microsoft.Xna.Framework.Content.Pipeline;
+using Monogame.Content.Pipeline;
 using NUnit.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
+using Monogame.Content.Pipeline.Processors;
 using System.IO;
 #if DIRECTX
 using System.Collections.Generic;

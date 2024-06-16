@@ -9,7 +9,7 @@ using AudioToolbox;
 using AVFoundation;
 #endif
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public static partial class MediaPlayer
     {

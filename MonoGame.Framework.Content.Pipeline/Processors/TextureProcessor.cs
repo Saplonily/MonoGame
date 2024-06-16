@@ -4,10 +4,10 @@
 
 using System;
 using System.ComponentModel;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     [ContentProcessor(DisplayName="Texture - MonoGame")]
     public class TextureProcessor : ContentProcessor<TextureContent, TextureContent>

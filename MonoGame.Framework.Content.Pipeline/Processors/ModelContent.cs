@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     public sealed class ModelContent
     {

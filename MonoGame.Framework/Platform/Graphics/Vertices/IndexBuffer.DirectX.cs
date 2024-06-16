@@ -6,7 +6,7 @@ using System;
 using System.Runtime.InteropServices;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class IndexBuffer
     {

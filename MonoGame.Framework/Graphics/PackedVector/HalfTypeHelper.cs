@@ -5,7 +5,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Xna.Framework.Graphics.PackedVector
+namespace Monogame.Graphics.PackedVector
 {
     internal class HalfTypeHelper
     {

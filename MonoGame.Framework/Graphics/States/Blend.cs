@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Defines a blend mode.
@@ -58,11 +58,11 @@ namespace Microsoft.Xna.Framework.Graphics
         /// </summary>
 		InverseDestinationAlpha,
 	    /// <summary>
-        /// Each component of the color is multiplied by a constant in the <see cref="P:Microsoft.Xna.Framework.Graphics.GraphicsDevice.BlendFactor"/>.
+        /// Each component of the color is multiplied by a constant in the <see cref="P:Monogame.Graphics.GraphicsDevice.BlendFactor"/>.
 	    /// </summary>
 		BlendFactor,
         /// <summary>
-        /// Each component of the color is multiplied by a inversed constant in the <see cref="P:Microsoft.Xna.Framework.Graphics.GraphicsDevice.BlendFactor"/>.
+        /// Each component of the color is multiplied by a inversed constant in the <see cref="P:Monogame.Graphics.GraphicsDevice.BlendFactor"/>.
         /// </summary>
 		InverseBlendFactor,
         /// <summary>

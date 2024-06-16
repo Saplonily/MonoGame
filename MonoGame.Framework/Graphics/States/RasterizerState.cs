@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Contains rasterizer state, which determines how to convert vector data (shapes) into raster data (pixels).

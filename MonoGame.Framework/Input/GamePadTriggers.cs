@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     /// <summary>
     /// A struct that contains information on the left and the right trigger buttons.
@@ -22,7 +22,7 @@ namespace Microsoft.Xna.Framework.Input
         public float Right { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Microsoft.Xna.Framework.Input.GamePadTriggers"/> struct.
+        /// Initializes a new instance of the <see cref="T:Monogame.Input.GamePadTriggers"/> struct.
         /// </summary>
         /// <param name="leftTrigger">The position of the left trigger, the value will get clamped between 0.0f and 1.0f.</param>
         /// <param name="rightTrigger">The position of the right trigger, the value will get clamped between 0.0f and 1.0f.</param>
@@ -65,7 +65,7 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="T:Microsoft.Xna.Framework.Input.GamePadTriggers"/> object.
+        /// Serves as a hash function for a <see cref="T:Monogame.Input.GamePadTriggers"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>
@@ -78,9 +78,9 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadTriggers"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadTriggers"/>.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadTriggers"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadTriggers"/>.</returns>
         public override string ToString()
         {
             return "[GamePadTriggers: Left=" + Left + ", Right=" + Right + "]";

@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using TOutput = Microsoft.Xna.Framework.Ray;
+using TOutput = Monogame.Ray;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     /// <summary>
     /// Writes the Ray value to the output.

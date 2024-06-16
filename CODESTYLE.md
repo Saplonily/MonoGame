@@ -166,7 +166,7 @@ The reasons to extend the public rules (no Hungarian, underscore prefix for memb
 ## File Organization
 * Source files should contain only one public type, although multiple internal types are permitted if required
 * Source files should be given the name of the public type in the file
-* Directory names should follow the namespace for the class after `Framework`. For example, one would expect to find the public class `Microsoft.Xna.Framework.Graphics.GraphicsDevice` in **MonoGame.Framework\Graphics\GraphicsDevice.cs**
+* Directory names should follow the namespace for the class after `Framework`. For example, one would expect to find the public class `Monogame.Graphics.GraphicsDevice` in **MonoGame.Framework\Graphics\GraphicsDevice.cs**
 * Class members should be grouped logically, and encapsulated into regions (Fields, Constructors, Properties, Events, Methods, Private interface implementations, Nested types)
 * Using statements should be before the namespace declaration.
 ```

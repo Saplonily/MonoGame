@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using UIKit;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public static partial class MessageBox
     {

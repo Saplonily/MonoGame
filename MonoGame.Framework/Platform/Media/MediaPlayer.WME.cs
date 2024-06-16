@@ -8,7 +8,7 @@ using SharpDX.Multimedia;
 using Windows.UI.Core;
 using Windows.ApplicationModel.Core;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public static partial class MediaPlayer
     {

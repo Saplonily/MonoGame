@@ -1,9 +1,9 @@
 using System;
 using Android.Content;
-using Microsoft.Xna.Framework.Media;
+using Monogame.Media;
 using Android.App;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
 	internal class ScreenReceiver : BroadcastReceiver
 	{	

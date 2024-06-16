@@ -2,10 +2,10 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework;
+using Monogame;
 using System;
 
-namespace Microsoft.Xna.Framework.Input.Touch
+namespace Monogame.Input.Touch
 {
     /// <summary>
     /// Represents data from a multi-touch gesture over a span of time.

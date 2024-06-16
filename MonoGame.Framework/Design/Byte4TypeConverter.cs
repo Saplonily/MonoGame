@@ -2,13 +2,13 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Graphics.PackedVector;
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Microsoft.Xna.Framework.Design
+namespace Monogame.Design
 {
     /// <summary>
     /// Provides a unified way of converting <see cref="Byte4"/> value to other types, as well as for accessing

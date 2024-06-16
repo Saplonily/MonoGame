@@ -4,11 +4,11 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {   
     /// <summary>
-    /// An object that can be attached to a <see cref="Microsoft.Xna.Framework.Game"/> and have its <see cref="Update"/>
-    /// method called when <see cref="Microsoft.Xna.Framework.Game.Update"/> is called.
+    /// An object that can be attached to a <see cref="Monogame.Game"/> and have its <see cref="Update"/>
+    /// method called when <see cref="Monogame.Game.Update"/> is called.
     /// </summary>
     public class GameComponent : IGameComponent, IUpdateable, IDisposable
     {

@@ -3,8 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using NUnit.Framework;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
+using Monogame.Input;
+using Monogame;
 
 namespace MonoGame.Tests.Input
 {

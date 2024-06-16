@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content.Pipeline;
+using Monogame.Content.Pipeline;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.ContentPipeline

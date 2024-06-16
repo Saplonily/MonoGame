@@ -9,10 +9,10 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Builder.Convertors;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Builder.Convertors;
+using Monogame.Graphics;
 using System.Diagnostics;
 using MonoGame.Framework.Content.Pipeline.Builder;
 

@@ -4,10 +4,10 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public partial class MouseCursor
     {

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework;
+using Monogame;
 using NUnit.Framework;
 
 namespace MonoGame.Tests {

@@ -6,9 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using Microsoft.Xna.Framework.Content;
+using Monogame.Content;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
 	
 	internal class RectangleReader : ContentTypeReader<Rectangle>

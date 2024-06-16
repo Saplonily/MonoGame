@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     static partial class GamePad
     {

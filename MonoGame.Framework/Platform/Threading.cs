@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 #if IOS
 using Foundation;
 using OpenGLES;
@@ -15,7 +15,7 @@ using OpenGLES;
 using MonoGame.OpenGL;
 #endif
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     internal class Threading
     {

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public static partial class MessageBox
     {

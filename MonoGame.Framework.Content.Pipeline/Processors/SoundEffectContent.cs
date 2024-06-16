@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// Represents a processed sound effect.

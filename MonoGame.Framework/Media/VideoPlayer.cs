@@ -8,9 +8,9 @@ using System.Threading;
 #if WINDOWS_UAP
 using System.Threading.Tasks;
 #endif
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// Provides methods and properties to play back, pause, resume, and stop <see cref="Video"/>.

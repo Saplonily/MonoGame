@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Microsoft.Xna.Framework;
+using Monogame;
 
 namespace MonoGame.Effect.TPGParser
 {

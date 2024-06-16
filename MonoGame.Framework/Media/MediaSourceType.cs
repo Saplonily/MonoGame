@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// Type of the media source.

@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>
     /// Provides functionality for manipulating multiple sounds at a time.

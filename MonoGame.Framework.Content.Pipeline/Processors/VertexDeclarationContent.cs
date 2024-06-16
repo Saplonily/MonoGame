@@ -4,9 +4,9 @@
 
 using System;
 using System.Collections.ObjectModel;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// Provides methods and properties for maintaining the vertex declaration data of a VertexContent.

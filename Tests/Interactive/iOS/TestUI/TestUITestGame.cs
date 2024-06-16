@@ -5,9 +5,9 @@
 using System;
 using System.Drawing;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
 
 namespace MonoGame.InteractiveTests.TestUI {
 	[InteractiveTest("Test UI Test", Categories.Meta)]

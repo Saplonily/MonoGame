@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>Manages the playback of a sound or set of sounds.</summary>
     /// <remarks>

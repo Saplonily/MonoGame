@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     /// <summary>
     /// A struct that represents the current stick (thumbstick) states for the controller.
@@ -174,7 +174,7 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="T:Microsoft.Xna.Framework.Input.GamePadThumbSticks"/> object.
+        /// Serves as a hash function for a <see cref="T:Monogame.Input.GamePadThumbSticks"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>
@@ -187,9 +187,9 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadThumbSticks"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadThumbSticks"/>.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadThumbSticks"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadThumbSticks"/>.</returns>
         public override string ToString()
         {
             return "[GamePadThumbSticks: Left=" + Left + ", Right=" + Right + "]";

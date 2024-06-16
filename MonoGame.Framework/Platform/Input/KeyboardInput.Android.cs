@@ -3,7 +3,7 @@ using Android.App;
 using Android.Content;
 using Android.Widget;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public static partial class KeyboardInput
     {

@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     /// <summary>
     /// Writes the enum value to the output. Usually 32 bit, but can be other sizes if T is not integer.
@@ -26,7 +26,7 @@ namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
 
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
         {
-            return "Microsoft.Xna.Framework.Content.EnumReader`1[[" + GetRuntimeType(targetPlatform) + "]]";
+            return "Monogame.Content.EnumReader`1[[" + GetRuntimeType(targetPlatform) + "]]";
         }
 
         protected internal override void Write(ContentWriter output, T value)

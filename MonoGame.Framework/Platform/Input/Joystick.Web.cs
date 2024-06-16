@@ -5,7 +5,7 @@
 using System;
 using JSIL;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     static partial class Joystick
     {

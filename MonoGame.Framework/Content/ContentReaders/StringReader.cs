@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     internal class StringReader : ContentTypeReader<String>
     {

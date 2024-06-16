@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     /// <summary>
     /// Defines a manager that constructs and keeps track of <see cref="ContentTypeReader"/> objects.
@@ -230,9 +230,9 @@ namespace Microsoft.Xna.Framework.Content
                 preparedType = Regex.Replace(preparedType, @"(.+?), Version=.+?$", "$1");
 
             // TODO: For WinRT this is most likely broken!
-            preparedType = preparedType.Replace(", Microsoft.Xna.Framework.Graphics", string.Format(", {0}", _assemblyName));
-            preparedType = preparedType.Replace(", Microsoft.Xna.Framework.Video", string.Format(", {0}", _assemblyName));
-            preparedType = preparedType.Replace(", Microsoft.Xna.Framework", string.Format(", {0}", _assemblyName));
+            preparedType = preparedType.Replace(", Monogame.Graphics", string.Format(", {0}", _assemblyName));
+            preparedType = preparedType.Replace(", Monogame.Video", string.Format(", {0}", _assemblyName));
+            preparedType = preparedType.Replace(", Monogame", string.Format(", {0}", _assemblyName));
 
             if (_isRunningOnNetCore)
                 preparedType = preparedType.Replace("mscorlib", "System.Private.CoreLib");

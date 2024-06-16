@@ -5,11 +5,11 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Content;
+using Monogame.Graphics.PackedVector;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a 2D grid of texels.

@@ -3,11 +3,11 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Content;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// A default implementation of IResumeManager. Loads a user specified

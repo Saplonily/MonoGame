@@ -8,11 +8,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Serialization.Compiler;
+using Monogame.Graphics;
 using System.Globalization;
-using Microsoft.Xna.Framework.Content.Pipeline.Builder.Convertors;
+using Monogame.Content.Pipeline.Builder.Convertors;
 using System.Diagnostics;
 
 namespace MonoGame.Framework.Content.Pipeline.Builder
@@ -120,7 +120,7 @@ namespace MonoGame.Framework.Content.Pipeline.Builder
 
 	    private void RegisterCustomConverters ()
 	    {
-		    AssignTypeConverter<Microsoft.Xna.Framework.Color, StringToColorConverter> ();
+		    AssignTypeConverter<Monogame.Color, StringToColorConverter> ();
 	    }
 
         public void AddAssembly(string assemblyFilePath)

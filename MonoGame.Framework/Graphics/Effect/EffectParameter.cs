@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents an <see cref="Effect"/> parameter.

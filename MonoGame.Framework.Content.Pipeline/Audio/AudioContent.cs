@@ -6,7 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Audio
+namespace Monogame.Content.Pipeline.Audio
 {
     /// <summary>
     /// Encapsulates and provides operations, such as format conversions, on the 

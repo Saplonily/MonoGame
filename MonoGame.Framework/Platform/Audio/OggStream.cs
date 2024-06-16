@@ -14,7 +14,7 @@ using System.Threading;
 using NVorbis;
 using MonoGame.OpenAL;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     internal class OggStream : IDisposable
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Graphics.PackedVector;
 
-namespace Microsoft.Xna.Framework.Design
+namespace Monogame.Design
 {
     internal static class VectorConversion
     {

@@ -10,7 +10,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using Microsoft.Xna.Framework.Content.Pipeline;
+using Monogame.Content.Pipeline;
 
 namespace MonoGame.Framework.Content.Pipeline.Builder
 {

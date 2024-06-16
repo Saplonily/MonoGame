@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using TOutput = Microsoft.Xna.Framework.BoundingFrustum;
+using TOutput = Monogame.BoundingFrustum;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     /// <summary>
     /// Writes the BoundingFrustum value to the output.

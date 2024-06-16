@@ -12,11 +12,11 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Javax.Microedition.Khronos.Egl;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Graphics;
+using Monogame.Input;
+using Monogame.Input.Touch;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     public class MonoGameAndroidGameView : SurfaceView, ISurfaceHolderCallback, View.IOnTouchListener
     {
@@ -1097,7 +1097,7 @@ namespace Microsoft.Xna.Framework
                         o =>
                         {
                             Android.Util.Log.Debug("MonoGame", "Begin reloading graphics content");
-                            Microsoft.Xna.Framework.Content.ContentManager.ReloadGraphicsContent();
+                            Monogame.Content.ContentManager.ReloadGraphicsContent();
                             Android.Util.Log.Debug("MonoGame", "End reloading graphics content");
 
                             // DeviceReset events

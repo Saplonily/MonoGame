@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     /// <summary>
     /// This is used to specify the XML element name to use for each item in a collection.

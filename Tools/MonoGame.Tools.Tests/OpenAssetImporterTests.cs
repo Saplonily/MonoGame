@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Monogame;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
 using NUnit.Framework;
 using System.IO;
 

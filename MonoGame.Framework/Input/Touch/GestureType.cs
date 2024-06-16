@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Input.Touch
+namespace Monogame.Input.Touch
 {
     /// <summary>
     /// Enumeration of values that represent different gestures that can be processed by <see cref="TouchPanel.ReadGesture"/>.

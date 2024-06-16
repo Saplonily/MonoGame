@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Audio
+namespace Monogame.Content.Pipeline.Audio
 {
     internal class DefaultAudioProfile : AudioProfile
     {

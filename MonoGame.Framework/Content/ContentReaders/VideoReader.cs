@@ -4,10 +4,10 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Media;
+using Monogame.Media;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     internal class VideoReader : ContentTypeReader<Video>
     {

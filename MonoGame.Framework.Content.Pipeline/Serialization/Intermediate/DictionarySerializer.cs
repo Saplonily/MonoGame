@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate
 {
     [ContentTypeSerializer]
     class DictionarySerializer<TKey,TValue> : ContentTypeSerializer<Dictionary<TKey,TValue>>

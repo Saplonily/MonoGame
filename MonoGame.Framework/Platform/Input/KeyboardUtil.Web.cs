@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public static class KeyboardUtil
     {

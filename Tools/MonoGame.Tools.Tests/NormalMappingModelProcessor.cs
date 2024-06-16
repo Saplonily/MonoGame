@@ -8,9 +8,9 @@
 #endregion
 
 #region Using Statements
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Processors;
 using System;
 
 #endregion

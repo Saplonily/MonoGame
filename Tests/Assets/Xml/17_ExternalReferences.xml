@@ -12,7 +12,7 @@
     </Shader>
   </Asset>
   <ExternalReferences>
-    <ExternalReference ID="#External1" TargetType="Microsoft.Xna.Framework.Graphics.Texture2D">grass.tga</ExternalReference>
-    <ExternalReference ID="#External2" TargetType="Microsoft.Xna.Framework.Graphics.Effect">foliage.fx</ExternalReference>
+    <ExternalReference ID="#External1" TargetType="Monogame.Graphics.Texture2D">grass.tga</ExternalReference>
+    <ExternalReference ID="#External2" TargetType="Monogame.Graphics.Effect">foliage.fx</ExternalReference>
   </ExternalReferences>
 </XnaContent>

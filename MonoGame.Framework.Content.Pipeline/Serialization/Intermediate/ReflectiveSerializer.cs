@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Xml;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate
 {
     internal class ReflectiveSerializer : ContentTypeSerializer
     {

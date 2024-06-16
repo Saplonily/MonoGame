@@ -5,7 +5,7 @@
 using System;
 using System.Collections.ObjectModel;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public sealed partial class GraphicsAdapter : IDisposable
     {

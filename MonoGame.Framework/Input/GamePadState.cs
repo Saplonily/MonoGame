@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     /// <summary>
     /// Represents specific information about the state of the controller,
@@ -55,7 +55,7 @@ namespace Microsoft.Xna.Framework.Input
         public GamePadTriggers Triggers { get; internal set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/> struct
+        /// Initializes a new instance of the <see cref="T:Monogame.Input.GamePadState"/> struct
         /// using the specified GamePadThumbSticks, GamePadTriggers, GamePadButtons, and GamePadDPad.
         /// </summary>
         /// <param name="thumbSticks">Initial thumbstick state.</param>
@@ -74,7 +74,7 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/> struct
+        /// Initializes a new instance of the <see cref="T:Monogame.Input.GamePadState"/> struct
         /// using the specified stick, trigger, and button values.
         /// </summary>
         /// <param name="leftThumbStick">Left stick value. Each axis is clamped between −1.0 and 1.0.</param>
@@ -88,7 +88,7 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/> struct
+        /// Initializes a new instance of the <see cref="T:Monogame.Input.GamePadState"/> struct
         /// using the specified stick, trigger, and button values.
         /// </summary>
         /// <param name="leftThumbStick">Left stick value. Each axis is clamped between −1.0 and 1.0.</param>
@@ -117,13 +117,13 @@ namespace Microsoft.Xna.Framework.Input
             result |= ThumbSticks._virtualButtons;
 
             if (DPad.Down == ButtonState.Pressed)
-                result |= Microsoft.Xna.Framework.Input.Buttons.DPadDown;
+                result |= Monogame.Input.Buttons.DPadDown;
             if (DPad.Up == ButtonState.Pressed)
-                result |= Microsoft.Xna.Framework.Input.Buttons.DPadUp;
+                result |= Monogame.Input.Buttons.DPadUp;
             if (DPad.Left == ButtonState.Pressed)
-                result |= Microsoft.Xna.Framework.Input.Buttons.DPadLeft;
+                result |= Monogame.Input.Buttons.DPadLeft;
             if (DPad.Right == ButtonState.Pressed)
-                result |= Microsoft.Xna.Framework.Input.Buttons.DPadRight;
+                result |= Monogame.Input.Buttons.DPadRight;
 
             return result;
         }
@@ -135,7 +135,7 @@ namespace Microsoft.Xna.Framework.Input
         /// <param name="button">Buttons to query. Specify a single button, or combine multiple buttons using a bitwise OR operation.</param>
         public bool IsButtonDown(Buttons button)
         {
-            if (button == Microsoft.Xna.Framework.Input.Buttons.None) return false;
+            if (button == Monogame.Input.Buttons.None) return false;
             return (GetVirtualButtons() & button) == button;
         }
 
@@ -150,11 +150,11 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Microsoft.Xna.Framework.Input.GamePadState"/> is equal
-        /// to another specified <see cref="Microsoft.Xna.Framework.Input.GamePadState"/>.
+        /// Determines whether a specified instance of <see cref="Monogame.Input.GamePadState"/> is equal
+        /// to another specified <see cref="Monogame.Input.GamePadState"/>.
         /// </summary>
-        /// <param name="left">The first <see cref="Microsoft.Xna.Framework.Input.GamePadState"/> to compare.</param>
-        /// <param name="right">The second <see cref="Microsoft.Xna.Framework.Input.GamePadState"/> to compare.</param>
+        /// <param name="left">The first <see cref="Monogame.Input.GamePadState"/> to compare.</param>
+        /// <param name="right">The second <see cref="Monogame.Input.GamePadState"/> to compare.</param>
         /// <returns><c>true</c> if <c>left</c> and <c>right</c> are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(GamePadState left, GamePadState right)
         {
@@ -167,11 +167,11 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Microsoft.Xna.Framework.Input.GamePadState"/> is not
-        /// equal to another specified <see cref="Microsoft.Xna.Framework.Input.GamePadState"/>.
+        /// Determines whether a specified instance of <see cref="Monogame.Input.GamePadState"/> is not
+        /// equal to another specified <see cref="Monogame.Input.GamePadState"/>.
         /// </summary>
-        /// <param name="left">The first <see cref="Microsoft.Xna.Framework.Input.GamePadState"/> to compare.</param>
-        /// <param name="right">The second <see cref="Microsoft.Xna.Framework.Input.GamePadState"/> to compare.</param>
+        /// <param name="left">The first <see cref="Monogame.Input.GamePadState"/> to compare.</param>
+        /// <param name="right">The second <see cref="Monogame.Input.GamePadState"/> to compare.</param>
         /// <returns><c>true</c> if <c>left</c> and <c>right</c> are not equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(GamePadState left, GamePadState right)
         {
@@ -179,18 +179,18 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:Monogame.Input.GamePadState"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:Monogame.Input.GamePadState"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/>; otherwise, <c>false</c>.</returns>
+        /// <see cref="T:Monogame.Input.GamePadState"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             return (obj is GamePadState) && (this == (GamePadState)obj);
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/> object.
+        /// Serves as a hash function for a <see cref="T:Monogame.Input.GamePadState"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>
@@ -208,9 +208,9 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadState"/>.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadState"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadState"/>.</returns>
         public override string ToString()
         {
             if (!IsConnected)

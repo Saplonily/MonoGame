@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     internal class VideoSampleGrabber : SharpDX.CallbackBase, SampleGrabberSinkCallback
     {

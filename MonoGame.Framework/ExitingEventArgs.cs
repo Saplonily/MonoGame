@@ -1,6 +1,6 @@
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Event arguments for <see cref="Game.Exiting"/>.

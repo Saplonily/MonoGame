@@ -4,7 +4,7 @@
 
 using System;
 using System.Linq;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 using NUnit.Framework;
 
 // HACK: Only enable for XNA and DirectX which are the 

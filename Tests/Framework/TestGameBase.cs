@@ -11,8 +11,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 
 using MonoGame.Tests.Components;
 

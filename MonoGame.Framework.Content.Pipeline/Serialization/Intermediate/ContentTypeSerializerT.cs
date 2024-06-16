@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate
 {
     public abstract class ContentTypeSerializer<T> : ContentTypeSerializer
     {

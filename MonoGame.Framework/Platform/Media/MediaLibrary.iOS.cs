@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Foundation;
 using MediaPlayer;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public partial class MediaLibrary
     {

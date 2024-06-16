@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Android.Views;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
 	public static class Keyboard
 	{

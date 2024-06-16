@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+﻿using Monogame;
+using Monogame.Graphics.PackedVector;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework

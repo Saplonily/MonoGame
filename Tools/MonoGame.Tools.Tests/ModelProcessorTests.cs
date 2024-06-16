@@ -2,10 +2,10 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
+using Monogame;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Processors;
 using NUnit.Framework;
 using System;
 

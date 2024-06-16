@@ -24,7 +24,7 @@ using Android.Graphics;
 #endif
 #endif // OPENGL
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class Texture2D : Texture
     {

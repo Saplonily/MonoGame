@@ -8,7 +8,7 @@
 //       So for reference as to the messages received, you can find more information at
 //       https://learn.microsoft.com/en-us/windows/win32/api/d3d11sdklayers/ns-d3d11sdklayers-d3d11_message
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a debug message from the graphics subsystem.

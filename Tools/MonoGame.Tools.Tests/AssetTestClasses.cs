@@ -4,11 +4,11 @@
 
 using System;
 using System.Collections;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Content;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
 using System.Collections.Generic;
 
 #region The Basics

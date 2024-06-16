@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public static partial class Keyboard
     {

@@ -9,7 +9,7 @@ using SharpDX;
 using SharpDX.Multimedia;
 using SharpDX.XAudio2;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     public sealed partial class DynamicSoundEffectInstance : SoundEffectInstance
     {

@@ -4,15 +4,15 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
-using XnaKeys = Microsoft.Xna.Framework.Input.Keys;
+using Monogame.Input;
+using XnaKeys = Monogame.Input.Keys;
 
 using JSIL;
 using JSIL.Meta;
 
 using MonoGame.Web;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     using MonoGame.Web;
 

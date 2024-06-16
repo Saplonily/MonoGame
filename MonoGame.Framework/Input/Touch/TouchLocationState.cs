@@ -6,7 +6,7 @@
 using System;
 #endregion Using clause
 
-namespace Microsoft.Xna.Framework.Input.Touch
+namespace Monogame.Input.Touch
 {
     /// <summary>
     /// Holds the possible state information for a touch location..

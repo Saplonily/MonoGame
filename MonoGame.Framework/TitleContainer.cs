@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Provides functionality for opening a stream in the title storage area.

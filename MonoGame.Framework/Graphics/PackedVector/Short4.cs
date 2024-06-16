@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics.PackedVector
+namespace Monogame.Graphics.PackedVector
 {
     /// <summary>
     /// Packed vector type containing four 16-bit signed integer values.

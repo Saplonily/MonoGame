@@ -4,7 +4,7 @@
 
 using System;
 using System.Linq;
-using Microsoft.Xna.Framework.Input;
+using Monogame.Input;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Input

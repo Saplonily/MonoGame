@@ -5,7 +5,7 @@
 using System;
 using System.IO;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>Represents a loaded sound resource.</summary>
     /// <remarks>
@@ -200,7 +200,7 @@ namespace Microsoft.Xna.Framework.Audio
 
         /// <summary>
         /// Releases unmanaged resources and performs other cleanup operations before the
-        /// <see cref="Microsoft.Xna.Framework.Audio.SoundEffect"/> is reclaimed by garbage collection.
+        /// <see cref="Monogame.Audio.SoundEffect"/> is reclaimed by garbage collection.
         /// </summary>
         ~SoundEffect()
         {
@@ -509,7 +509,7 @@ namespace Microsoft.Xna.Framework.Audio
         /// <summary>Indicates whether the object is disposed.</summary>
         public bool IsDisposed { get { return _isDisposed; } }
 
-        /// <summary>Releases the resources held by this <see cref="Microsoft.Xna.Framework.Audio.SoundEffect"/>.</summary>
+        /// <summary>Releases the resources held by this <see cref="Monogame.Audio.SoundEffect"/>.</summary>
         public void Dispose()
         {
             Dispose(true);
@@ -517,7 +517,7 @@ namespace Microsoft.Xna.Framework.Audio
         }
 
         /// <summary>
-        /// Releases the resources held by this <see cref="Microsoft.Xna.Framework.Audio.SoundEffect"/>.
+        /// Releases the resources held by this <see cref="Monogame.Audio.SoundEffect"/>.
         /// </summary>
         /// <param name="disposing">If set to <c>true</c>, Dispose was called explicitly.</param>
         /// <remarks>If the disposing parameter is true, the Dispose method was called explicitly. This

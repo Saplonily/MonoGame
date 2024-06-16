@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Describes a 2D-point.

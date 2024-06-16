@@ -5,8 +5,8 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Input;
+using Monogame.Input.Touch;
 using Windows.Devices.Input;
 using Windows.Graphics.Display;
 using Windows.System.Threading;
@@ -16,7 +16,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     internal class InputEvents
     {

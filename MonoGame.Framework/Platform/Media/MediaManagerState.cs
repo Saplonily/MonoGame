@@ -4,7 +4,7 @@
 
 using SharpDX.MediaFoundation;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// This class provides a way for the MediaManager to be initialised exactly once, 

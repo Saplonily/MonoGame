@@ -5,7 +5,7 @@
 using System;
 using UIKit;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     public static class OrientationConverter
     {

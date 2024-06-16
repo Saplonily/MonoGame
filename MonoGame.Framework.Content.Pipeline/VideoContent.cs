@@ -4,10 +4,10 @@
 
 using System;
 using System.Linq;
-using Microsoft.Xna.Framework.Media;
+using Monogame.Media;
 using System.Globalization;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Provides a base class for all video objects.

@@ -8,15 +8,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using MonoGame.Framework.Utilities;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 using System.Globalization;
 
 #if !WINDOWS_UAP
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
+using Monogame.Audio;
+using Monogame.Media;
 #endif
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     /// <summary>
     /// The ContentManager is a run-time component which loads managed objects from .xnb binary files produced by the

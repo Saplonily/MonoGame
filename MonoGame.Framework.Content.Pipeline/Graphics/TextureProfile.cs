@@ -5,9 +5,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
+using Monogame.Content.Pipeline.Processors;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     public abstract class TextureProfile
     {

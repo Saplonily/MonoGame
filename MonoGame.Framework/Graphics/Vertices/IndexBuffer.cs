@@ -5,7 +5,7 @@
 using System;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Describes the rendering order of the vertices in a vertex buffer.

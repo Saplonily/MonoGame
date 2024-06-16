@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Implements a scanner object containing the available importers and processors for an application. Designed for internal use only.

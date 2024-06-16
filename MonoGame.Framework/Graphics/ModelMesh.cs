@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Monogame;
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a mesh that is part of a <see cref="Model"/>.

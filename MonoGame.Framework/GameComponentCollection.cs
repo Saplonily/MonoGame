@@ -5,7 +5,7 @@
 using System;
 using System.Collections.ObjectModel;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// A collection of <see cref="IGameComponent"/> instances.

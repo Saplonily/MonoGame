@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     /// <summary>
     /// Defines a custom <see cref="Attribute"/> that marks a field or property to control how it is serialized or to

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using Microsoft.Xna.Framework;
+using Monogame;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework

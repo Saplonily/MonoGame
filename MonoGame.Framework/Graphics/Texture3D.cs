@@ -5,10 +5,10 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework.Content;
+using Monogame.Content;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents a 3D volume of texels.

@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
 
 namespace MonoGame.Tests.ContentPipeline
 {
@@ -92,7 +92,7 @@ namespace MonoGame.Tests.ContentPipeline
             if (typeof(TOutput) == typeof(MaterialContent) && typeof(TInput).IsAssignableFrom(typeof(MaterialContent)))
                 return (TOutput)((object)input);
 
-            var processor = (ContentProcessor<TInput, TOutput>)typeof(ContentProcessor<TInput, TOutput>).Assembly.CreateInstance("Microsoft.Xna.Framework.Content.Pipeline.Processors."+ processorName);
+            var processor = (ContentProcessor<TInput, TOutput>)typeof(ContentProcessor<TInput, TOutput>).Assembly.CreateInstance("Monogame.Content.Pipeline.Processors."+ processorName);
             if (processor != null) {
                 var type = processor.GetType();
                 foreach (var kvp in processorParameters)

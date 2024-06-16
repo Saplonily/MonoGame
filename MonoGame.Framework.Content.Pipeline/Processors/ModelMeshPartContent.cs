@@ -2,10 +2,10 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// Stores design-time data for a <see cref="ModelMeshPart"/> asset.

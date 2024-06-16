@@ -2,8 +2,8 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

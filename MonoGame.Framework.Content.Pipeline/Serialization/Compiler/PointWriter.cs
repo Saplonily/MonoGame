@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using TOutput = Microsoft.Xna.Framework.Point;
+using TOutput = Monogame.Point;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     /// <summary>
     /// Writes the Point value to the output.

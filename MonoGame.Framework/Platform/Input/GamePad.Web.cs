@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using JSIL;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     static partial class GamePad
     {

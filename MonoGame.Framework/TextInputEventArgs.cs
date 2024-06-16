@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Input;
+using Monogame.Input;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// This class is used in the <see cref="GameWindow.TextInput"/> event as <see cref="EventArgs"/>.

@@ -6,7 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Represents a processor parameter. Processor parameters are automatically discovered by the content pipeline. Therefore, only custom processor developers should use this class directly.

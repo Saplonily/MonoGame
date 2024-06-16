@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     /// <summary>
     /// Defines a worker object that implements most of <see cref="ContentManager.Load{T}(string)">ContentManger.Load</see>.

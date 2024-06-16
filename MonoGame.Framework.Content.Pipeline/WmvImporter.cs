@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Graphics;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Provides methods for reading Windows Media Video (.wmv) files for use in the Content Pipeline.

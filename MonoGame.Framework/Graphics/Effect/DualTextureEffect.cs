@@ -8,11 +8,11 @@
 #endregion
 
 #region Using Statements
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 #endregion
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Built-in effect that supports two-layer multitexturing.

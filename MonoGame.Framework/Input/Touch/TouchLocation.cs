@@ -8,7 +8,7 @@ using System.Diagnostics;
 #endregion Using clause
 
 
-namespace Microsoft.Xna.Framework.Input.Touch
+namespace Monogame.Input.Touch
 {
     /// <summary>
     /// Provides methods and properties for interacting with a touch location on a touch screen device.

@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 #endif
 
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class GraphicsDevice
     {

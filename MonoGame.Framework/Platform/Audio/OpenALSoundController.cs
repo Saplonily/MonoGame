@@ -19,7 +19,7 @@ using AudioToolbox;
 using AVFoundation;
 #endif
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     internal static class ALHelper
     {

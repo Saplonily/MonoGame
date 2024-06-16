@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content.Pipeline;
+﻿using Monogame.Content.Pipeline;
 
 using TImport = System.String;
 

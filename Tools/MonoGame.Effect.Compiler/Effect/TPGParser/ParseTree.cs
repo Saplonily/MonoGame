@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
 namespace MonoGame.Effect.TPGParser
 {

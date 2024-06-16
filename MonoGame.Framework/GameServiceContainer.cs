@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// A container for services for a <see cref="Game"/>.

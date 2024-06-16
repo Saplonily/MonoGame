@@ -5,7 +5,7 @@ using Android.Content;
 using Android.Provider;
 using Uri = Android.Net.Uri;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public partial class MediaLibrary
     {

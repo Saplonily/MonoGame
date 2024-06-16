@@ -4,13 +4,13 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics.PackedVector;
 using FreeImageAPI;
 using MonoGame.Framework.Utilities;
 using StbImageSharp;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Provides methods for reading texture files for use in the Content Pipeline.

@@ -8,7 +8,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     public class AndroidGameActivity : Activity
     {

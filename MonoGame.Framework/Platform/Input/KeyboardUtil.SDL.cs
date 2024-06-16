@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     internal static class KeyboardUtil
     {

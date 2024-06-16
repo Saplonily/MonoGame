@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework;
+using Monogame;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework

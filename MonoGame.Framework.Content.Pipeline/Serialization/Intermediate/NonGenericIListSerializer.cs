@@ -5,7 +5,7 @@
 using System;
 using System.Collections;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate
 {
     class NonGenericIListSerializer : ContentTypeSerializer
     {

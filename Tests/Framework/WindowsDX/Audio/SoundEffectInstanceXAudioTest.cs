@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework.Audio;
+﻿using Monogame.Audio;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Audio

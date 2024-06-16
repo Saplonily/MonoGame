@@ -5,11 +5,11 @@
 using System;
 using System.IO;
 using System.Reflection;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using Monogame.Graphics;
+using Monogame.Input;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     internal class SdlGameWindow : GameWindow, IDisposable
     {

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:Framework="Microsoft.Xna.Framework">
+<XnaContent xmlns:Framework="Monogame">
   <Asset Type="Framework:Curve">
     <PreLoop>Constant</PreLoop>
     <PostLoop>Constant</PostLoop>

@@ -1,13 +1,13 @@
 ﻿using System.Diagnostics;
 using System.Threading;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 using SharpDX;
 using SharpDX.MediaFoundation;
 using SharpDX.Win32;
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public sealed partial class VideoPlayer : IDisposable
     {

@@ -9,13 +9,13 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 #endif
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Audio;
+using Monogame.Content;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
 
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// This class is the entry point for most games. Handles setting up
@@ -699,7 +699,7 @@ namespace Microsoft.Xna.Framework
             // According to the information given on MSDN (see link below), all
             // GameComponents in Components at the time Initialize() is called
             // are initialized.
-            // http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.game.initialize.aspx
+            // http://msdn.microsoft.com/en-us/library/Monogame.game.initialize.aspx
             // Initialize all existing components
             InitializeExistingComponents();
 

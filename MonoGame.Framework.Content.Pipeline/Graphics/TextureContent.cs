@@ -4,9 +4,9 @@
 
 using System;
 using System.Linq;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Provides a base class for all texture objects.

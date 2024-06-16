@@ -7,13 +7,13 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Describes a 2D-vector.
     /// </summary>
 #if XNADESIGNPROVIDED
-    [System.ComponentModel.TypeConverter(typeof(Microsoft.Xna.Framework.Design.Vector2TypeConverter))]
+    [System.ComponentModel.TypeConverter(typeof(Monogame.Design.Vector2TypeConverter))]
 #endif
     [DataContract]
     [DebuggerDisplay("{DebugDisplayString,nq}")]

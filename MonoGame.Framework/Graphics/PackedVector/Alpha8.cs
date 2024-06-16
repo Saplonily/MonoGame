@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics.PackedVector
+namespace Monogame.Graphics.PackedVector
 {
     /// <summary>
     /// Packed vector type containing a single 8 bit normalized W values that is ranging from 0 to 1.

@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>
     /// A <see cref="SoundEffectInstance"/> for which the audio buffer is provided by the game at run time.

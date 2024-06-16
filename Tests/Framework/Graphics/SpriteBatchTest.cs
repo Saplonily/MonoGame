@@ -3,8 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Graphics {
@@ -15,7 +15,7 @@ namespace MonoGame.Tests.Graphics {
         private Texture2D _texture2;
         private Texture2D _texture3;
         private BasicEffect _effect;
-        private Microsoft.Xna.Framework.Graphics.Effect _effect2;
+        private Monogame.Graphics.Effect _effect2;
 
 		[SetUp]
 		public override void SetUp ()
@@ -33,7 +33,7 @@ namespace MonoGame.Tests.Graphics {
                 View = Matrix.Identity,
                 World = Matrix.Identity
             };
-            _effect2 = content.Load<Microsoft.Xna.Framework.Graphics.Effect>(Paths.CompiledEffect("Grayscale"));            
+            _effect2 = content.Load<Monogame.Graphics.Effect>(Paths.CompiledEffect("Grayscale"));            
 		}
 
 	    [TearDown]

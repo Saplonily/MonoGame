@@ -4,7 +4,7 @@
 
 using System.Collections.ObjectModel;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Provides methods for accessing a mipmap chain.

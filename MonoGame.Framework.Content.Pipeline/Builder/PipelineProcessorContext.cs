@@ -4,8 +4,8 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline;
+using Monogame.Graphics;
 
 namespace MonoGame.Framework.Content.Pipeline.Builder
 {

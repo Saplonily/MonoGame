@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Describes a custom vertex format structure that contains position and one set of texture coordinates.

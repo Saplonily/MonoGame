@@ -3,11 +3,11 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Content.Pipeline.Audio;
+using Monogame.Content.Pipeline.Audio;
 using System.IO;
 using MonoGame.Framework.Content.Pipeline.Builder;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// A sound effect processor that processes an intermediate AudioContent type. This type encapsulates the source audio content, producing a SoundEffect type that can be used in the game.

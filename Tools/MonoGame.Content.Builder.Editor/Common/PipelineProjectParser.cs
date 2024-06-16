@@ -9,8 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using MonoGame.Content.Builder;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline;
+using Monogame.Graphics;
 using PathHelper = MonoGame.Framework.Content.Pipeline.Builder.PathHelper;
 
 namespace MonoGame.Tools.Pipeline

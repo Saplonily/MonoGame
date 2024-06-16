@@ -5,7 +5,7 @@
 using System.IO;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Internal helper for accessing the bytecode for stock effects.

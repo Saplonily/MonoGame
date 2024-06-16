@@ -3,10 +3,10 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Used to initialize and control the presentation of the graphics device.

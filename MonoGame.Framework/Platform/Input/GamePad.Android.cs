@@ -4,7 +4,7 @@
 
 using Android.Views;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     internal class AndroidGamePad
     {

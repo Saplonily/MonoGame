@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// A helper for collecting instances of a particular type

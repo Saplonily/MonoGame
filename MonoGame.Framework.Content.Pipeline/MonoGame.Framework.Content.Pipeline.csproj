@@ -10,7 +10,7 @@
     <PackageTags>monogame;content;content pipeline</PackageTags>
     <PackageId>MonoGame.Framework.Content.Pipeline</PackageId>
     <AssemblyName>MonoGame.Framework.Content.Pipeline</AssemblyName>
-    <RootNamespace>Microsoft.Xna.Framework.Content.Pipeline</RootNamespace>
+    <RootNamespace>Monogame.Content.Pipeline</RootNamespace>
     <CopyContentFiles>True</CopyContentFiles>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
     <DefineConstants>STBSHARP_INTERNAL</DefineConstants>

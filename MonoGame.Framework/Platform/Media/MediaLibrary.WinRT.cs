@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage.FileProperties;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public partial class MediaLibrary
     {

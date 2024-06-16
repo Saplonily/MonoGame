@@ -11,7 +11,7 @@ using SharpDX.DXGI;
 using MapFlags = SharpDX.Direct3D11.MapFlags;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
 	public partial class TextureCube
 	{

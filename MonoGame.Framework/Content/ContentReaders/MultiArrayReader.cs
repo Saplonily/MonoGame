@@ -5,7 +5,7 @@
 using System;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     internal class MultiArrayReader<T> : ContentTypeReader<Array>
     {

@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
 	static class XactHelpers
 	{

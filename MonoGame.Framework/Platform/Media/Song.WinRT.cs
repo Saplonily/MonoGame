@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using Windows.Storage;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public sealed partial class Song
     {

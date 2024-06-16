@@ -4,10 +4,10 @@
 
 using System;
 using Android.Views;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
+using Monogame.Audio;
+using Monogame.Media;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     class AndroidGamePlatform : GamePlatform
     {

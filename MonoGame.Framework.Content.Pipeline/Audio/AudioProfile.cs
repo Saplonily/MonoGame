@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Audio
+namespace Monogame.Content.Pipeline.Audio
 {
     public abstract class AudioProfile
     {

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using UIKit;
 #endif
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// Provides methods and properties to access the source or sources from which the media will be read.
@@ -32,7 +32,7 @@ namespace Microsoft.Xna.Framework.Media
         /// <summary>
         /// Gets the <see cref="MediaSourceType"/> of this media source.
         /// </summary>
-        public Microsoft.Xna.Framework.Media.MediaSourceType MediaSourceType
+        public Monogame.Media.MediaSourceType MediaSourceType
         {
             get
             {

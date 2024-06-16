@@ -16,7 +16,7 @@ using AVFoundation;
 #endif
 #endif
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>
     /// Provides microphones capture features.  

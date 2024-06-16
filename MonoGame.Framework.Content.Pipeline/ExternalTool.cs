@@ -8,7 +8,7 @@ using System.IO;
 using System.Threading;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Helper to run an external tool installed in the system. Useful for when

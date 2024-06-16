@@ -5,8 +5,8 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+using Monogame;
+using Monogame.Audio;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Audio

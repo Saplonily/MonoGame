@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Microsoft.Xna.Framework.Input.Touch
+namespace Monogame.Input.Touch
 {
     /// <summary>
     /// Stores touches to apply them once a frame for platforms that dispatch touches asynchronously

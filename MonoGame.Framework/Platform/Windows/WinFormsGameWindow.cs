@@ -9,16 +9,16 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using Microsoft.Xna.Framework.Windows;
-using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
-using Keys = Microsoft.Xna.Framework.Input.Keys;
+using Monogame;
+using Monogame.Graphics;
+using Monogame.Input;
+using Monogame.Input.Touch;
+using Monogame.Windows;
+using ButtonState = Monogame.Input.ButtonState;
+using Keys = Monogame.Input.Keys;
 using Point = System.Drawing.Point;
-using Rectangle = Microsoft.Xna.Framework.Rectangle;
-using XnaPoint = Microsoft.Xna.Framework.Point;
+using Rectangle = Monogame.Rectangle;
+using XnaPoint = Monogame.Point;
 
 namespace MonoGame.Framework
 {

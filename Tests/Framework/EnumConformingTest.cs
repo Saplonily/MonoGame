@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Monogame;
+using Monogame.Graphics;
+using Monogame.Input;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework

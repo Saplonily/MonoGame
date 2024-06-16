@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Audio
+namespace Monogame.Content.Pipeline.Audio
 {
     /// <summary>
     /// Encapsulates the native audio format (WAVEFORMATEX) information of the audio content.

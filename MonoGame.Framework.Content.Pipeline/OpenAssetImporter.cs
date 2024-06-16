@@ -10,10 +10,10 @@ using System.Linq;
 using System.Reflection;
 using Assimp;
 using Assimp.Unmanaged;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Graphics;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     [ContentImporter(
         ".dae", // Collada

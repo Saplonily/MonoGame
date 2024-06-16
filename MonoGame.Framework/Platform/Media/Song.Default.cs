@@ -4,9 +4,9 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Audio;
+using Monogame.Audio;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public sealed partial class Song : IEquatable<Song>, IDisposable
     {

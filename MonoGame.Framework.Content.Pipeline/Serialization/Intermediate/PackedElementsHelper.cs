@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate
 {
     internal static class PackedElementsHelper
     {

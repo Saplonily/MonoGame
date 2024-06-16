@@ -2,7 +2,7 @@
 using SharpDX.MediaFoundation;
 using System;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public sealed partial class Video : IDisposable
     {

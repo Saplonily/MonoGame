@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// The arguments to the <see cref="GraphicsDeviceManager.PreparingDeviceSettings"/> event.

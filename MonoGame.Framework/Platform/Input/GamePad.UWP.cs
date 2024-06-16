@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WGI = Windows.Gaming.Input;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     static partial class GamePad
     {

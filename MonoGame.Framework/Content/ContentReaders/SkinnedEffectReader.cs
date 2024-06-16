@@ -4,9 +4,9 @@
 
 using System;
 
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     class SkinnedEffectReader : ContentTypeReader<SkinnedEffect>
     {

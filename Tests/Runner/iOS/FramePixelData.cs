@@ -4,7 +4,7 @@ using System.IO;
 using MonoTouch.CoreGraphics;
 using MonoTouch.Foundation;
 
-using Microsoft.Xna.Framework;
+using Monogame;
 using System.Runtime.InteropServices;
 using MonoTouch.ImageIO;
 

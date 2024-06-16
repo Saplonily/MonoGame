@@ -14,10 +14,10 @@ using CoreGraphics;
 
 using MonoGame.OpenGL;
 
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
 
-namespace Microsoft.Xna.Framework {
+namespace Monogame {
 
     [Register("iOSGameView")]
 	partial class iOSGameView : UIView {

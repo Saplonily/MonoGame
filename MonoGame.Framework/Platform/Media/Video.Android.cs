@@ -6,7 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     /// <summary>
     /// Represents a video.

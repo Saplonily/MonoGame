@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
 
 namespace MonoGame.InteractiveTests.TestUI {
 	class View {

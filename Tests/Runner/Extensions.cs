@@ -7,8 +7,8 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 using NUnit.Framework;
 
 namespace MonoGame.Tests {

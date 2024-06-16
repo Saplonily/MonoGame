@@ -4,11 +4,11 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Graphics;
+using Monogame.Graphics.PackedVector;
 using FreeImageAPI;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     public static class GraphicsUtil
     {

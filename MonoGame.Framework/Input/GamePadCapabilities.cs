@@ -2,7 +2,7 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     /// <summary>
     /// A stuct that represents the controller capabilities.
@@ -182,11 +182,11 @@ namespace Microsoft.Xna.Framework.Input
         public GamePadType GamePadType { get; internal set; }
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/>
-        /// is equal to another specified <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/>.
+        /// Determines whether a specified instance of <see cref="Monogame.Input.GamePadCapabilities"/>
+        /// is equal to another specified <see cref="Monogame.Input.GamePadCapabilities"/>.
         /// </summary>
-        /// <param name="left">The first <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/> to compare.</param>
-        /// <param name="right">The second <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/> to compare.</param>
+        /// <param name="left">The first <see cref="Monogame.Input.GamePadCapabilities"/> to compare.</param>
+        /// <param name="right">The second <see cref="Monogame.Input.GamePadCapabilities"/> to compare.</param>
         /// <returns><c>true</c> if <c>left</c> and <c>right</c> are equal; otherwise, <c>false</c>.</returns>
         public static bool operator ==(GamePadCapabilities left, GamePadCapabilities right)
         {
@@ -225,11 +225,11 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Determines whether a specified instance of <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/>
-        /// is not equal to another specified <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/>.
+        /// Determines whether a specified instance of <see cref="Monogame.Input.GamePadCapabilities"/>
+        /// is not equal to another specified <see cref="Monogame.Input.GamePadCapabilities"/>.
         /// </summary>
-        /// <param name="left">The first <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/> to compare.</param>
-        /// <param name="right">The second <see cref="Microsoft.Xna.Framework.Input.GamePadCapabilities"/> to compare.</param>
+        /// <param name="left">The first <see cref="Monogame.Input.GamePadCapabilities"/> to compare.</param>
+        /// <param name="right">The second <see cref="Monogame.Input.GamePadCapabilities"/> to compare.</param>
         /// <returns><c>true</c> if <c>left</c> and <c>right</c> are not equal; otherwise, <c>false</c>.</returns>
         public static bool operator !=(GamePadCapabilities left, GamePadCapabilities right)
         {
@@ -237,18 +237,18 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadCapabilities"/>.
+        /// Determines whether the specified <see cref="object"/> is equal to the current <see cref="T:Monogame.Input.GamePadCapabilities"/>.
         /// </summary>
-        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadCapabilities"/>.</param>
+        /// <param name="obj">The <see cref="object"/> to compare with the current <see cref="T:Monogame.Input.GamePadCapabilities"/>.</param>
         /// <returns><c>true</c> if the specified <see cref="object"/> is equal to the current
-        /// <see cref="T:Microsoft.Xna.Framework.Input.GamePadCapabilities"/>; otherwise, <c>false</c>.</returns>
+        /// <see cref="T:Monogame.Input.GamePadCapabilities"/>; otherwise, <c>false</c>.</returns>
         public override bool Equals(object obj)
         {
             return (obj is GamePadCapabilities) && (this == (GamePadCapabilities)obj);
         }
 
         /// <summary>
-        /// Serves as a hash function for a <see cref="T:Microsoft.Xna.Framework.Input.GamePadCapabilities"/> object.
+        /// Serves as a hash function for a <see cref="T:Monogame.Input.GamePadCapabilities"/> object.
         /// </summary>
         /// <returns>A hash code for this instance that is suitable for use in hashing algorithms and data structures such as a
         /// hash table.</returns>
@@ -258,9 +258,9 @@ namespace Microsoft.Xna.Framework.Input
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadCapabilities"/>.
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadCapabilities"/>.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Microsoft.Xna.Framework.Input.GamePadCapabilities"/>.</returns>
+        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:Monogame.Input.GamePadCapabilities"/>.</returns>
         public override string ToString()
         {
             return "[GamePadCapabilities: IsConnected=" + IsConnected +

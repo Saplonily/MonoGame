@@ -5,9 +5,9 @@
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework;
+using Monogame;
 using NUnit.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
 namespace MonoGame.Tests.Graphics
 {

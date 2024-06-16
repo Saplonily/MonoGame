@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Describes the rendering order of the vertices  in a vertex buffer. Use <b>DynamicIndexBuffer</b> for storing

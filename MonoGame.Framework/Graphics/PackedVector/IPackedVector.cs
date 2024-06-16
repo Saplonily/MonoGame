@@ -5,7 +5,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics.PackedVector
+namespace Monogame.Graphics.PackedVector
 {
     /// <summary>
     /// Interface that converts packed vector types to and from <see cref="Vector4"/>

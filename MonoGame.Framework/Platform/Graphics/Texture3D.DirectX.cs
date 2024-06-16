@@ -10,7 +10,7 @@ using SharpDX.Direct3D11;
 using MapFlags = SharpDX.Direct3D11.MapFlags;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
 	public partial class Texture3D : Texture
 	{

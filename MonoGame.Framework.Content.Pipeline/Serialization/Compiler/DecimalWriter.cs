@@ -5,7 +5,7 @@
 using System;
 using TOutput = System.Decimal;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     /// <summary>
     /// Writes the decimal value to the output.

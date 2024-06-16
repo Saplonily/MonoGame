@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Xml;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
-using Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate;
+using Monogame;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Processors;
+using Monogame.Content.Pipeline.Serialization.Intermediate;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.ContentPipeline
@@ -74,7 +74,7 @@ namespace MonoGame.Tests.ContentPipeline
                     Assert.IsTrue(textureType == typeof(PixelBitmapContent<Color>));
                     break;
                 case TextureProcessorOutputFormat.Color16Bit:
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgr565>));
+                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgr565>));
                     break;
                 case TextureProcessorOutputFormat.Compressed:
                     switch (platform)
@@ -84,20 +84,20 @@ namespace MonoGame.Tests.ContentPipeline
                             Assert.IsTrue(textureType == typeof(Dxt3BitmapContent));
                             break;
                         case TargetPlatform.iOS:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                             break;
                         case TargetPlatform.Android:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                             break;
                     }
                     break;
                 case TextureProcessorOutputFormat.PvrCompressed:
                     // because the font is not power of 2 we should use Brga4444
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
                 case TextureProcessorOutputFormat.Etc1Compressed:
                     // because the font has Alpha we should use Brga4444
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
                 default:
                     Assert.Fail("Test not written for " + format);
@@ -132,7 +132,7 @@ namespace MonoGame.Tests.ContentPipeline
                     Assert.IsTrue(textureType == typeof(PixelBitmapContent<Color>));
                     break;
                 case TextureProcessorOutputFormat.Color16Bit:
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgr565>));
+                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgr565>));
                     break;
                 case TextureProcessorOutputFormat.Compressed:
                     switch (platform)
@@ -142,20 +142,20 @@ namespace MonoGame.Tests.ContentPipeline
                             Assert.IsTrue(textureType == typeof(Dxt3BitmapContent));
                             break;
                         case TargetPlatform.iOS:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                             break;
                         case TargetPlatform.Android:
-                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                            Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                             break;
                     }
                     break;
                 case TextureProcessorOutputFormat.PvrCompressed:
                     // because the font is not power of 2 we should use Brga4444
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
                 case TextureProcessorOutputFormat.Etc1Compressed:
                     // because the font has Alpha we should use Brga4444
-                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Microsoft.Xna.Framework.Graphics.PackedVector.Bgra4444>));
+                    Assert.IsTrue(textureType == typeof(PixelBitmapContent<Monogame.Graphics.PackedVector.Bgra4444>));
                     break;
                 default:
                     Assert.Fail("Test not written for " + format);
@@ -164,7 +164,7 @@ namespace MonoGame.Tests.ContentPipeline
         }
 
         static string ArialFont = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<XnaContent xmlns:Graphics=""Microsoft.Xna.Framework.Content.Pipeline.Graphics"">
+<XnaContent xmlns:Graphics=""Monogame.Content.Pipeline.Graphics"">
   <Asset Type=""Graphics:FontDescription"">
     <FontName>Arial</FontName>
     <Size>20</Size>

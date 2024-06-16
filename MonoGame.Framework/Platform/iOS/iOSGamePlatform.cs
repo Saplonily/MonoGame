@@ -12,13 +12,13 @@ using UIKit;
 using CoreAnimation;
 using ObjCRuntime;
 
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-//using Microsoft.Xna.Framework.GamerServices;
+using Monogame.Audio;
+using Monogame.Graphics;
+using Monogame.Input;
+using Monogame.Input.Touch;
+//using Monogame.GamerServices;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     class iOSGamePlatform : GamePlatform
     {

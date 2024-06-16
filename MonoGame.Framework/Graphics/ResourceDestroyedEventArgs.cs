@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Provides data for the <see cref="GraphicsDevice.ResourceDestroyed"/> event. This class cannot be inherited.

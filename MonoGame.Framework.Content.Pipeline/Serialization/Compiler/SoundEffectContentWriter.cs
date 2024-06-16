@@ -3,9 +3,9 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
+using Monogame.Content.Pipeline.Processors;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     [ContentTypeWriter]
     class SoundEffectWriter : BuiltInContentWriter<SoundEffectContent>

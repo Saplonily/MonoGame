@@ -9,9 +9,9 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Content;
+using Monogame.Graphics;
 
 using NUnit.Framework;
 using NUnit.Framework.Constraints;

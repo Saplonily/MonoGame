@@ -3,12 +3,12 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Graphics;
+using Monogame.Input;
+using Monogame.Input.Touch;
 
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     abstract partial class GamePlatform : IDisposable
     {

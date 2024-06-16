@@ -4,8 +4,8 @@
 
 using System;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 
 namespace MonoGame.Tests.Components {
 	class Simple3DCubeComponent

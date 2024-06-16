@@ -8,7 +8,7 @@ using SharpDX.X3DAudio;
 using SharpDX.Multimedia;
 using SharpDX.Mathematics.Interop;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     public partial class SoundEffectInstance : IDisposable
     {

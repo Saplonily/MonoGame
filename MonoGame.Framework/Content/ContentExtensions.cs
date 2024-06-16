@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Linq;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     internal static class ContentExtensions
     {

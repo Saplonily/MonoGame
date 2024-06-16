@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 using System.Globalization;
 
 namespace MonoGame.Effect.TPGParser

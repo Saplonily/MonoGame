@@ -4,9 +4,9 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content.Pipeline.Audio;
+using Monogame.Content.Pipeline.Audio;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Provides methods for reading Windows Media Audio (.wma) files for use in the Content Pipeline.

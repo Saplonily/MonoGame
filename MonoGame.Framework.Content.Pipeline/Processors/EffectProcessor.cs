@@ -6,11 +6,11 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// Processes a string representation to a platform-specific compiled effect.

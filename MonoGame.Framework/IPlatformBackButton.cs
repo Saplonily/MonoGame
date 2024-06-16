@@ -1,6 +1,6 @@
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Allows for platform specific handling of the Back button. 

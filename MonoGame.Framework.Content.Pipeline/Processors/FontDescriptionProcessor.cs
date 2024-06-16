@@ -8,11 +8,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Microsoft.Win32;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Graphics;
 using MonoGame.Framework.Utilities;
-using Glyph = Microsoft.Xna.Framework.Content.Pipeline.Graphics.Glyph;
+using Glyph = Monogame.Content.Pipeline.Graphics.Glyph;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     [ContentProcessor(DisplayName = "Sprite Font Description - MonoGame")]
     public class FontDescriptionProcessor : ContentProcessor<FontDescription, SpriteFontContent>

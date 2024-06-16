@@ -6,11 +6,11 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Input.Touch;
 using MonoGame.Framework;
 
 
-namespace Microsoft.Xna.Framework.Windows
+namespace Monogame.Windows
 {
     internal static class MessageExtensions
     {     
@@ -231,7 +231,7 @@ namespace Microsoft.Xna.Framework.Windows
             m.Result = IntPtr.Zero;
         }
 
-        private static Microsoft.Xna.Framework.Input.Keys KeyCodeTranslate(
+        private static Monogame.Input.Keys KeyCodeTranslate(
             System.Windows.Forms.Keys keyCode, bool extended, long scancode)
         {
             switch (keyCode)
@@ -240,22 +240,22 @@ namespace Microsoft.Xna.Framework.Windows
                 // We have to check for special keys such as control/shift/alt/ etc
                 case System.Windows.Forms.Keys.ControlKey:
                     return extended
-                        ? Microsoft.Xna.Framework.Input.Keys.RightControl
-                        : Microsoft.Xna.Framework.Input.Keys.LeftControl;
+                        ? Monogame.Input.Keys.RightControl
+                        : Monogame.Input.Keys.LeftControl;
                 case System.Windows.Forms.Keys.ShiftKey:
                     // left shift is 0x2A, right shift is 0x36. IsExtendedKey is always false.
                     return ((scancode & 0x1FF) == 0x36)
-                               ? Microsoft.Xna.Framework.Input.Keys.RightShift
-                                : Microsoft.Xna.Framework.Input.Keys.LeftShift;
+                               ? Monogame.Input.Keys.RightShift
+                                : Monogame.Input.Keys.LeftShift;
                 // Note that the Alt key is now refered to as Menu.
                 case System.Windows.Forms.Keys.Menu:
                 case System.Windows.Forms.Keys.Alt:
                     return extended
-                        ? Microsoft.Xna.Framework.Input.Keys.RightAlt
-                        : Microsoft.Xna.Framework.Input.Keys.LeftAlt;
+                        ? Monogame.Input.Keys.RightAlt
+                        : Monogame.Input.Keys.LeftAlt;
 
                 default:
-                    return (Microsoft.Xna.Framework.Input.Keys)keyCode;
+                    return (Monogame.Input.Keys)keyCode;
             }
         }
     }

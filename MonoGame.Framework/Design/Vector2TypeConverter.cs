@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace Microsoft.Xna.Framework.Design
+namespace Monogame.Design
 {
     /// <summary>
     /// Provides a unified way of converting <see cref="Vector2"/> values to other  types, as well as for accessing

@@ -2,15 +2,15 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework.Design;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Design;
+using Monogame.Graphics.PackedVector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Provides methods and properties for maintaining a vertex channel.

@@ -10,10 +10,10 @@ using Windows.UI.Xaml.Controls;
 
 #if IOS
 using UIKit;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Input.Touch;
 #endif
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Contains graphics presentation parameters.
@@ -214,7 +214,7 @@ namespace Microsoft.Xna.Framework.Graphics
             depthStencilFormat = DepthFormat.None;
             multiSampleCount = 0;
             PresentationInterval = PresentInterval.Default;
-            DisplayOrientation = Microsoft.Xna.Framework.DisplayOrientation.Default;
+            DisplayOrientation = Monogame.DisplayOrientation.Default;
         }
 
         /// <summary>

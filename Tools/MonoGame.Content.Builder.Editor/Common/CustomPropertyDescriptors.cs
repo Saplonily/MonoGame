@@ -4,7 +4,7 @@
 
 using System;
 using System.ComponentModel;
-using Microsoft.Xna.Framework.Content.Pipeline;
+using Monogame.Content.Pipeline;
 
 namespace MonoGame.Tools.Pipeline
 {

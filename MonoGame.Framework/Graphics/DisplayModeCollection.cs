@@ -31,7 +31,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// A collection that manipulates <see cref="DisplayMode"/> instances.

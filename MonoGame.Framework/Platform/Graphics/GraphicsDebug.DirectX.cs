@@ -5,7 +5,7 @@
 using SharpDX.Direct3D11;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class GraphicsDebug
     {

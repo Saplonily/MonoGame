@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>Represents a single instance of a playing, paused, or stopped sound.</summary>
     /// <remarks>
@@ -105,7 +105,7 @@ namespace Microsoft.Xna.Framework.Audio
 
         /// <summary>
         /// Releases unmanaged resources and performs other cleanup operations before the
-        /// <see cref="Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is reclaimed by garbage collection.
+        /// <see cref="Monogame.Audio.SoundEffectInstance"/> is reclaimed by garbage collection.
         /// </summary>
         ~SoundEffectInstance()
         {
@@ -190,7 +190,7 @@ namespace Microsoft.Xna.Framework.Audio
             PlatformStop(immediate);
         }
 
-        /// <summary>Releases the resources held by this <see cref="Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.</summary>
+        /// <summary>Releases the resources held by this <see cref="Monogame.Audio.SoundEffectInstance"/>.</summary>
         public void Dispose()
         {
             Dispose(true);
@@ -198,7 +198,7 @@ namespace Microsoft.Xna.Framework.Audio
         }
 
         /// <summary>
-        /// Releases the resources held by this <see cref="Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.
+        /// Releases the resources held by this <see cref="Monogame.Audio.SoundEffectInstance"/>.
         /// </summary>
         /// <param name="disposing">If set to <c>true</c>, Dispose was called explicitly.</param>
         /// <remarks>If the disposing parameter is true, the Dispose method was called explicitly. This

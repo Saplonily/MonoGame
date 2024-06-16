@@ -2,12 +2,12 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Input;
+using Monogame.Input.Touch;
 using System;
 using System.ComponentModel;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// The system window used by a <see cref="Game"/>.

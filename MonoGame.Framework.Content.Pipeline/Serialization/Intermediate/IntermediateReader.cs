@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Intermediate
+namespace Monogame.Content.Pipeline.Serialization.Intermediate
 {
     public sealed class IntermediateReader
     {

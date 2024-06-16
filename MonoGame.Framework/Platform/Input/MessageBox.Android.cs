@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public static partial class MessageBox
     {

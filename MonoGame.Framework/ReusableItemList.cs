@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     internal class ReusableItemList<T> : ICollection<T>, IEnumerator<T>
     {

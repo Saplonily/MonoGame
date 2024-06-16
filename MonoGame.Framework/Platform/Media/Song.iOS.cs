@@ -9,7 +9,7 @@ using AVFoundation;
 using MediaPlayer;
 using CoreMedia;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public sealed partial class Song
     {

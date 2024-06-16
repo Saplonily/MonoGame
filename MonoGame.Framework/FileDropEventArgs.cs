@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// This class is used in the <see cref="GameWindow.FileDrop"/> event as <see cref="EventArgs"/>.

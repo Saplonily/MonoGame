@@ -4,8 +4,8 @@
 
 using System;
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame;
+using Monogame.Graphics;
 using System.Drawing;
 
 namespace MonoGame.InteractiveTests.TestUI {

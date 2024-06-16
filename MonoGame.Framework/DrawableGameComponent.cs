@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// A drawable object that, when added to the <see cref="Game.Components">Game.Components</see> collection of a

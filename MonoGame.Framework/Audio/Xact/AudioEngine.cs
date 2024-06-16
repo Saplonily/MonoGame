@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     /// <summary>
     /// Class used to create and manipulate code audio objects.

@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 
-namespace Microsoft.Xna.Framework.Graphics 
+namespace Monogame.Graphics 
 {
     /// <summary>
     /// Represents a font texture.

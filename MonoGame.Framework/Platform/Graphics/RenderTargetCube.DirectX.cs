@@ -6,7 +6,7 @@ using System;
 using SharpDX.DXGI;
 using SharpDX.Direct3D11;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class RenderTargetCube
     {

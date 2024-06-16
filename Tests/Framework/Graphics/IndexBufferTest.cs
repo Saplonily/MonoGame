@@ -4,7 +4,7 @@
 
 using System;
 using NUnit.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
 namespace MonoGame.Tests.Graphics
 {

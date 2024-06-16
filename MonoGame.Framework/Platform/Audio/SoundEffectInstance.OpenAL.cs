@@ -5,7 +5,7 @@
 using System;
 using MonoGame.OpenAL;
 
-namespace Microsoft.Xna.Framework.Audio
+namespace Monogame.Audio
 {
     public partial class SoundEffectInstance : IDisposable
     {

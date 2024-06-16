@@ -9,7 +9,7 @@ This was adapted from a version I found online. Here's the original header:
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// A bin that can pack rectangles using the MaxRects algorithm with several heuristics.

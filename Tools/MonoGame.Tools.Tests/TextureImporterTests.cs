@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Graphics;
+using Monogame.Graphics.PackedVector;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.ContentPipeline

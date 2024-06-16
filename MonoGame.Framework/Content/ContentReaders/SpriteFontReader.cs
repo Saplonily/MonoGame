@@ -5,10 +5,10 @@
 using System;
 using System.Collections.Generic;
 
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     internal class SpriteFontReader : ContentTypeReader<SpriteFont>
     {

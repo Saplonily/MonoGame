@@ -5,10 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Monogame.Graphics;
+using Monogame.Content.Pipeline.Graphics;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     [ContentProcessorAttribute(DisplayName = "Font Texture - MonoGame")]
     public class FontTextureProcessor : ContentProcessor<Texture2DContent, SpriteFontContent>

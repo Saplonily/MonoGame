@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+using Monogame;
+using Monogame.Input;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.Input

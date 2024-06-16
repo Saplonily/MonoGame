@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using MonoGame.Framework.Utilities;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Defines per-vertex data of a vertex buffer.

@@ -5,10 +5,10 @@
 using System;
 using System.Collections.Generic;
 using JSIL;
-using Microsoft.Xna.Framework.Input;
+using Monogame.Input;
 using MonoGame.Web;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     class WebGameWindow : GameWindow
     {

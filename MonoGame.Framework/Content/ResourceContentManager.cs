@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Resources;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
     /// <summary>
     /// Subclass of <see cref="ContentManager"/>, which is specialized to read

@@ -9,7 +9,7 @@ using System.Text;
 using System.Collections;
 using System.Reflection;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Provides methods and properties for managing a list of vertex data channels.

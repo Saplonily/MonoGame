@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using Monogame;
+using Monogame.Audio;
+using Monogame.Content;
+using Monogame.GamerServices;
+using Monogame.Graphics;
+using Monogame.Input;
+using Monogame.Media;
 
 
 using System.Windows.Forms;
 
 namespace MouseGetStateAndIsMouseVisibleTester
 {
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game1 : Monogame.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;

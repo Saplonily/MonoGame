@@ -4,11 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Monogame.Content.Pipeline.Processors;
+using Monogame.Graphics;
+using Monogame.Graphics.PackedVector;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Graphics
+namespace Monogame.Content.Pipeline.Graphics
 {
     /// <summary>
     /// Provides methods and properties for maintaining the vertex data of a GeometryContent.

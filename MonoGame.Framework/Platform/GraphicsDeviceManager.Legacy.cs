@@ -3,8 +3,8 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Graphics;
+using Monogame.Input.Touch;
 
 #if WINDOWS_UAP
 using Windows.UI.Xaml.Controls;
@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Controls;
 using Android.Views;
 #endif
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     public class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable, IGraphicsDeviceManager
     {

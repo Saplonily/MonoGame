@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.Xna.Framework.Content.Pipeline;
+using Monogame.Content.Pipeline;
 using MonoGame.Effect.TPGParser;
 
 namespace MonoGame.Effect

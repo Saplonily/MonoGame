@@ -6,13 +6,13 @@ using System;
 using System.Runtime.Serialization;
 using System.Diagnostics;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Describes a 4D-vector.
     /// </summary>
 #if XNADESIGNPROVIDED
-    [System.ComponentModel.TypeConverter(typeof(Microsoft.Xna.Framework.Design.Vector4TypeConverter))]
+    [System.ComponentModel.TypeConverter(typeof(Monogame.Design.Vector4TypeConverter))]
 #endif
     [DataContract]
     [DebuggerDisplay("{DebugDisplayString,nq}")]

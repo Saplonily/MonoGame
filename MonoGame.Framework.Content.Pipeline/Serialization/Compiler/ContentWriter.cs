@@ -4,12 +4,12 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content.Pipeline.Utilities.LZ4;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline.Utilities.LZ4;
+using Monogame.Graphics;
 using MonoGame.Framework.Content.Pipeline.Builder;
 using System.Collections.Generic;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Serialization.Compiler
+namespace Monogame.Content.Pipeline.Serialization.Compiler
 {
     /// <summary>
     /// Provides an implementation for many of the ContentCompiler methods including compilation, state tracking for shared resources and creation of the header type manifest.

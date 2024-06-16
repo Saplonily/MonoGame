@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Arguments for the <see cref="GameComponentCollection.ComponentAdded"/> and

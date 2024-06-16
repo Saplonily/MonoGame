@@ -8,7 +8,7 @@ using Android.Hardware;
 using Android.Views;
 using Android.Provider;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     internal class OrientationListener : OrientationEventListener
     {

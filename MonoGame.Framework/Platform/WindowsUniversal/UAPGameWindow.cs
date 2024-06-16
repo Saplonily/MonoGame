@@ -14,12 +14,12 @@ using Windows.UI.Xaml;
 using Windows.Graphics.Display;
 using Windows.Phone.UI.Input;
 
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Graphics;
+using Monogame.Input;
+using Monogame.Input.Touch;
 using Windows.UI.Xaml.Controls;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     partial class UAPGameWindow : GameWindow
     {

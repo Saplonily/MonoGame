@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Represents the binding of a <see cref="RenderTarget2D"/> used in an array of bindings when setting multiple

@@ -1,6 +1,6 @@
 using System;
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     // TODO: This class needs to be finished!
 

@@ -79,7 +79,7 @@ namespace MonoGame.Tools.Pipeline
                     var citem = item as ContentItem;
                     if (citem != null)
                     {
-                        citem.ProcessorParams = new Microsoft.Xna.Framework.Content.Pipeline.OpaqueDataDictionary();
+                        citem.ProcessorParams = new Monogame.Content.Pipeline.OpaqueDataDictionary();
                         citem.Observer = _con;
 
                         citem.ResolveTypes();

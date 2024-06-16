@@ -5,7 +5,7 @@
 using System;
 using Android.Content;
 using Android.Hardware;
-using Microsoft.Xna.Framework;
+using Monogame;
 
 namespace Microsoft.Devices.Sensors
 {

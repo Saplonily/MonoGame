@@ -18,7 +18,7 @@ using Windows.Storage.Streams;
 using System.Threading.Tasks;
 #endif
 
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     public partial class Texture2D : Texture
     {

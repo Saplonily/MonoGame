@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Content.Pipeline;
+using Monogame.Graphics;
 
 namespace MonoGame.Tools.Pipeline
 {

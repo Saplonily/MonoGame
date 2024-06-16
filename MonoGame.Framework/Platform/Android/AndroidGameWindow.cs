@@ -7,10 +7,10 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
-using Microsoft.Xna.Framework.Input.Touch;
+using Monogame.Input.Touch;
 using MonoGame.OpenGL;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     public class AndroidGameWindow : GameWindow, IDisposable
     {

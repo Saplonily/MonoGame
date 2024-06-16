@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// The collection of the <see cref="CurveKey"/> elements and a part of the <see cref="Curve"/> class.

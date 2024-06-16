@@ -5,7 +5,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline
+namespace Monogame.Content.Pipeline
 {
     /// <summary>
     /// Thrown when errors are encountered during a content pipeline build.

@@ -5,8 +5,8 @@
 using System;
 using System.IO;
 using System.Linq;
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Audio;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Audio;
 using NUnit.Framework;
 
 namespace MonoGame.Tests.ContentPipeline

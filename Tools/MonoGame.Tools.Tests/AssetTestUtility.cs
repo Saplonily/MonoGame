@@ -4,30 +4,30 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content;
+using Monogame.Content;
 #if !WINDOWS || DIRECTX || XNA
-using Microsoft.Xna.Framework.Content.Pipeline;
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
-using Microsoft.Xna.Framework.Content.Pipeline.Processors;
+using Monogame.Content.Pipeline;
+using Monogame.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Processors;
 #endif
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
 namespace MonoGame.Tests.ContentPipeline
 {
     internal static class AssetTestUtility
     {
 
-        public static Microsoft.Xna.Framework.Graphics.Effect LoadEffect(ContentManager content, string name)
+        public static Monogame.Graphics.Effect LoadEffect(ContentManager content, string name)
         {
 #if DIRECTX
             var gd = ((IGraphicsDeviceService) content.ServiceProvider.GetService(typeof(IGraphicsDeviceService))).GraphicsDevice;
             return CompileEffect(gd, Paths.RawEffect(name));
 #else
-            return content.Load<Microsoft.Xna.Framework.Graphics.Effect>(Paths.CompiledEffect(name));
+            return content.Load<Monogame.Graphics.Effect>(Paths.CompiledEffect(name));
 #endif
         }
 
-        public static Microsoft.Xna.Framework.Graphics.Effect CompileEffect(GraphicsDevice graphicsDevice, string effectPath)
+        public static Monogame.Graphics.Effect CompileEffect(GraphicsDevice graphicsDevice, string effectPath)
         {
 #if !WINDOWS || DIRECTX || XNA
             var effectProcessor = new EffectProcessor();
@@ -38,7 +38,7 @@ namespace MonoGame.Tests.ContentPipeline
                 Identity = new ContentIdentity(effectPath)
             }, context);
 
-            return new Microsoft.Xna.Framework.Graphics.Effect(graphicsDevice, compiledEffect.GetEffectCode());
+            return new Monogame.Graphics.Effect(graphicsDevice, compiledEffect.GetEffectCode());
 #else // OpenGL
             throw new NotImplementedException();
 #endif

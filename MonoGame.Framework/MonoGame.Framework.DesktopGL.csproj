@@ -76,9 +76,11 @@
   <ItemGroup>
     <EmbeddedResource Include="MonoGame.bmp">
       <LogicalName>MonoGame.bmp</LogicalName>
+      <Visible>false</Visible>
     </EmbeddedResource>
     <EmbeddedResource Include="..\ThirdParty\SDL_GameControllerDB\gamecontrollerdb.txt">
       <LogicalName>gamecontrollerdb.txt</LogicalName>
+      <Visible>false</Visible>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -87,21 +89,25 @@
       <Link>x86\soft_oal.dll</Link>
       <PackagePath>runtimes\win-x86\native</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
     </Content>
     <Content Include="..\ThirdParty\Dependencies\openal-soft\Windows\x64\soft_oal.dll">
       <Link>x64\soft_oal.dll</Link>
       <PackagePath>runtimes\win-x64\native</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
     </Content>
     <Content Include="..\ThirdParty\Dependencies\openal-soft\Linux\x64\libopenal.so.1">
       <Link>x64\libopenal.so.1</Link>
       <PackagePath>runtimes\linux-x64\native</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
     </Content>
     <Content Include="..\ThirdParty\Dependencies\openal-soft\MacOS\Universal\libopenal.1.dylib">
       <Link>libopenal.1.dylib</Link>
       <PackagePath>runtimes\osx\native</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
     </Content>
 
     <Content Include="MonoGame.Framework.DesktopGL.targets" PackagePath="build" />

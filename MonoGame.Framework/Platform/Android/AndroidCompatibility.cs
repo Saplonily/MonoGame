@@ -5,7 +5,7 @@ using Android.Content.Res;
 using Android.OS;
 using Android.Views;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Properties that change from how XNA works by default

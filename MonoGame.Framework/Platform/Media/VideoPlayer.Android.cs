@@ -4,9 +4,9 @@
 
 using System;
 using Android.Widget;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 
-namespace Microsoft.Xna.Framework.Media
+namespace Monogame.Media
 {
     public sealed partial class VideoPlayer : IDisposable
     {

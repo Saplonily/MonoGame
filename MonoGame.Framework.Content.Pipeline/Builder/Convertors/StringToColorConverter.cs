@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Builder.Convertors
+namespace Monogame.Content.Pipeline.Builder.Convertors
 {
 	public class StringToColorConverter : TypeConverter
 	{
@@ -50,7 +50,7 @@ namespace Microsoft.Xna.Framework.Content.Pipeline.Builder.Convertors
                         var g = int.Parse(parts[1].Split(':')[1]);
                         var b = int.Parse(parts[2].Split(':')[1]);
                         var a = int.Parse(parts[3].Split(':')[1]);
-                        return new Microsoft.Xna.Framework.Color(r, g, b, a);
+                        return new Monogame.Color(r, g, b, a);
                     }
                     else
                     {
@@ -66,7 +66,7 @@ namespace Microsoft.Xna.Framework.Content.Pipeline.Builder.Convertors
                         var g = int.Parse(values[1].Trim());
                         var b = int.Parse(values[2].Trim());
                         var a = int.Parse(values[3].Trim());
-                        return new Microsoft.Xna.Framework.Color(r, g, b, a);
+                        return new Monogame.Color(r, g, b, a);
                     }
                     else
                     {

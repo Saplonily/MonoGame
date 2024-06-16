@@ -4,7 +4,7 @@
 
 using System.IO;
 
-namespace Microsoft.Xna.Framework;
+namespace Monogame;
 
 partial class TitleContainer
 {

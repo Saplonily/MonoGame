@@ -4,10 +4,10 @@
 
 using System;
 
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework;
+using Monogame.Content;
+using Monogame;
 
-namespace Microsoft.Xna.Framework.Content
+namespace Monogame.Content
 {
 	internal class ColorReader : ContentTypeReader<Color>
 	{

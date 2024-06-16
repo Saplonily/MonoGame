@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-using Microsoft.Xna.Framework.Graphics;
+using Monogame.Graphics;
 using MonoGame.Framework.Utilities;
 
 namespace MonoGame.Effect

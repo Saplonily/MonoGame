@@ -2,12 +2,12 @@
 // This file is subject to the terms and conditions defined in
 // file 'LICENSE.txt', which is part of this source code package.
 
-using Microsoft.Xna.Framework.Content.Pipeline.Graphics;
+using Monogame.Content.Pipeline.Graphics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Microsoft.Xna.Framework.Content.Pipeline.Processors
+namespace Monogame.Content.Pipeline.Processors
 {
     /// <summary>
     /// Provides methods and properties for maintaining a collection of named texture references.

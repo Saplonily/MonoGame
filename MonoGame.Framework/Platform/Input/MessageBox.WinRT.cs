@@ -6,7 +6,7 @@ using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 
-namespace Microsoft.Xna.Framework.Input
+namespace Monogame.Input
 {
     public static partial class MessageBox
     {

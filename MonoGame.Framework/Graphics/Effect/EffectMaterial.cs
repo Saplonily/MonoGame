@@ -3,7 +3,7 @@
 // file 'LICENSE.txt', which is part of this source code package.
 
 using System;
-namespace Microsoft.Xna.Framework.Graphics
+namespace Monogame.Graphics
 {
     /// <summary>
     /// Contains an effect subclass which is used to load data for an EffectMaterialContent type.

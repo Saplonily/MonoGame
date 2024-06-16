@@ -7,7 +7,7 @@ using System.Text;
 using System.Runtime.Serialization;
 using System.Diagnostics;
 
-namespace Microsoft.Xna.Framework
+namespace Monogame
 {
     /// <summary>
     /// Describes a 32-bit packed color.
