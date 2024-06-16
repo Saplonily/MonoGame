@@ -21,19 +21,19 @@ namespace MonoGame.Tests.Framework
             game.IsFixedTimeStep = false;
             game.ExitCondition = x => x.UpdateNumber > 1;
 
-            var constructor2        = new InitializeOrderComponent(game);
-            var preBaseInitialize2  = new InitializeOrderComponent(game);
+            var constructor2 = new InitializeOrderComponent(game);
+            var preBaseInitialize2 = new InitializeOrderComponent(game);
             var postBaseInitialize2 = new InitializeOrderComponent(game);
-            var loadContent2        = new InitializeOrderComponent(game);
-            var update2             = new InitializeOrderComponent(game);
-            var constructor         = new InitializeOrderComponent(game) {ChildComponent = constructor2};
-            var preBaseInitialize   = new InitializeOrderComponent(game) {ChildComponent = preBaseInitialize2};
-            var postBaseInitialize  = new InitializeOrderComponent(game) {ChildComponent = postBaseInitialize2};
-            var loadContent         = new InitializeOrderComponent(game) {ChildComponent = loadContent2};
-            var update              = new InitializeOrderComponent(game) {ChildComponent = update2};
-            
+            var loadContent2 = new InitializeOrderComponent(game);
+            var update2 = new InitializeOrderComponent(game);
+            var constructor = new InitializeOrderComponent(game) { ChildComponent = constructor2 };
+            var preBaseInitialize = new InitializeOrderComponent(game) { ChildComponent = preBaseInitialize2 };
+            var postBaseInitialize = new InitializeOrderComponent(game) { ChildComponent = postBaseInitialize2 };
+            var loadContent = new InitializeOrderComponent(game) { ChildComponent = loadContent2 };
+            var update = new InitializeOrderComponent(game) { ChildComponent = update2 };
+
             game.Components.Add(constructor);
-            
+
             game.PreInitializeWith += (sender, args) =>
             {
                 game.Components.Add(preBaseInitialize);

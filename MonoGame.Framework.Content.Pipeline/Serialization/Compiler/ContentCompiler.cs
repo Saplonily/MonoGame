@@ -46,7 +46,7 @@ namespace Monogame.Content.Pipeline.Serialization.Compiler
                 var contentTypeWriterType = typeof(ContentTypeWriter<>);
                 foreach (var type in exportedTypes)
                 {
-					if (type.IsAbstract)
+                    if (type.IsAbstract)
                         continue;
                     if (Attribute.IsDefined(type, typeof(ContentTypeWriterAttribute)))
                     {

@@ -5,7 +5,7 @@ namespace MonoGame.Effect
     {
         None,
         Point,
-        Linear, 
+        Linear,
         Anisotropic,
     }
 }

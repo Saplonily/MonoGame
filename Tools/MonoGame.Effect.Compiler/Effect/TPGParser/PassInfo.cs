@@ -18,7 +18,7 @@ namespace MonoGame.Effect.TPGParser
         public BlendState blendState;
         public RasterizerState rasterizerState;
         public DepthStencilState depthStencilState;
-		
+
         private static Blend ToAlphaBlend(Blend blend)
         {
             switch (blend)
@@ -68,7 +68,7 @@ namespace MonoGame.Effect.TPGParser
             {
                 if (rasterizerState == null)
                     rasterizerState = new RasterizerState();
-                rasterizerState.FillMode = value;             
+                rasterizerState.FillMode = value;
             }
         }
 
@@ -251,7 +251,7 @@ namespace MonoGame.Effect.TPGParser
                 if (blendState == null)
                     blendState = new BlendState();
                 blendState.ColorWriteChannels = value;
-            }    
+            }
         }
 
         public float DepthBias

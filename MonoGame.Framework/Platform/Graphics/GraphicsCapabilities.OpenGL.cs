@@ -45,9 +45,9 @@ namespace Monogame.Graphics
             SupportsTextureFilterAnisotropic = GL.Extensions.Contains("GL_EXT_texture_filter_anisotropic");
 
 #if GLES
-			SupportsDepth24 = GL.Extensions.Contains("GL_OES_depth24");
-			SupportsPackedDepthStencil = GL.Extensions.Contains("GL_OES_packed_depth_stencil");
-			SupportsDepthNonLinear = GL.Extensions.Contains("GL_NV_depth_nonlinear");
+            SupportsDepth24 = GL.Extensions.Contains("GL_OES_depth24");
+            SupportsPackedDepthStencil = GL.Extensions.Contains("GL_OES_packed_depth_stencil");
+            SupportsDepthNonLinear = GL.Extensions.Contains("GL_NV_depth_nonlinear");
             SupportsTextureMaxLevel = GL.Extensions.Contains("GL_APPLE_texture_max_level");
 #else
             SupportsDepth24 = true;
@@ -75,7 +75,7 @@ namespace Monogame.Graphics
             // Framebuffer objects
 #if GLES
             SupportsFramebufferObjectARB = GL.BoundApi == GL.RenderApi.ES && (device.glMajorVersion >= 2 || GL.Extensions.Contains("GL_ARB_framebuffer_object")); // always supported on GLES 2.0+
-            SupportsFramebufferObjectEXT = GL.Extensions.Contains("GL_EXT_framebuffer_object");;
+            SupportsFramebufferObjectEXT = GL.Extensions.Contains("GL_EXT_framebuffer_object"); ;
             SupportsFramebufferObjectIMG = GL.Extensions.Contains("GL_IMG_multisampled_render_to_texture") |
                                                  GL.Extensions.Contains("GL_APPLE_framebuffer_multisample") |
                                                  GL.Extensions.Contains("GL_EXT_multisampled_render_to_texture") |

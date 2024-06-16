@@ -46,7 +46,7 @@ namespace MonoGame.Effect
 
                 if (result.Bytecode == null)
                     throw new ShaderCompilerException();
-                
+
                 shaderByteCode = result.Bytecode;
                 //var source = shaderByteCode.Disassemble();
             }

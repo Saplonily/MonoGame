@@ -33,10 +33,10 @@ namespace MonoGame.Effect
                 return false;
 
             // Do we have the same count of parameters and size?
-            if (    Size != other.Size ||
+            if (Size != other.Size ||
                     Parameters.Count != other.Parameters.Count)
                 return false;
-            
+
             // Compare the parameters themselves.
             for (var i = 0; i < Parameters.Count; i++)
             {
@@ -44,7 +44,7 @@ namespace MonoGame.Effect
                 var p2 = other.Parameters[i];
 
                 // Check the importaint bits.
-                if (    p1.name != p2.name ||
+                if (p1.name != p2.name ||
                         p1.rows != p2.rows ||
                         p1.columns != p2.columns ||
                         p1.class_ != p2.class_ ||

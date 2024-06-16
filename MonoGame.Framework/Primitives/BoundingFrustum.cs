@@ -197,12 +197,12 @@ namespace Monogame
                 box.Intersects(ref this._planes[i], out planeIntersectionType);
                 switch (planeIntersectionType)
                 {
-                case PlaneIntersectionType.Front:
-                    result = ContainmentType.Disjoint; 
-                    return;
-                case PlaneIntersectionType.Intersecting:
-                    intersects = true;
-                    break;
+                    case PlaneIntersectionType.Front:
+                        result = ContainmentType.Disjoint;
+                        return;
+                    case PlaneIntersectionType.Intersecting:
+                        intersects = true;
+                        break;
                 }
             }
             result = intersects ? ContainmentType.Intersects : ContainmentType.Contains;
@@ -255,7 +255,7 @@ namespace Monogame
         public void Contains(ref BoundingSphere sphere, out ContainmentType result)
         {
             var intersects = false;
-            for (var i = 0; i < PlaneCount; ++i) 
+            for (var i = 0; i < PlaneCount; ++i)
             {
                 var planeIntersectionType = default(PlaneIntersectionType);
 
@@ -263,12 +263,12 @@ namespace Monogame
                 sphere.Intersects(ref this._planes[i], out planeIntersectionType);
                 switch (planeIntersectionType)
                 {
-                case PlaneIntersectionType.Front:
-                    result = ContainmentType.Disjoint; 
-                    return;
-                case PlaneIntersectionType.Intersecting:
-                    intersects = true;
-                    break;
+                    case PlaneIntersectionType.Front:
+                        result = ContainmentType.Disjoint;
+                        return;
+                    case PlaneIntersectionType.Intersecting:
+                        intersects = true;
+                        break;
                 }
             }
             result = intersects ? ContainmentType.Intersects : ContainmentType.Contains;
@@ -297,7 +297,7 @@ namespace Monogame
             {
                 // TODO: we might want to inline this for performance reasons
                 if (PlaneHelper.ClassifyPoint(ref point, ref this._planes[i]) > 0)
-                {   
+                {
                     result = ContainmentType.Disjoint;
                     return;
                 }
@@ -342,8 +342,8 @@ namespace Monogame
         /// <param name="corners">The array which values will be replaced to corner values of this instance. It must have size of <see cref="BoundingFrustum.CornerCount"/>.</param>
 		public void GetCorners(Vector3[] corners)
         {
-			if (corners == null) throw new ArgumentNullException("corners");
-		    if (corners.Length < CornerCount) throw new ArgumentOutOfRangeException("corners");
+            if (corners == null) throw new ArgumentNullException("corners");
+            if (corners.Length < CornerCount) throw new ArgumentOutOfRangeException("corners");
 
             this._corners.CopyTo(corners, 0);
         }
@@ -364,9 +364,9 @@ namespace Monogame
         /// <returns><c>true</c> if specified <see cref="BoundingBox"/> intersects with this <see cref="BoundingFrustum"/>; <c>false</c> otherwise.</returns>
         public bool Intersects(BoundingBox box)
         {
-			var result = false;
-			this.Intersects(ref box, out result);
-			return result;
+            var result = false;
+            this.Intersects(ref box, out result);
+            return result;
         }
 
         /// <summary>
@@ -376,10 +376,10 @@ namespace Monogame
         /// <param name="result"><c>true</c> if specified <see cref="BoundingBox"/> intersects with this <see cref="BoundingFrustum"/>; <c>false</c> otherwise as an output parameter.</param>
         public void Intersects(ref BoundingBox box, out bool result)
         {
-			var containment = default(ContainmentType);
-			this.Contains(ref box, out containment);
-			result = containment != ContainmentType.Disjoint;
-		}
+            var containment = default(ContainmentType);
+            this.Contains(ref box, out containment);
+            result = containment != ContainmentType.Disjoint;
+        }
 
         /// <summary>
         /// Gets whether or not a specified <see cref="BoundingFrustum"/> intersects with this <see cref="BoundingFrustum"/>.
@@ -439,7 +439,7 @@ namespace Monogame
                 if (plane.Intersects(ref _corners[i]) != result)
                     result = PlaneIntersectionType.Intersecting;
         }
-        
+
         /// <summary>
         /// Gets the distance of intersection of <see cref="Ray"/> and this <see cref="BoundingFrustum"/> or null if no intersection happens.
         /// </summary>
@@ -475,7 +475,7 @@ namespace Monogame
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        } 
+        }
 
         /// <summary>
         /// Returns a <see cref="String"/> representation of this <see cref="BoundingFrustum"/> in the format:
@@ -510,14 +510,14 @@ namespace Monogame
         }
 
         private void CreatePlanes()
-        {            
+        {
             this._planes[0] = new Plane(-this._matrix.M13, -this._matrix.M23, -this._matrix.M33, -this._matrix.M43);
             this._planes[1] = new Plane(this._matrix.M13 - this._matrix.M14, this._matrix.M23 - this._matrix.M24, this._matrix.M33 - this._matrix.M34, this._matrix.M43 - this._matrix.M44);
             this._planes[2] = new Plane(-this._matrix.M14 - this._matrix.M11, -this._matrix.M24 - this._matrix.M21, -this._matrix.M34 - this._matrix.M31, -this._matrix.M44 - this._matrix.M41);
             this._planes[3] = new Plane(this._matrix.M11 - this._matrix.M14, this._matrix.M21 - this._matrix.M24, this._matrix.M31 - this._matrix.M34, this._matrix.M41 - this._matrix.M44);
             this._planes[4] = new Plane(this._matrix.M12 - this._matrix.M14, this._matrix.M22 - this._matrix.M24, this._matrix.M32 - this._matrix.M34, this._matrix.M42 - this._matrix.M44);
             this._planes[5] = new Plane(-this._matrix.M14 - this._matrix.M12, -this._matrix.M24 - this._matrix.M22, -this._matrix.M34 - this._matrix.M32, -this._matrix.M44 - this._matrix.M42);
-            
+
             this.NormalizePlane(ref this._planes[0]);
             this.NormalizePlane(ref this._planes[1]);
             this.NormalizePlane(ref this._planes[2]);
@@ -534,35 +534,35 @@ namespace Monogame
             //                             N1 . ( N2 * N3 )
             //
             // Note: N refers to the normal, d refers to the displacement. '.' means dot product. '*' means cross product
-            
+
             Vector3 v1, v2, v3;
             Vector3 cross;
-            
+
             Vector3.Cross(ref b.Normal, ref c.Normal, out cross);
-            
+
             float f;
             Vector3.Dot(ref a.Normal, ref cross, out f);
             f *= -1.0f;
-            
+
             Vector3.Cross(ref b.Normal, ref c.Normal, out cross);
             Vector3.Multiply(ref cross, a.D, out v1);
             //v1 = (a.D * (Vector3.Cross(b.Normal, c.Normal)));
-            
-            
+
+
             Vector3.Cross(ref c.Normal, ref a.Normal, out cross);
             Vector3.Multiply(ref cross, b.D, out v2);
             //v2 = (b.D * (Vector3.Cross(c.Normal, a.Normal)));
-            
-            
+
+
             Vector3.Cross(ref a.Normal, ref b.Normal, out cross);
             Vector3.Multiply(ref cross, c.D, out v3);
             //v3 = (c.D * (Vector3.Cross(a.Normal, b.Normal)));
-            
+
             result.X = (v1.X + v2.X + v3.X) / f;
             result.Y = (v1.Y + v2.Y + v3.Y) / f;
             result.Z = (v1.Z + v2.Z + v3.Z) / f;
         }
-        
+
         private void NormalizePlane(ref Plane p)
         {
             float factor = 1f / p.Normal.Length();

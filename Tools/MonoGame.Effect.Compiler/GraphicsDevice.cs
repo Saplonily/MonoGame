@@ -7,12 +7,12 @@ namespace Monogame.Graphics
     {
         internal void AddResourceReference(WeakReference resourceReference)
         {
-            
+
         }
 
         internal void RemoveResourceReference(WeakReference resourceReference)
         {
-            
+
         }
     }
 }

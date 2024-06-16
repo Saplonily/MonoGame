@@ -8,26 +8,28 @@ using System.Text;
 
 using Monogame;
 
-namespace MonoGame.Tests.Components {
-	class VisualTestDrawableGameComponent : DrawableGameComponent {
-		public VisualTestDrawableGameComponent (Game game)
-			: base (game)
-		{
-		}
+namespace MonoGame.Tests.Components
+{
+    class VisualTestDrawableGameComponent : DrawableGameComponent
+    {
+        public VisualTestDrawableGameComponent(Game game)
+            : base(game)
+        {
+        }
 
-		private UpdateGuard _updateGuard = new UpdateGuard ();
-		public override void Update (GameTime gameTime)
-		{
-			base.Update (gameTime);
+        private UpdateGuard _updateGuard = new UpdateGuard();
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
 
-			if (gameTime.ElapsedGameTime == TimeSpan.Zero)
-				return;
-			if (_updateGuard.ShouldUpdate (Game.Services.RequireService<IFrameInfoSource> ().FrameInfo))
-				UpdateOncePerDraw (gameTime);
-		}
+            if (gameTime.ElapsedGameTime == TimeSpan.Zero)
+                return;
+            if (_updateGuard.ShouldUpdate(Game.Services.RequireService<IFrameInfoSource>().FrameInfo))
+                UpdateOncePerDraw(gameTime);
+        }
 
-		protected virtual void UpdateOncePerDraw (GameTime gameTime)
-		{
-		}
-	}
+        protected virtual void UpdateOncePerDraw(GameTime gameTime)
+        {
+        }
+    }
 }

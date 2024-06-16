@@ -13,8 +13,8 @@ namespace Monogame.Media
     /// </summary>
     public sealed class PlaylistCollection : ICollection<Playlist>, IEnumerable<Playlist>, IEnumerable, IDisposable
     {
-		private bool isReadOnly = false;
-		private List<Playlist> innerlist = new List<Playlist>();
+        private bool isReadOnly = false;
+        private List<Playlist> innerlist = new List<Playlist>();
 
         /// <inheritdoc cref="IDisposable.Dispose()"/>
         public void Dispose()
@@ -26,7 +26,7 @@ namespace Monogame.Media
         {
             return innerlist.GetEnumerator();
         }
-		
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return innerlist.GetEnumerator();
@@ -39,7 +39,7 @@ namespace Monogame.Media
         {
             get
             {
-				return innerlist.Count;
+                return innerlist.Count;
             }
         }
 
@@ -58,7 +58,7 @@ namespace Monogame.Media
         {
             get
             {
-				return this.innerlist[index];
+                return this.innerlist[index];
             }
         }
 

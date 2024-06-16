@@ -49,7 +49,7 @@ namespace MonoGame.Tests.ContentPipeline
 
         [Test]
         [TestCaseSource("textureFormats")]
-        public void BuildLocalizedFont (TargetPlatform platform, TextureProcessorOutputFormat format)
+        public void BuildLocalizedFont(TargetPlatform platform, TextureProcessorOutputFormat format)
         {
             var context = new TestProcessorContext(platform, "Localized.xnb");
             var processor = new LocalizedFontProcessor()
@@ -107,7 +107,7 @@ namespace MonoGame.Tests.ContentPipeline
 
         [Test]
         [TestCaseSource("textureFormats")]
-        public void BuildFontFromDescription (TargetPlatform platform, TextureProcessorOutputFormat format)
+        public void BuildFontFromDescription(TargetPlatform platform, TextureProcessorOutputFormat format)
         {
             var context = new TestProcessorContext(platform, "Arial.xnb");
             var processor = new FontDescriptionProcessor()
@@ -118,7 +118,7 @@ namespace MonoGame.Tests.ContentPipeline
 
             FontDescription fontDescription = null;
 
-            using (var input = XmlReader.Create(new StringReader (ArialFont)))
+            using (var input = XmlReader.Create(new StringReader(ArialFont)))
                 fontDescription = IntermediateSerializer.Deserialize<FontDescription>(input, "");
             fontDescription.Identity = new ContentIdentity("Arial.spritefont");
 

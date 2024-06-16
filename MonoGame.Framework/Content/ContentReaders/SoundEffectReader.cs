@@ -8,10 +8,10 @@ using Monogame.Audio;
 
 namespace Monogame.Content
 {
-	internal class SoundEffectReader : ContentTypeReader<SoundEffect>
-	{
-		protected internal override SoundEffect Read(ContentReader input, SoundEffect existingInstance)
-		{         
+    internal class SoundEffectReader : ContentTypeReader<SoundEffect>
+    {
+        protected internal override SoundEffect Read(ContentReader input, SoundEffect existingInstance)
+        {
             // XNB format for SoundEffect...
             //            
             // Byte [format size]	Format	WAVEFORMATEX structure
@@ -35,7 +35,7 @@ namespace Monogame.Content
             // We let the sound effect deal with parsing this based
             // on what format the audio data actually is.
 
-		    var headerSize = input.ReadInt32();
+            var headerSize = input.ReadInt32();
             var header = input.ReadBytes(headerSize);
 
             // Read the audio data buffer.
@@ -57,5 +57,5 @@ namespace Monogame.Content
 
             return effect;
         }
-	}
+    }
 }

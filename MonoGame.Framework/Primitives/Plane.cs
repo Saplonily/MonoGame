@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace Monogame
 {
-	internal class PlaneHelper
+    internal class PlaneHelper
     {
         /// <summary>
         /// Returns a value indicating what side (positive/negative) of a plane a point is
@@ -34,7 +34,7 @@ namespace Monogame
                                     / Math.Sqrt(plane.Normal.X * plane.Normal.X + plane.Normal.Y * plane.Normal.Y + plane.Normal.Z * plane.Normal.Z));
         }
     }
-	
+
     /// <summary>
     /// A plane in 3d space, represented by its normal away from the origin and its distance from the origin, D.
     /// </summary>
@@ -278,7 +278,7 @@ namespace Monogame
         public void Normalize()
         {
             float length = Normal.Length();
-            float factor =  1f / length;            
+            float factor = 1f / length;
             Vector3.Multiply(ref Normal, factor, out Normal);
             D = D * factor;
         }
@@ -290,9 +290,9 @@ namespace Monogame
         /// <returns>A normalized version of the specified <see cref="Plane"/>.</returns>
         public static Plane Normalize(Plane value)
         {
-			Plane ret;
-			Normalize(ref value, out ret);
-			return ret;
+            Plane ret;
+            Normalize(ref value, out ret);
+            return ret;
         }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace Monogame
         public static void Normalize(ref Plane value, out Plane result)
         {
             float length = value.Normal.Length();
-            float factor =  1f / length;            
+            float factor = 1f / length;
             Vector3.Multiply(ref value.Normal, factor, out result.Normal);
             result.D = value.D * factor;
         }
@@ -387,7 +387,7 @@ namespace Monogame
         /// </param>
         public void Intersects(ref BoundingBox box, out PlaneIntersectionType result)
         {
-            box.Intersects (ref this, out result);
+            box.Intersects(ref this, out result);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ using System;
 
 namespace Monogame.Content
 {
-	internal class UInt64Reader : ContentTypeReader<ulong>
+    internal class UInt64Reader : ContentTypeReader<ulong>
     {
         public UInt64Reader()
         {

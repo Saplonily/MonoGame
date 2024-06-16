@@ -100,7 +100,7 @@ namespace Monogame
         /// </summary>
         public static Quaternion Identity
         {
-            get{ return _identity; }
+            get { return _identity; }
         }
 
         #endregion
@@ -139,12 +139,12 @@ namespace Monogame
         /// <returns>The result of the quaternion addition.</returns>
         public static Quaternion Add(Quaternion quaternion1, Quaternion quaternion2)
         {
-			Quaternion quaternion;
-			quaternion.X = quaternion1.X + quaternion2.X;
-			quaternion.Y = quaternion1.Y + quaternion2.Y;
-			quaternion.Z = quaternion1.Z + quaternion2.Z;
-			quaternion.W = quaternion1.W + quaternion2.W;
-			return quaternion;
+            Quaternion quaternion;
+            quaternion.X = quaternion1.X + quaternion2.X;
+            quaternion.Y = quaternion1.Y + quaternion2.Y;
+            quaternion.Z = quaternion1.Z + quaternion2.Z;
+            quaternion.W = quaternion1.W + quaternion2.W;
+            return quaternion;
         }
 
         /// <summary>
@@ -155,10 +155,10 @@ namespace Monogame
         /// <param name="result">The result of the quaternion addition as an output parameter.</param>
         public static void Add(ref Quaternion quaternion1, ref Quaternion quaternion2, out Quaternion result)
         {
-			result.X = quaternion1.X + quaternion2.X;
-			result.Y = quaternion1.Y + quaternion2.Y;
-			result.Z = quaternion1.Z + quaternion2.Z;
-			result.W = quaternion1.W + quaternion2.W;
+            result.X = quaternion1.X + quaternion2.X;
+            result.Y = quaternion1.Y + quaternion2.Y;
+            result.Z = quaternion1.Z + quaternion2.Z;
+            result.W = quaternion1.W + quaternion2.W;
         }
 
         #endregion
@@ -172,8 +172,8 @@ namespace Monogame
         /// <param name="value2">The second <see cref="Quaternion"/> to concatenate.</param>
         /// <returns>The result of rotation of <paramref name="value1"/> followed by <paramref name="value2"/> rotation.</returns>
         public static Quaternion Concatenate(Quaternion value1, Quaternion value2)
-		{
-			Quaternion quaternion;
+        {
+            Quaternion quaternion;
 
             float x1 = value1.X;
             float y1 = value1.Y;
@@ -181,17 +181,17 @@ namespace Monogame
             float w1 = value1.W;
 
             float x2 = value2.X;
-		    float y2 = value2.Y;
-		    float z2 = value2.Z;
-		    float w2 = value2.W;
+            float y2 = value2.Y;
+            float z2 = value2.Z;
+            float w2 = value2.W;
 
-		    quaternion.X = ((x2 * w1) + (x1 * w2)) + ((y2 * z1) - (z2 * y1));
-		    quaternion.Y = ((y2 * w1) + (y1 * w2)) + ((z2 * x1) - (x2 * z1));
-		    quaternion.Z = ((z2 * w1) + (z1 * w2)) + ((x2 * y1) - (y2 * x1));
-		    quaternion.W = (w2 * w1) - (((x2 * x1) + (y2 * y1)) + (z2 * z1));
+            quaternion.X = ((x2 * w1) + (x1 * w2)) + ((y2 * z1) - (z2 * y1));
+            quaternion.Y = ((y2 * w1) + (y1 * w2)) + ((z2 * x1) - (x2 * z1));
+            quaternion.Z = ((z2 * w1) + (z1 * w2)) + ((x2 * y1) - (y2 * x1));
+            quaternion.W = (w2 * w1) - (((x2 * x1) + (y2 * y1)) + (z2 * z1));
 
-		    return quaternion;
-		}
+            return quaternion;
+        }
 
         /// <summary>
         /// Creates a new <see cref="Quaternion"/> that contains concatenation between two quaternion.
@@ -200,7 +200,7 @@ namespace Monogame
         /// <param name="value2">The second <see cref="Quaternion"/> to concatenate.</param>
         /// <param name="result">The result of rotation of <paramref name="value1"/> followed by <paramref name="value2"/> rotation as an output parameter.</param>
         public static void Concatenate(ref Quaternion value1, ref Quaternion value2, out Quaternion result)
-		{
+        {
             float x1 = value1.X;
             float y1 = value1.Y;
             float z1 = value1.Z;
@@ -225,11 +225,11 @@ namespace Monogame
         /// Transforms this quaternion into its conjugated version.
         /// </summary>
         public void Conjugate()
-		{
-			X = -X;
-			Y = -Y;
-			Z = -Z;
-		}
+        {
+            X = -X;
+            Y = -Y;
+            Z = -Z;
+        }
 
         /// <summary>
         /// Creates a new <see cref="Quaternion"/> that contains conjugated version of the specified quaternion.
@@ -237,9 +237,9 @@ namespace Monogame
         /// <param name="value">The quaternion which values will be used to create the conjugated version.</param>
         /// <returns>The conjugate version of the specified quaternion.</returns>
         public static Quaternion Conjugate(Quaternion value)
-		{
-			return new Quaternion(-value.X,-value.Y,-value.Z,value.W);
-		}
+        {
+            return new Quaternion(-value.X, -value.Y, -value.Z, value.W);
+        }
 
         /// <summary>
         /// Creates a new <see cref="Quaternion"/> that contains conjugated version of the specified quaternion.
@@ -247,12 +247,12 @@ namespace Monogame
         /// <param name="value">The quaternion which values will be used to create the conjugated version.</param>
         /// <param name="result">The conjugated version of the specified quaternion as an output parameter.</param>
         public static void Conjugate(ref Quaternion value, out Quaternion result)
-		{
-			result.X = -value.X;
-			result.Y = -value.Y;
-			result.Z = -value.Z;
-			result.W = value.W;
-		}
+        {
+            result.X = -value.X;
+            result.Y = -value.Y;
+            result.Z = -value.Z;
+            result.W = value.W;
+        }
 
         #endregion
 
@@ -266,10 +266,10 @@ namespace Monogame
         /// <returns>The new quaternion builded from axis and angle.</returns>
         public static Quaternion CreateFromAxisAngle(Vector3 axis, float angle)
         {
-		    float half = angle * 0.5f;
-		    float sin = MathF.Sin(half);
-		    float cos = MathF.Cos(half);
-		    return new Quaternion(axis.X * sin, axis.Y * sin, axis.Z * sin, cos);
+            float half = angle * 0.5f;
+            float sin = MathF.Sin(half);
+            float cos = MathF.Cos(half);
+            return new Quaternion(axis.X * sin, axis.Y * sin, axis.Z * sin, cos);
         }
 
         /// <summary>
@@ -281,12 +281,12 @@ namespace Monogame
         public static void CreateFromAxisAngle(ref Vector3 axis, float angle, out Quaternion result)
         {
             float half = angle * 0.5f;
-		    float sin = MathF.Sin(half);
-		    float cos = MathF.Cos(half);
-		    result.X = axis.X * sin;
-		    result.Y = axis.Y * sin;
-		    result.Z = axis.Z * sin;
-		    result.W = cos;
+            float sin = MathF.Sin(half);
+            float cos = MathF.Cos(half);
+            result.X = axis.X * sin;
+            result.Y = axis.Y * sin;
+            result.Z = axis.Z * sin;
+            result.W = cos;
         }
 
         #endregion
@@ -305,51 +305,51 @@ namespace Monogame
             float half;
             float scale = matrix.M11 + matrix.M22 + matrix.M33;
 
-		    if (scale > 0.0f)
-		    {
+            if (scale > 0.0f)
+            {
                 sqrt = MathF.Sqrt(scale + 1.0f);
-		        quaternion.W = sqrt * 0.5f;
+                quaternion.W = sqrt * 0.5f;
                 sqrt = 0.5f / sqrt;
 
-		        quaternion.X = (matrix.M23 - matrix.M32) * sqrt;
-		        quaternion.Y = (matrix.M31 - matrix.M13) * sqrt;
-		        quaternion.Z = (matrix.M12 - matrix.M21) * sqrt;
+                quaternion.X = (matrix.M23 - matrix.M32) * sqrt;
+                quaternion.Y = (matrix.M31 - matrix.M13) * sqrt;
+                quaternion.Z = (matrix.M12 - matrix.M21) * sqrt;
 
-		        return quaternion;
-		    }
-		    if ((matrix.M11 >= matrix.M22) && (matrix.M11 >= matrix.M33))
-		    {
+                return quaternion;
+            }
+            if ((matrix.M11 >= matrix.M22) && (matrix.M11 >= matrix.M33))
+            {
                 sqrt = MathF.Sqrt(1.0f + matrix.M11 - matrix.M22 - matrix.M33);
                 half = 0.5f / sqrt;
 
-		        quaternion.X = 0.5f * sqrt;
-		        quaternion.Y = (matrix.M12 + matrix.M21) * half;
-		        quaternion.Z = (matrix.M13 + matrix.M31) * half;
-		        quaternion.W = (matrix.M23 - matrix.M32) * half;
+                quaternion.X = 0.5f * sqrt;
+                quaternion.Y = (matrix.M12 + matrix.M21) * half;
+                quaternion.Z = (matrix.M13 + matrix.M31) * half;
+                quaternion.W = (matrix.M23 - matrix.M32) * half;
 
-		        return quaternion;
-		    }
-		    if (matrix.M22 > matrix.M33)
-		    {
+                return quaternion;
+            }
+            if (matrix.M22 > matrix.M33)
+            {
                 sqrt = MathF.Sqrt(1.0f + matrix.M22 - matrix.M11 - matrix.M33);
                 half = 0.5f / sqrt;
 
-		        quaternion.X = (matrix.M21 + matrix.M12) * half;
-		        quaternion.Y = 0.5f * sqrt;
-		        quaternion.Z = (matrix.M32 + matrix.M23) * half;
-		        quaternion.W = (matrix.M31 - matrix.M13) * half;
+                quaternion.X = (matrix.M21 + matrix.M12) * half;
+                quaternion.Y = 0.5f * sqrt;
+                quaternion.Z = (matrix.M32 + matrix.M23) * half;
+                quaternion.W = (matrix.M31 - matrix.M13) * half;
 
-		        return quaternion;
-		    }
+                return quaternion;
+            }
             sqrt = MathF.Sqrt(1.0f + matrix.M33 - matrix.M11 - matrix.M22);
-		    half = 0.5f / sqrt;
+            half = 0.5f / sqrt;
 
-		    quaternion.X = (matrix.M31 + matrix.M13) * half;
-		    quaternion.Y = (matrix.M32 + matrix.M23) * half;
-		    quaternion.Z = 0.5f * sqrt;
-		    quaternion.W = (matrix.M12 - matrix.M21) * half;
+            quaternion.X = (matrix.M31 + matrix.M13) * half;
+            quaternion.Y = (matrix.M32 + matrix.M23) * half;
+            quaternion.Z = 0.5f * sqrt;
+            quaternion.W = (matrix.M12 - matrix.M21) * half;
 
-		    return quaternion;
+            return quaternion;
         }
 
         /// <summary>
@@ -387,12 +387,12 @@ namespace Monogame
             else if (matrix.M22 > matrix.M33)
             {
                 sqrt = MathF.Sqrt(1.0f + matrix.M22 - matrix.M11 - matrix.M33);
-                half = 0.5f/sqrt;
+                half = 0.5f / sqrt;
 
-                result.X = (matrix.M21 + matrix.M12)*half;
-                result.Y = 0.5f*sqrt;
-                result.Z = (matrix.M32 + matrix.M23)*half;
-                result.W = (matrix.M31 - matrix.M13)*half;
+                result.X = (matrix.M21 + matrix.M12) * half;
+                result.Y = 0.5f * sqrt;
+                result.Z = (matrix.M32 + matrix.M23) * half;
+                result.W = (matrix.M31 - matrix.M13) * half;
             }
             else
             {
@@ -418,7 +418,7 @@ namespace Monogame
         /// <param name="roll">Roll around the z axis in radians.</param>
         /// <returns>A new quaternion from the concatenated yaw, pitch, and roll angles.</returns>
         public static Quaternion CreateFromYawPitchRoll(float yaw, float pitch, float roll)
-		{
+        {
             float halfRoll = roll * 0.5f;
             float halfPitch = pitch * 0.5f;
             float halfYaw = yaw * 0.5f;
@@ -444,7 +444,7 @@ namespace Monogame
         /// <param name="roll">Roll around the z axis in radians.</param>
         /// <param name="result">A new quaternion from the concatenated yaw, pitch, and roll angles as an output parameter.</param>
  		public static void CreateFromYawPitchRoll(float yaw, float pitch, float roll, out Quaternion result)
-		{
+        {
             float halfRoll = roll * 0.5f;
             float halfPitch = pitch * 0.5f;
             float halfYaw = yaw * 0.5f;
@@ -475,25 +475,25 @@ namespace Monogame
         public static Quaternion Divide(Quaternion quaternion1, Quaternion quaternion2)
         {
             Quaternion quaternion;
-		    float x = quaternion1.X;
-		    float y = quaternion1.Y;
-		    float z = quaternion1.Z;
-		    float w = quaternion1.W;
-		    float num14 = (((quaternion2.X * quaternion2.X) + (quaternion2.Y * quaternion2.Y)) + (quaternion2.Z * quaternion2.Z)) + (quaternion2.W * quaternion2.W);
-		    float num5 = 1f / num14;
-		    float num4 = -quaternion2.X * num5;
-		    float num3 = -quaternion2.Y * num5;
-		    float num2 = -quaternion2.Z * num5;
-		    float num = quaternion2.W * num5;
-		    float num13 = (y * num2) - (z * num3);
-		    float num12 = (z * num4) - (x * num2);
-		    float num11 = (x * num3) - (y * num4);
-		    float num10 = ((x * num4) + (y * num3)) + (z * num2);
-		    quaternion.X = ((x * num) + (num4 * w)) + num13;
-		    quaternion.Y = ((y * num) + (num3 * w)) + num12;
-		    quaternion.Z = ((z * num) + (num2 * w)) + num11;
-		    quaternion.W = (w * num) - num10;
-		    return quaternion;
+            float x = quaternion1.X;
+            float y = quaternion1.Y;
+            float z = quaternion1.Z;
+            float w = quaternion1.W;
+            float num14 = (((quaternion2.X * quaternion2.X) + (quaternion2.Y * quaternion2.Y)) + (quaternion2.Z * quaternion2.Z)) + (quaternion2.W * quaternion2.W);
+            float num5 = 1f / num14;
+            float num4 = -quaternion2.X * num5;
+            float num3 = -quaternion2.Y * num5;
+            float num2 = -quaternion2.Z * num5;
+            float num = quaternion2.W * num5;
+            float num13 = (y * num2) - (z * num3);
+            float num12 = (z * num4) - (x * num2);
+            float num11 = (x * num3) - (y * num4);
+            float num10 = ((x * num4) + (y * num3)) + (z * num2);
+            quaternion.X = ((x * num) + (num4 * w)) + num13;
+            quaternion.Y = ((y * num) + (num3 * w)) + num12;
+            quaternion.Z = ((z * num) + (num2 * w)) + num11;
+            quaternion.W = (w * num) - num10;
+            return quaternion;
         }
 
         /// <summary>
@@ -505,23 +505,23 @@ namespace Monogame
         public static void Divide(ref Quaternion quaternion1, ref Quaternion quaternion2, out Quaternion result)
         {
             float x = quaternion1.X;
-		    float y = quaternion1.Y;
-		    float z = quaternion1.Z;
-		    float w = quaternion1.W;
-		    float num14 = (((quaternion2.X * quaternion2.X) + (quaternion2.Y * quaternion2.Y)) + (quaternion2.Z * quaternion2.Z)) + (quaternion2.W * quaternion2.W);
-		    float num5 = 1f / num14;
-		    float num4 = -quaternion2.X * num5;
-		    float num3 = -quaternion2.Y * num5;
-		    float num2 = -quaternion2.Z * num5;
-		    float num = quaternion2.W * num5;
-		    float num13 = (y * num2) - (z * num3);
-		    float num12 = (z * num4) - (x * num2);
-		    float num11 = (x * num3) - (y * num4);
-		    float num10 = ((x * num4) + (y * num3)) + (z * num2);
-		    result.X = ((x * num) + (num4 * w)) + num13;
-		    result.Y = ((y * num) + (num3 * w)) + num12;
-		    result.Z = ((z * num) + (num2 * w)) + num11;
-		    result.W = (w * num) - num10;
+            float y = quaternion1.Y;
+            float z = quaternion1.Z;
+            float w = quaternion1.W;
+            float num14 = (((quaternion2.X * quaternion2.X) + (quaternion2.Y * quaternion2.Y)) + (quaternion2.Z * quaternion2.Z)) + (quaternion2.W * quaternion2.W);
+            float num5 = 1f / num14;
+            float num4 = -quaternion2.X * num5;
+            float num3 = -quaternion2.Y * num5;
+            float num2 = -quaternion2.Z * num5;
+            float num = quaternion2.W * num5;
+            float num13 = (y * num2) - (z * num3);
+            float num12 = (z * num4) - (x * num2);
+            float num11 = (x * num3) - (y * num4);
+            float num10 = ((x * num4) + (y * num3)) + (z * num2);
+            result.X = ((x * num) + (num4 * w)) + num13;
+            result.Y = ((y * num) + (num3 * w)) + num12;
+            result.Z = ((z * num) + (num2 * w)) + num11;
+            result.W = (w * num) - num10;
         }
 
         #endregion
@@ -573,7 +573,7 @@ namespace Monogame
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
         public bool Equals(Quaternion other)
         {
-			return X == other.X &&
+            return X == other.X &&
                    Y == other.Y &&
                    Z == other.Z &&
                    W == other.W;
@@ -600,13 +600,13 @@ namespace Monogame
         public static Quaternion Inverse(Quaternion quaternion)
         {
             Quaternion quaternion2;
-		    float num2 = (((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y)) + (quaternion.Z * quaternion.Z)) + (quaternion.W * quaternion.W);
-		    float num = 1f / num2;
-		    quaternion2.X = -quaternion.X * num;
-		    quaternion2.Y = -quaternion.Y * num;
-		    quaternion2.Z = -quaternion.Z * num;
-		    quaternion2.W = quaternion.W * num;
-		    return quaternion2;
+            float num2 = (((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y)) + (quaternion.Z * quaternion.Z)) + (quaternion.W * quaternion.W);
+            float num = 1f / num2;
+            quaternion2.X = -quaternion.X * num;
+            quaternion2.Y = -quaternion.Y * num;
+            quaternion2.Z = -quaternion.Z * num;
+            quaternion2.W = quaternion.W * num;
+            return quaternion2;
         }
 
         /// <summary>
@@ -617,11 +617,11 @@ namespace Monogame
         public static void Inverse(ref Quaternion quaternion, out Quaternion result)
         {
             float num2 = (((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y)) + (quaternion.Z * quaternion.Z)) + (quaternion.W * quaternion.W);
-		    float num = 1f / num2;
-		    result.X = -quaternion.X * num;
-		    result.Y = -quaternion.Y * num;
-		    result.Z = -quaternion.Z * num;
-		    result.W = quaternion.W * num;
+            float num = 1f / num2;
+            result.X = -quaternion.X * num;
+            result.Y = -quaternion.Y * num;
+            result.Z = -quaternion.Z * num;
+            result.W = quaternion.W * num;
         }
 
         #endregion
@@ -632,7 +632,7 @@ namespace Monogame
         /// <returns>The magnitude of the quaternion components.</returns>
         public float Length()
         {
-    		return MathF.Sqrt((X * X) + (Y * Y) + (Z * Z) + (W * W));
+            return MathF.Sqrt((X * X) + (Y * Y) + (Z * Z) + (W * W));
         }
 
         /// <summary>
@@ -656,30 +656,30 @@ namespace Monogame
         public static Quaternion Lerp(Quaternion quaternion1, Quaternion quaternion2, float amount)
         {
             float num = amount;
-		    float num2 = 1f - num;
-		    Quaternion quaternion = new Quaternion();
-		    float num5 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
-		    if (num5 >= 0f)
-		    {
-		        quaternion.X = (num2 * quaternion1.X) + (num * quaternion2.X);
-		        quaternion.Y = (num2 * quaternion1.Y) + (num * quaternion2.Y);
-		        quaternion.Z = (num2 * quaternion1.Z) + (num * quaternion2.Z);
-		        quaternion.W = (num2 * quaternion1.W) + (num * quaternion2.W);
-		    }
-		    else
-		    {
-		        quaternion.X = (num2 * quaternion1.X) - (num * quaternion2.X);
-		        quaternion.Y = (num2 * quaternion1.Y) - (num * quaternion2.Y);
-		        quaternion.Z = (num2 * quaternion1.Z) - (num * quaternion2.Z);
-		        quaternion.W = (num2 * quaternion1.W) - (num * quaternion2.W);
-		    }
-		    float num4 = (((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y)) + (quaternion.Z * quaternion.Z)) + (quaternion.W * quaternion.W);
-		    float num3 = 1f / MathF.Sqrt(num4);
-		    quaternion.X *= num3;
-		    quaternion.Y *= num3;
-		    quaternion.Z *= num3;
-		    quaternion.W *= num3;
-		    return quaternion;
+            float num2 = 1f - num;
+            Quaternion quaternion = new Quaternion();
+            float num5 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
+            if (num5 >= 0f)
+            {
+                quaternion.X = (num2 * quaternion1.X) + (num * quaternion2.X);
+                quaternion.Y = (num2 * quaternion1.Y) + (num * quaternion2.Y);
+                quaternion.Z = (num2 * quaternion1.Z) + (num * quaternion2.Z);
+                quaternion.W = (num2 * quaternion1.W) + (num * quaternion2.W);
+            }
+            else
+            {
+                quaternion.X = (num2 * quaternion1.X) - (num * quaternion2.X);
+                quaternion.Y = (num2 * quaternion1.Y) - (num * quaternion2.Y);
+                quaternion.Z = (num2 * quaternion1.Z) - (num * quaternion2.Z);
+                quaternion.W = (num2 * quaternion1.W) - (num * quaternion2.W);
+            }
+            float num4 = (((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y)) + (quaternion.Z * quaternion.Z)) + (quaternion.W * quaternion.W);
+            float num3 = 1f / MathF.Sqrt(num4);
+            quaternion.X *= num3;
+            quaternion.Y *= num3;
+            quaternion.Z *= num3;
+            quaternion.W *= num3;
+            return quaternion;
         }
 
         /// <summary>
@@ -692,28 +692,28 @@ namespace Monogame
         public static void Lerp(ref Quaternion quaternion1, ref Quaternion quaternion2, float amount, out Quaternion result)
         {
             float num = amount;
-		    float num2 = 1f - num;
-		    float num5 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
-		    if (num5 >= 0f)
-		    {
-		        result.X = (num2 * quaternion1.X) + (num * quaternion2.X);
-		        result.Y = (num2 * quaternion1.Y) + (num * quaternion2.Y);
-		        result.Z = (num2 * quaternion1.Z) + (num * quaternion2.Z);
-		        result.W = (num2 * quaternion1.W) + (num * quaternion2.W);
-		    }
-		    else
-		    {
-		        result.X = (num2 * quaternion1.X) - (num * quaternion2.X);
-		        result.Y = (num2 * quaternion1.Y) - (num * quaternion2.Y);
-		        result.Z = (num2 * quaternion1.Z) - (num * quaternion2.Z);
-		        result.W = (num2 * quaternion1.W) - (num * quaternion2.W);
-		    }
-		    float num4 = (((result.X * result.X) + (result.Y * result.Y)) + (result.Z * result.Z)) + (result.W * result.W);
-		    float num3 = 1f / MathF.Sqrt(num4);
-		    result.X *= num3;
-		    result.Y *= num3;
-		    result.Z *= num3;
-		    result.W *= num3;
+            float num2 = 1f - num;
+            float num5 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
+            if (num5 >= 0f)
+            {
+                result.X = (num2 * quaternion1.X) + (num * quaternion2.X);
+                result.Y = (num2 * quaternion1.Y) + (num * quaternion2.Y);
+                result.Z = (num2 * quaternion1.Z) + (num * quaternion2.Z);
+                result.W = (num2 * quaternion1.W) + (num * quaternion2.W);
+            }
+            else
+            {
+                result.X = (num2 * quaternion1.X) - (num * quaternion2.X);
+                result.Y = (num2 * quaternion1.Y) - (num * quaternion2.Y);
+                result.Z = (num2 * quaternion1.Z) - (num * quaternion2.Z);
+                result.W = (num2 * quaternion1.W) - (num * quaternion2.W);
+            }
+            float num4 = (((result.X * result.X) + (result.Y * result.Y)) + (result.Z * result.Z)) + (result.W * result.W);
+            float num3 = 1f / MathF.Sqrt(num4);
+            result.X *= num3;
+            result.Y *= num3;
+            result.Z *= num3;
+            result.W *= num3;
 
         }
 
@@ -731,33 +731,33 @@ namespace Monogame
         public static Quaternion Slerp(Quaternion quaternion1, Quaternion quaternion2, float amount)
         {
             float num2;
-		    float num3;
-		    Quaternion quaternion;
-		    float num = amount;
-		    float num4 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
-		    bool flag = false;
-		    if (num4 < 0f)
-		    {
-		        flag = true;
-		        num4 = -num4;
-		    }
-		    if (num4 > 0.999999f)
-		    {
-		        num3 = 1f - num;
-		        num2 = flag ? -num : num;
-		    }
-		    else
-		    {
-		        float num5 = MathF.Acos(num4);
-		        float num6 = (float) (1.0 / Math.Sin((double) num5));
-		        num3 = MathF.Sin((1f - num) * num5) * num6;
-		        num2 = flag ? (-MathF.Sin(num * num5) * num6) : (MathF.Sin(num * num5) * num6);
-		    }
-		    quaternion.X = (num3 * quaternion1.X) + (num2 * quaternion2.X);
-		    quaternion.Y = (num3 * quaternion1.Y) + (num2 * quaternion2.Y);
-		    quaternion.Z = (num3 * quaternion1.Z) + (num2 * quaternion2.Z);
-		    quaternion.W = (num3 * quaternion1.W) + (num2 * quaternion2.W);
-		    return quaternion;
+            float num3;
+            Quaternion quaternion;
+            float num = amount;
+            float num4 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
+            bool flag = false;
+            if (num4 < 0f)
+            {
+                flag = true;
+                num4 = -num4;
+            }
+            if (num4 > 0.999999f)
+            {
+                num3 = 1f - num;
+                num2 = flag ? -num : num;
+            }
+            else
+            {
+                float num5 = MathF.Acos(num4);
+                float num6 = (float)(1.0 / Math.Sin((double)num5));
+                num3 = MathF.Sin((1f - num) * num5) * num6;
+                num2 = flag ? (-MathF.Sin(num * num5) * num6) : (MathF.Sin(num * num5) * num6);
+            }
+            quaternion.X = (num3 * quaternion1.X) + (num2 * quaternion2.X);
+            quaternion.Y = (num3 * quaternion1.Y) + (num2 * quaternion2.Y);
+            quaternion.Z = (num3 * quaternion1.Z) + (num2 * quaternion2.Z);
+            quaternion.W = (num3 * quaternion1.W) + (num2 * quaternion2.W);
+            return quaternion;
         }
 
         /// <summary>
@@ -770,31 +770,31 @@ namespace Monogame
         public static void Slerp(ref Quaternion quaternion1, ref Quaternion quaternion2, float amount, out Quaternion result)
         {
             float num2;
-		    float num3;
-		    float num = amount;
-		    float num4 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
-		    bool flag = false;
-		    if (num4 < 0f)
-		    {
-		        flag = true;
-		        num4 = -num4;
-		    }
-		    if (num4 > 0.999999f)
-		    {
-		        num3 = 1f - num;
-		        num2 = flag ? -num : num;
-		    }
-		    else
-		    {
-		        float num5 = MathF.Acos(num4);
-		        float num6 = (float) (1.0 / Math.Sin((double) num5));
-		        num3 = MathF.Sin((1f - num) * num5) * num6;
-		        num2 = flag ? (-MathF.Sin(num * num5) * num6) : (MathF.Sin(num * num5) * num6);
-		    }
-		    result.X = (num3 * quaternion1.X) + (num2 * quaternion2.X);
-		    result.Y = (num3 * quaternion1.Y) + (num2 * quaternion2.Y);
-		    result.Z = (num3 * quaternion1.Z) + (num2 * quaternion2.Z);
-		    result.W = (num3 * quaternion1.W) + (num2 * quaternion2.W);
+            float num3;
+            float num = amount;
+            float num4 = (((quaternion1.X * quaternion2.X) + (quaternion1.Y * quaternion2.Y)) + (quaternion1.Z * quaternion2.Z)) + (quaternion1.W * quaternion2.W);
+            bool flag = false;
+            if (num4 < 0f)
+            {
+                flag = true;
+                num4 = -num4;
+            }
+            if (num4 > 0.999999f)
+            {
+                num3 = 1f - num;
+                num2 = flag ? -num : num;
+            }
+            else
+            {
+                float num5 = MathF.Acos(num4);
+                float num6 = (float)(1.0 / Math.Sin((double)num5));
+                num3 = MathF.Sin((1f - num) * num5) * num6;
+                num2 = flag ? (-MathF.Sin(num * num5) * num6) : (MathF.Sin(num * num5) * num6);
+            }
+            result.X = (num3 * quaternion1.X) + (num2 * quaternion2.X);
+            result.Y = (num3 * quaternion1.Y) + (num2 * quaternion2.Y);
+            result.Z = (num3 * quaternion1.Z) + (num2 * quaternion2.Z);
+            result.W = (num3 * quaternion1.W) + (num2 * quaternion2.W);
         }
 
         #endregion
@@ -810,11 +810,11 @@ namespace Monogame
         public static Quaternion Subtract(Quaternion quaternion1, Quaternion quaternion2)
         {
             Quaternion quaternion;
-		    quaternion.X = quaternion1.X - quaternion2.X;
-		    quaternion.Y = quaternion1.Y - quaternion2.Y;
-		    quaternion.Z = quaternion1.Z - quaternion2.Z;
-		    quaternion.W = quaternion1.W - quaternion2.W;
-		    return quaternion;
+            quaternion.X = quaternion1.X - quaternion2.X;
+            quaternion.Y = quaternion1.Y - quaternion2.Y;
+            quaternion.Z = quaternion1.Z - quaternion2.Z;
+            quaternion.W = quaternion1.W - quaternion2.W;
+            return quaternion;
         }
 
         /// <summary>
@@ -826,9 +826,9 @@ namespace Monogame
         public static void Subtract(ref Quaternion quaternion1, ref Quaternion quaternion2, out Quaternion result)
         {
             result.X = quaternion1.X - quaternion2.X;
-		    result.Y = quaternion1.Y - quaternion2.Y;
-		    result.Z = quaternion1.Z - quaternion2.Z;
-		    result.W = quaternion1.W - quaternion2.W;
+            result.Y = quaternion1.Y - quaternion2.Y;
+            result.Z = quaternion1.Z - quaternion2.Z;
+            result.W = quaternion1.W - quaternion2.W;
         }
 
         #endregion
@@ -844,23 +844,23 @@ namespace Monogame
         public static Quaternion Multiply(Quaternion quaternion1, Quaternion quaternion2)
         {
             Quaternion quaternion;
-		    float x = quaternion1.X;
-		    float y = quaternion1.Y;
-		    float z = quaternion1.Z;
-		    float w = quaternion1.W;
-		    float num4 = quaternion2.X;
-		    float num3 = quaternion2.Y;
-		    float num2 = quaternion2.Z;
-		    float num = quaternion2.W;
-		    float num12 = (y * num2) - (z * num3);
-		    float num11 = (z * num4) - (x * num2);
-		    float num10 = (x * num3) - (y * num4);
-		    float num9 = ((x * num4) + (y * num3)) + (z * num2);
-		    quaternion.X = ((x * num) + (num4 * w)) + num12;
-		    quaternion.Y = ((y * num) + (num3 * w)) + num11;
-		    quaternion.Z = ((z * num) + (num2 * w)) + num10;
-		    quaternion.W = (w * num) - num9;
-		    return quaternion;
+            float x = quaternion1.X;
+            float y = quaternion1.Y;
+            float z = quaternion1.Z;
+            float w = quaternion1.W;
+            float num4 = quaternion2.X;
+            float num3 = quaternion2.Y;
+            float num2 = quaternion2.Z;
+            float num = quaternion2.W;
+            float num12 = (y * num2) - (z * num3);
+            float num11 = (z * num4) - (x * num2);
+            float num10 = (x * num3) - (y * num4);
+            float num9 = ((x * num4) + (y * num3)) + (z * num2);
+            quaternion.X = ((x * num) + (num4 * w)) + num12;
+            quaternion.Y = ((y * num) + (num3 * w)) + num11;
+            quaternion.Z = ((z * num) + (num2 * w)) + num10;
+            quaternion.W = (w * num) - num9;
+            return quaternion;
         }
 
         /// <summary>
@@ -872,11 +872,11 @@ namespace Monogame
         public static Quaternion Multiply(Quaternion quaternion1, float scaleFactor)
         {
             Quaternion quaternion;
-		    quaternion.X = quaternion1.X * scaleFactor;
-		    quaternion.Y = quaternion1.Y * scaleFactor;
-		    quaternion.Z = quaternion1.Z * scaleFactor;
-		    quaternion.W = quaternion1.W * scaleFactor;
-		    return quaternion;
+            quaternion.X = quaternion1.X * scaleFactor;
+            quaternion.Y = quaternion1.Y * scaleFactor;
+            quaternion.Z = quaternion1.Z * scaleFactor;
+            quaternion.W = quaternion1.W * scaleFactor;
+            return quaternion;
         }
 
         /// <summary>
@@ -888,9 +888,9 @@ namespace Monogame
         public static void Multiply(ref Quaternion quaternion1, float scaleFactor, out Quaternion result)
         {
             result.X = quaternion1.X * scaleFactor;
-		    result.Y = quaternion1.Y * scaleFactor;
-		    result.Z = quaternion1.Z * scaleFactor;
-		    result.W = quaternion1.W * scaleFactor;
+            result.Y = quaternion1.Y * scaleFactor;
+            result.Z = quaternion1.Z * scaleFactor;
+            result.W = quaternion1.W * scaleFactor;
         }
 
         /// <summary>
@@ -902,21 +902,21 @@ namespace Monogame
         public static void Multiply(ref Quaternion quaternion1, ref Quaternion quaternion2, out Quaternion result)
         {
             float x = quaternion1.X;
-		    float y = quaternion1.Y;
-		    float z = quaternion1.Z;
-		    float w = quaternion1.W;
-		    float num4 = quaternion2.X;
-		    float num3 = quaternion2.Y;
-		    float num2 = quaternion2.Z;
-		    float num = quaternion2.W;
-		    float num12 = (y * num2) - (z * num3);
-		    float num11 = (z * num4) - (x * num2);
-		    float num10 = (x * num3) - (y * num4);
-		    float num9 = ((x * num4) + (y * num3)) + (z * num2);
-		    result.X = ((x * num) + (num4 * w)) + num12;
-		    result.Y = ((y * num) + (num3 * w)) + num11;
-		    result.Z = ((z * num) + (num2 * w)) + num10;
-		    result.W = (w * num) - num9;
+            float y = quaternion1.Y;
+            float z = quaternion1.Z;
+            float w = quaternion1.W;
+            float num4 = quaternion2.X;
+            float num3 = quaternion2.Y;
+            float num2 = quaternion2.Z;
+            float num = quaternion2.W;
+            float num12 = (y * num2) - (z * num3);
+            float num11 = (z * num4) - (x * num2);
+            float num10 = (x * num3) - (y * num4);
+            float num9 = ((x * num4) + (y * num3)) + (z * num2);
+            result.X = ((x * num) + (num4 * w)) + num12;
+            result.Y = ((y * num) + (num3 * w)) + num11;
+            result.Z = ((z * num) + (num2 * w)) + num10;
+            result.W = (w * num) - num9;
         }
 
         #endregion
@@ -930,7 +930,7 @@ namespace Monogame
         /// <returns>The result of the quaternion negation.</returns>
         public static Quaternion Negate(Quaternion quaternion)
         {
-		    return new Quaternion(-quaternion.X, -quaternion.Y, -quaternion.Z, -quaternion.W);
+            return new Quaternion(-quaternion.X, -quaternion.Y, -quaternion.Z, -quaternion.W);
         }
 
         /// <summary>
@@ -941,9 +941,9 @@ namespace Monogame
         public static void Negate(ref Quaternion quaternion, out Quaternion result)
         {
             result.X = -quaternion.X;
-		    result.Y = -quaternion.Y;
-		    result.Z = -quaternion.Z;
-		    result.W = -quaternion.W;
+            result.Y = -quaternion.Y;
+            result.Z = -quaternion.Z;
+            result.W = -quaternion.W;
         }
 
         #endregion
@@ -955,11 +955,11 @@ namespace Monogame
         /// </summary>
         public void Normalize()
         {
-		    float num = 1f / MathF.Sqrt((X * X) + (Y * Y) + (Z * Z) + (W * W));
-		    X *= num;
-		    Y *= num;
-		    Z *= num;
-		    W *= num;
+            float num = 1f / MathF.Sqrt((X * X) + (Y * Y) + (Z * Z) + (W * W));
+            X *= num;
+            Y *= num;
+            Z *= num;
+            W *= num;
         }
 
         /// <summary>
@@ -970,12 +970,12 @@ namespace Monogame
         public static Quaternion Normalize(Quaternion quaternion)
         {
             Quaternion result;
-		    float num = 1f / MathF.Sqrt((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y) + (quaternion.Z * quaternion.Z) + (quaternion.W * quaternion.W));
+            float num = 1f / MathF.Sqrt((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y) + (quaternion.Z * quaternion.Z) + (quaternion.W * quaternion.W));
             result.X = quaternion.X * num;
             result.Y = quaternion.Y * num;
             result.Z = quaternion.Z * num;
             result.W = quaternion.W * num;
-		    return result;
+            return result;
         }
 
         /// <summary>
@@ -985,11 +985,11 @@ namespace Monogame
         /// <param name="result">The unit length quaternion an output parameter.</param>
         public static void Normalize(ref Quaternion quaternion, out Quaternion result)
         {
-		    float num = 1f / MathF.Sqrt((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y) + (quaternion.Z * quaternion.Z) + (quaternion.W * quaternion.W));
-		    result.X = quaternion.X * num;
-		    result.Y = quaternion.Y * num;
-		    result.Z = quaternion.Z * num;
-		    result.W = quaternion.W * num;
+            float num = 1f / MathF.Sqrt((quaternion.X * quaternion.X) + (quaternion.Y * quaternion.Y) + (quaternion.Z * quaternion.Z) + (quaternion.W * quaternion.W));
+            result.X = quaternion.X * num;
+            result.Y = quaternion.Y * num;
+            result.Z = quaternion.Z * num;
+            result.W = quaternion.W * num;
         }
 
         #endregion
@@ -1010,7 +1010,7 @@ namespace Monogame
         /// <returns>A <see cref="Vector4"/> representation for this object.</returns>
         public Vector4 ToVector4()
         {
-            return new Vector4(X,Y,Z,W);
+            return new Vector4(X, Y, Z, W);
         }
 
         /// <summary>
@@ -1058,11 +1058,11 @@ namespace Monogame
         public static Quaternion operator +(Quaternion quaternion1, Quaternion quaternion2)
         {
             Quaternion quaternion;
-		    quaternion.X = quaternion1.X + quaternion2.X;
-		    quaternion.Y = quaternion1.Y + quaternion2.Y;
-		    quaternion.Z = quaternion1.Z + quaternion2.Z;
-		    quaternion.W = quaternion1.W + quaternion2.W;
-		    return quaternion;
+            quaternion.X = quaternion1.X + quaternion2.X;
+            quaternion.Y = quaternion1.Y + quaternion2.Y;
+            quaternion.Z = quaternion1.Z + quaternion2.Z;
+            quaternion.W = quaternion1.W + quaternion2.W;
+            return quaternion;
         }
 
         /// <summary>
@@ -1074,25 +1074,25 @@ namespace Monogame
         public static Quaternion operator /(Quaternion quaternion1, Quaternion quaternion2)
         {
             Quaternion quaternion;
-		    float x = quaternion1.X;
-		    float y = quaternion1.Y;
-		    float z = quaternion1.Z;
-		    float w = quaternion1.W;
-		    float num14 = (((quaternion2.X * quaternion2.X) + (quaternion2.Y * quaternion2.Y)) + (quaternion2.Z * quaternion2.Z)) + (quaternion2.W * quaternion2.W);
-		    float num5 = 1f / num14;
-		    float num4 = -quaternion2.X * num5;
-		    float num3 = -quaternion2.Y * num5;
-		    float num2 = -quaternion2.Z * num5;
-		    float num = quaternion2.W * num5;
-		    float num13 = (y * num2) - (z * num3);
-		    float num12 = (z * num4) - (x * num2);
-		    float num11 = (x * num3) - (y * num4);
-		    float num10 = ((x * num4) + (y * num3)) + (z * num2);
-		    quaternion.X = ((x * num) + (num4 * w)) + num13;
-		    quaternion.Y = ((y * num) + (num3 * w)) + num12;
-		    quaternion.Z = ((z * num) + (num2 * w)) + num11;
-		    quaternion.W = (w * num) - num10;
-		    return quaternion;
+            float x = quaternion1.X;
+            float y = quaternion1.Y;
+            float z = quaternion1.Z;
+            float w = quaternion1.W;
+            float num14 = (((quaternion2.X * quaternion2.X) + (quaternion2.Y * quaternion2.Y)) + (quaternion2.Z * quaternion2.Z)) + (quaternion2.W * quaternion2.W);
+            float num5 = 1f / num14;
+            float num4 = -quaternion2.X * num5;
+            float num3 = -quaternion2.Y * num5;
+            float num2 = -quaternion2.Z * num5;
+            float num = quaternion2.W * num5;
+            float num13 = (y * num2) - (z * num3);
+            float num12 = (z * num4) - (x * num2);
+            float num11 = (x * num3) - (y * num4);
+            float num10 = ((x * num4) + (y * num3)) + (z * num2);
+            quaternion.X = ((x * num) + (num4 * w)) + num13;
+            quaternion.Y = ((y * num) + (num3 * w)) + num12;
+            quaternion.Z = ((z * num) + (num2 * w)) + num11;
+            quaternion.W = (w * num) - num10;
+            return quaternion;
         }
 
         /// <summary>
@@ -1115,10 +1115,10 @@ namespace Monogame
         public static bool operator !=(Quaternion quaternion1, Quaternion quaternion2)
         {
             if (((quaternion1.X == quaternion2.X) && (quaternion1.Y == quaternion2.Y)) && (quaternion1.Z == quaternion2.Z))
-		    {
-		        return (quaternion1.W != quaternion2.W);
-		    }
-		    return true;
+            {
+                return (quaternion1.W != quaternion2.W);
+            }
+            return true;
         }
 
         /// <summary>
@@ -1130,23 +1130,23 @@ namespace Monogame
         public static Quaternion operator *(Quaternion quaternion1, Quaternion quaternion2)
         {
             Quaternion quaternion;
-		    float x = quaternion1.X;
-		    float y = quaternion1.Y;
-		    float z = quaternion1.Z;
-		    float w = quaternion1.W;
-		    float num4 = quaternion2.X;
-		    float num3 = quaternion2.Y;
-		    float num2 = quaternion2.Z;
-		    float num = quaternion2.W;
-		    float num12 = (y * num2) - (z * num3);
-		    float num11 = (z * num4) - (x * num2);
-		    float num10 = (x * num3) - (y * num4);
-		    float num9 = ((x * num4) + (y * num3)) + (z * num2);
-		    quaternion.X = ((x * num) + (num4 * w)) + num12;
-		    quaternion.Y = ((y * num) + (num3 * w)) + num11;
-		    quaternion.Z = ((z * num) + (num2 * w)) + num10;
-		    quaternion.W = (w * num) - num9;
-		    return quaternion;
+            float x = quaternion1.X;
+            float y = quaternion1.Y;
+            float z = quaternion1.Z;
+            float w = quaternion1.W;
+            float num4 = quaternion2.X;
+            float num3 = quaternion2.Y;
+            float num2 = quaternion2.Z;
+            float num = quaternion2.W;
+            float num12 = (y * num2) - (z * num3);
+            float num11 = (z * num4) - (x * num2);
+            float num10 = (x * num3) - (y * num4);
+            float num9 = ((x * num4) + (y * num3)) + (z * num2);
+            quaternion.X = ((x * num) + (num4 * w)) + num12;
+            quaternion.Y = ((y * num) + (num3 * w)) + num11;
+            quaternion.Z = ((z * num) + (num2 * w)) + num10;
+            quaternion.W = (w * num) - num9;
+            return quaternion;
         }
 
         /// <summary>
@@ -1158,11 +1158,11 @@ namespace Monogame
         public static Quaternion operator *(Quaternion quaternion1, float scaleFactor)
         {
             Quaternion quaternion;
-		    quaternion.X = quaternion1.X * scaleFactor;
-		    quaternion.Y = quaternion1.Y * scaleFactor;
-		    quaternion.Z = quaternion1.Z * scaleFactor;
-		    quaternion.W = quaternion1.W * scaleFactor;
-		    return quaternion;
+            quaternion.X = quaternion1.X * scaleFactor;
+            quaternion.Y = quaternion1.Y * scaleFactor;
+            quaternion.Z = quaternion1.Z * scaleFactor;
+            quaternion.W = quaternion1.W * scaleFactor;
+            return quaternion;
         }
 
         /// <summary>
@@ -1174,11 +1174,11 @@ namespace Monogame
         public static Quaternion operator -(Quaternion quaternion1, Quaternion quaternion2)
         {
             Quaternion quaternion;
-		    quaternion.X = quaternion1.X - quaternion2.X;
-		    quaternion.Y = quaternion1.Y - quaternion2.Y;
-		    quaternion.Z = quaternion1.Z - quaternion2.Z;
-		    quaternion.W = quaternion1.W - quaternion2.W;
-		    return quaternion;
+            quaternion.X = quaternion1.X - quaternion2.X;
+            quaternion.Y = quaternion1.Y - quaternion2.Y;
+            quaternion.Z = quaternion1.Z - quaternion2.Z;
+            quaternion.W = quaternion1.W - quaternion2.W;
+            return quaternion;
 
         }
 
@@ -1190,11 +1190,11 @@ namespace Monogame
         public static Quaternion operator -(Quaternion quaternion)
         {
             Quaternion quaternion2;
-		    quaternion2.X = -quaternion.X;
-		    quaternion2.Y = -quaternion.Y;
-		    quaternion2.Z = -quaternion.Z;
-		    quaternion2.W = -quaternion.W;
-		    return quaternion2;
+            quaternion2.X = -quaternion.X;
+            quaternion2.Y = -quaternion.Y;
+            quaternion2.Z = -quaternion.Z;
+            quaternion2.W = -quaternion.W;
+            return quaternion2;
         }
 
         #endregion

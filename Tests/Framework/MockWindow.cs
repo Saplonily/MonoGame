@@ -4,8 +4,8 @@ using Monogame;
 namespace MonoGame.Tests.Framework
 {
 
-// TODO: Mac implements its own GameWindow class that cannot 
-// be overloaded...  if you hate this hack, go fix it.
+    // TODO: Mac implements its own GameWindow class that cannot 
+    // be overloaded...  if you hate this hack, go fix it.
 #if !MONOMAC
 
     internal class MockWindow : GameWindow

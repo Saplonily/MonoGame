@@ -7,16 +7,16 @@ namespace MonoGame.Tests.Audio
     public class SoundEffectInstanceXAudioTest
     {
         // Mono source
-        [TestCase( 0f, 1f, 1, 1f, 1f)]
+        [TestCase(0f, 1f, 1, 1f, 1f)]
         [TestCase(-1f, 1f, 1, 1f, 0f)]
-        [TestCase( 1f, 1f, 1, 0f, 1f)]
+        [TestCase(1f, 1f, 1, 0f, 1f)]
         [TestCase(-0.75f, 1f, 1, 1f, 0.25f)]
-        [TestCase( 0.75f, 1f, 1, 0.25f, 1f)]
-        [TestCase( 0f, 0.75f, 1, 0.75f, 0.75f)]
+        [TestCase(0.75f, 1f, 1, 0.25f, 1f)]
+        [TestCase(0f, 0.75f, 1, 0.75f, 0.75f)]
         // Mono source, scaled
         [TestCase(0f, 0.75f, 1, 0.75f, 0.75f)]
         [TestCase(-1f, 0.75f, 1, 0.75f, 0f)]
-        [TestCase( 1f, 0.75f, 1, 0f, 0.75f)]
+        [TestCase(1f, 0.75f, 1, 0f, 0.75f)]
         // Stereo source
         [TestCase(0f, 1f, 2, 1f, 0f, 0f, 1f)]
         [TestCase(-1f, 1f, 2, 0.5f, 0.5f, 0f, 0f)]

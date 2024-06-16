@@ -21,7 +21,7 @@ namespace Monogame
             {
                 presentationParameters.DeviceWindowHandle = IntPtr.Zero;
                 presentationParameters.SwapChainPanel = this.SwapChainPanel;
-           }
+            }
             else
             {
                 presentationParameters.DeviceWindowHandle = _game.Window.Handle;

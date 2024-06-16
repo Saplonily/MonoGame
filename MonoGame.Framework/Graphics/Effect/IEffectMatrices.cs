@@ -9,7 +9,7 @@ namespace Monogame.Graphics
     /// Gets or sets transformation matrix parameters for the current effect.
     /// </summary>
 	public interface IEffectMatrices
-	{
+    {
         /// <summary>
         /// Gets or sets the projection matrix in the current effect.
         /// </summary>
@@ -22,5 +22,5 @@ namespace Monogame.Graphics
         /// Gets or sets the world matrix in the current effect.
         /// </summary>
 		Matrix World { get; set; }
-	}
+    }
 }

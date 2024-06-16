@@ -24,17 +24,17 @@ namespace Monogame.Content
     /// content manager will also dispose any assets which are themselves <see cref="IDisposable"/>.
     /// </summary>
 	public partial class ContentManager : IDisposable
-	{
+    {
         const byte ContentCompressedLzx = 0x80;
         const byte ContentCompressedLz4 = 0x40;
 
-		private string _rootDirectory = string.Empty;
-		private IServiceProvider serviceProvider;
+        private string _rootDirectory = string.Empty;
+        private IServiceProvider serviceProvider;
         private Dictionary<string, object> loadedAssets = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
-		private List<IDisposable> disposableAssets = new List<IDisposable>();
+        private List<IDisposable> disposableAssets = new List<IDisposable>();
         private bool disposed;
 
-		private static object ContentManagerLock = new object();
+        private static object ContentManagerLock = new object();
         private static List<WeakReference> ContentManagers = new List<WeakReference>();
 
         internal static readonly ByteBufferPool ScratchBufferPool = new ByteBufferPool(1024 * 1024, Environment.ProcessorCount);
@@ -142,9 +142,9 @@ namespace Monogame.Content
 
         /// <summary />
 		~ContentManager()
-		{
-			Dispose(false);
-		}
+        {
+            Dispose(false);
+        }
 
         /// <summary>
         /// Initializes a new instance of the ContentMangaer.
@@ -163,58 +163,58 @@ namespace Monogame.Content
         /// <param name="serviceProvider">The service provider that the ContentManager should use to locate services.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="serviceProvider"/> parameter is null.</exception>
 		public ContentManager(IServiceProvider serviceProvider)
-		{
-			if (serviceProvider == null)
-			{
-				throw new ArgumentNullException("serviceProvider");
-			}
-			this.serviceProvider = serviceProvider;
+        {
+            if (serviceProvider == null)
+            {
+                throw new ArgumentNullException("serviceProvider");
+            }
+            this.serviceProvider = serviceProvider;
             AddContentManager(this);
-		}
+        }
 
         /// <inheritdoc cref="ContentManager.ContentManager(IServiceProvider)"/>
         /// <param name="serviceProvider" />
         /// <param name="rootDirectory">The root directory the ContentManager will search for content in.</param>
         public ContentManager(IServiceProvider serviceProvider, string rootDirectory)
-		{
-			if (serviceProvider == null)
-			{
-				throw new ArgumentNullException("serviceProvider");
-			}
-			if (rootDirectory == null)
-			{
-				throw new ArgumentNullException("rootDirectory");
-			}
-			this.RootDirectory = rootDirectory;
-			this.serviceProvider = serviceProvider;
+        {
+            if (serviceProvider == null)
+            {
+                throw new ArgumentNullException("serviceProvider");
+            }
+            if (rootDirectory == null)
+            {
+                throw new ArgumentNullException("rootDirectory");
+            }
+            this.RootDirectory = rootDirectory;
+            this.serviceProvider = serviceProvider;
             AddContentManager(this);
-		}
+        }
 
         /// <inheritdoc />
 		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
             // Once disposed, content manager wont be used again
             RemoveContentManager(this);
-		}
+        }
 
         /// <inheritdoc cref="Dispose()"/>
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
 		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
+        {
+            if (!disposed)
+            {
                 if (disposing)
                 {
                     Unload();
                 }
 
-				disposed = true;
-			}
-		}
+                disposed = true;
+            }
+        }
 
         /// <summary>
         /// Loads an asset that has been processed by the Content Pipeline.
@@ -269,9 +269,9 @@ namespace Monogame.Content
         ///
         /// An error occurred while opening the content file.
         /// </exception>
-        public virtual T LoadLocalized<T> (string assetName)
+        public virtual T LoadLocalized<T>(string assetName)
         {
-            string [] cultureNames =
+            string[] cultureNames =
             {
                 CultureInfo.CurrentCulture.Name,                        // eg. "en-US"
                 CultureInfo.CurrentCulture.TwoLetterISOLanguageName     // eg. "en"
@@ -280,16 +280,19 @@ namespace Monogame.Content
             // Look first for a specialized language-country version of the asset,
             // then if that fails, loop back around to see if we can find one that
             // specifies just the language without the country part.
-            foreach (string cultureName in cultureNames) {
+            foreach (string cultureName in cultureNames)
+            {
                 string localizedAssetName = assetName + '.' + cultureName;
 
-                try {
-                    return Load<T> (localizedAssetName);
-                } catch (ContentLoadException) { }
+                try
+                {
+                    return Load<T>(localizedAssetName);
+                }
+                catch (ContentLoadException) { }
             }
 
             // If we didn't find any localized asset, fall back to the default name.
-            return Load<T> (assetName);
+            return Load<T>(assetName);
         }
 
 
@@ -339,7 +342,7 @@ namespace Monogame.Content
         /// An error occurred while opening the content file.
         /// </exception>
 		public virtual T Load<T>(string assetName)
-		{
+        {
             if (string.IsNullOrEmpty(assetName))
             {
                 throw new ArgumentNullException("assetName");
@@ -350,7 +353,7 @@ namespace Monogame.Content
             }
 
             T result = default(T);
-            
+
             // On some platforms, name and slash direction matter.
             // We store the asset by a /-separating key rather than how the
             // path to the file was passed to us to avoid
@@ -374,13 +377,13 @@ namespace Monogame.Content
 
             loadedAssets[key] = result;
             return result;
-		}
+        }
 
         /// <summary />
 		protected virtual Stream OpenStream(string assetName)
-		{
-			Stream stream;
-			try
+        {
+            Stream stream;
+            try
             {
                 var assetPath = Path.Combine(RootDirectory, assetName) + ".xnb";
 
@@ -402,38 +405,38 @@ namespace Monogame.Content
                 stream.Close();
                 stream = memStream;
 #endif
-			}
-			catch (FileNotFoundException fileNotFound)
-			{
-				throw new ContentLoadException("The content file was not found.", fileNotFound);
-			}
+            }
+            catch (FileNotFoundException fileNotFound)
+            {
+                throw new ContentLoadException("The content file was not found.", fileNotFound);
+            }
 #if !WINDOWS_UAP
-			catch (DirectoryNotFoundException directoryNotFound)
-			{
-				throw new ContentLoadException("The directory was not found.", directoryNotFound);
-			}
+            catch (DirectoryNotFoundException directoryNotFound)
+            {
+                throw new ContentLoadException("The directory was not found.", directoryNotFound);
+            }
 #endif
-			catch (Exception exception)
-			{
-				throw new ContentLoadException("Opening stream error.", exception);
-			}
-			return stream;
-		}
+            catch (Exception exception)
+            {
+                throw new ContentLoadException("Opening stream error.", exception);
+            }
+            return stream;
+        }
 
         /// <summary />
 		protected T ReadAsset<T>(string assetName, Action<IDisposable> recordDisposableObject)
-		{
-			if (string.IsNullOrEmpty(assetName))
-			{
-				throw new ArgumentNullException("assetName");
-			}
-			if (disposed)
-			{
-				throw new ObjectDisposedException("ContentManager");
-			}
-						
-			string originalAssetName = assetName;
-			object result = null;
+        {
+            if (string.IsNullOrEmpty(assetName))
+            {
+                throw new ArgumentNullException("assetName");
+            }
+            if (disposed)
+            {
+                throw new ObjectDisposedException("ContentManager");
+            }
+
+            string originalAssetName = assetName;
+            object result = null;
 
             // Try to load as XNB file
             var stream = OpenStream(assetName);
@@ -446,12 +449,12 @@ namespace Monogame.Content
                         ((GraphicsResource)result).Name = originalAssetName;
                 }
             }
-            
-			if (result == null)
-				throw new ContentLoadException("Could not load " + originalAssetName + " asset!");
 
-			return (T)result;
-		}
+            if (result == null)
+                throw new ContentLoadException("Could not load " + originalAssetName + " asset!");
+
+            return (T)result;
+        }
 
         private ContentReader GetContentReaderFromXnb(string originalAssetName, Stream stream, BinaryReader xnbReader, Action<IDisposable> recordDisposableObject)
         {
@@ -503,7 +506,7 @@ namespace Monogame.Content
 
             var reader = new ContentReader(this, decompressedStream,
                                                         originalAssetName, version, recordDisposableObject);
-            
+
             return reader;
         }
 
@@ -535,22 +538,22 @@ namespace Monogame.Content
 
                 var methodInfo = ReflectionHelpers.GetMethodInfo(typeof(ContentManager), "ReloadAsset");
                 var genericMethod = methodInfo.MakeGenericMethod(asset.Value.GetType());
-                genericMethod.Invoke(this, new object[] { asset.Key, Convert.ChangeType(asset.Value, asset.Value.GetType()) }); 
+                genericMethod.Invoke(this, new object[] { asset.Key, Convert.ChangeType(asset.Value, asset.Value.GetType()) });
             }
         }
 
         /// <summary />
         protected virtual void ReloadAsset<T>(string originalAssetName, T currentAsset)
         {
-			string assetName = originalAssetName;
-			if (string.IsNullOrEmpty(assetName))
-			{
-				throw new ArgumentNullException("assetName");
-			}
-			if (disposed)
-			{
-				throw new ObjectDisposedException("ContentManager");
-			}
+            string assetName = originalAssetName;
+            if (string.IsNullOrEmpty(assetName))
+            {
+                throw new ArgumentNullException("assetName");
+            }
+            if (disposed)
+            {
+                throw new ObjectDisposedException("ContentManager");
+            }
 
             var stream = OpenStream(assetName);
             using (var xnbReader = new BinaryReader(stream))
@@ -560,7 +563,7 @@ namespace Monogame.Content
                     reader.ReadAsset<T>(currentAsset);
                 }
             }
-		}
+        }
 
         /// <summary>
         /// Unloads all assets that were loaded by this ContentManger.
@@ -570,15 +573,15 @@ namespace Monogame.Content
         /// <see cref="IDisposable.Dispose">IDisposable.Dispose</see> method will be called before unloading.
         /// </remarks>
 		public virtual void Unload()
-		{
-		    // Look for disposable assets.
-		    foreach (var disposable in disposableAssets)
-		    {
-		        if (disposable != null)
-		            disposable.Dispose();
-		    }
-			disposableAssets.Clear();
-		    loadedAssets.Clear();
+        {
+            // Look for disposable assets.
+            foreach (var disposable in disposableAssets)
+            {
+                if (disposable != null)
+                    disposable.Dispose();
+            }
+            disposableAssets.Clear();
+            loadedAssets.Clear();
         }
 
         /// <summary>
@@ -659,16 +662,16 @@ namespace Monogame.Content
         /// Gets or Sets the root directory that this ContentManager will search for assets in.
         /// </summary>
 		public string RootDirectory
-		{
-			get
-			{
-				return _rootDirectory;
-			}
-			set
-			{
-				_rootDirectory = value;
-			}
-		}
+        {
+            get
+            {
+                return _rootDirectory;
+            }
+            set
+            {
+                _rootDirectory = value;
+            }
+        }
 
         internal string RootDirectoryFullPath
         {
@@ -682,11 +685,11 @@ namespace Monogame.Content
         /// Gets the service provider instance used by this ContentManager.
         /// </summary>
 		public IServiceProvider ServiceProvider
-		{
-			get
-			{
-				return this.serviceProvider;
-			}
-		}
+        {
+            get
+            {
+                return this.serviceProvider;
+            }
+        }
     }
 }

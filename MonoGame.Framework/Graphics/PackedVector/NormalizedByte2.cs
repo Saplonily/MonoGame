@@ -97,8 +97,8 @@ namespace Monogame.Graphics.PackedVector
 
         private static ushort Pack(float x, float y)
         {
-            var byte2 = (((ushort) MathF.Round(MathHelper.Clamp(x, -1.0f, 1.0f) * 127.0f)) & 0xFF) << 0;
-            var byte1 = (((ushort) MathF.Round(MathHelper.Clamp(y, -1.0f, 1.0f) * 127.0f)) & 0xFF) << 8;
+            var byte2 = (((ushort)MathF.Round(MathHelper.Clamp(x, -1.0f, 1.0f) * 127.0f)) & 0xFF) << 0;
+            var byte1 = (((ushort)MathF.Round(MathHelper.Clamp(y, -1.0f, 1.0f) * 127.0f)) & 0xFF) << 8;
 
             return (ushort)(byte2 | byte1);
         }
@@ -121,8 +121,8 @@ namespace Monogame.Graphics.PackedVector
         public Vector2 ToVector2()
         {
             return new Vector2(
-                ((sbyte) ((_packed >> 0) & 0xFF)) / 127.0f,
-                ((sbyte) ((_packed >> 8) & 0xFF)) / 127.0f);
+                ((sbyte)((_packed >> 0) & 0xFF)) / 127.0f,
+                ((sbyte)((_packed >> 8) & 0xFF)) / 127.0f);
         }
     }
 }

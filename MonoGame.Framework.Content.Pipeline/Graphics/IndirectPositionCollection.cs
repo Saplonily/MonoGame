@@ -40,7 +40,7 @@ namespace Monogame.Content.Pipeline.Graphics
             {
                 var remap = _positionIndices[index];
                 return _geometry.Parent.Positions[remap];
-            } 
+            }
             set
             {
                 throw Readonly();

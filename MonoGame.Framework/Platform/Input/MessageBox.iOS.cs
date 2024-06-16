@@ -22,7 +22,7 @@ namespace Monogame.Input
                 alert.Dismissed += (sender, e) =>
                 {
                     if (!tcs.Task.IsCompleted)
-					    tcs.SetResult((int)e.ButtonIndex);
+                        tcs.SetResult((int)e.ButtonIndex);
                 };
                 alert.Show();
             });

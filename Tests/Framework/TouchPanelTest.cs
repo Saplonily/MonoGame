@@ -6,8 +6,8 @@ using NUnit.Framework;
 
 namespace MonoGame.Tests.Framework
 {
-// TODO: Mac implements its own GameWindow class that cannot 
-// be overloaded in MockWindow...  if you hate this hack, go fix it.
+    // TODO: Mac implements its own GameWindow class that cannot 
+    // be overloaded in MockWindow...  if you hate this hack, go fix it.
 #if !MONOMAC
 
     [TestFixture]
@@ -133,7 +133,7 @@ namespace MonoGame.Tests.Framework
             //Touch the screen, we should get one touch with the given location in the pressed state
             var pos = new Vector2(100, 50);
             _tps.AddEvent(1, TouchLocationState.Pressed, pos);
-            
+
             var state = _tps.GetState();
             Assert.AreEqual(1, state.Count);
 
@@ -231,7 +231,7 @@ namespace MonoGame.Tests.Framework
 
             if (waitAFrameForNextState)
                 TouchPanelState.CurrentTimestamp = GameTimeForFrame(1);
-           
+
             state = _tps.GetState();
             Assert.AreEqual(0, state.Count); //Touch should be gone now
         }
@@ -291,7 +291,7 @@ namespace MonoGame.Tests.Framework
             //Move the second touch
             var pos3 = new Vector2(150, 150);
             _tps.AddEvent(2, TouchLocationState.Moved, pos3);
-            
+
             state = _tps.GetState();
             Assert.AreEqual(2, state.Count);
 

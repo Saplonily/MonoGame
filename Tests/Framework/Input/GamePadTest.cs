@@ -59,7 +59,7 @@ namespace MonoGame.Tests.Input
             Assert.AreEqual(pad, pad2);
             Assert.AreEqual(pad.GetHashCode(), pad2.GetHashCode());
 
-            var buttons = (Buttons) 0;
+            var buttons = (Buttons)0;
             if (up == ButtonState.Pressed) buttons |= Buttons.DPadUp;
             if (down == ButtonState.Pressed) buttons |= Buttons.DPadDown;
             if (left == ButtonState.Pressed) buttons |= Buttons.DPadLeft;
@@ -242,7 +242,7 @@ namespace MonoGame.Tests.Input
         [TestCase(Buttons.DPadUp, new[] { ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Pressed })]
         public void ConstructDPadStateWithButtonsArray(Buttons button, ButtonState[] expectedDPadButtonStates)
         {
-            var state = new GamePadState(Vector2.Zero, Vector2.Zero, 0f, 0f, button != 0 ? new Buttons[] {button} : new Buttons[] {});
+            var state = new GamePadState(Vector2.Zero, Vector2.Zero, 0f, 0f, button != 0 ? new Buttons[] { button } : new Buttons[] { });
 
             if (button != 0)
                 Assert.True(state.IsButtonDown(button));
@@ -276,10 +276,10 @@ namespace MonoGame.Tests.Input
             [Random(0f, 1f, Count)] double doubleLT, [Random(0f, 1f, Count)] double doubleRT,
             [ValueSource("GetButtons")] Buttons[] buttons, [Values(true, false, true, false)] bool isConnected)
         {
-            var leftStick = new Vector2((float) leftX, (float) leftY);
-            var rightStick = new Vector2((float) rightX, (float) rightY);
-            var leftTrigger = (float) doubleLT;
-            var rightTrigger = (float) doubleRT;
+            var leftStick = new Vector2((float)leftX, (float)leftY);
+            var rightStick = new Vector2((float)rightX, (float)rightY);
+            var leftTrigger = (float)doubleLT;
+            var rightTrigger = (float)doubleRT;
             Buttons allButtons = 0;
             if (buttons.Any())
                 foreach (var button in buttons)

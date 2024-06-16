@@ -5,7 +5,7 @@ namespace Monogame.Graphics
     /// <summary>
     /// Describes a custom vertex format structure that contains position and one set of texture coordinates.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=1)]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct VertexPositionTexture : IVertexType
     {
         /// <inheritdoc cref="VertexPosition.Position"/>

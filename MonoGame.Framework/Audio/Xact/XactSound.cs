@@ -29,7 +29,7 @@ namespace Monogame.Audio
         private float? _cueFilterQFactor;
 
         internal readonly int[] RpcCurves;
-        
+
         public XactSound(SoundBank soundBank, int waveBankIndex, int trackIndex)
         {
             _complexSound = false;
@@ -43,7 +43,7 @@ namespace Monogame.Audio
         public XactSound(AudioEngine engine, SoundBank soundBank, BinaryReader soundReader)
         {
             _soundBank = soundBank;
-            
+
             var flags = soundReader.ReadByte();
             _complexSound = (flags & 0x1) != 0;
             var hasRPCs = (flags & 0x0E) != 0;
@@ -54,11 +54,11 @@ namespace Monogame.Audio
             _pitch = soundReader.ReadInt16() / 1000.0f;
             soundReader.ReadByte(); //priority
             soundReader.ReadUInt16(); // filter stuff?
-            
+
             var numClips = 0;
             if (_complexSound)
                 numClips = soundReader.ReadByte();
-            else 
+            else
             {
                 _trackIndex = soundReader.ReadUInt16();
                 _waveBankIndex = soundReader.ReadByte();
@@ -108,7 +108,7 @@ namespace Monogame.Audio
         internal void SetFade(float fadeInTime, float fadeOutTime)
         {
             if (fadeInTime == 0.0f &&
-                fadeOutTime == 0.0f )
+                fadeOutTime == 0.0f)
                 return;
 
             if (_complexSound)
@@ -144,26 +144,26 @@ namespace Monogame.Audio
             float finalPitch = _pitch + _cuePitch;
             float finalMix = _useReverb ? _cueReverbMix : 0.0f;
 
-            if (_complexSound) 
+            if (_complexSound)
             {
                 foreach (XactClip clip in _soundClips)
                 {
                     clip.UpdateState(finalVolume, finalPitch, finalMix, _cueFilterFrequency, _cueFilterQFactor);
                     clip.Play();
                 }
-            } 
-            else 
+            }
+            else
             {
                 if (_wave != null)
                 {
                     if (_streaming)
                         _wave.Dispose();
-					else
-						_wave._isXAct = false;					
+                    else
+                        _wave._isXAct = false;
                     _wave = null;
                 }
 
-                    _wave = _soundBank.GetSoundEffectInstance(_waveBankIndex, _trackIndex, out _streaming);
+                _wave = _soundBank.GetSoundEffectInstance(_waveBankIndex, _trackIndex, out _streaming);
 
                 if (_wave == null)
                 {
@@ -192,8 +192,8 @@ namespace Monogame.Audio
                 {
                     if (_streaming)
                         _wave.Dispose();
-					else
-						_wave._isXAct = false;					
+                    else
+                        _wave._isXAct = false;
                     _wave = null;
                 }
             }
@@ -213,13 +213,13 @@ namespace Monogame.Audio
                     _wave.Stop();
                     if (_streaming)
                         _wave.Dispose();
- 					else
-						_wave._isXAct = false;					
-                   _wave = null;
+                    else
+                        _wave._isXAct = false;
+                    _wave = null;
                 }
             }
         }
-        
+
         public void Stop(AudioStopOptions options)
         {
             if (_complexSound)
@@ -234,13 +234,13 @@ namespace Monogame.Audio
                     _wave.Stop();
                     if (_streaming)
                         _wave.Dispose();
-					else
-						_wave._isXAct = false;					
+                    else
+                        _wave._isXAct = false;
                     _wave = null;
                 }
             }
         }
-        
+
         public void Pause()
         {
             if (_complexSound)
@@ -257,7 +257,7 @@ namespace Monogame.Audio
                     _wave.Pause();
             }
         }
-                
+
         public void Resume()
         {
             if (_complexSound)
@@ -331,9 +331,9 @@ namespace Monogame.Audio
             }
         }
 
-        public bool Playing 
+        public bool Playing
         {
-            get 
+            get
             {
                 if (_complexSound)
                 {
@@ -342,7 +342,7 @@ namespace Monogame.Audio
                             return true;
 
                     return false;
-                } 
+                }
 
                 return _wave != null && _wave.State == SoundState.Playing;
             }
@@ -375,10 +375,10 @@ namespace Monogame.Audio
         {
             get
             {
-                if (_complexSound) 
+                if (_complexSound)
                 {
                     foreach (var clip in _soundClips)
-                        if (clip.State == SoundState.Paused) 
+                        if (clip.State == SoundState.Paused)
                             return true;
 
                     return false;

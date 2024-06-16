@@ -9,7 +9,7 @@ using Monogame.Content.Pipeline.Serialization.Compiler;
 
 namespace Monogame.Content.Pipeline.Graphics
 {
-	public class SpriteFontContent
+    public class SpriteFontContent
     {
         public SpriteFontContent() { }
 
@@ -45,7 +45,7 @@ namespace Monogame.Content.Pipeline.Graphics
 
         public List<Vector3> Kerning = new List<Vector3>();
 
-        public Nullable<Char> DefaultCharacter;	 
+        public Nullable<Char> DefaultCharacter;
 
     }
 }

@@ -11,7 +11,7 @@ namespace MonoGame.Tests.ContentPipeline
         private readonly string _outputFilename;
         private readonly TestContentBuildLogger _logger;
 
-        public TestProcessorContext(    TargetPlatform targetPlatform,
+        public TestProcessorContext(TargetPlatform targetPlatform,
                                         string outputFilename)
         {
             _targetPlatform = targetPlatform;
@@ -92,8 +92,9 @@ namespace MonoGame.Tests.ContentPipeline
             if (typeof(TOutput) == typeof(MaterialContent) && typeof(TInput).IsAssignableFrom(typeof(MaterialContent)))
                 return (TOutput)((object)input);
 
-            var processor = (ContentProcessor<TInput, TOutput>)typeof(ContentProcessor<TInput, TOutput>).Assembly.CreateInstance("Monogame.Content.Pipeline.Processors."+ processorName);
-            if (processor != null) {
+            var processor = (ContentProcessor<TInput, TOutput>)typeof(ContentProcessor<TInput, TOutput>).Assembly.CreateInstance("Monogame.Content.Pipeline.Processors." + processorName);
+            if (processor != null)
+            {
                 var type = processor.GetType();
                 foreach (var kvp in processorParameters)
                 {

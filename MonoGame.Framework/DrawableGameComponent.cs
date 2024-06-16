@@ -111,7 +111,7 @@ namespace Monogame
         /// <summary>
         /// Unload graphical resources needed by this component.
         /// </summary>
-        protected virtual void UnloadContent () { }
+        protected virtual void UnloadContent() { }
 
         /// <summary>
         /// Draw this component.

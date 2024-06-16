@@ -15,7 +15,7 @@ namespace MonoGame.Tests.Graphics
     {
         [TestCase(-1f)]
 #if DESKTOPGL
-        [TestCase(1f), Ignore ("fails similarity test. Needs Investigating")]
+        [TestCase(1f), Ignore("fails similarity test. Needs Investigating")]
 #else
         [TestCase(1f)]
 #endif

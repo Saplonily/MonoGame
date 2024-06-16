@@ -97,7 +97,7 @@ public class BuildContext : FrostingContext
             // SET MGFXC_WINE_PATH for building shaders on macOS and Linux
             System.Environment.SetEnvironmentVariable("MGFXC_WINE_PATH", context.EnvironmentVariable("HOME") + "/.winemonogame");
         }
-        
+
         context.CreateDirectory(BuildOutput);
     }
 

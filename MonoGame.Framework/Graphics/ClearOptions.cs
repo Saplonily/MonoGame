@@ -23,7 +23,7 @@ namespace Monogame.Graphics
         /// <summary>
         /// Stencil buffer.
         /// </summary>
-        Stencil = 4        
+        Stencil = 4
     }
 }
 

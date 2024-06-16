@@ -97,7 +97,7 @@ namespace MonoGame.Tests.Audio
         [Test]
         public static void ContentVersion()
         {
-            Assert.AreEqual(39, AudioEngine.ContentVersion);            
+            Assert.AreEqual(39, AudioEngine.ContentVersion);
         }
 
         [Test]
@@ -130,7 +130,7 @@ namespace MonoGame.Tests.Audio
 
             Assert.AreEqual(343.5f, _audioEngine.GetGlobalVariable("SpeedOfSound"));
             Assert.AreEqual(12.34f, _audioEngine.GetGlobalVariable("Global Public"));
-            
+
             // Make sure instance variables can't be accessed.
             Assert.Throws<IndexOutOfRangeException>(() => _audioEngine.GetGlobalVariable("OrientationAngle"));
 
@@ -221,7 +221,7 @@ namespace MonoGame.Tests.Audio
             Assert.False(cue.IsPaused);
             Assert.True(cue.IsStopped);
 
-            cue = _soundBank.GetCue ("blast_mono");
+            cue = _soundBank.GetCue("blast_mono");
 
             // Make sure the initial state is reset
             Assert.False(cue.IsCreated);
@@ -305,7 +305,7 @@ namespace MonoGame.Tests.Audio
 
             Assert.AreEqual(0.0f, cue.GetVariable("Distance"));
             Assert.AreEqual(45.67f, cue.GetVariable("Cue Public"));
-            
+
             // Make sure globbal variables can't be accessed.
             Assert.Throws<IndexOutOfRangeException>(() => cue.GetVariable("SpeedOfSound"));
 

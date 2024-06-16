@@ -53,42 +53,47 @@ namespace Monogame.Graphics
         /// <summary>
         /// Gets a value indicating the aspect ratio of the display mode
         /// </summary>
-        public float AspectRatio {
+        public float AspectRatio
+        {
             get { return (float)width / (float)height; }
         }
 
         /// <summary>
         /// Gets a value indicating the surface format of the display mode.
         /// </summary>
-        public SurfaceFormat Format {
+        public SurfaceFormat Format
+        {
             get { return format; }
         }
 
         /// <summary>
         /// Gets a value indicating the screen height, in pixels.
         /// </summary>
-        public int Height {
+        public int Height
+        {
             get { return this.height; }
         }
 
         /// <summary>
         /// Gets a value indicating the screen width, in pixels.
         /// </summary>
-        public int Width {
+        public int Width
+        {
             get { return this.width; }
         }
 
         /// <summary>
         /// Gets the bounds of the display that is guaranteed to be visible by the users screen.
         /// </summary>
-        public Rectangle TitleSafeArea {
+        public Rectangle TitleSafeArea
+        {
             get { return GraphicsDevice.GetTitleSafeArea(0, 0, width, height); }
         }
 
         #endregion Properties
 
         #region Constructors
-        
+
         internal DisplayMode(int width, int height, SurfaceFormat format)
         {
             this.width = width;

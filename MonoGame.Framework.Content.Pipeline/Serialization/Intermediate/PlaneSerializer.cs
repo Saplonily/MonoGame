@@ -17,7 +17,7 @@ namespace Monogame.Content.Pipeline.Serialization.Intermediate
 
         protected internal override Plane Deserialize(string[] inputs, ref int index)
         {
-            return new Plane(   XmlConvert.ToSingle(inputs[index++]),
+            return new Plane(XmlConvert.ToSingle(inputs[index++]),
                                 XmlConvert.ToSingle(inputs[index++]),
                                 XmlConvert.ToSingle(inputs[index++]),
                                 XmlConvert.ToSingle(inputs[index++]));

@@ -24,7 +24,7 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void NullDeviceShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => 
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 var renderTarget = new RenderTarget2D(null, 16, 16);
                 renderTarget.Dispose();
@@ -92,7 +92,7 @@ namespace MonoGame.Tests.Graphics
                     MipMapLevelOfDetailBias = i,
                     MaxMipLevel = i,
                 };
-                
+
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque, samplerState, null, null);
                 spriteBatch.Draw(renderTarget, new Vector2(x, y), Color.White);
                 spriteBatch.End();
@@ -112,7 +112,7 @@ namespace MonoGame.Tests.Graphics
             spriteBatch.Dispose();
             renderTarget.Dispose();
         }
-        
+
         [TestCase(SurfaceFormat.Color, SurfaceFormat.Color)]
         // unsupported renderTarget formats
         [TestCase(SurfaceFormat.Alpha8, SurfaceFormat.Color)]
@@ -128,9 +128,9 @@ namespace MonoGame.Tests.Graphics
         [TestCase(SurfaceFormat.NormalizedByte2, SurfaceFormat.Color)]
         [TestCase(SurfaceFormat.NormalizedByte4, SurfaceFormat.Color)]
         public void PreferredSurfaceFormatTest(SurfaceFormat preferredSurfaceFormat, SurfaceFormat expectedSurfaceFormat)
-        {                    
+        {
             var renderTarget = new RenderTarget2D(gd, 16, 16, false, preferredSurfaceFormat, DepthFormat.None);
-                    
+
             Assert.AreEqual(renderTarget.Format, expectedSurfaceFormat);
         }
 

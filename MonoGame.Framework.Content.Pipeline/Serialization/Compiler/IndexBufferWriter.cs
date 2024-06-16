@@ -13,9 +13,9 @@ namespace Monogame.Content.Pipeline.Serialization.Compiler
         {
             // Check if the buffer and can be saved as Int16.
             var shortIndices = true;
-            foreach(var index in value)
+            foreach (var index in value)
             {
-                if(index > ushort.MaxValue)
+                if (index > ushort.MaxValue)
                 {
                     shortIndices = false;
                     break;

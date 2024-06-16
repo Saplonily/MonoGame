@@ -51,7 +51,7 @@ namespace MonoGame.Tests.ContentPipeline
             Assert.AreEqual(88200, format.AverageBytesPerSecond);
             Assert.AreEqual(2, format.BlockAlign);
             Assert.AreEqual(16, format.BitsPerSample);
-            
+
             Assert.IsNotNull(format.NativeWaveFormat);
             Assert.AreEqual(18, format.NativeWaveFormat.Count);
 

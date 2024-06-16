@@ -64,7 +64,7 @@ namespace Monogame
         }
 
 #if ANDROID
-        internal static void ResetThread (int id)
+        internal static void ResetThread(int id)
         {
             _mainThreadId = id;
         }
@@ -188,7 +188,7 @@ namespace Monogame
 
 #if ANDROID
             //if (!Game.Instance.Window.GraphicsContext.IsCurrent)
-                ((AndroidGameWindow)Game.Instance.Window).GameView.MakeCurrent();
+            ((AndroidGameWindow)Game.Instance.Window).GameView.MakeCurrent();
 #endif
 
             lock (_queuedActions)

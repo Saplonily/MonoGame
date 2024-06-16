@@ -15,18 +15,18 @@ namespace Monogame.Input.Touch
     /// </summary>
     public struct TouchLocation : IEquatable<TouchLocation>
     {
-		/// <summary>
-		///Attributes 
-		/// </summary>
-		private int _id;
-		private Vector2 _position;
-		private Vector2 _previousPosition;
-		private TouchLocationState _state;
-		private TouchLocationState _previousState;
+        /// <summary>
+        ///Attributes 
+        /// </summary>
+        private int _id;
+        private Vector2 _position;
+        private Vector2 _previousPosition;
+        private TouchLocationState _state;
+        private TouchLocationState _previousState;
 
-		// Only used in Android, for now
-		private float _pressure;
-		private float _previousPressure;
+        // Only used in Android, for now
+        private float _pressure;
+        private float _previousPressure;
 
         // Used for gesture recognition.
         private Vector2 _velocity;
@@ -48,7 +48,7 @@ namespace Monogame.Input.Touch
         /// </summary>
         internal static readonly TouchLocation Invalid = new TouchLocation();
 
-		#region Properties
+        #region Properties
 
         internal Vector2 PressPosition
         {
@@ -73,47 +73,47 @@ namespace Monogame.Input.Touch
         /// <summary>
         /// Gets the ID of the touch location.
         /// </summary>
-		public int Id 
-		{ 
-			get
-	        {
-	            return _id;
-	        }
-		}
+		public int Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
 
         /// <summary>
         /// Gets the position of the touch location.
         /// </summary>
-        public Vector2 Position 
-		{ 
-			get
-	        {
-	            return _position;
-	        }
-		}
+        public Vector2 Position
+        {
+            get
+            {
+                return _position;
+            }
+        }
 
         /// <summary>
         /// Gets the pressure of the touch location.
         /// </summary>
         /// <remarks>Only used in Android devices</remarks>
-		public float Pressure 
-		{ 
-			get
-        	{
-            	return _pressure;
-        	}
-		}
+		public float Pressure
+        {
+            get
+            {
+                return _pressure;
+            }
+        }
 
         /// <summary>
         /// Gets the current state of the touch location.
         /// </summary>
-        public TouchLocationState State 
-		{ 
-			get
-	        {
-	            return _state;
-	        } 
-		}
+        public TouchLocationState State
+        {
+            get
+            {
+                return _state;
+            }
+        }
 
         #endregion
 
@@ -133,7 +133,7 @@ namespace Monogame.Input.Touch
         /// <param name="position">Position of the touch location.</param>
         /// <param name="previousState">Previous state of this touch location.</param>
         /// <param name="previousPosition">Previous position of this touch location.</param>
-        public TouchLocation(int id, TouchLocationState state, Vector2 position, 
+        public TouchLocation(int id, TouchLocationState state, Vector2 position,
                                 TouchLocationState previousState, Vector2 previousPosition)
             : this(id, state, position, previousState, previousPosition, TimeSpan.Zero, false)
         {
@@ -182,7 +182,7 @@ namespace Monogame.Input.Touch
             SameFrameReleased = false;
         }
 
-		#endregion
+        #endregion
 
         /// <summary>
         /// Returns a copy of the touch with the state changed to moved.
@@ -199,7 +199,7 @@ namespace Monogame.Input.Touch
 
             // Set the new state.
             touch._state = TouchLocationState.Moved;
-            
+
             return touch;
         }
 
@@ -211,7 +211,7 @@ namespace Monogame.Input.Touch
         {
             Debug.Assert(Id == touchEvent.Id, "The touch event must have the same Id!");
             Debug.Assert(State != TouchLocationState.Released, "We shouldn't be changing state on a released location!");
-            Debug.Assert(   touchEvent.State == TouchLocationState.Moved ||
+            Debug.Assert(touchEvent.State == TouchLocationState.Moved ||
                             touchEvent.State == TouchLocationState.Released, "The new touch event should be a move or a release!");
             Debug.Assert(touchEvent.Timestamp >= _timestamp, "The touch event is older than our timestamp!");
 
@@ -262,16 +262,16 @@ namespace Monogame.Input.Touch
         /// <inheritdoc/>
         public override bool Equals(object obj)
         {
-			if (obj is TouchLocation)
-				return Equals((TouchLocation)obj);
+            if (obj is TouchLocation)
+                return Equals((TouchLocation)obj);
 
-			return false;
-		}
+            return false;
+        }
 
         /// <inheritdoc/>
         public bool Equals(TouchLocation other)
         {
-            return  _id.Equals(other._id) &&
+            return _id.Equals(other._id) &&
                     _position.Equals(other._position) &&
                     _previousPosition.Equals(other._previousPosition);
         }
@@ -288,7 +288,7 @@ namespace Monogame.Input.Touch
         /// </summary>
         public override string ToString()
         {
-            return "Touch id:"+_id+" state:"+_state + " position:" + _position + " pressure:" + _pressure +" prevState:"+_previousState+" prevPosition:"+ _previousPosition + " previousPressure:" + _previousPressure;
+            return "Touch id:" + _id + " state:" + _state + " position:" + _position + " pressure:" + _pressure + " prevState:" + _previousState + " prevPosition:" + _previousPosition + " previousPressure:" + _previousPressure;
         }
 
         /// <summary>
@@ -297,32 +297,32 @@ namespace Monogame.Input.Touch
         /// <param name="aPreviousLocation">Previous location data, as a <see cref="TouchLocation"/>.</param>
         public bool TryGetPreviousLocation(out TouchLocation aPreviousLocation)
         {
-			if (_previousState == TouchLocationState.Invalid)
-			{
-				aPreviousLocation._id = -1;
-				aPreviousLocation._state = TouchLocationState.Invalid;
+            if (_previousState == TouchLocationState.Invalid)
+            {
+                aPreviousLocation._id = -1;
+                aPreviousLocation._state = TouchLocationState.Invalid;
                 aPreviousLocation._position = Vector2.Zero;
-				aPreviousLocation._previousState = TouchLocationState.Invalid;
-				aPreviousLocation._previousPosition = Vector2.Zero; 
-				aPreviousLocation._pressure = 0.0f;
-				aPreviousLocation._previousPressure = 0.0f;
-			    aPreviousLocation._timestamp = TimeSpan.Zero;
-			    aPreviousLocation._pressPosition = Vector2.Zero;
-			    aPreviousLocation._pressTimestamp = TimeSpan.Zero;
+                aPreviousLocation._previousState = TouchLocationState.Invalid;
+                aPreviousLocation._previousPosition = Vector2.Zero;
+                aPreviousLocation._pressure = 0.0f;
+                aPreviousLocation._previousPressure = 0.0f;
+                aPreviousLocation._timestamp = TimeSpan.Zero;
+                aPreviousLocation._pressPosition = Vector2.Zero;
+                aPreviousLocation._pressTimestamp = TimeSpan.Zero;
                 aPreviousLocation._velocity = Vector2.Zero;
                 aPreviousLocation.SameFrameReleased = false;
                 aPreviousLocation._isHighFrequency = false;
                 return false;
-			}
+            }
 
-			aPreviousLocation._id = _id;
-			aPreviousLocation._state = _previousState;
-			aPreviousLocation._position = _previousPosition;
-			aPreviousLocation._previousState = TouchLocationState.Invalid;
-			aPreviousLocation._previousPosition = Vector2.Zero;
-			aPreviousLocation._pressure = _previousPressure;
-			aPreviousLocation._previousPressure = 0.0f;
-			aPreviousLocation._timestamp = _timestamp;
+            aPreviousLocation._id = _id;
+            aPreviousLocation._state = _previousState;
+            aPreviousLocation._position = _previousPosition;
+            aPreviousLocation._previousState = TouchLocationState.Invalid;
+            aPreviousLocation._previousPosition = Vector2.Zero;
+            aPreviousLocation._pressure = _previousPressure;
+            aPreviousLocation._previousPressure = 0.0f;
+            aPreviousLocation._timestamp = _timestamp;
             aPreviousLocation._pressPosition = _pressPosition;
             aPreviousLocation._pressTimestamp = _pressTimestamp;
             aPreviousLocation._velocity = _velocity;
@@ -339,11 +339,11 @@ namespace Monogame.Input.Touch
         /// <returns><see langword="true"/> if the two values are not equal; otherwise, <see langword="false"/>.</returns>
         public static bool operator !=(TouchLocation value1, TouchLocation value2)
         {
-			return  value1._id != value2._id || 
-			        value1._state != value2._state ||
-			        value1._position != value2._position ||
-			        value1._previousState != value2._previousState ||
-			        value1._previousPosition != value2._previousPosition;
+            return value1._id != value2._id ||
+                    value1._state != value2._state ||
+                    value1._position != value2._position ||
+                    value1._previousState != value2._previousState ||
+                    value1._previousPosition != value2._previousPosition;
         }
 
         /// <summary>
@@ -354,11 +354,11 @@ namespace Monogame.Input.Touch
         /// <returns><see langword="true"/> if the two values are equal; otherwise, <see langword="false"/>.</returns>
         public static bool operator ==(TouchLocation value1, TouchLocation value2)
         {
-            return  value1._id == value2._id && 
-			        value1._state == value2._state &&
-			        value1._position == value2._position &&
-			        value1._previousState == value2._previousState &&
-			        value1._previousPosition == value2._previousPosition;
+            return value1._id == value2._id &&
+                    value1._state == value2._state &&
+                    value1._position == value2._position &&
+                    value1._previousState == value2._previousState &&
+                    value1._previousPosition == value2._previousPosition;
         }
 
 

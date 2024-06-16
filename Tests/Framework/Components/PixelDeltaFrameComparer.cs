@@ -5,9 +5,9 @@
 using System;
 
 
-namespace MonoGame.Tests.Components 
+namespace MonoGame.Tests.Components
 {
-	class PixelDeltaFrameComparer : IFrameComparer 
+    class PixelDeltaFrameComparer : IFrameComparer
     {
         private static int[] GreyScale(FramePixelData pixelData, int newWidth, int newHeight)
         {
@@ -27,7 +27,7 @@ namespace MonoGame.Tests.Components
                     var sy = (int)(y * stepY);
                     var si = sx + (sy * pixelData.Width);
                     var scolor = pixelData.Data[si];
-                    
+
                     // Convert to a greyscale value which removes small
                     // color differences that the eye cannot spot.
                     var grayScale = (int)((scolor.R * 0.3) + (scolor.G * 0.59) + (scolor.B * 0.11));
@@ -41,7 +41,7 @@ namespace MonoGame.Tests.Components
         }
 
         public float Compare(FramePixelData image, FramePixelData referenceImage)
-		{        
+        {
             // Conver the images down to a common sized greyscale image.
             var width = Math.Min(image.Width, referenceImage.Width);
             var height = Math.Min(image.Height, referenceImage.Height);
@@ -54,17 +54,17 @@ namespace MonoGame.Tests.Components
                 absDiff[i] = Math.Abs(img[i] - imgRef[i]);
 
             // Find all the differences over the threshold.
-		    const int threshold = 3;
+            const int threshold = 3;
             var diffPixels = 0;
             for (var i = 0; i < absDiff.Length; i++)
             {
-                if (absDiff[i] > threshold) 
+                if (absDiff[i] > threshold)
                     diffPixels++;
             }
 
             // Calculate the difference percentage.
             var diff = diffPixels / (float)absDiff.Length;
-		    return 1.0f - diff;
-		}
-	}
+            return 1.0f - diff;
+        }
+    }
 }

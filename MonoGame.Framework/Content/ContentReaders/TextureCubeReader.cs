@@ -14,9 +14,9 @@ namespace Monogame.Content
         {
             TextureCube textureCube = null;
 
-			SurfaceFormat surfaceFormat = (SurfaceFormat)reader.ReadInt32();
-			int size = reader.ReadInt32();
-			int levels = reader.ReadInt32();
+            SurfaceFormat surfaceFormat = (SurfaceFormat)reader.ReadInt32();
+            int size = reader.ReadInt32();
+            int levels = reader.ReadInt32();
 
             if (existingInstance == null)
                 textureCube = new TextureCube(reader.GetGraphicsDevice(), size, levels > 1, surfaceFormat);
@@ -42,7 +42,7 @@ namespace Monogame.Content
             });
 #endif
 
-             return textureCube;
+            return textureCube;
         }
     }
 }

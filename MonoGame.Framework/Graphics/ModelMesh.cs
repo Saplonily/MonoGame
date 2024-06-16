@@ -8,8 +8,8 @@ namespace Monogame.Graphics
     /// Represents a mesh that is part of a <see cref="Model"/>.
     /// </summary>
 	public sealed class ModelMesh
-	{
-		private GraphicsDevice graphicsDevice;
+    {
+        private GraphicsDevice graphicsDevice;
 
         /// <summary>
         /// Creates a new instance of <see cref="ModelMesh"/>.
@@ -17,18 +17,19 @@ namespace Monogame.Graphics
         /// <param name="graphicsDevice">The graphicss device.</param>
         /// <param name="parts">Parts of this mesh.</param>
 		public ModelMesh(GraphicsDevice graphicsDevice, System.Collections.Generic.List<ModelMeshPart> parts)
-		{
-			// TODO: Complete member initialization
-			this.graphicsDevice = graphicsDevice;
-			
-			MeshParts = new ModelMeshPartCollection(parts);
-			
-			for (int i = 0; i < parts.Count; i++) {
-				parts[i].parent = this;
-			}
-			
-			Effects = new ModelEffectCollection();
-		}
+        {
+            // TODO: Complete member initialization
+            this.graphicsDevice = graphicsDevice;
+
+            MeshParts = new ModelMeshPartCollection(parts);
+
+            for (int i = 0; i < parts.Count; i++)
+            {
+                parts[i].parent = this;
+            }
+
+            Effects = new ModelEffectCollection();
+        }
 
         /*internal void BuildEffectList()
 		{
@@ -82,24 +83,24 @@ namespace Monogame.Graphics
         /// using their current <see cref="Effect"/> settings.
         /// </summary>
         public void Draw()
-		{	
-			for(int i = 0; i < MeshParts.Count; i++)
-			{
-				var part = MeshParts[i];
-				var effect = part.Effect;
-				
-				if (part.PrimitiveCount > 0)
-				{
+        {
+            for (int i = 0; i < MeshParts.Count; i++)
+            {
+                var part = MeshParts[i];
+                var effect = part.Effect;
+
+                if (part.PrimitiveCount > 0)
+                {
                     this.graphicsDevice.SetVertexBuffer(part.VertexBuffer);
                     this.graphicsDevice.Indices = part.IndexBuffer;
-                    
+
                     for (int j = 0; j < effect.CurrentTechnique.Passes.Count; j++)
                     {
-						effect.CurrentTechnique.Passes[j].Apply ();
-						graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, part.VertexOffset, part.StartIndex, part.PrimitiveCount);
-					}
-				}
-			}
-		}
-	}
+                        effect.CurrentTechnique.Passes[j].Apply();
+                        graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, part.VertexOffset, part.StartIndex, part.PrimitiveCount);
+                    }
+                }
+            }
+        }
+    }
 }

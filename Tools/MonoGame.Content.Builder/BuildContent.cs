@@ -139,7 +139,7 @@ namespace MonoGame.Content.Builder
         public void SetProcessor(string processor)
         {
             _processor = processor;
-            
+
             // If you are changing the processor then reset all 
             // the processor parameters.
             _processorParams.Clear();
@@ -179,7 +179,7 @@ namespace MonoGame.Content.Builder
                 var split = sourceFile.Split(';');
                 sourceFile = split[0];
 
-                if(split.Length > 0)
+                if (split.Length > 0)
                     link = split[1];
             }
 
@@ -199,9 +199,9 @@ namespace MonoGame.Content.Builder
             // Create the item for processing later.
             var item = new ContentItem
             {
-                SourceFile = sourceFile, 
+                SourceFile = sourceFile,
                 OutputFile = link,
-                Importer = Importer, 
+                Importer = Importer,
                 Processor = _processor,
                 ProcessorParams = new OpaqueDataDictionary()
             };
@@ -273,7 +273,7 @@ namespace MonoGame.Content.Builder
 
         public bool HasWork
         {
-            get { return _content.Count > 0 || _copyItems.Count > 0 || Clean; }    
+            get { return _content.Count > 0 || _copyItems.Count > 0 || Clean; }
         }
 
         string ReplaceSymbols(string parameter)
@@ -298,7 +298,7 @@ namespace MonoGame.Content.Builder
             var intermediatePath = ReplaceSymbols(_intermediateDir);
             if (!Path.IsPathRooted(intermediatePath))
                 intermediatePath = PathHelper.Normalize(Path.GetFullPath(Path.Combine(projectDirectory, intermediatePath)));
-            
+
             _manager = new PipelineManager(projectDirectory, outputPath, intermediatePath);
             _manager.Logger = new ConsoleLogger();
             _manager.CompressContent = CompressContent;
@@ -329,13 +329,13 @@ namespace MonoGame.Content.Builder
                                 previousContent.Profile != Profile;
 
             // First clean previously built content.
-            for(int i = 0; i < previousContent.SourceFiles.Count; i++)
+            for (int i = 0; i < previousContent.SourceFiles.Count; i++)
             {
                 var sourceFile = previousContent.SourceFiles[i];
 
                 // This may be an old file (prior to MG 3.7) which doesn't have destination files:
                 string destFile = null;
-                if(i < previousContent.DestFiles.Count)
+                if (i < previousContent.DestFiles.Count)
                 {
                     destFile = previousContent.DestFiles[i];
                 }
@@ -344,7 +344,7 @@ namespace MonoGame.Content.Builder
                 var cleanOldContent = !inContent && !Incremental;
                 var cleanRebuiltContent = inContent && (Rebuild || Clean);
                 if (cleanRebuiltContent || cleanOldContent || targetChanged)
-                    _manager.CleanContent(sourceFile, destFile);                
+                    _manager.CleanContent(sourceFile, destFile);
             }
 
             // TODO: Should we be cleaning copy items?  I think maybe we should.

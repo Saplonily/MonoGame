@@ -74,8 +74,8 @@ namespace MonoGame.Tests.Graphics
             var addressModes = new[]
             {
                 TextureAddressMode.Border,
-                TextureAddressMode.Clamp, 
-                TextureAddressMode.Mirror, 
+                TextureAddressMode.Clamp,
+                TextureAddressMode.Mirror,
                 TextureAddressMode.Wrap
             };
 
@@ -104,8 +104,8 @@ namespace MonoGame.Tests.Graphics
                 var x = i % 4;
                 var pos = offset + new Vector2(x * size.X, 0);
                 spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: samplerStates[i]);
-                spriteBatch.Draw(texture, 
-                    new Rectangle((int) pos.X, (int) pos.Y, (int) size.X, (int) size.Y),
+                spriteBatch.Draw(texture,
+                    new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y),
                     new Rectangle(-20, -20, texture.Width + 40, texture.Height + 40),
                     Color.White);
                 spriteBatch.End();
@@ -132,12 +132,12 @@ namespace MonoGame.Tests.Graphics
             var compares = new[]
             {
                 CompareFunction.Always,
-                CompareFunction.Equal, 
-                CompareFunction.Greater, 
+                CompareFunction.Equal,
+                CompareFunction.Greater,
                 CompareFunction.GreaterEqual,
-                CompareFunction.Less, 
-                CompareFunction.LessEqual, 
-                CompareFunction.Never, 
+                CompareFunction.Less,
+                CompareFunction.LessEqual,
+                CompareFunction.Never,
                 CompareFunction.NotEqual
             };
 
@@ -149,7 +149,7 @@ namespace MonoGame.Tests.Graphics
             var texture = new Texture2D(gd, 16, 1, false, SurfaceFormat.Single);
             var textureData = new float[texture.Width];
             for (var x = 0; x < texture.Width; x++)
-                textureData[x] = x / (float) texture.Width;
+                textureData[x] = x / (float)texture.Width;
             texture.SetData(textureData);
 
             var samplerStates = new SamplerState[compares.Length];
@@ -177,8 +177,8 @@ namespace MonoGame.Tests.Graphics
                 var pos = offset + new Vector2(x * size.X, y * size.Y);
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, samplerState: samplerStates[i], effect: customEffect);
-                spriteBatch.Draw(texture, 
-                    new Rectangle((int) pos.X, (int) pos.Y, (int) size.X, (int) size.Y),
+                spriteBatch.Draw(texture,
+                    new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y),
                     Color.White);
                 spriteBatch.End();
             }

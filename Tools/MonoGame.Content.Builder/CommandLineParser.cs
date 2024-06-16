@@ -119,13 +119,13 @@ namespace MonoGame.Content.Builder
             }
 
             _flags = new Dictionary<string, string>();
-            foreach(var pair in _optionalOptions)
+            foreach (var pair in _optionalOptions)
             {
                 var fi = GetAttribute<CommandLineParameterAttribute>(pair.Value);
-                if(!string.IsNullOrEmpty(fi.Flag))
+                if (!string.IsNullOrEmpty(fi.Flag))
                     _flags.Add(fi.Flag, fi.Name);
             }
-        }        
+        }
 
         public bool Parse(IEnumerable<string> args)
         {
@@ -389,7 +389,7 @@ namespace MonoGame.Content.Builder
                         var field = member as FieldInfo;
                         field.SetValue(_optionsObject, ChangeType(value, field.FieldType));
                     }
-                    else 
+                    else
                     {
                         var property = member as PropertyInfo;
                         property.SetValue(_optionsObject, ChangeType(value, property.PropertyType), null);
@@ -406,9 +406,9 @@ namespace MonoGame.Content.Builder
         }
 
         static readonly string[] ReservedPrefixes = new[]
-            {   
+            {
                 "$",
-                "/",                
+                "/",
                 "#",
                 "--",
                 "-"
@@ -438,7 +438,7 @@ namespace MonoGame.Content.Builder
 
             if (member is FieldInfo)
                 return typeof(IList).IsAssignableFrom((member as FieldInfo).FieldType);
-            
+
             return typeof(IList).IsAssignableFrom((member as PropertyInfo).PropertyType);
         }
 
@@ -461,7 +461,7 @@ namespace MonoGame.Content.Builder
             {
                 var field = member as FieldInfo;
                 var interfaces = from i in field.FieldType.GetInterfaces()
-                                 where i.IsGenericType && i.GetGenericTypeDefinition() == typeof (IEnumerable<>)
+                                 where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                                  select i;
 
                 return interfaces.First().GetGenericArguments()[0];
@@ -518,9 +518,9 @@ namespace MonoGame.Content.Builder
             }
 
             var defaultParamPrefix = IsWindows() ? "/" : "--";
-            Console.Error.WriteLine("Usage: {0} {1}{2}", 
-                name, 
-                _requiredUsageHelp.Count > 0 ? string.Join(" ", _requiredUsageHelp) + " " : string.Empty, 
+            Console.Error.WriteLine("Usage: {0} {1}{2}",
+                name,
+                _requiredUsageHelp.Count > 0 ? string.Join(" ", _requiredUsageHelp) + " " : string.Empty,
                 _optionalOptions.Count > 0 ? "<Options>" : string.Empty);
 
             if (_optionalOptions.Count > 0)
@@ -529,14 +529,15 @@ namespace MonoGame.Content.Builder
                 Console.Error.WriteLine("Options:");
 
                 var data = _optionalOptions.Values.ToList();
-                data.Sort((x, y) => {
+                data.Sort((x, y) =>
+                {
                     var px = GetAttribute<CommandLineParameterAttribute>(x);
                     var py = GetAttribute<CommandLineParameterAttribute>(y);
 
                     return px.Name.CompareTo(py.Name);
                 });
 
-                foreach(var d in data)
+                foreach (var d in data)
                 {
                     var attr = GetAttribute<CommandLineParameterAttribute>(d);
                     var field = d as FieldInfo;
@@ -544,13 +545,13 @@ namespace MonoGame.Content.Builder
                     var method = d as MethodInfo;
                     var hasValue = false;
 
-                    if (field != null && field.FieldType != typeof (bool))
+                    if (field != null && field.FieldType != typeof(bool))
                         hasValue = true;
-                    if (prop != null && prop.PropertyType != typeof (bool))
+                    if (prop != null && prop.PropertyType != typeof(bool))
                         hasValue = true;
                     if (method != null && method.GetParameters().Length != 0)
                         hasValue = true;
-                    
+
                     var s = "  ";
 
                     s += (!string.IsNullOrEmpty(attr.Flag)) ? (IsWindows() ? "/" : "-") + attr.Flag + "," : "   ";
@@ -570,7 +571,7 @@ namespace MonoGame.Content.Builder
                     var bw = Math.Max(60, Console.BufferWidth);
                     var desc = attr.Description.Split(' ');
 
-                    foreach(var dw in desc)
+                    foreach (var dw in desc)
                     {
                         if (s.Length + dw.Length >= bw)
                         {

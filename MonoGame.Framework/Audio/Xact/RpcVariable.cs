@@ -4,7 +4,7 @@
 
 namespace Monogame.Audio
 {
-    struct RpcVariable 
+    struct RpcVariable
     {
         public string Name;
         public float Value;

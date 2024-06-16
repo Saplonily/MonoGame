@@ -38,7 +38,7 @@ namespace MonoGame.Tests.Framework
             curve.Keys.Add(new CurveKey(3, 4));
 
             var clone = curve.Clone();
-            
+
             Assert.AreEqual(curve.PostLoop, clone.PreLoop);
             Assert.AreEqual(curve.PostLoop, clone.PostLoop);
 
@@ -85,7 +85,7 @@ namespace MonoGame.Tests.Framework
         [Test]
         public void ComputeTangent()
         {
-            var key1 = new CurveKey(-0.5f, 1.5f); 
+            var key1 = new CurveKey(-0.5f, 1.5f);
             var key2 = new CurveKey(1.1f, 2.3f);
             var key3 = new CurveKey(2.25f, 4.4f);
 
@@ -141,7 +141,7 @@ namespace MonoGame.Tests.Framework
             Assert.AreEqual(2.10000014f, curve3.Keys[1].TangentOut);
 
             Assert.AreEqual(2.10000014f, curve3.Keys[2].TangentIn);
-            Assert.AreEqual(0.0f, curve3.Keys[2].TangentOut); 
+            Assert.AreEqual(0.0f, curve3.Keys[2].TangentOut);
         }
 
         [Test]
@@ -197,7 +197,7 @@ namespace MonoGame.Tests.Framework
             Assert.AreEqual(2.10000014f, curve3.Keys[1].TangentOut);
 
             Assert.AreEqual(2.10000014f, curve3.Keys[2].TangentIn);
-            Assert.AreEqual(0.0f, curve3.Keys[2].TangentOut); 
+            Assert.AreEqual(0.0f, curve3.Keys[2].TangentOut);
         }
 
         [Test]

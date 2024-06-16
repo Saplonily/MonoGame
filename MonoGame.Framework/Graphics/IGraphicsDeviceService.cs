@@ -11,10 +11,10 @@ namespace Monogame.Graphics
     /// </summary>
     public interface IGraphicsDeviceService
     {
-		/// <summary>
-		/// The provided <see cref="Graphics.GraphicsDevice"/>.
-		/// </summary>
-		GraphicsDevice GraphicsDevice { get; }
+        /// <summary>
+        /// The provided <see cref="Graphics.GraphicsDevice"/>.
+        /// </summary>
+        GraphicsDevice GraphicsDevice { get; }
 
         /// <summary>
         /// Raised when a new <see cref="Graphics.GraphicsDevice"/> has been created.

@@ -65,7 +65,7 @@ namespace MonoGame.Tests.ContentPipeline
 
             {
                 var font = new FontDescription("Bee", 1, 1);
-                
+
                 font.DefaultCharacter = 'A';
                 Assert.AreEqual('A', font.DefaultCharacter);
                 font.DefaultCharacter = null;

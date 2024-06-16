@@ -9,7 +9,7 @@ namespace Monogame.Graphics
     /// The common effect fog rendering parameters.
     /// </summary>
 	public interface IEffectFog
-	{
+    {
         /// <summary>
         /// The floating point fog color.
         /// </summary>
@@ -37,6 +37,6 @@ namespace Monogame.Graphics
         /// same value everything is fully fogged.
         /// </remarks>
 		float FogStart { get; set; }
-	}
+    }
 }
 

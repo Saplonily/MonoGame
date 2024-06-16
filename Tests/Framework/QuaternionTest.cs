@@ -131,7 +131,7 @@ namespace MonoGame.Tests.Framework
         public void Length()
         {
             Quaternion q1 = new Quaternion(1, 2, 3, 4);
-            Compare(5.477226f,q1.Length());
+            Compare(5.477226f, q1.Length());
         }
 
         [Test]
@@ -145,7 +145,7 @@ namespace MonoGame.Tests.Framework
         public void Normalize()
         {
             Quaternion q = new Quaternion(1, 2, 3, 4);
-            Quaternion expected = new Quaternion(0.1825742f,0.3651484f,0.5477226f,0.7302967f);
+            Quaternion expected = new Quaternion(0.1825742f, 0.3651484f, 0.5477226f, 0.7302967f);
 
             Compare(expected, Quaternion.Normalize(q));
 

@@ -40,7 +40,7 @@ namespace Monogame.Media
         {
             _currentVideo.Player.SetDisplay(((AndroidGameWindow)_game.Window).GameView.Holder);
             _currentVideo.Player.Start();
-            
+
             AndroidGamePlatform.IsPlayingVdeo = true;
         }
 

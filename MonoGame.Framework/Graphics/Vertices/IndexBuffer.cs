@@ -82,19 +82,19 @@ namespace Monogame.Graphics
         /// <exception cref="InvalidOperationException">The resource could not be created</exception>
 		protected IndexBuffer(GraphicsDevice graphicsDevice, IndexElementSize indexElementSize, int indexCount, BufferUsage usage, bool dynamic)
         {
-			if (graphicsDevice == null)
+            if (graphicsDevice == null)
             {
                 throw new ArgumentNullException("graphicsDevice", FrameworkResources.ResourceCreationWhenDeviceIsNull);
             }
-			this.GraphicsDevice = graphicsDevice;
-			this.IndexElementSize = indexElementSize;
+            this.GraphicsDevice = graphicsDevice;
+            this.IndexElementSize = indexElementSize;
             this.IndexCount = indexCount;
             this.BufferUsage = usage;
 
             _isDynamic = dynamic;
 
             PlatformConstruct(indexElementSize, indexCount);
-		}
+        }
 
         /// <summary>
         /// Creates a new instance of <b>IndexBuffer</b> with the specified parameters.
@@ -128,9 +128,9 @@ namespace Monogame.Graphics
         /// </list>
         /// </exception>
 		public IndexBuffer(GraphicsDevice graphicsDevice, IndexElementSize indexElementSize, int indexCount, BufferUsage bufferUsage) :
-			this(graphicsDevice, indexElementSize, indexCount, bufferUsage, false)
-		{
-		}
+            this(graphicsDevice, indexElementSize, indexCount, bufferUsage, false)
+        {
+        }
 
         /// <summary>
         /// Creates a new instance of <b>IndexBuffer</b> with the specified parameters.
@@ -146,9 +146,9 @@ namespace Monogame.Graphics
         /// </exception>
         /// <exception cref="InvalidOperationException">The resource could not be created</exception>
 		public IndexBuffer(GraphicsDevice graphicsDevice, Type indexType, int indexCount, BufferUsage usage) :
-			this(graphicsDevice, SizeForType(graphicsDevice, indexType), indexCount, usage, false)
-		{
-		}
+            this(graphicsDevice, SizeForType(graphicsDevice, indexType), indexCount, usage, false)
+        {
+        }
 
         /// <summary>
         /// Gets the relevant IndexElementSize enum value for the given type.
@@ -167,7 +167,7 @@ namespace Monogame.Graphics
                         throw new NotSupportedException("The profile does not support an elementSize of IndexElementSize.ThirtyTwoBits; use IndexElementSize.SixteenBits or a type that has a size of two bytes.");
                     return IndexElementSize.ThirtyTwoBits;
                 default:
-                    throw new ArgumentOutOfRangeException("type","Index buffers can only be created for types that are sixteen or thirty two bits in length");
+                    throw new ArgumentOutOfRangeException("type", "Index buffers can only be created for types that are sixteen or thirty two bits in length");
             }
         }
 
@@ -261,7 +261,7 @@ namespace Monogame.Graphics
 		public void SetData<T>(T[] data, int startIndex, int elementCount) where T : struct
         {
             SetDataInternal<T>(0, data, startIndex, elementCount, SetDataOptions.None);
-		}
+        }
 
         /// <summary>
         /// Copies array data to the index buffer.
@@ -295,5 +295,5 @@ namespace Monogame.Graphics
 
             PlatformSetData<T>(offsetInBytes, data, startIndex, elementCount, options);
         }
-	}
+    }
 }

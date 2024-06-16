@@ -85,7 +85,7 @@ namespace Monogame.Media
         /// Gets the media playback state, <see cref="MediaState"/>.
         /// </summary>
         public MediaState State
-        { 
+        {
             get
             {
                 // Give the platform code a chance to update 
@@ -106,7 +106,7 @@ namespace Monogame.Media
         public float Volume
         {
             get { return _volume; }
-            
+
             set
             {
                 if (value < 0.0f || value > 1.0f)
@@ -148,7 +148,7 @@ namespace Monogame.Media
             //XNA never returns a null texture
             const int retries = 5;
             const int sleepTimeFactor = 50;
-            Texture2D texture=null;
+            Texture2D texture = null;
 
             for (int i = 0; i < retries; i++)
             {
@@ -157,7 +157,7 @@ namespace Monogame.Media
                 {
                     break;
                 }
-                var sleepTime = i*sleepTimeFactor;
+                var sleepTime = i * sleepTimeFactor;
                 Debug.WriteLine("PlatformGetTexture returned null ({0}) sleeping for {1} ms", i + 1, sleepTime);
 #if WINDOWS_UAP
                 Task.Delay(sleepTime).Wait();
@@ -198,7 +198,7 @@ namespace Monogame.Media
             if (_currentVideo == video)
             {
                 var state = State;
-							
+
                 // No work to do if we're already
                 // playing this video.
                 if (state == MediaState.Playing)
@@ -212,7 +212,7 @@ namespace Monogame.Media
                     return;
                 }
             }
-            
+
             _currentVideo = video;
 
             PlatformPlay();
@@ -225,11 +225,11 @@ namespace Monogame.Media
 
             for (int i = 0; i < retries; i++)
             {
-                if (State == MediaState.Playing )
+                if (State == MediaState.Playing)
                 {
                     break;
                 }
-                var sleepTime = i*sleepTimeFactor;
+                var sleepTime = i * sleepTimeFactor;
                 Debug.WriteLine("State != MediaState.Playing ({0}) sleeping for {1} ms", i + 1, sleepTime);
 #if WINDOWS_UAP
                 Task.Delay(sleepTime).Wait();
@@ -237,11 +237,11 @@ namespace Monogame.Media
                 Thread.Sleep(sleepTime); //Sleep for longer and longer times
 #endif
             }
-            if (State != MediaState.Playing )
+            if (State != MediaState.Playing)
             {
                 //We timed out - attempt to stop to fix any bad state
                 Stop();
-                throw new InvalidOperationException("cannot start video"); 
+                throw new InvalidOperationException("cannot start video");
             }
         }
 

@@ -54,10 +54,10 @@ namespace Monogame.Graphics.PackedVector
         public Vector4 ToVector4()
         {
             return new Vector4(
-                (float) (((packedValue >> 0) & 0x03FF) / 1023.0f),
-                (float) (((packedValue >> 10) & 0x03FF) / 1023.0f),
-                (float) (((packedValue >> 20) & 0x03FF) / 1023.0f),
-                (float) (((packedValue >> 30) & 0x03) / 3.0f)
+                (float)(((packedValue >> 0) & 0x03FF) / 1023.0f),
+                (float)(((packedValue >> 10) & 0x03FF) / 1023.0f),
+                (float)(((packedValue >> 20) & 0x03FF) / 1023.0f),
+                (float)(((packedValue >> 30) & 0x03) / 3.0f)
             );
         }
 
@@ -70,7 +70,7 @@ namespace Monogame.Graphics.PackedVector
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            return (obj is Rgba1010102) && Equals((Rgba1010102) obj);
+            return (obj is Rgba1010102) && Equals((Rgba1010102)obj);
         }
 
         /// <inheritdoc />
@@ -115,11 +115,11 @@ namespace Monogame.Graphics.PackedVector
 
         private static uint Pack(float x, float y, float z, float w)
         {
-            return (uint) (
-                (((int) MathF.Round(MathHelper.Clamp(x, 0, 1) * 1023.0f) & 0x03FF) << 0) |
-                (((int) MathF.Round(MathHelper.Clamp(y, 0, 1) * 1023.0f) & 0x03FF) << 10) |
-                (((int) MathF.Round(MathHelper.Clamp(z, 0, 1) * 1023.0f) & 0x03FF) << 20) |
-                (((int) MathF.Round(MathHelper.Clamp(w, 0, 1) * 3.0f) & 0x03) << 30)
+            return (uint)(
+                (((int)MathF.Round(MathHelper.Clamp(x, 0, 1) * 1023.0f) & 0x03FF) << 0) |
+                (((int)MathF.Round(MathHelper.Clamp(y, 0, 1) * 1023.0f) & 0x03FF) << 10) |
+                (((int)MathF.Round(MathHelper.Clamp(z, 0, 1) * 1023.0f) & 0x03FF) << 20) |
+                (((int)MathF.Round(MathHelper.Clamp(w, 0, 1) * 3.0f) & 0x03) << 30)
             );
         }
     }

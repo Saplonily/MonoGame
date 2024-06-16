@@ -4,7 +4,7 @@
 
 namespace Monogame.Audio
 {
-    struct RpcPoint 
+    struct RpcPoint
     {
         public RpcPointType Type;
         public float Position;

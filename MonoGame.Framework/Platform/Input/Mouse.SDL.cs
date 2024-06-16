@@ -15,7 +15,7 @@ namespace Monogame.Input
         {
             return PrimaryWindow.Handle;
         }
-        
+
         private static void PlatformSetWindowHandle(IntPtr windowHandle)
         {
         }
@@ -46,7 +46,7 @@ namespace Monogame.Input
         {
             PrimaryWindow.MouseState.X = x;
             PrimaryWindow.MouseState.Y = y;
-            
+
             Sdl.Mouse.WarpInWindow(PrimaryWindow.Handle, x, y);
         }
 

@@ -9,8 +9,8 @@ namespace MonoGame.Tests.Input
 {
     public class JoystickTest
     {
-        [TestCase(new [] { 12345, -12345 }, new [] { ButtonState.Pressed, ButtonState.Released }, true)]
-        [TestCase(new [] { -7324, -32000 }, new [] { ButtonState.Pressed, ButtonState.Pressed }, false)]
+        [TestCase(new[] { 12345, -12345 }, new[] { ButtonState.Pressed, ButtonState.Released }, true)]
+        [TestCase(new[] { -7324, -32000 }, new[] { ButtonState.Pressed, ButtonState.Pressed }, false)]
         public void TestState(int[] axes, ButtonState[] buttons, bool isConnected)
         {
             var hats = new[]
@@ -46,9 +46,9 @@ namespace MonoGame.Tests.Input
         }
 
         [Test]
-        public void JoyStickHatTest([Values(ButtonState.Pressed, ButtonState.Released)] ButtonState left, 
-            [Values(ButtonState.Pressed, ButtonState.Released)] ButtonState right, 
-            [Values(ButtonState.Pressed, ButtonState.Released)] ButtonState up, 
+        public void JoyStickHatTest([Values(ButtonState.Pressed, ButtonState.Released)] ButtonState left,
+            [Values(ButtonState.Pressed, ButtonState.Released)] ButtonState right,
+            [Values(ButtonState.Pressed, ButtonState.Released)] ButtonState up,
             [Values(ButtonState.Pressed, ButtonState.Released)] ButtonState down)
         {
             var hat = new JoystickHat

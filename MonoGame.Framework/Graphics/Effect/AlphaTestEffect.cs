@@ -66,7 +66,7 @@ namespace Monogame.Graphics
         public Matrix World
         {
             get { return world; }
-            
+
             set
             {
                 world = value;
@@ -81,7 +81,7 @@ namespace Monogame.Graphics
         public Matrix View
         {
             get { return view; }
-            
+
             set
             {
                 view = value;
@@ -96,7 +96,7 @@ namespace Monogame.Graphics
         public Matrix Projection
         {
             get { return projection; }
-            
+
             set
             {
                 projection = value;
@@ -111,7 +111,7 @@ namespace Monogame.Graphics
         public Vector3 DiffuseColor
         {
             get { return diffuseColor; }
-            
+
             set
             {
                 diffuseColor = value;
@@ -126,7 +126,7 @@ namespace Monogame.Graphics
         public float Alpha
         {
             get { return alpha; }
-            
+
             set
             {
                 alpha = value;
@@ -141,7 +141,7 @@ namespace Monogame.Graphics
         public bool FogEnabled
         {
             get { return fogEnabled; }
-            
+
             set
             {
                 if (fogEnabled != value)
@@ -159,7 +159,7 @@ namespace Monogame.Graphics
         public float FogStart
         {
             get { return fogStart; }
-            
+
             set
             {
                 fogStart = value;
@@ -174,7 +174,7 @@ namespace Monogame.Graphics
         public float FogEnd
         {
             get { return fogEnd; }
-            
+
             set
             {
                 fogEnd = value;
@@ -209,7 +209,7 @@ namespace Monogame.Graphics
         public bool VertexColorEnabled
         {
             get { return vertexColorEnabled; }
-            
+
             set
             {
                 if (vertexColorEnabled != value)
@@ -227,7 +227,7 @@ namespace Monogame.Graphics
         public CompareFunction AlphaFunction
         {
             get { return alphaFunction; }
-            
+
             set
             {
                 alphaFunction = value;
@@ -242,7 +242,7 @@ namespace Monogame.Graphics
         public int ReferenceAlpha
         {
             get { return referenceAlpha; }
-            
+
             set
             {
                 referenceAlpha = value;
@@ -285,7 +285,7 @@ namespace Monogame.Graphics
 
             fogStart = cloneSource.fogStart;
             fogEnd = cloneSource.fogEnd;
-            
+
             alphaFunction = cloneSource.alphaFunction;
             referenceAlpha = cloneSource.referenceAlpha;
 
@@ -304,14 +304,14 @@ namespace Monogame.Graphics
         /// </summary>
         void CacheEffectParameters()
         {
-            textureParam        = Parameters["Texture"];
-            diffuseColorParam   = Parameters["DiffuseColor"];
-            alphaTestParam      = Parameters["AlphaTest"];
-            fogColorParam       = Parameters["FogColor"];
-            fogVectorParam      = Parameters["FogVector"];
-            worldViewProjParam  = Parameters["WorldViewProj"];
+            textureParam = Parameters["Texture"];
+            diffuseColorParam = Parameters["DiffuseColor"];
+            alphaTestParam = Parameters["AlphaTest"];
+            fogColorParam = Parameters["FogColor"];
+            fogVectorParam = Parameters["FogVector"];
+            worldViewProjParam = Parameters["WorldViewProj"];
         }
-        
+
         /// <summary>
         /// Lazily computes derived parameter values immediately before applying the effect.
         /// </summary>
@@ -333,13 +333,13 @@ namespace Monogame.Graphics
             {
                 Vector4 alphaTest = new Vector4();
                 bool eqNe = false;
-                
+
                 // Convert reference alpha from 8 bit integer to 0-1 float format.
                 float reference = (float)referenceAlpha / 255f;
-                
+
                 // Comparison tolerance of half the 8 bit integer precision.
                 const float threshold = 0.5f / 255f;
-                
+
                 switch (alphaFunction)
                 {
                     case CompareFunction.Less:
@@ -401,11 +401,11 @@ namespace Monogame.Graphics
                         alphaTest.W = 1;
                         break;
                 }
-                
+
                 alphaTestParam.SetValue(alphaTest);
 
                 dirtyFlags &= ~EffectDirtyFlags.AlphaTest;
-                
+
                 // If we changed between less/greater vs. equal/notequal
                 // compare modes, we must also update the shader index.
                 if (isEqNe != eqNe)
@@ -419,13 +419,13 @@ namespace Monogame.Graphics
             if ((dirtyFlags & EffectDirtyFlags.ShaderIndex) != 0)
             {
                 int shaderIndex = 0;
-                
+
                 if (!fogEnabled)
                     shaderIndex += 1;
-                
+
                 if (vertexColorEnabled)
                     shaderIndex += 2;
-                
+
                 if (isEqNe)
                     shaderIndex += 4;
 

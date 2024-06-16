@@ -4,7 +4,7 @@
 
 namespace Monogame.Audio
 {
-    enum MiniFormatTag 
+    enum MiniFormatTag
     {
         Pcm = 0x0,
         Xma = 0x1,

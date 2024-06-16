@@ -345,7 +345,7 @@ namespace MonoGame.Tests.Graphics
             Assert.AreEqual(1, resetCount);
             Assert.AreEqual(1, resettingCount);
         }
-        
+
         [Test]
         public void NewDeviceDoesNotTriggerReset()
         {
@@ -502,7 +502,7 @@ namespace MonoGame.Tests.Graphics
                 pp.MultiSampleCount = 33; // Set too high. In DX11 is max 32.
             };
 
-            Assert.DoesNotThrow(()=>gdm.ApplyChanges(), "GraphicDeviceManager.ApplyChanges()");
+            Assert.DoesNotThrow(() => gdm.ApplyChanges(), "GraphicDeviceManager.ApplyChanges()");
             Assert.DoesNotThrow(() =>
             {
                 var pp = gdm.GraphicsDevice.PresentationParameters.Clone();

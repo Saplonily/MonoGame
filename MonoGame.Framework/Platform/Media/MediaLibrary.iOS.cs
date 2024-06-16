@@ -89,7 +89,7 @@ namespace Monogame.Media
 
         private void PlatformDispose()
         {
-            
+
         }
     }
 }

@@ -15,10 +15,10 @@ namespace Monogame.Graphics.PackedVector
 
         private static UInt16 Pack(float x, float y, float z, float w)
         {
-            return (UInt16) ((((int) MathF.Round(MathHelper.Clamp(w, 0, 1) * 15.0f) & 0x0F) << 12) |
-                (((int) MathF.Round(MathHelper.Clamp(x, 0, 1) * 15.0f) & 0x0F) << 8) |
-                (((int) MathF.Round(MathHelper.Clamp(y, 0, 1) * 15.0f) & 0x0F) << 4) |
-                ((int) MathF.Round(MathHelper.Clamp(z, 0, 1) * 15.0f) & 0x0F));
+            return (UInt16)((((int)MathF.Round(MathHelper.Clamp(w, 0, 1) * 15.0f) & 0x0F) << 12) |
+                (((int)MathF.Round(MathHelper.Clamp(x, 0, 1) * 15.0f) & 0x0F) << 8) |
+                (((int)MathF.Round(MathHelper.Clamp(y, 0, 1) * 15.0f) & 0x0F) << 4) |
+                ((int)MathF.Round(MathHelper.Clamp(z, 0, 1) * 15.0f) & 0x0F));
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Monogame.Graphics.PackedVector
         {
             const float maxVal = 1 / 15.0f;
 
-            return new Vector4( ((_packedValue >> 8) & 0x0F) * maxVal,
+            return new Vector4(((_packedValue >> 8) & 0x0F) * maxVal,
                                 ((_packedValue >> 4) & 0x0F) * maxVal,
                                 (_packedValue & 0x0F) * maxVal,
                                 ((_packedValue >> 12) & 0x0F) * maxVal);

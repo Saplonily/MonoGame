@@ -120,7 +120,7 @@ namespace MonoGame.Effect
 
                 return SetOption(field, value);
             }
-            
+
             ShowError("Too many arguments");
             return false;
         }
@@ -271,7 +271,7 @@ namespace MonoGame.Effect
                 : base("Profile")
             {
                 var names = ShaderProfile.All.Select(p => p.Name);
-                Description = "\t - Must be one of the following: " + string.Join(", ", names);                               
+                Description = "\t - Must be one of the following: " + string.Join(", ", names);
             }
         }
     }

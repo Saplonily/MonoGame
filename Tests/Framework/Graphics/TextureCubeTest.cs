@@ -32,10 +32,10 @@ namespace MonoGame.Tests.Graphics
                 var savedData = new Color[dataSize];
                 for (var index = 0; index < dataSize; index++)
                     savedData[index] = new Color(index + i, index + i, index + i);
-                textureCube.SetData((CubeMapFace) i, savedData);
+                textureCube.SetData((CubeMapFace)i, savedData);
 
                 var readData = new Color[dataSize];
-                textureCube.GetData((CubeMapFace) i, readData);
+                textureCube.GetData((CubeMapFace)i, readData);
 
                 Assert.AreEqual(savedData, readData);
             }
@@ -46,13 +46,13 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void GetAndSetDataDxtCompressed()
         {
-            var t = content.Load<TextureCube>(Paths.Texture ("SampleCube64DXT1Mips"));
+            var t = content.Load<TextureCube>(Paths.Texture("SampleCube64DXT1Mips"));
 
             for (var f = 0; f < 6; f++)
             {
-                var face = (CubeMapFace) f;
-                var b = new byte[t.Size*t.Size/2];
-                var b2 = new byte[t.Size*t.Size/2];
+                var face = (CubeMapFace)f;
+                var b = new byte[t.Size * t.Size / 2];
+                var b2 = new byte[t.Size * t.Size / 2];
 
                 t.GetData(face, b);
                 t.SetData(face, b);
@@ -62,21 +62,21 @@ namespace MonoGame.Tests.Graphics
 
                 // MonoGame allows any kind of type that is not larger than one element while XNA only allows byte
 #if !XNA
-                var b3 = new short[t.Size*t.Size/4];
+                var b3 = new short[t.Size * t.Size / 4];
                 t.GetData(face, b3);
                 t.SetData(face, b3);
 
                 t.GetData(face, b2);
                 Assert.AreEqual(b, b2);
 
-                var b4 = new int[t.Size*t.Size/8];
+                var b4 = new int[t.Size * t.Size / 8];
                 t.GetData(face, b4);
                 t.SetData(face, b4);
 
                 t.GetData(face, b2);
                 Assert.AreEqual(b, b2);
 
-                var b5 = new long[t.Size*t.Size/16];
+                var b5 = new long[t.Size * t.Size / 16];
                 t.GetData(face, b5);
                 t.SetData(face, b5);
 
@@ -84,11 +84,11 @@ namespace MonoGame.Tests.Graphics
                 Assert.AreEqual(b, b2);
 
                 // this is too large, DXT1 blocks are 64 bits while Vector4 is 128 bits
-                var b6 = new Vector4[t.Size*t.Size/32];
+                var b6 = new Vector4[t.Size * t.Size / 32];
                 Assert.Throws<ArgumentException>(() => t.GetData(face, b6));
                 Assert.Throws<ArgumentException>(() => t.SetData(face, b6));
 
-                var b7 = new Vector3[t.Size*t.Size/24];
+                var b7 = new Vector3[t.Size * t.Size / 24];
                 Assert.Throws<ArgumentException>(() => t.GetData(face, b7));
                 Assert.Throws<ArgumentException>(() => t.SetData(face, b7));
 #endif
@@ -105,12 +105,12 @@ namespace MonoGame.Tests.Graphics
         //[TestCase(16, "SampleCube64DXT5Mips", 1)]
         public void GetAndSetDataDxtNotMultipleOf4Rounding(int bs, string texName, int mip)
         {
-            var t = content.Load<TextureCube>(Paths.Texture (texName));
+            var t = content.Load<TextureCube>(Paths.Texture(texName));
 
             for (var f = 0; f < 6; f++)
             {
-                var face = (CubeMapFace) f;
-                var before = new byte[t.Size*t.Size*bs/16];
+                var face = (CubeMapFace)f;
+                var before = new byte[t.Size * t.Size * bs / 16];
                 t.GetData(face, before);
 
                 var b1 = new byte[bs];
@@ -146,7 +146,7 @@ namespace MonoGame.Tests.Graphics
                 t.SetData(face, mip, new Rectangle(4, 4, 4, 4), b2, 0, bs);
                 Assert.AreNotEqual(b1, b2);
 
-                var after = new byte[t.Size*t.Size*bs/16];
+                var after = new byte[t.Size * t.Size * bs / 16];
                 t.GetData(face, after);
 
                 Assert.AreEqual(before, after);
@@ -165,7 +165,7 @@ namespace MonoGame.Tests.Graphics
 
             for (var f = 0; f < 6; f++)
             {
-                var face = (CubeMapFace) f;
+                var face = (CubeMapFace)f;
                 // don't round if the unrounded rectangle would be outside the texture area
                 Assert.Throws<ArgumentException>(() => t.GetData(face, 0, new Rectangle(63, 63, 3, 3), b, 0, bs));
                 // this does work
@@ -183,7 +183,7 @@ namespace MonoGame.Tests.Graphics
 
             for (var f = 0; f < 6; f++)
             {
-                var face = (CubeMapFace) f;
+                var face = (CubeMapFace)f;
                 var b = new byte[bs];
                 var b2 = new byte[bs];
 
@@ -205,8 +205,8 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void NullDeviceShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => 
-            {                
+            Assert.Throws<ArgumentNullException>(() =>
+            {
                 var texture = new TextureCube(null, 16, false, SurfaceFormat.Color);
                 texture.Dispose();
             });

@@ -16,7 +16,7 @@ namespace Monogame.Graphics
         /// <summary>
         /// Negative X face in the cube map.
         /// </summary>
-        NegativeX, 
+        NegativeX,
         /// <summary>
         /// Positive Y face in the cube map.
         /// </summary>
@@ -33,6 +33,6 @@ namespace Monogame.Graphics
         /// Negative Z face in the cube map.
         /// </summary>
 		NegativeZ
-	}
+    }
 }
 

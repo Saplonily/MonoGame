@@ -28,7 +28,8 @@ namespace MonoGame.Tests.Framework
 
             _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.NotRun;
 
-            var thread = new Thread(() => {
+            var thread = new Thread(() =>
+            {
                 _callOnAnotherThreadResult = CallOnAnotherThreadTestResult.Exception;
                 FrameworkDispatcher.Update();
 

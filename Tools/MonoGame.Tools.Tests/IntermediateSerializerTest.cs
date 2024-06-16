@@ -33,12 +33,12 @@ namespace MonoGame.Tests.ContentPipeline
             {
                 public GraphicsDevice GraphicsDevice { get; private set; }
 
-                #pragma warning disable 67
+#pragma warning disable 67
                 public event EventHandler<EventArgs> DeviceCreated;
                 public event EventHandler<EventArgs> DeviceDisposing;
                 public event EventHandler<EventArgs> DeviceReset;
                 public event EventHandler<EventArgs> DeviceResetting;
-                #pragma warning restore 67
+#pragma warning restore 67
             }
 
             class FakeServiceProvider : IServiceProvider
@@ -250,8 +250,8 @@ namespace MonoGame.Tests.ContentPipeline
                 Quaternion = new Quaternion(1, 2, 3, 4),
                 Plane = new Plane(1, 2, 3, 4),
                 Matrix = new Matrix(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
-                Color = new Color{ A = 0xFF, R = 0x64, G = 0x95, B = 0xED },
-                Vector2Array = new []{ new Vector2(0, 0), new Vector2(1, 1) },
+                Color = new Color { A = 0xFF, R = 0x64, G = 0x95, B = 0xED },
+                Vector2Array = new[] { new Vector2(0, 0), new Vector2(1, 1) },
                 Vector2List = new List<Vector2>(new[] { new Vector2(1, 7), new Vector2(1, 9), new Vector2(1, 10) }),
                 Vector2ListEmpty = new List<Vector2>()
             });
@@ -415,7 +415,7 @@ namespace MonoGame.Tests.ContentPipeline
             };
 
             for (var i = 32; i <= 126; i++)
-                fontDescription.Characters.Add((char) i);
+                fontDescription.Characters.Add((char)i);
             fontDescription.Characters.Add(WebUtility.HtmlDecode("&#916;")[0]);
             fontDescription.Characters.Add(WebUtility.HtmlDecode("&#176;")[0]);
 

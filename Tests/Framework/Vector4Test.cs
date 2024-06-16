@@ -48,21 +48,21 @@ namespace MonoGame.Tests.Framework
                 W = 2.2f
             };
 
-            Assert.That(expectedResult, Is.EqualTo(new Vector4(1,2,3,4)).Using(Vector4Comparer.Epsilon));
-            Assert.That(expectedResult, Is.EqualTo(new Vector4(new Vector2(1,2),3,4)).Using(Vector4Comparer.Epsilon));
-            Assert.That(expectedResult, Is.EqualTo(new Vector4(new Vector3(1,2,3),4)).Using(Vector4Comparer.Epsilon));
+            Assert.That(expectedResult, Is.EqualTo(new Vector4(1, 2, 3, 4)).Using(Vector4Comparer.Epsilon));
+            Assert.That(expectedResult, Is.EqualTo(new Vector4(new Vector2(1, 2), 3, 4)).Using(Vector4Comparer.Epsilon));
+            Assert.That(expectedResult, Is.EqualTo(new Vector4(new Vector3(1, 2, 3), 4)).Using(Vector4Comparer.Epsilon));
             Assert.That(expectedResult2, Is.EqualTo(new Vector4(2.2f)).Using(Vector4Comparer.Epsilon));
         }
 
         [Test]
         public void Properties()
         {
-            Assert.That(new Vector4(0,0,0,0), Is.EqualTo(Vector4.Zero).Using(Vector4Comparer.Epsilon));
-            Assert.That(new Vector4(1,1,1,1), Is.EqualTo(Vector4.One).Using(Vector4Comparer.Epsilon));
-            Assert.That(new Vector4(1,0,0,0), Is.EqualTo(Vector4.UnitX).Using(Vector4Comparer.Epsilon));
-            Assert.That(new Vector4(0,1,0,0), Is.EqualTo(Vector4.UnitY).Using(Vector4Comparer.Epsilon));
-            Assert.That(new Vector4(0,0,1,0), Is.EqualTo(Vector4.UnitZ).Using(Vector4Comparer.Epsilon));
-            Assert.That(new Vector4(0,0,0,1), Is.EqualTo(Vector4.UnitW).Using(Vector4Comparer.Epsilon));
+            Assert.That(new Vector4(0, 0, 0, 0), Is.EqualTo(Vector4.Zero).Using(Vector4Comparer.Epsilon));
+            Assert.That(new Vector4(1, 1, 1, 1), Is.EqualTo(Vector4.One).Using(Vector4Comparer.Epsilon));
+            Assert.That(new Vector4(1, 0, 0, 0), Is.EqualTo(Vector4.UnitX).Using(Vector4Comparer.Epsilon));
+            Assert.That(new Vector4(0, 1, 0, 0), Is.EqualTo(Vector4.UnitY).Using(Vector4Comparer.Epsilon));
+            Assert.That(new Vector4(0, 0, 1, 0), Is.EqualTo(Vector4.UnitZ).Using(Vector4Comparer.Epsilon));
+            Assert.That(new Vector4(0, 0, 0, 1), Is.EqualTo(Vector4.UnitW).Using(Vector4Comparer.Epsilon));
         }
 
         [Test]
@@ -84,9 +84,9 @@ namespace MonoGame.Tests.Framework
         public void Hermite()
         {
             var t1 = new Vector4(1.40625f, 1.40625f, 0.2f, 0.92f);
-            var t2 = new Vector4(2.662375f, 2.26537514f,10.0f,2f);
-            var v1 = new Vector4(1,2,3,4);
-            var v2 = new Vector4(-1.3f,0.1f,30.0f,365.20f);
+            var t2 = new Vector4(2.662375f, 2.26537514f, 10.0f, 2f);
+            var v1 = new Vector4(1, 2, 3, 4);
+            var v2 = new Vector4(-1.3f, 0.1f, 30.0f, 365.20f);
             var a = 2.234f;
 
             var result1 = Vector4.Hermite(v1, t1, v2, t2, a);
@@ -105,7 +105,7 @@ namespace MonoGame.Tests.Framework
         public void Length()
         {
             var vector1 = new Vector4(1, 2, 3, 4);
-            Assert.AreEqual(5.477226f,vector1.Length());
+            Assert.AreEqual(5.477226f, vector1.Length());
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace MonoGame.Tests.Framework
         {
             var vector1 = new Vector4(1, 2, 3, 4);
             vector1.Normalize();
-            var expected = new Vector4(0.1825742f,0.3651484f,0.5477225f,0.7302967f);
+            var expected = new Vector4(0.1825742f, 0.3651484f, 0.5477225f, 0.7302967f);
             Assert.That(expected, Is.EqualTo(vector1).Using(Vector4Comparer.Epsilon));
             var vector2 = new Vector4(1, 2, 3, 4);
             var result = Vector4.Normalize(vector2);
@@ -134,7 +134,8 @@ namespace MonoGame.Tests.Framework
         }
 
         [Test]
-        public void HashCode() {
+        public void HashCode()
+        {
             // Checking for overflows in hash calculation.
             var max = new Vector4(float.MaxValue, float.MaxValue, float.MaxValue, float.MaxValue);
             var min = new Vector4(float.MinValue, float.MinValue, float.MinValue, float.MinValue);

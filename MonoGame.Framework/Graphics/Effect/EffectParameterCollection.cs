@@ -19,7 +19,7 @@ namespace Monogame.Graphics
             for (int i = 0; i < _parameters.Length; i++)
             {
                 string name = _parameters[i].Name;
-                if(!string.IsNullOrWhiteSpace(name))
+                if (!string.IsNullOrWhiteSpace(name))
                     _indexLookup.Add(name, i);
             }
         }
@@ -54,9 +54,9 @@ namespace Monogame.Graphics
         /// Retrieves the <see cref="EffectParameter"/> at the specified index in the collection.
         /// </summary>
         public EffectParameter this[int index]
-		{
-			get { return _parameters[index]; }
-		}
+        {
+            get { return _parameters[index]; }
+        }
 
         /// <summary>
         /// Retrieves a <see cref="EffectParameter"/> from the collection, given the name of the parameter.
@@ -70,7 +70,7 @@ namespace Monogame.Graphics
                 if (_indexLookup.TryGetValue(name, out index))
                     return _parameters[index];
                 return null;
-			}
+            }
         }
 
         /// <inheritdoc/>

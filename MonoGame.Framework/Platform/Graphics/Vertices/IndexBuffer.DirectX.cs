@@ -169,5 +169,5 @@ namespace Monogame.Graphics
 
             base.Dispose(disposing);
         }
-	}
+    }
 }

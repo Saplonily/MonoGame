@@ -10,8 +10,8 @@ using Monogame.Content;
 
 namespace Monogame.Content
 {
-	
-	internal class RectangleReader : ContentTypeReader<Rectangle>
+
+    internal class RectangleReader : ContentTypeReader<Rectangle>
     {
         public RectangleReader()
         {

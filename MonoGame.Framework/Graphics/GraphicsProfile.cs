@@ -8,7 +8,7 @@ namespace Monogame.Graphics
     /// Defines a set of graphic capabilities.
     /// </summary>
 	public enum GraphicsProfile
-	{
+    {
         /// <summary>
         /// Use a limited set of graphic features and capabilities, allowing the game to support the widest variety of devices.
         /// </summary>
@@ -17,5 +17,5 @@ namespace Monogame.Graphics
         /// Use the largest available set of graphic features and capabilities to target devices, that have more enhanced graphic capabilities.        
         /// </summary>
         HiDef
-	}
+    }
 }

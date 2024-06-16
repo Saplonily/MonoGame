@@ -16,7 +16,7 @@ namespace MonoGame.Tests.ContentPipeline
 
         void ImportStandard(string filename, SurfaceFormat expectedSurfaceFormat, int expectedSize)
         {
-            var importer = new TextureImporter( );
+            var importer = new TextureImporter();
             var context = new TestImporterContext(intermediateDirectory, outputDirectory);
             var content = importer.Import(filename, context);
             Assert.NotNull(content);
@@ -33,31 +33,31 @@ namespace MonoGame.Tests.ContentPipeline
                 Directory.Delete(intermediateDirectory, true);
                 Directory.Delete(outputDirectory, true);
             }
-            catch(DirectoryNotFoundException)
+            catch (DirectoryNotFoundException)
             {
             }
         }
 
         [Test]
-        public void ImportBmp( )
+        public void ImportBmp()
         {
             ImportStandard("Assets/Textures/LogoOnly_64px.bmp", SurfaceFormat.Color, 64);
         }
 
         [Test]
-        public void ImportBmpRGB555( )
+        public void ImportBmpRGB555()
         {
             ImportStandard("Assets/Textures/Logo555.bmp", SurfaceFormat.Color, 64);
         }
 
         [Test]
-        public void ImportBmpRGB565( )
+        public void ImportBmpRGB565()
         {
             ImportStandard("Assets/Textures/Logo565.bmp", SurfaceFormat.Color, 64);
         }
 
         [Test]
-        public void ImportBmp4bits( )
+        public void ImportBmp4bits()
         {
             ImportStandard("Assets/Textures/LogoOnly_64px-4bits.bmp", SurfaceFormat.Color, 64);
         }
@@ -69,31 +69,31 @@ namespace MonoGame.Tests.ContentPipeline
         }
 
         [Test]
-        public void ImportGif( )
+        public void ImportGif()
         {
             ImportStandard("Assets/Textures/LogoOnly_64px.gif", SurfaceFormat.Color, 64);
         }
 
         [Test]
-        public void ImportJpg( )
+        public void ImportJpg()
         {
             ImportStandard("Assets/Textures/LogoOnly_64px.jpg", SurfaceFormat.Color, 64);
         }
 
         [Test]
-        public void ImportPng( )
+        public void ImportPng()
         {
             ImportStandard("Assets/Textures/LogoOnly_64px.png", SurfaceFormat.Color, 64);
         }
 
         [Test]
-        public void ImportTga( )
+        public void ImportTga()
         {
             ImportStandard("Assets/Textures/LogoOnly_64px.tga", SurfaceFormat.Color, 64);
         }
 
         [Test]
-        public void ImportTif( )
+        public void ImportTif()
         {
             ImportStandard("Assets/Textures/LogoOnly_64px.tif", SurfaceFormat.Color, 64);
         }
@@ -105,9 +105,9 @@ namespace MonoGame.Tests.ContentPipeline
         /// Note that the image was created with Freeimage from a bitmap
         /// </summary>
         [Test]
-        public void ImportImageWithBadContent( )
+        public void ImportImageWithBadContent()
         {
-            Assert.Throws(typeof(InvalidContentException), ( ) => ImportStandard("Assets/Textures/rgbf.tif", SurfaceFormat.Vector4, 64));
+            Assert.Throws(typeof(InvalidContentException), () => ImportStandard("Assets/Textures/rgbf.tif", SurfaceFormat.Vector4, 64));
             //ImportStandard("Assets/Textures/rgbf.tif", SurfaceFormat.Color);
         }
 
@@ -220,7 +220,7 @@ namespace MonoGame.Tests.ContentPipeline
                 Directory.Delete(intermediateDirectory, true);
                 Directory.Delete(outputDirectory, true);
             }
-            catch(DirectoryNotFoundException)
+            catch (DirectoryNotFoundException)
             {
             }
         }
@@ -232,7 +232,7 @@ namespace MonoGame.Tests.ContentPipeline
             var context = new TestImporterContext(intermediateDirectory, outputDirectory);
             var content = importer.Import("Assets/Textures/color_24bit.png", context);
 
-            var bitmap = (PixelBitmapContent<Color>) content.Faces[0][0];
+            var bitmap = (PixelBitmapContent<Color>)content.Faces[0][0];
             var pixel = bitmap.GetPixel(0, 0);
 
             Assert.AreEqual(255, pixel.R);

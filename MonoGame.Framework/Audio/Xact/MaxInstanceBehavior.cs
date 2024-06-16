@@ -4,7 +4,7 @@
 
 namespace Monogame.Audio
 {
-    enum MaxInstanceBehavior 
+    enum MaxInstanceBehavior
     {
         FailToPlay,
         Queue,

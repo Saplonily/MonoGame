@@ -8,10 +8,10 @@ using Monogame.Graphics;
 namespace Monogame.Content
 {
     internal class TextureReader : ContentTypeReader<Texture>
-	{
-		protected internal override Texture Read(ContentReader reader, Texture existingInstance)
-		{
-			return existingInstance;
-		}
-	}
+    {
+        protected internal override Texture Read(ContentReader reader, Texture existingInstance)
+        {
+            return existingInstance;
+        }
+    }
 }

@@ -26,7 +26,7 @@ namespace Monogame.Graphics
         private void PlatformBegin()
         {
             var d3dContext = GraphicsDevice._d3dContext;
-            lock(d3dContext)
+            lock (d3dContext)
                 d3dContext.Begin(_query);
         }
 

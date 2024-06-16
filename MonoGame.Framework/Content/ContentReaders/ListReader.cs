@@ -19,8 +19,8 @@ namespace Monogame.Content
 
         protected internal override void Initialize(ContentTypeReaderManager manager)
         {
-			Type readerType = typeof(T);
-			elementReader = manager.GetTypeReader(readerType);
+            Type readerType = typeof(T);
+            elementReader = manager.GetTypeReader(readerType);
         }
 
         public override bool CanDeserializeIntoExistingObject
@@ -36,14 +36,14 @@ namespace Monogame.Content
             for (int i = 0; i < count; i++)
             {
                 if (ReflectionHelpers.IsValueType(typeof(T)))
-				{
-                	list.Add(input.ReadObject<T>(elementReader));
-				}
-				else
-				{
+                {
+                    list.Add(input.ReadObject<T>(elementReader));
+                }
+                else
+                {
                     var readerType = input.Read7BitEncodedInt();
-                	list.Add(readerType > 0 ? input.ReadObject<T>(input.TypeReaders[readerType - 1]) : default(T));
-				}
+                    list.Add(readerType > 0 ? input.ReadObject<T>(input.TypeReaders[readerType - 1]) : default(T));
+                }
             }
             return list;
         }

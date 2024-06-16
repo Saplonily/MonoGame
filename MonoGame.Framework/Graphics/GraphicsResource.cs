@@ -23,7 +23,7 @@ namespace Monogame.Graphics
 
         internal GraphicsResource()
         {
-            
+
         }
 
         /// <summary/>
@@ -95,11 +95,11 @@ namespace Monogame.Graphics
         /// Gets the <see cref="Graphics.GraphicsDevice"/> associated with this <see cref="GraphicsResource"/>.
         /// </summary>
 		public GraphicsDevice GraphicsDevice
-		{
-			get
-			{
-				return graphicsDevice;
-			}
+        {
+            get
+            {
+                return graphicsDevice;
+            }
 
             internal set
             {
@@ -121,18 +121,18 @@ namespace Monogame.Graphics
                 _selfReference = new WeakReference(this);
                 graphicsDevice.AddResourceReference(_selfReference);
             }
-		}
+        }
 
         /// <summary>
         /// Gets a value that indicates whether the object is disposed.
         /// </summary>
 		public bool IsDisposed
-		{
-			get
-			{
-				return disposed;
-			}
-		}
+        {
+            get
+            {
+                return disposed;
+            }
+        }
 
         /// <summary>
         /// Gets the name of the resource.
@@ -151,6 +151,6 @@ namespace Monogame.Graphics
         {
             return string.IsNullOrEmpty(Name) ? base.ToString() : Name;
         }
-	}
+    }
 }
 

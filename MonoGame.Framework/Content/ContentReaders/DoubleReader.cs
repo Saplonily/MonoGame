@@ -6,7 +6,7 @@ using System;
 
 namespace Monogame.Content
 {
-	internal class DoubleReader : ContentTypeReader<double>
+    internal class DoubleReader : ContentTypeReader<double>
     {
         public DoubleReader()
         {

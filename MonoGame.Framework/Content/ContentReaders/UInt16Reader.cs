@@ -6,7 +6,7 @@ using System;
 
 namespace Monogame.Content
 {
-	internal class UInt16Reader : ContentTypeReader<ushort>
+    internal class UInt16Reader : ContentTypeReader<ushort>
     {
         public UInt16Reader()
         {

@@ -19,15 +19,15 @@ namespace Monogame.Graphics
     [Flags]
     internal enum EffectDirtyFlags
     {
-        WorldViewProj   = 1,
-        World           = 2,
-        EyePosition     = 4,
-        MaterialColor   = 8,
-        Fog             = 16,
-        FogEnable       = 32,
-        AlphaTest       = 64,
-        ShaderIndex     = 128,
-        All             = -1
+        WorldViewProj = 1,
+        World = 2,
+        EyePosition = 4,
+        MaterialColor = 8,
+        Fog = 16,
+        FogEnable = 32,
+        AlphaTest = 64,
+        ShaderIndex = 128,
+        All = -1
     }
 
 
@@ -77,12 +77,12 @@ namespace Monogame.Graphics
             if ((dirtyFlags & EffectDirtyFlags.WorldViewProj) != 0)
             {
                 Matrix worldViewProj;
-                
+
                 Matrix.Multiply(ref world, ref view, out worldView);
                 Matrix.Multiply(ref worldView, ref projection, out worldViewProj);
-                
+
                 worldViewProjParam.SetValue(worldViewProj);
-                
+
                 dirtyFlags &= ~EffectDirtyFlags.WorldViewProj;
             }
 
@@ -127,7 +127,7 @@ namespace Monogame.Graphics
                 // Z value, then scale and offset according to the fog start/end distances.
                 // Because we only care about the Z component, the shader can do all this
                 // with a single dot product, using only the Z row of the world+view matrix.
-                
+
                 float scale = 1f / (fogStart - fogEnd);
 
                 Vector4 fogVector = new Vector4();
@@ -154,13 +154,13 @@ namespace Monogame.Graphics
             {
                 Matrix worldTranspose;
                 Matrix worldInverseTranspose;
-                
+
                 Matrix.Invert(ref world, out worldTranspose);
                 Matrix.Transpose(ref worldTranspose, out worldInverseTranspose);
-                
+
                 worldParam.SetValue(world);
                 worldInverseTransposeParam.SetValue(worldInverseTranspose);
-                
+
                 dirtyFlags &= ~EffectDirtyFlags.World;
             }
 
@@ -168,7 +168,7 @@ namespace Monogame.Graphics
             if ((dirtyFlags & EffectDirtyFlags.EyePosition) != 0)
             {
                 Matrix viewInverse;
-                
+
                 Matrix.Invert(ref view, out viewInverse);
 
                 eyePositionParam.SetValue(viewInverse.Translation);
@@ -207,12 +207,12 @@ namespace Monogame.Graphics
             //
             // For futher optimization goodness, we merge material alpha with the diffuse
             // color parameter, and premultiply all color values by this alpha.
-            
+
             if (lightingEnabled)
             {
                 Vector4 diffuse = new Vector4();
                 Vector3 emissive = new Vector3();
-                
+
                 diffuse.X = diffuseColor.X * alpha;
                 diffuse.Y = diffuseColor.Y * alpha;
                 diffuse.Z = diffuseColor.Z * alpha;
@@ -228,7 +228,7 @@ namespace Monogame.Graphics
             else
             {
                 Vector4 diffuse = new Vector4();
-                
+
                 diffuse.X = (diffuseColor.X + emissiveColor.X) * alpha;
                 diffuse.Y = (diffuseColor.Y + emissiveColor.Y) * alpha;
                 diffuse.Z = (diffuseColor.Z + emissiveColor.Z) * alpha;

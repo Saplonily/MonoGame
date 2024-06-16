@@ -38,9 +38,9 @@ namespace Monogame.Design
                 var packedVec = (IPackedVector)Activator.CreateInstance(destinationType);
                 packedVec.PackFromVector4(value);
                 return packedVec;
-            }            
+            }
 
             return null;
-        }         
+        }
     }
 }

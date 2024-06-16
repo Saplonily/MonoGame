@@ -203,7 +203,7 @@ namespace Monogame
         {
             _keys.RemoveAt(index);
         }
-        
+
         /// <summary>
         /// Removes specific element.
         /// </summary>

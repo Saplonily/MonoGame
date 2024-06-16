@@ -74,7 +74,7 @@ namespace MonoGame.Tests.ContentPipeline
             var builder = MeshBuilder.StartMesh("Mesh2");
 
             var firstPos = builder.CreatePosition(new Vector3(0, 0, 0));
-            var secondPos =  builder.CreatePosition(new Vector3(1, 0, 0));
+            var secondPos = builder.CreatePosition(new Vector3(1, 0, 0));
             var thirdPos = builder.CreatePosition(new Vector3(1, 1, 1));
 
             builder.SetMaterial(material1);
@@ -225,14 +225,14 @@ namespace MonoGame.Tests.ContentPipeline
             CreatePositions(mb);
             AddVertices(mb);
 
-            var d1 = new OpaqueDataDictionary {{"Name", "Data1"}};
+            var d1 = new OpaqueDataDictionary { { "Name", "Data1" } };
             mb.SetOpaqueData(d1);
             AddVertices(mb);
-            
+
             mb.SetMaterial(material1);
             AddVertices(mb);
 
-            var d2 = new OpaqueDataDictionary {{"Name", "Data2"}};
+            var d2 = new OpaqueDataDictionary { { "Name", "Data2" } };
             mb.SetOpaqueData(d2);
             AddVertices(mb);
 
@@ -240,7 +240,7 @@ namespace MonoGame.Tests.ContentPipeline
             AddVertices(mb);
 
             // this one won't get added because we don't add any vertices anymore
-            var d3 = new OpaqueDataDictionary {{"Name", "Data3"}};
+            var d3 = new OpaqueDataDictionary { { "Name", "Data3" } };
             mb.SetOpaqueData(d3);
 
             var mesh = mb.FinishMesh();
@@ -273,7 +273,7 @@ namespace MonoGame.Tests.ContentPipeline
             CreatePositions(mb);
 
             mb.SetMaterial(material1);
-            var d1 = new OpaqueDataDictionary {{"Name", "Data1"}};
+            var d1 = new OpaqueDataDictionary { { "Name", "Data1" } };
             mb.SetOpaqueData(d1);
             AddVertices(mb);
 
@@ -292,9 +292,9 @@ namespace MonoGame.Tests.ContentPipeline
             var mb = MeshBuilder.StartMesh("Test");
             CreatePositions(mb);
 
-            var d2 = new OpaqueDataDictionary {{"Name", "Data2"}};
+            var d2 = new OpaqueDataDictionary { { "Name", "Data2" } };
             mb.SetOpaqueData(d2);
-            var d1 = new OpaqueDataDictionary {{"Name", "Data1"}};
+            var d1 = new OpaqueDataDictionary { { "Name", "Data1" } };
             mb.SetOpaqueData(d1);
             mb.SetMaterial(material1);
             AddVertices(mb);
@@ -444,17 +444,17 @@ namespace MonoGame.Tests.ContentPipeline
         public void RemoveVertices()
         {
             MeshContent output;
-            
+
             output = CreateBasicMesh(material1);
             Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveAt(-1));
             Assert.AreEqual(3, output.Geometry[0].Vertices.VertexCount);
             Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveAt(3));
             Assert.AreEqual(3, output.Geometry[0].Vertices.VertexCount);
-            Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveRange(-1,1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveRange(-1, 1));
             Assert.AreEqual(3, output.Geometry[0].Vertices.VertexCount);
-            Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveRange(0,-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveRange(0, -1));
             Assert.AreEqual(3, output.Geometry[0].Vertices.VertexCount);
-            Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveRange(0,4));
+            Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveRange(0, 4));
             Assert.AreEqual(3, output.Geometry[0].Vertices.VertexCount);
             Assert.Throws<ArgumentOutOfRangeException>(() => output.Geometry[0].Vertices.RemoveRange(3, 1));
             Assert.AreEqual(3, output.Geometry[0].Vertices.VertexCount);

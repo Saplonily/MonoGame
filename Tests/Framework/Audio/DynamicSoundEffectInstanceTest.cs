@@ -59,7 +59,7 @@ namespace MonoGame.Tests.Audio
 
                 var previousEventCount = _bufferNeededEventCount;
                 instance.Play();
-                
+
                 Thread.Sleep(125);
                 SleepWhileDispatching(10);
 
@@ -82,7 +82,7 @@ namespace MonoGame.Tests.Audio
 
                 var previousEventCount = _bufferNeededEventCount;
                 instance.Play();
-                
+
                 SleepWhileDispatching(300);
 
                 Assert.AreEqual(0, _bufferNeededEventCount - previousEventCount);
@@ -341,7 +341,7 @@ namespace MonoGame.Tests.Audio
                 instance.SubmitBuffer(GenerateSineWave(440, 12000, 1, 0.1f));
                 instance.SubmitBuffer(GenerateSineWave(440, 12000, 1, 0.1f));
                 Assert.AreEqual(3, instance.PendingBufferCount);
-                
+
                 instance.Stop();
                 SleepWhileDispatching(20);
                 Assert.AreEqual(0, instance.PendingBufferCount);
@@ -430,7 +430,7 @@ namespace MonoGame.Tests.Audio
                     stopwatch.Stop();
                     break;
                 }
-            }            
+            }
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ public sealed class BuildUWPTask : FrostingTask<BuildContext>
 
         var vsLatest = context.VSWhereLatest(new VSWhereLatestSettings()
         {
-            Requires = "Microsoft.VisualStudio.Component.Windows10SDK.19041" 
+            Requires = "Microsoft.VisualStudio.Component.Windows10SDK.19041"
         });
 
         if (vsLatest == null)

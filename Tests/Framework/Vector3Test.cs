@@ -80,7 +80,8 @@ namespace MonoGame.Tests.Framework
         }
 
         [Test]
-        public void HashCode() {
+        public void HashCode()
+        {
             // Checking for overflows in hash calculation.
             var max = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
             var min = new Vector3(float.MinValue, float.MinValue, float.MinValue);

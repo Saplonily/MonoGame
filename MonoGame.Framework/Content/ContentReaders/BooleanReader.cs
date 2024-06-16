@@ -10,7 +10,7 @@ using Monogame.Content;
 
 namespace Monogame.Content
 {
-	internal class BooleanReader : ContentTypeReader<bool>
+    internal class BooleanReader : ContentTypeReader<bool>
     {
         public BooleanReader()
         {

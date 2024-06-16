@@ -9,55 +9,55 @@ namespace Monogame.Graphics
     /// Represents a collection of effects associated with a model.
     /// </summary>
     public sealed class ModelEffectCollection : ReadOnlyCollection<Effect>
-	{
-		internal ModelEffectCollection(IList<Effect> list)
-			: base(list)
-		{
+    {
+        internal ModelEffectCollection(IList<Effect> list)
+            : base(list)
+        {
 
-		}
+        }
 
-	    internal ModelEffectCollection() : base(new List<Effect>())
-	    {
-	    }
-		
-		//ModelMeshPart needs to be able to add to ModelMesh's effects list
-		internal void Add(Effect item)
-		{
-			Items.Add (item);
-		}
-		internal void Remove(Effect item)
-		{
-			Items.Remove (item);
-		}
+        internal ModelEffectCollection() : base(new List<Effect>())
+        {
+        }
+
+        //ModelMeshPart needs to be able to add to ModelMesh's effects list
+        internal void Add(Effect item)
+        {
+            Items.Add(item);
+        }
+        internal void Remove(Effect item)
+        {
+            Items.Remove(item);
+        }
 
         /// <summary>
         /// Returns a <see cref="ModelEffectCollection.Enumerator">ModelEffectCollection.Enumerator</see>
         /// that can iterate through a collection.
         /// </summary>
         public new ModelEffectCollection.Enumerator GetEnumerator()
-		{
-			return new ModelEffectCollection.Enumerator((List<Effect>)Items);
-		}
+        {
+            return new ModelEffectCollection.Enumerator((List<Effect>)Items);
+        }
 
         /// <summary>
         /// Enumerator to iterate through the <see cref="ModelEffectCollection"/>
         /// </summary>
         public struct Enumerator : IEnumerator<Effect>, IDisposable, IEnumerator
-	    {
-			List<Effect>.Enumerator enumerator;
+        {
+            List<Effect>.Enumerator enumerator;
             bool disposed;
 
-			internal Enumerator(List<Effect> list)
-			{
-				enumerator = list.GetEnumerator();
+            internal Enumerator(List<Effect> list)
+            {
+                enumerator = list.GetEnumerator();
                 disposed = false;
-			}
+            }
 
-	        /// <inheritdoc/>
+            /// <inheritdoc/>
             public Effect Current { get { return enumerator.Current; } }
 
-	        /// <inheritdoc cref="IDisposable.Dispose()"/>
-	        public void Dispose()
+            /// <inheritdoc cref="IDisposable.Dispose()"/>
+            public void Dispose()
             {
                 if (!disposed)
                 {
@@ -66,24 +66,24 @@ namespace Monogame.Graphics
                 }
             }
 
-	        /// <inheritdoc/>
-	        public bool MoveNext() { return enumerator.MoveNext(); }
+            /// <inheritdoc/>
+            public bool MoveNext() { return enumerator.MoveNext(); }
 
-	        #region IEnumerator Members
+            #region IEnumerator Members
 
-	        object IEnumerator.Current
-	        {
-	            get { return Current; }
-	        }
+            object IEnumerator.Current
+            {
+                get { return Current; }
+            }
 
-	        void IEnumerator.Reset()
-	        {
-				IEnumerator resetEnumerator = enumerator;
-				resetEnumerator.Reset ();
-				enumerator = (List<Effect>.Enumerator)resetEnumerator;
-	        }
+            void IEnumerator.Reset()
+            {
+                IEnumerator resetEnumerator = enumerator;
+                resetEnumerator.Reset();
+                enumerator = (List<Effect>.Enumerator)resetEnumerator;
+            }
 
-	        #endregion
-	    }
-	}
+            #endregion
+        }
+    }
 }

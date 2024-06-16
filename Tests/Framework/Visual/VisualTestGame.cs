@@ -7,85 +7,93 @@ using Monogame.Graphics;
 
 using MonoGame.Tests.Components;
 
-namespace MonoGame.Tests.Visual {
-	class VisualTestGame : TestGameBase, IFrameCaptureSource {
-		public VisualTestGame ()
-		{
-			new GraphicsDeviceManager (this) {
-				PreferredBackBufferWidth = 800,
-				PreferredBackBufferHeight = 480,
-				GraphicsProfile = GraphicsProfile.HiDef,
-			};
+namespace MonoGame.Tests.Visual
+{
+    class VisualTestGame : TestGameBase, IFrameCaptureSource
+    {
+        public VisualTestGame()
+        {
+            new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = 800,
+                PreferredBackBufferHeight = 480,
+                GraphicsProfile = GraphicsProfile.HiDef,
+            };
 
-			Services.AddService<IFrameCaptureSource> (this);
-		}
+            Services.AddService<IFrameCaptureSource>(this);
+        }
 
-		protected override void Draw (GameTime gameTime)
-		{
-			if (_shouldCaptureFrame)
-				StartRenderingToTexture ();
+        protected override void Draw(GameTime gameTime)
+        {
+            if (_shouldCaptureFrame)
+                StartRenderingToTexture();
 
-			try {
-				base.Draw (gameTime);
-			} finally {
-				if (_shouldCaptureFrame)
-					StopRenderingToTexture ();
-			}
+            try
+            {
+                base.Draw(gameTime);
+            }
+            finally
+            {
+                if (_shouldCaptureFrame)
+                    StopRenderingToTexture();
+            }
 
-			_shouldCaptureFrame = false;
-		}
+            _shouldCaptureFrame = false;
+        }
 
-		protected override void Dispose (bool disposing)
-		{
-			if (disposing) {
-				if (_renderToTextureTarget != null) {
-					_renderToTextureTarget.Dispose ();
-					_renderToTextureTarget = null;
-				}
-			}
-			base.Dispose (disposing);
-		}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_renderToTextureTarget != null)
+                {
+                    _renderToTextureTarget.Dispose();
+                    _renderToTextureTarget = null;
+                }
+            }
+            base.Dispose(disposing);
+        }
 
-		#region IFrameSource Implementation
+        #region IFrameSource Implementation
 
-		private RenderTarget2D _renderToTextureTarget;
-		private bool _shouldCaptureFrame;
-		public void ScheduleFrameCapture ()
-		{
-			_shouldCaptureFrame = true;
-		}
+        private RenderTarget2D _renderToTextureTarget;
+        private bool _shouldCaptureFrame;
+        public void ScheduleFrameCapture()
+        {
+            _shouldCaptureFrame = true;
+        }
 
-		public Texture2D GetCapturedFrame ()
-		{
-			return _renderToTextureTarget;
-		}
+        public Texture2D GetCapturedFrame()
+        {
+            return _renderToTextureTarget;
+        }
 
-		public void ReleaseCapturedFrame (Texture2D frame)
-		{
-			_renderToTextureTarget.Dispose ();
-			_renderToTextureTarget = null;
-		}
+        public void ReleaseCapturedFrame(Texture2D frame)
+        {
+            _renderToTextureTarget.Dispose();
+            _renderToTextureTarget = null;
+        }
 
-		private void StartRenderingToTexture ()
-		{
-			if (_renderToTextureTarget != null)
-				throw new InvalidOperationException ("Already rendering to a different texture.");
+        private void StartRenderingToTexture()
+        {
+            if (_renderToTextureTarget != null)
+                throw new InvalidOperationException("Already rendering to a different texture.");
 
-			_renderToTextureTarget = new RenderTarget2D(
-				GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height,
-				false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
+            _renderToTextureTarget = new RenderTarget2D(
+                GraphicsDevice, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height,
+                false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
 
-			GraphicsDevice.SetRenderTarget (_renderToTextureTarget);
-		}
+            GraphicsDevice.SetRenderTarget(_renderToTextureTarget);
+        }
 
-		private void StopRenderingToTexture ()
-		{
-			if (_renderToTextureTarget == null)
-				throw new InvalidOperationException ("Not currently rendering to a texture.");
+        private void StopRenderingToTexture()
+        {
+            if (_renderToTextureTarget == null)
+                throw new InvalidOperationException("Not currently rendering to a texture.");
 
-			GraphicsDevice.SetRenderTarget (null);
-		}
+            GraphicsDevice.SetRenderTarget(null);
+        }
 
-		#endregion IFrameSource Implementation
-	}
+        #endregion IFrameSource Implementation
+    }
 }

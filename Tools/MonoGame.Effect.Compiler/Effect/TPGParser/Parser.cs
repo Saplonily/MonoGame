@@ -11,17 +11,17 @@ namespace MonoGame.Effect.TPGParser
 {
     #region Parser
 
-    public partial class Parser 
+    public partial class Parser
     {
         private Scanner scanner;
         private ParseTree tree;
-        
+
         public Parser(Scanner scanner)
         {
             this.scanner = scanner;
         }
 
-         public ParseTree Parse(string input)
+        public ParseTree Parse(string input)
         {
             return Parse(input, "", new ParseTree());
         }
@@ -50,7 +50,7 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Code, TokenType.Technique, TokenType.Sampler); // ZeroOrMore Rule
             while (tok.Type == TokenType.Code
                 || tok.Type == TokenType.Technique
@@ -61,10 +61,11 @@ namespace MonoGame.Effect.TPGParser
                 { // Choice Rule
                     case TokenType.Code:
                         tok = scanner.Scan(TokenType.Code); // Terminal Rule: Code
-                        n = node.CreateNode(tok, tok.ToString() );
+                        n = node.CreateNode(tok, tok.ToString());
                         node.Token.UpdateRange(tok);
                         node.Nodes.Add(n);
-                        if (tok.Type != TokenType.Code) {
+                        if (tok.Type != TokenType.Code)
+                        {
                             tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Code.ToString(), 0x1001, tok));
                             return;
                         }
@@ -79,15 +80,16 @@ namespace MonoGame.Effect.TPGParser
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected Code, Technique, or Sampler.", 0x0002, tok));
                         break;
                 } // Choice Rule
-            tok = scanner.LookAhead(TokenType.Code, TokenType.Technique, TokenType.Sampler); // ZeroOrMore Rule
+                tok = scanner.LookAhead(TokenType.Code, TokenType.Technique, TokenType.Sampler); // ZeroOrMore Rule
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.EndOfFile); // Terminal Rule: EndOfFile
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.EndOfFile) {
+            if (tok.Type != TokenType.EndOfFile)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.EndOfFile.ToString(), 0x1001, tok));
                 return;
             }
@@ -103,52 +105,57 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Technique); // Terminal Rule: Technique
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Technique) {
+            if (tok.Type != TokenType.Technique)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Technique.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Identifier); // Option Rule
             if (tok.Type == TokenType.Identifier)
             {
                 tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Identifier) {
+                if (tok.Type != TokenType.Identifier)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                     return;
                 }
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.OpenBracket); // Terminal Rule: OpenBracket
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.OpenBracket) {
+            if (tok.Type != TokenType.OpenBracket)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenBracket.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
-            do { // OneOrMore Rule
+            // Concat Rule
+            do
+            { // OneOrMore Rule
                 ParsePass_Declaration(node); // NonTerminal Rule: Pass_Declaration
                 tok = scanner.LookAhead(TokenType.Pass); // OneOrMore Rule
             } while (tok.Type == TokenType.Pass); // OneOrMore Rule
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.CloseBracket); // Terminal Rule: CloseBracket
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.CloseBracket) {
+            if (tok.Type != TokenType.CloseBracket)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseBracket.ToString(), 0x1001, tok));
                 return;
             }
@@ -164,10 +171,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Solid); // Terminal Rule: Solid
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Solid) {
+            if (tok.Type != TokenType.Solid)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Solid.ToString(), 0x1001, tok));
                 return;
             }
@@ -183,10 +191,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.WireFrame); // Terminal Rule: WireFrame
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.WireFrame) {
+            if (tok.Type != TokenType.WireFrame)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.WireFrame.ToString(), 0x1001, tok));
                 return;
             }
@@ -226,10 +235,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.None); // Terminal Rule: None
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.None) {
+            if (tok.Type != TokenType.None)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.None.ToString(), 0x1001, tok));
                 return;
             }
@@ -245,10 +255,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Cw); // Terminal Rule: Cw
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Cw) {
+            if (tok.Type != TokenType.Cw)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Cw.ToString(), 0x1001, tok));
                 return;
             }
@@ -264,10 +275,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Ccw); // Terminal Rule: Ccw
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Ccw) {
+            if (tok.Type != TokenType.Ccw)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Ccw.ToString(), 0x1001, tok));
                 return;
             }
@@ -310,10 +322,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.None); // Terminal Rule: None
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.None) {
+            if (tok.Type != TokenType.None)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.None.ToString(), 0x1001, tok));
                 return;
             }
@@ -329,10 +342,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Red); // Terminal Rule: Red
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Red) {
+            if (tok.Type != TokenType.Red)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Red.ToString(), 0x1001, tok));
                 return;
             }
@@ -348,10 +362,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Green); // Terminal Rule: Green
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Green) {
+            if (tok.Type != TokenType.Green)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Green.ToString(), 0x1001, tok));
                 return;
             }
@@ -367,10 +382,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Blue); // Terminal Rule: Blue
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Blue) {
+            if (tok.Type != TokenType.Blue)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Blue.ToString(), 0x1001, tok));
                 return;
             }
@@ -386,10 +402,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Alpha); // Terminal Rule: Alpha
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Alpha) {
+            if (tok.Type != TokenType.Alpha)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Alpha.ToString(), 0x1001, tok));
                 return;
             }
@@ -405,10 +422,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.All); // Terminal Rule: All
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.All) {
+            if (tok.Type != TokenType.All)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.All.ToString(), 0x1001, tok));
                 return;
             }
@@ -424,10 +442,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Boolean); // Terminal Rule: Boolean
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Boolean) {
+            if (tok.Type != TokenType.Boolean)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Boolean.ToString(), 0x1001, tok));
                 return;
             }
@@ -482,63 +501,66 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             ParseColors(node); // NonTerminal Rule: Colors
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Or); // Option Rule
             if (tok.Type == TokenType.Or)
             {
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.Scan(TokenType.Or); // Terminal Rule: Or
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Or) {
+                if (tok.Type != TokenType.Or)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Or.ToString(), 0x1001, tok));
                     return;
                 }
 
-                 // Concat Rule
+                // Concat Rule
                 ParseColors(node); // NonTerminal Rule: Colors
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Or); // Option Rule
             if (tok.Type == TokenType.Or)
             {
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.Scan(TokenType.Or); // Terminal Rule: Or
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Or) {
+                if (tok.Type != TokenType.Or)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Or.ToString(), 0x1001, tok));
                     return;
                 }
 
-                 // Concat Rule
+                // Concat Rule
                 ParseColors(node); // NonTerminal Rule: Colors
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Or); // Option Rule
             if (tok.Type == TokenType.Or)
             {
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.Scan(TokenType.Or); // Terminal Rule: Or
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Or) {
+                if (tok.Type != TokenType.Or)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Or.ToString(), 0x1001, tok));
                     return;
                 }
 
-                 // Concat Rule
+                // Concat Rule
                 ParseColors(node); // NonTerminal Rule: Colors
             }
 
@@ -553,10 +575,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Zero); // Terminal Rule: Zero
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Zero) {
+            if (tok.Type != TokenType.Zero)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Zero.ToString(), 0x1001, tok));
                 return;
             }
@@ -572,10 +595,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.One); // Terminal Rule: One
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.One) {
+            if (tok.Type != TokenType.One)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.One.ToString(), 0x1001, tok));
                 return;
             }
@@ -591,10 +615,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.SrcColor); // Terminal Rule: SrcColor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.SrcColor) {
+            if (tok.Type != TokenType.SrcColor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.SrcColor.ToString(), 0x1001, tok));
                 return;
             }
@@ -610,10 +635,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.InvSrcColor); // Terminal Rule: InvSrcColor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.InvSrcColor) {
+            if (tok.Type != TokenType.InvSrcColor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.InvSrcColor.ToString(), 0x1001, tok));
                 return;
             }
@@ -629,10 +655,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.SrcAlpha); // Terminal Rule: SrcAlpha
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.SrcAlpha) {
+            if (tok.Type != TokenType.SrcAlpha)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.SrcAlpha.ToString(), 0x1001, tok));
                 return;
             }
@@ -648,10 +675,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.InvSrcAlpha); // Terminal Rule: InvSrcAlpha
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.InvSrcAlpha) {
+            if (tok.Type != TokenType.InvSrcAlpha)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.InvSrcAlpha.ToString(), 0x1001, tok));
                 return;
             }
@@ -667,10 +695,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.DestAlpha); // Terminal Rule: DestAlpha
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.DestAlpha) {
+            if (tok.Type != TokenType.DestAlpha)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.DestAlpha.ToString(), 0x1001, tok));
                 return;
             }
@@ -686,10 +715,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.InvDestAlpha); // Terminal Rule: InvDestAlpha
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.InvDestAlpha) {
+            if (tok.Type != TokenType.InvDestAlpha)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.InvDestAlpha.ToString(), 0x1001, tok));
                 return;
             }
@@ -705,10 +735,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.DestColor); // Terminal Rule: DestColor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.DestColor) {
+            if (tok.Type != TokenType.DestColor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.DestColor.ToString(), 0x1001, tok));
                 return;
             }
@@ -724,10 +755,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.InvDestColor); // Terminal Rule: InvDestColor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.InvDestColor) {
+            if (tok.Type != TokenType.InvDestColor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.InvDestColor.ToString(), 0x1001, tok));
                 return;
             }
@@ -743,10 +775,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.SrcAlphaSat); // Terminal Rule: SrcAlphaSat
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.SrcAlphaSat) {
+            if (tok.Type != TokenType.SrcAlphaSat)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.SrcAlphaSat.ToString(), 0x1001, tok));
                 return;
             }
@@ -762,10 +795,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.BlendFactor); // Terminal Rule: BlendFactor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.BlendFactor) {
+            if (tok.Type != TokenType.BlendFactor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.BlendFactor.ToString(), 0x1001, tok));
                 return;
             }
@@ -781,10 +815,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.InvBlendFactor); // Terminal Rule: InvBlendFactor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.InvBlendFactor) {
+            if (tok.Type != TokenType.InvBlendFactor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.InvBlendFactor.ToString(), 0x1001, tok));
                 return;
             }
@@ -857,10 +892,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Add); // Terminal Rule: Add
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Add) {
+            if (tok.Type != TokenType.Add)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Add.ToString(), 0x1001, tok));
                 return;
             }
@@ -876,10 +912,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Subtract); // Terminal Rule: Subtract
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Subtract) {
+            if (tok.Type != TokenType.Subtract)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Subtract.ToString(), 0x1001, tok));
                 return;
             }
@@ -895,10 +932,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.RevSubtract); // Terminal Rule: RevSubtract
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.RevSubtract) {
+            if (tok.Type != TokenType.RevSubtract)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.RevSubtract.ToString(), 0x1001, tok));
                 return;
             }
@@ -914,10 +952,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Min); // Terminal Rule: Min
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Min) {
+            if (tok.Type != TokenType.Min)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Min.ToString(), 0x1001, tok));
                 return;
             }
@@ -933,10 +972,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Max); // Terminal Rule: Max
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Max) {
+            if (tok.Type != TokenType.Max)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Max.ToString(), 0x1001, tok));
                 return;
             }
@@ -985,10 +1025,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Never); // Terminal Rule: Never
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Never) {
+            if (tok.Type != TokenType.Never)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Never.ToString(), 0x1001, tok));
                 return;
             }
@@ -1004,10 +1045,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Less); // Terminal Rule: Less
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Less) {
+            if (tok.Type != TokenType.Less)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Less.ToString(), 0x1001, tok));
                 return;
             }
@@ -1023,10 +1065,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Equal); // Terminal Rule: Equal
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equal) {
+            if (tok.Type != TokenType.Equal)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equal.ToString(), 0x1001, tok));
                 return;
             }
@@ -1042,10 +1085,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.LessEqual); // Terminal Rule: LessEqual
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.LessEqual) {
+            if (tok.Type != TokenType.LessEqual)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.LessEqual.ToString(), 0x1001, tok));
                 return;
             }
@@ -1061,10 +1105,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Greater); // Terminal Rule: Greater
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Greater) {
+            if (tok.Type != TokenType.Greater)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Greater.ToString(), 0x1001, tok));
                 return;
             }
@@ -1080,10 +1125,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.NotEqual); // Terminal Rule: NotEqual
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.NotEqual) {
+            if (tok.Type != TokenType.NotEqual)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.NotEqual.ToString(), 0x1001, tok));
                 return;
             }
@@ -1099,10 +1145,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.GreaterEqual); // Terminal Rule: GreaterEqual
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.GreaterEqual) {
+            if (tok.Type != TokenType.GreaterEqual)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.GreaterEqual.ToString(), 0x1001, tok));
                 return;
             }
@@ -1118,10 +1165,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Always); // Terminal Rule: Always
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Always) {
+            if (tok.Type != TokenType.Always)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Always.ToString(), 0x1001, tok));
                 return;
             }
@@ -1179,10 +1227,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Keep); // Terminal Rule: Keep
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Keep) {
+            if (tok.Type != TokenType.Keep)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Keep.ToString(), 0x1001, tok));
                 return;
             }
@@ -1198,10 +1247,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Zero); // Terminal Rule: Zero
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Zero) {
+            if (tok.Type != TokenType.Zero)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Zero.ToString(), 0x1001, tok));
                 return;
             }
@@ -1217,10 +1267,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Replace); // Terminal Rule: Replace
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Replace) {
+            if (tok.Type != TokenType.Replace)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Replace.ToString(), 0x1001, tok));
                 return;
             }
@@ -1236,10 +1287,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.IncrSat); // Terminal Rule: IncrSat
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.IncrSat) {
+            if (tok.Type != TokenType.IncrSat)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.IncrSat.ToString(), 0x1001, tok));
                 return;
             }
@@ -1255,10 +1307,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.DecrSat); // Terminal Rule: DecrSat
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.DecrSat) {
+            if (tok.Type != TokenType.DecrSat)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.DecrSat.ToString(), 0x1001, tok));
                 return;
             }
@@ -1274,10 +1327,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Invert); // Terminal Rule: Invert
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Invert) {
+            if (tok.Type != TokenType.Invert)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Invert.ToString(), 0x1001, tok));
                 return;
             }
@@ -1293,10 +1347,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Incr); // Terminal Rule: Incr
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Incr) {
+            if (tok.Type != TokenType.Incr)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Incr.ToString(), 0x1001, tok));
                 return;
             }
@@ -1312,10 +1367,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Decr); // Terminal Rule: Decr
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Decr) {
+            if (tok.Type != TokenType.Decr)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Decr.ToString(), 0x1001, tok));
                 return;
             }
@@ -1373,35 +1429,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.CullMode); // Terminal Rule: CullMode
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.CullMode) {
+            if (tok.Type != TokenType.CullMode)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CullMode.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseCullModes(node); // NonTerminal Rule: CullModes
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1417,35 +1476,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.FillMode); // Terminal Rule: FillMode
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.FillMode) {
+            if (tok.Type != TokenType.FillMode)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.FillMode.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseFillModes(node); // NonTerminal Rule: FillModes
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1461,42 +1523,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.AlphaBlendEnable); // Terminal Rule: AlphaBlendEnable
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.AlphaBlendEnable) {
+            if (tok.Type != TokenType.AlphaBlendEnable)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.AlphaBlendEnable.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Boolean); // Terminal Rule: Boolean
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Boolean) {
+            if (tok.Type != TokenType.Boolean)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Boolean.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1512,35 +1578,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.SrcBlend); // Terminal Rule: SrcBlend
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.SrcBlend) {
+            if (tok.Type != TokenType.SrcBlend)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.SrcBlend.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseBlends(node); // NonTerminal Rule: Blends
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1556,35 +1625,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.DestBlend); // Terminal Rule: DestBlend
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.DestBlend) {
+            if (tok.Type != TokenType.DestBlend)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.DestBlend.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseBlends(node); // NonTerminal Rule: Blends
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1600,35 +1672,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.BlendOp); // Terminal Rule: BlendOp
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.BlendOp) {
+            if (tok.Type != TokenType.BlendOp)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.BlendOp.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseBlendOps(node); // NonTerminal Rule: BlendOps
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1644,35 +1719,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.ColorWriteEnable); // Terminal Rule: ColorWriteEnable
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.ColorWriteEnable) {
+            if (tok.Type != TokenType.ColorWriteEnable)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.ColorWriteEnable.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseColorsMasks(node); // NonTerminal Rule: ColorsMasks
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1688,42 +1766,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.DepthBias); // Terminal Rule: DepthBias
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.DepthBias) {
+            if (tok.Type != TokenType.DepthBias)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.DepthBias.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1739,42 +1821,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.SlopeScaleDepthBias); // Terminal Rule: SlopeScaleDepthBias
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.SlopeScaleDepthBias) {
+            if (tok.Type != TokenType.SlopeScaleDepthBias)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.SlopeScaleDepthBias.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1790,42 +1876,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.ZEnable); // Terminal Rule: ZEnable
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.ZEnable) {
+            if (tok.Type != TokenType.ZEnable)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.ZEnable.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Boolean); // Terminal Rule: Boolean
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Boolean) {
+            if (tok.Type != TokenType.Boolean)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Boolean.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1841,42 +1931,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.ZWriteEnable); // Terminal Rule: ZWriteEnable
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.ZWriteEnable) {
+            if (tok.Type != TokenType.ZWriteEnable)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.ZWriteEnable.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Boolean); // Terminal Rule: Boolean
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Boolean) {
+            if (tok.Type != TokenType.Boolean)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Boolean.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1892,35 +1986,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.ZFunc); // Terminal Rule: ZFunc
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.ZFunc) {
+            if (tok.Type != TokenType.ZFunc)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.ZFunc.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseCmpFunc(node); // NonTerminal Rule: CmpFunc
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1936,42 +2033,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.MultiSampleAntiAlias); // Terminal Rule: MultiSampleAntiAlias
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.MultiSampleAntiAlias) {
+            if (tok.Type != TokenType.MultiSampleAntiAlias)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.MultiSampleAntiAlias.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Boolean); // Terminal Rule: Boolean
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Boolean) {
+            if (tok.Type != TokenType.Boolean)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Boolean.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -1987,42 +2088,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.ScissorTestEnable); // Terminal Rule: ScissorTestEnable
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.ScissorTestEnable) {
+            if (tok.Type != TokenType.ScissorTestEnable)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.ScissorTestEnable.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Boolean); // Terminal Rule: Boolean
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Boolean) {
+            if (tok.Type != TokenType.Boolean)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Boolean.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2038,42 +2143,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilEnable); // Terminal Rule: StencilEnable
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilEnable) {
+            if (tok.Type != TokenType.StencilEnable)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilEnable.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Boolean); // Terminal Rule: Boolean
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Boolean) {
+            if (tok.Type != TokenType.Boolean)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Boolean.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2089,35 +2198,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilFail); // Terminal Rule: StencilFail
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilFail) {
+            if (tok.Type != TokenType.StencilFail)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilFail.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseStencilOp(node); // NonTerminal Rule: StencilOp
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2133,35 +2245,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilFunc); // Terminal Rule: StencilFunc
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilFunc) {
+            if (tok.Type != TokenType.StencilFunc)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilFunc.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseCmpFunc(node); // NonTerminal Rule: CmpFunc
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2177,42 +2292,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilMask); // Terminal Rule: StencilMask
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilMask) {
+            if (tok.Type != TokenType.StencilMask)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilMask.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2228,35 +2347,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilPass); // Terminal Rule: StencilPass
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilPass) {
+            if (tok.Type != TokenType.StencilPass)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilPass.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseStencilOp(node); // NonTerminal Rule: StencilOp
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2272,42 +2394,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilRef); // Terminal Rule: StencilRef
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilRef) {
+            if (tok.Type != TokenType.StencilRef)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilRef.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2323,42 +2449,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilWriteMask); // Terminal Rule: StencilWriteMask
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilWriteMask) {
+            if (tok.Type != TokenType.StencilWriteMask)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilWriteMask.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2374,35 +2504,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.StencilZFail); // Terminal Rule: StencilZFail
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.StencilZFail) {
+            if (tok.Type != TokenType.StencilZFail)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.StencilZFail.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseStencilOp(node); // NonTerminal Rule: StencilOp
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2502,41 +2635,44 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Pass); // Terminal Rule: Pass
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Pass) {
+            if (tok.Type != TokenType.Pass)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Pass.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Identifier); // Option Rule
             if (tok.Type == TokenType.Identifier)
             {
                 tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Identifier) {
+                if (tok.Type != TokenType.Identifier)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                     return;
                 }
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.OpenBracket); // Terminal Rule: OpenBracket
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.OpenBracket) {
+            if (tok.Type != TokenType.OpenBracket)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenBracket.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.VertexShader, TokenType.PixelShader, TokenType.CullMode, TokenType.FillMode, TokenType.AlphaBlendEnable, TokenType.SrcBlend, TokenType.DestBlend, TokenType.BlendOp, TokenType.ColorWriteEnable, TokenType.DepthBias, TokenType.SlopeScaleDepthBias, TokenType.ZEnable, TokenType.ZWriteEnable, TokenType.ZFunc, TokenType.MultiSampleAntiAlias, TokenType.ScissorTestEnable, TokenType.StencilEnable, TokenType.StencilFail, TokenType.StencilFunc, TokenType.StencilMask, TokenType.StencilPass, TokenType.StencilRef, TokenType.StencilWriteMask, TokenType.StencilZFail); // ZeroOrMore Rule
             while (tok.Type == TokenType.VertexShader
                 || tok.Type == TokenType.PixelShader
@@ -2600,15 +2736,16 @@ namespace MonoGame.Effect.TPGParser
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected VertexShader, PixelShader, CullMode, FillMode, AlphaBlendEnable, SrcBlend, DestBlend, BlendOp, ColorWriteEnable, DepthBias, SlopeScaleDepthBias, ZEnable, ZWriteEnable, ZFunc, MultiSampleAntiAlias, ScissorTestEnable, StencilEnable, StencilFail, StencilFunc, StencilMask, StencilPass, StencilRef, StencilWriteMask, or StencilZFail.", 0x0002, tok));
                         break;
                 } // Choice Rule
-            tok = scanner.LookAhead(TokenType.VertexShader, TokenType.PixelShader, TokenType.CullMode, TokenType.FillMode, TokenType.AlphaBlendEnable, TokenType.SrcBlend, TokenType.DestBlend, TokenType.BlendOp, TokenType.ColorWriteEnable, TokenType.DepthBias, TokenType.SlopeScaleDepthBias, TokenType.ZEnable, TokenType.ZWriteEnable, TokenType.ZFunc, TokenType.MultiSampleAntiAlias, TokenType.ScissorTestEnable, TokenType.StencilEnable, TokenType.StencilFail, TokenType.StencilFunc, TokenType.StencilMask, TokenType.StencilPass, TokenType.StencilRef, TokenType.StencilWriteMask, TokenType.StencilZFail); // ZeroOrMore Rule
+                tok = scanner.LookAhead(TokenType.VertexShader, TokenType.PixelShader, TokenType.CullMode, TokenType.FillMode, TokenType.AlphaBlendEnable, TokenType.SrcBlend, TokenType.DestBlend, TokenType.BlendOp, TokenType.ColorWriteEnable, TokenType.DepthBias, TokenType.SlopeScaleDepthBias, TokenType.ZEnable, TokenType.ZWriteEnable, TokenType.ZFunc, TokenType.MultiSampleAntiAlias, TokenType.ScissorTestEnable, TokenType.StencilEnable, TokenType.StencilFail, TokenType.StencilFunc, TokenType.StencilMask, TokenType.StencilPass, TokenType.StencilRef, TokenType.StencilWriteMask, TokenType.StencilZFail); // ZeroOrMore Rule
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.CloseBracket); // Terminal Rule: CloseBracket
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.CloseBracket) {
+            if (tok.Type != TokenType.CloseBracket)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseBracket.ToString(), 0x1001, tok));
                 return;
             }
@@ -2624,82 +2761,90 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.VertexShader); // Terminal Rule: VertexShader
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.VertexShader) {
+            if (tok.Type != TokenType.VertexShader)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.VertexShader.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Compile); // Terminal Rule: Compile
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Compile) {
+            if (tok.Type != TokenType.Compile)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Compile.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.ShaderModel); // Terminal Rule: ShaderModel
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.ShaderModel) {
+            if (tok.Type != TokenType.ShaderModel)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.ShaderModel.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Identifier) {
+            if (tok.Type != TokenType.Identifier)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.OpenParenthesis); // Terminal Rule: OpenParenthesis
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.OpenParenthesis) {
+            if (tok.Type != TokenType.OpenParenthesis)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenParenthesis.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.CloseParenthesis) {
+            if (tok.Type != TokenType.CloseParenthesis)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2715,82 +2860,90 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.PixelShader); // Terminal Rule: PixelShader
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.PixelShader) {
+            if (tok.Type != TokenType.PixelShader)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.PixelShader.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Compile); // Terminal Rule: Compile
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Compile) {
+            if (tok.Type != TokenType.Compile)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Compile.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.ShaderModel); // Terminal Rule: ShaderModel
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.ShaderModel) {
+            if (tok.Type != TokenType.ShaderModel)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.ShaderModel.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Identifier) {
+            if (tok.Type != TokenType.Identifier)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.OpenParenthesis); // Terminal Rule: OpenParenthesis
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.OpenParenthesis) {
+            if (tok.Type != TokenType.OpenParenthesis)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenParenthesis.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.CloseParenthesis) {
+            if (tok.Type != TokenType.CloseParenthesis)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -2806,10 +2959,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Clamp); // Terminal Rule: Clamp
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Clamp) {
+            if (tok.Type != TokenType.Clamp)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Clamp.ToString(), 0x1001, tok));
                 return;
             }
@@ -2825,10 +2979,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Wrap); // Terminal Rule: Wrap
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Wrap) {
+            if (tok.Type != TokenType.Wrap)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Wrap.ToString(), 0x1001, tok));
                 return;
             }
@@ -2844,10 +2999,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Mirror); // Terminal Rule: Mirror
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Mirror) {
+            if (tok.Type != TokenType.Mirror)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Mirror.ToString(), 0x1001, tok));
                 return;
             }
@@ -2863,10 +3019,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Border); // Terminal Rule: Border
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Border) {
+            if (tok.Type != TokenType.Border)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Border.ToString(), 0x1001, tok));
                 return;
             }
@@ -2912,10 +3069,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.None); // Terminal Rule: None
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.None) {
+            if (tok.Type != TokenType.None)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.None.ToString(), 0x1001, tok));
                 return;
             }
@@ -2931,10 +3089,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Linear); // Terminal Rule: Linear
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Linear) {
+            if (tok.Type != TokenType.Linear)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Linear.ToString(), 0x1001, tok));
                 return;
             }
@@ -2950,10 +3109,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Point); // Terminal Rule: Point
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Point) {
+            if (tok.Type != TokenType.Point)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Point.ToString(), 0x1001, tok));
                 return;
             }
@@ -2969,10 +3129,11 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
             tok = scanner.Scan(TokenType.Anisotropic); // Terminal Rule: Anisotropic
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Anisotropic) {
+            if (tok.Type != TokenType.Anisotropic)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Anisotropic.ToString(), 0x1001, tok));
                 return;
             }
@@ -3018,46 +3179,50 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Texture); // Terminal Rule: Texture
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Texture) {
+            if (tok.Type != TokenType.Texture)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Texture.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.LessThan, TokenType.OpenParenthesis); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
                 case TokenType.LessThan:
                     tok = scanner.Scan(TokenType.LessThan); // Terminal Rule: LessThan
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.LessThan) {
+                    if (tok.Type != TokenType.LessThan)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.LessThan.ToString(), 0x1001, tok));
                         return;
                     }
                     break;
                 case TokenType.OpenParenthesis:
                     tok = scanner.Scan(TokenType.OpenParenthesis); // Terminal Rule: OpenParenthesis
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.OpenParenthesis) {
+                    if (tok.Type != TokenType.OpenParenthesis)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenParenthesis.ToString(), 0x1001, tok));
                         return;
                     }
@@ -3067,36 +3232,39 @@ namespace MonoGame.Effect.TPGParser
                     break;
             } // Choice Rule
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Identifier) {
+            if (tok.Type != TokenType.Identifier)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.GreaterThan, TokenType.CloseParenthesis); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
                 case TokenType.GreaterThan:
                     tok = scanner.Scan(TokenType.GreaterThan); // Terminal Rule: GreaterThan
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.GreaterThan) {
+                    if (tok.Type != TokenType.GreaterThan)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.GreaterThan.ToString(), 0x1001, tok));
                         return;
                     }
                     break;
                 case TokenType.CloseParenthesis:
                     tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.CloseParenthesis) {
+                    if (tok.Type != TokenType.CloseParenthesis)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
                         return;
                     }
@@ -3106,12 +3274,13 @@ namespace MonoGame.Effect.TPGParser
                     break;
             } // Choice Rule
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3127,35 +3296,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.MinFilter); // Terminal Rule: MinFilter
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.MinFilter) {
+            if (tok.Type != TokenType.MinFilter)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.MinFilter.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseTextureFilter(node); // NonTerminal Rule: TextureFilter
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3171,35 +3343,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.MagFilter); // Terminal Rule: MagFilter
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.MagFilter) {
+            if (tok.Type != TokenType.MagFilter)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.MagFilter.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseTextureFilter(node); // NonTerminal Rule: TextureFilter
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3215,35 +3390,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.MipFilter); // Terminal Rule: MipFilter
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.MipFilter) {
+            if (tok.Type != TokenType.MipFilter)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.MipFilter.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseTextureFilter(node); // NonTerminal Rule: TextureFilter
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3259,35 +3437,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Filter); // Terminal Rule: Filter
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Filter) {
+            if (tok.Type != TokenType.Filter)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Filter.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseTextureFilter(node); // NonTerminal Rule: TextureFilter
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3303,35 +3484,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.AddressU); // Terminal Rule: AddressU
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.AddressU) {
+            if (tok.Type != TokenType.AddressU)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.AddressU.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseAddressMode(node); // NonTerminal Rule: AddressMode
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3347,35 +3531,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.AddressV); // Terminal Rule: AddressV
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.AddressV) {
+            if (tok.Type != TokenType.AddressV)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.AddressV.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseAddressMode(node); // NonTerminal Rule: AddressMode
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3391,35 +3578,38 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.AddressW); // Terminal Rule: AddressW
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.AddressW) {
+            if (tok.Type != TokenType.AddressW)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.AddressW.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             ParseAddressMode(node); // NonTerminal Rule: AddressMode
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3435,42 +3625,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.BorderColor); // Terminal Rule: BorderColor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.BorderColor) {
+            if (tok.Type != TokenType.BorderColor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.BorderColor.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.HexColor); // Terminal Rule: HexColor
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.HexColor) {
+            if (tok.Type != TokenType.HexColor)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.HexColor.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3486,42 +3680,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.MaxMipLevel); // Terminal Rule: MaxMipLevel
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.MaxMipLevel) {
+            if (tok.Type != TokenType.MaxMipLevel)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.MaxMipLevel.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3537,42 +3735,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.MaxAnisotropy); // Terminal Rule: MaxAnisotropy
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.MaxAnisotropy) {
+            if (tok.Type != TokenType.MaxAnisotropy)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.MaxAnisotropy.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3588,42 +3790,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.MipLodBias); // Terminal Rule: MipLodBias
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.MipLodBias) {
+            if (tok.Type != TokenType.MipLodBias)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.MipLodBias.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Equals) {
+            if (tok.Type != TokenType.Equals)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Number) {
+            if (tok.Type != TokenType.Number)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Semicolon) {
+            if (tok.Type != TokenType.Semicolon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                 return;
             }
@@ -3693,114 +3899,124 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Colon); // Terminal Rule: Colon
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Colon) {
+            if (tok.Type != TokenType.Colon)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Colon.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Register); // Terminal Rule: Register
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Register) {
+            if (tok.Type != TokenType.Register)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Register.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.OpenParenthesis); // Terminal Rule: OpenParenthesis
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.OpenParenthesis) {
+            if (tok.Type != TokenType.OpenParenthesis)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenParenthesis.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Identifier) {
+            if (tok.Type != TokenType.Identifier)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Comma); // Option Rule
             if (tok.Type == TokenType.Comma)
             {
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.Scan(TokenType.Comma); // Terminal Rule: Comma
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Comma) {
+                if (tok.Type != TokenType.Comma)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Comma.ToString(), 0x1001, tok));
                     return;
                 }
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Identifier) {
+                if (tok.Type != TokenType.Identifier)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                     return;
                 }
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.LookAhead(TokenType.OpenSquareBracket); // Option Rule
                 if (tok.Type == TokenType.OpenSquareBracket)
                 {
 
-                     // Concat Rule
+                    // Concat Rule
                     tok = scanner.Scan(TokenType.OpenSquareBracket); // Terminal Rule: OpenSquareBracket
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.OpenSquareBracket) {
+                    if (tok.Type != TokenType.OpenSquareBracket)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenSquareBracket.ToString(), 0x1001, tok));
                         return;
                     }
 
-                     // Concat Rule
+                    // Concat Rule
                     tok = scanner.Scan(TokenType.Number); // Terminal Rule: Number
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.Number) {
+                    if (tok.Type != TokenType.Number)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Number.ToString(), 0x1001, tok));
                         return;
                     }
 
-                     // Concat Rule
+                    // Concat Rule
                     tok = scanner.Scan(TokenType.CloseSquareBracket); // Terminal Rule: CloseSquareBracket
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.CloseSquareBracket) {
+                    if (tok.Type != TokenType.CloseSquareBracket)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseSquareBracket.ToString(), 0x1001, tok));
                         return;
                     }
                 }
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.CloseParenthesis) {
+            if (tok.Type != TokenType.CloseParenthesis)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
                 return;
             }
@@ -3816,43 +4032,46 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Equals); // Option Rule
             if (tok.Type == TokenType.Equals)
             {
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.Scan(TokenType.Equals); // Terminal Rule: Equals
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.Equals) {
+                if (tok.Type != TokenType.Equals)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Equals.ToString(), 0x1001, tok));
                     return;
                 }
 
-                 // Concat Rule
+                // Concat Rule
                 tok = scanner.Scan(TokenType.SamplerState); // Terminal Rule: SamplerState
-                n = node.CreateNode(tok, tok.ToString() );
+                n = node.CreateNode(tok, tok.ToString());
                 node.Token.UpdateRange(tok);
                 node.Nodes.Add(n);
-                if (tok.Type != TokenType.SamplerState) {
+                if (tok.Type != TokenType.SamplerState)
+                {
                     tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.SamplerState.ToString(), 0x1001, tok));
                     return;
                 }
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.OpenBracket); // Terminal Rule: OpenBracket
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.OpenBracket) {
+            if (tok.Type != TokenType.OpenBracket)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.OpenBracket.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Texture, TokenType.MinFilter, TokenType.MagFilter, TokenType.MipFilter, TokenType.Filter, TokenType.AddressU, TokenType.AddressV, TokenType.AddressW, TokenType.BorderColor, TokenType.MaxMipLevel, TokenType.MaxAnisotropy, TokenType.MipLodBias); // ZeroOrMore Rule
             while (tok.Type == TokenType.Texture
                 || tok.Type == TokenType.MinFilter
@@ -3868,15 +4087,16 @@ namespace MonoGame.Effect.TPGParser
                 || tok.Type == TokenType.MipLodBias)
             {
                 ParseSampler_State_Expression(node); // NonTerminal Rule: Sampler_State_Expression
-            tok = scanner.LookAhead(TokenType.Texture, TokenType.MinFilter, TokenType.MagFilter, TokenType.MipFilter, TokenType.Filter, TokenType.AddressU, TokenType.AddressV, TokenType.AddressW, TokenType.BorderColor, TokenType.MaxMipLevel, TokenType.MaxAnisotropy, TokenType.MipLodBias); // ZeroOrMore Rule
+                tok = scanner.LookAhead(TokenType.Texture, TokenType.MinFilter, TokenType.MagFilter, TokenType.MipFilter, TokenType.Filter, TokenType.AddressU, TokenType.AddressV, TokenType.AddressW, TokenType.BorderColor, TokenType.MaxMipLevel, TokenType.MaxAnisotropy, TokenType.MipLodBias); // ZeroOrMore Rule
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.CloseBracket); // Terminal Rule: CloseBracket
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.CloseBracket) {
+            if (tok.Type != TokenType.CloseBracket)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseBracket.ToString(), 0x1001, tok));
                 return;
             }
@@ -3892,35 +4112,37 @@ namespace MonoGame.Effect.TPGParser
             parent.Nodes.Add(node);
 
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Sampler); // Terminal Rule: Sampler
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Sampler) {
+            if (tok.Type != TokenType.Sampler)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Sampler.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.Scan(TokenType.Identifier); // Terminal Rule: Identifier
-            n = node.CreateNode(tok, tok.ToString() );
+            n = node.CreateNode(tok, tok.ToString());
             node.Token.UpdateRange(tok);
             node.Nodes.Add(n);
-            if (tok.Type != TokenType.Identifier) {
+            if (tok.Type != TokenType.Identifier)
+            {
                 tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Identifier.ToString(), 0x1001, tok));
                 return;
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Colon); // ZeroOrMore Rule
             while (tok.Type == TokenType.Colon)
             {
                 ParseSampler_Register_Expression(node); // NonTerminal Rule: Sampler_Register_Expression
-            tok = scanner.LookAhead(TokenType.Colon); // ZeroOrMore Rule
+                tok = scanner.LookAhead(TokenType.Colon); // ZeroOrMore Rule
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Equals, TokenType.OpenBracket); // Option Rule
             if (tok.Type == TokenType.Equals
                 || tok.Type == TokenType.OpenBracket)
@@ -3928,36 +4150,39 @@ namespace MonoGame.Effect.TPGParser
                 ParseSampler_Declaration_States(node); // NonTerminal Rule: Sampler_Declaration_States
             }
 
-             // Concat Rule
+            // Concat Rule
             tok = scanner.LookAhead(TokenType.Semicolon, TokenType.Comma, TokenType.CloseParenthesis); // Choice Rule
             switch (tok.Type)
             { // Choice Rule
                 case TokenType.Semicolon:
                     tok = scanner.Scan(TokenType.Semicolon); // Terminal Rule: Semicolon
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.Semicolon) {
+                    if (tok.Type != TokenType.Semicolon)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Semicolon.ToString(), 0x1001, tok));
                         return;
                     }
                     break;
                 case TokenType.Comma:
                     tok = scanner.Scan(TokenType.Comma); // Terminal Rule: Comma
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.Comma) {
+                    if (tok.Type != TokenType.Comma)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.Comma.ToString(), 0x1001, tok));
                         return;
                     }
                     break;
                 case TokenType.CloseParenthesis:
                     tok = scanner.Scan(TokenType.CloseParenthesis); // Terminal Rule: CloseParenthesis
-                    n = node.CreateNode(tok, tok.ToString() );
+                    n = node.CreateNode(tok, tok.ToString());
                     node.Token.UpdateRange(tok);
                     node.Nodes.Add(n);
-                    if (tok.Type != TokenType.CloseParenthesis) {
+                    if (tok.Type != TokenType.CloseParenthesis)
+                    {
                         tree.Errors.Add(new ParseError("Unexpected token '" + tok.Text.Replace("\n", "") + "' found. Expected " + TokenType.CloseParenthesis.ToString(), 0x1001, tok));
                         return;
                     }

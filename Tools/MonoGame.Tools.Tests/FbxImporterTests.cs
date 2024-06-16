@@ -239,7 +239,7 @@ namespace MonoGame.Tests.ContentPipeline
 #if XNA
             Assert.AreEqual(12670000, animationContent.Duration.Ticks);
 #else
-            Assert.AreEqual(12080000, animationContent.Duration.Ticks);            
+            Assert.AreEqual(12080000, animationContent.Duration.Ticks);
 #endif
 
             // TODO: XNA assigns the identity to null on all NodeContent

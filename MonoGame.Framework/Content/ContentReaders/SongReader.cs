@@ -9,24 +9,24 @@ using MonoGame.Framework.Utilities;
 
 namespace Monogame.Content
 {
-	internal class SongReader : ContentTypeReader<Song>
-	{
-		protected internal override Song Read(ContentReader input, Song existingInstance)
-		{
-			var path = input.ReadString();
-			
-			if (!String.IsNullOrEmpty(path))
-			{
+    internal class SongReader : ContentTypeReader<Song>
+    {
+        protected internal override Song Read(ContentReader input, Song existingInstance)
+        {
+            var path = input.ReadString();
+
+            if (!String.IsNullOrEmpty(path))
+            {
                 // Add the ContentManager's RootDirectory
                 var dirPath = Path.Combine(input.ContentManager.RootDirectoryFullPath, input.AssetName);
 
                 // Resolve the relative path
                 path = FileHelpers.ResolveRelativePath(dirPath, path);
-			}
-			
-			var durationMs = input.ReadObject<int>();
+            }
 
-            return new Song(path, durationMs); 
-		}
-	}
+            var durationMs = input.ReadObject<int>();
+
+            return new Song(path, durationMs);
+        }
+    }
 }

@@ -78,7 +78,7 @@ namespace MonoGame.Tests.Graphics
 
             texture2D.Dispose();
         }
-		
+
 #if DIRECTX
         [TestCase(SurfaceFormat.Color, false)]
         [TestCase(SurfaceFormat.Color, true)]

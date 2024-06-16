@@ -33,12 +33,12 @@ namespace MonoGame.Tests.ContentPipeline
             {
                 public GraphicsDevice GraphicsDevice { get; private set; }
 
-                #pragma warning disable 67
+#pragma warning disable 67
                 public event EventHandler<EventArgs> DeviceCreated;
                 public event EventHandler<EventArgs> DeviceDisposing;
                 public event EventHandler<EventArgs> DeviceReset;
                 public event EventHandler<EventArgs> DeviceResetting;
-                #pragma warning restore 67
+#pragma warning restore 67
             }
 
             class FakeServiceProvider : IServiceProvider
@@ -97,7 +97,7 @@ namespace MonoGame.Tests.ContentPipeline
                                 false, Directory.GetCurrentDirectory(), "referenceRelocationPath" });
 #else
             var compiler = new ContentCompiler();
-            compiler.Compile(xnbStream, result, TargetPlatform.Windows, GraphicsProfile.Reach, 
+            compiler.Compile(xnbStream, result, TargetPlatform.Windows, GraphicsProfile.Reach,
                                 false, "rootDirectory", "referenceRelocationPath");
 #endif
 
@@ -243,7 +243,7 @@ namespace MonoGame.Tests.ContentPipeline
 
                 Assert.NotNull(collections.CustomItemList);
                 Assert.AreEqual(0, collections.CustomItemList.Count);
-            });            
+            });
         }
 
         [Test]
@@ -282,7 +282,7 @@ namespace MonoGame.Tests.ContentPipeline
                 Assert.AreEqual(new Vector4(1, 2, 3, 4), mathTypes.Vector4);
                 Assert.AreEqual(new Quaternion(1, 2, 3, 4), mathTypes.Quaternion);
                 Assert.AreEqual(new Plane(1, 2, 3, 4), mathTypes.Plane);
-                Assert.AreEqual(new Matrix(1, 2, 3, 4, 5 , 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), mathTypes.Matrix);
+                Assert.AreEqual(new Matrix(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), mathTypes.Matrix);
                 Assert.AreEqual(Color.CornflowerBlue, mathTypes.Color);
                 Assert.NotNull(mathTypes.Vector2Array);
                 Assert.AreEqual(2, mathTypes.Vector2Array.Length);
@@ -331,9 +331,9 @@ namespace MonoGame.Tests.ContentPipeline
 
                 Assert.NotNull(polymorphicTypes.UntypedDictionary);
                 Assert.IsInstanceOf<Dictionary<int, PolymorphicA>>(polymorphicTypes.UntypedDictionary);
-                Assert.AreEqual(2, ((Dictionary<int, PolymorphicA>) polymorphicTypes.UntypedDictionary).Count);
-                Assert.AreEqual(true, ((Dictionary<int, PolymorphicA>) polymorphicTypes.UntypedDictionary)[1].Value);
-                Assert.AreEqual(false, ((Dictionary<int, PolymorphicA>) polymorphicTypes.UntypedDictionary)[5].Value);
+                Assert.AreEqual(2, ((Dictionary<int, PolymorphicA>)polymorphicTypes.UntypedDictionary).Count);
+                Assert.AreEqual(true, ((Dictionary<int, PolymorphicA>)polymorphicTypes.UntypedDictionary)[1].Value);
+                Assert.AreEqual(false, ((Dictionary<int, PolymorphicA>)polymorphicTypes.UntypedDictionary)[5].Value);
             });
         }
 
@@ -349,13 +349,13 @@ namespace MonoGame.Tests.ContentPipeline
                 Assert.IsAssignableFrom<SpriteSortMode>(namespaceClass.C);
                 Assert.AreEqual(SpriteSortMode.Immediate, namespaceClass.C);
                 Assert.IsAssignableFrom<Nested.ContentPipeline.ClassInsideNestedAmbiguousNamespace>(namespaceClass.D);
-                Assert.AreEqual(true, ((Nested.ContentPipeline.ClassInsideNestedAmbiguousNamespace) namespaceClass.D).Value);
+                Assert.AreEqual(true, ((Nested.ContentPipeline.ClassInsideNestedAmbiguousNamespace)namespaceClass.D).Value);
                 Assert.IsAssignableFrom<Nested.ClassInsideNestedNamespace>(namespaceClass.E);
-                Assert.AreEqual(true, ((Nested.ClassInsideNestedNamespace) namespaceClass.E).Value);
+                Assert.AreEqual(true, ((Nested.ClassInsideNestedNamespace)namespaceClass.E).Value);
                 Assert.IsAssignableFrom<Nested.ContentPipeline2.ClassInsideNestedUnambiguousNamespace>(namespaceClass.F);
-                Assert.AreEqual(true, ((Nested.ContentPipeline2.ClassInsideNestedUnambiguousNamespace) namespaceClass.F).Value);
+                Assert.AreEqual(true, ((Nested.ContentPipeline2.ClassInsideNestedUnambiguousNamespace)namespaceClass.F).Value);
                 Assert.IsAssignableFrom<SomethingElse.ContentPipeline.ClassInsideAmbiguousNamespace>(namespaceClass.G);
-                Assert.AreEqual(true, ((SomethingElse.ContentPipeline.ClassInsideAmbiguousNamespace) namespaceClass.G).Value);
+                Assert.AreEqual(true, ((SomethingElse.ContentPipeline.ClassInsideAmbiguousNamespace)namespaceClass.G).Value);
                 Assert.IsNull(namespaceClass.H);
             });
         }
@@ -407,10 +407,10 @@ namespace MonoGame.Tests.ContentPipeline
                 Assert.NotNull(externalReferences.Texture);
                 Assert.IsTrue(externalReferences.Texture.Filename.EndsWith("/Xml/grass.tga".Replace('/', Path.DirectorySeparatorChar)));
                 Assert.NotNull(externalReferences.Texture2);
-                Assert.IsTrue(externalReferences.Texture2.Filename.EndsWith("/Xml/grass.tga".Replace ('/', Path.DirectorySeparatorChar)));
+                Assert.IsTrue(externalReferences.Texture2.Filename.EndsWith("/Xml/grass.tga".Replace('/', Path.DirectorySeparatorChar)));
                 Assert.AreNotSame(externalReferences.Texture, externalReferences.Texture2);
                 Assert.NotNull(externalReferences.Shader);
-                Assert.IsTrue(externalReferences.Shader.Filename.EndsWith("/Xml/foliage.fx".Replace ('/', Path.DirectorySeparatorChar)));
+                Assert.IsTrue(externalReferences.Shader.Filename.EndsWith("/Xml/foliage.fx".Replace('/', Path.DirectorySeparatorChar)));
             });
         }
 
@@ -448,7 +448,7 @@ namespace MonoGame.Tests.ContentPipeline
                 Assert.AreEqual(true, fontDesc.UseKerning);
                 Assert.AreEqual(FontDescriptionStyle.Bold, fontDesc.Style);
                 Assert.AreEqual('*', fontDesc.DefaultCharacter);
-                        
+
                 var expectedCharacters = new List<char>();
                 for (var c = WebUtility.HtmlDecode("&#32;")[0]; c <= WebUtility.HtmlDecode("&#126;")[0]; c++)
                     expectedCharacters.Add(c);

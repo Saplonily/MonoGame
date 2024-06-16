@@ -24,7 +24,7 @@ namespace Monogame.Content
         /// <summary>
         /// The name of the type to use at runtime.
         /// </summary>
-        public string RuntimeType { get; private set;}
+        public string RuntimeType { get; private set; }
     }
 }
 

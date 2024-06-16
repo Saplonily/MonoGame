@@ -61,7 +61,7 @@ namespace MonoGame.Effect
                                 samplerSlot = rdesc.BindPoint,
                                 parameterName = samplerName
                             };
-                            
+
                             SamplerStateInfo state;
                             if (samplerStates.TryGetValue(samplerName, out state))
                             {
@@ -86,7 +86,7 @@ namespace MonoGame.Effect
                             {
                                 var samplerrdesc = refelect.GetResourceBindingDescription(j);
 
-                                if (samplerrdesc.Type == SharpDX.D3DCompiler.ShaderInputType.Sampler && 
+                                if (samplerrdesc.Type == SharpDX.D3DCompiler.ShaderInputType.Sampler &&
                                     samplerrdesc.Name == samplerName)
                                 {
                                     sampler.samplerSlot = samplerrdesc.BindPoint;

@@ -196,7 +196,7 @@ namespace Monogame.Input
                 }
             }
 
-            return  "[MouseState X=" + _x +
+            return "[MouseState X=" + _x +
                     ", Y=" + _y +
                     ", Buttons=" + buttons +
                     ", Wheel=" + _scrollWheelValue +

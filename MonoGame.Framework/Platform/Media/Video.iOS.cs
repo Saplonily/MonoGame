@@ -52,7 +52,7 @@ namespace Monogame.Media
         {
             if (MovieView == null)
                 return;
-            
+
             MovieView.Dispose();
             MovieView = null;
         }

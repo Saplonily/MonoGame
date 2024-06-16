@@ -35,7 +35,7 @@ namespace Monogame.Content.Pipeline.Serialization.Compiler
         protected override void Initialize(ContentCompiler compiler)
         {
             _compiler = compiler;
-            var type = ReflectionHelpers.GetBaseType(TargetType);                
+            var type = ReflectionHelpers.GetBaseType(TargetType);
             if (type != null && type != typeof(object) && !TargetType.IsValueType)
                 _baseType = type;
 
@@ -169,8 +169,8 @@ namespace Monogame.Content.Pipeline.Serialization.Compiler
 
         public override string GetRuntimeReader(TargetPlatform targetPlatform)
         {
-            return "Monogame.Content.ReflectiveReader`1[[" + 
-                        GetRuntimeType(targetPlatform) 
+            return "Monogame.Content.ReflectiveReader`1[[" +
+                        GetRuntimeType(targetPlatform)
                     + "]]";
         }
 

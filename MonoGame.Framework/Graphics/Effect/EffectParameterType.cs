@@ -4,11 +4,11 @@
 
 namespace Monogame.Graphics
 {
-	/// <summary>
-	/// Defines types for effect parameters and shader constants.
-	/// </summary>
-	public enum EffectParameterType
-	{
+    /// <summary>
+    /// Defines types for effect parameters and shader constants.
+    /// </summary>
+    public enum EffectParameterType
+    {
         /// <summary>
         /// Pointer to void type.
         /// </summary>
@@ -36,7 +36,7 @@ namespace Monogame.Graphics
         /// <summary>
         /// 1D-texture type.
         /// </summary>
-        Texture1D,  
+        Texture1D,
         /// <summary>
         /// 2D-texture type.
         /// </summary>
@@ -49,5 +49,5 @@ namespace Monogame.Graphics
         /// Cubic texture type.
         /// </summary>
 		TextureCube
-	}
+    }
 }

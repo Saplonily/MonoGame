@@ -39,7 +39,7 @@ namespace MonoGame.Tests.Framework
         [Test]
         public void BoundingSphereTests()
         {
-            var zeroPoint = BoundingSphere.CreateFromPoints( new[] {Vector3.Zero} );
+            var zeroPoint = BoundingSphere.CreateFromPoints(new[] { Vector3.Zero });
             Assert.AreEqual(new BoundingSphere(), zeroPoint);
 
             var onePoint = BoundingSphere.CreateFromPoints(new[] { Vector3.One });
@@ -68,7 +68,7 @@ namespace MonoGame.Tests.Framework
                 Assert.That(eightPoint.Contains(eightPointTestInput[i]) != ContainmentType.Disjoint);
             }
 
-            Assert.Throws<ArgumentException>(() => BoundingSphere.CreateFromPoints(new Vector3[] {}));
+            Assert.Throws<ArgumentException>(() => BoundingSphere.CreateFromPoints(new Vector3[] { }));
         }
 
         [Test]

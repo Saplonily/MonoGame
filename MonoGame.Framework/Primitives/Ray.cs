@@ -22,7 +22,7 @@ namespace Monogame
         /// </summary>
         [DataMember]
         public Vector3 Direction;
-      
+
         /// <summary>
         /// The origin of this <see cref="Ray"/>.
         /// </summary>
@@ -187,7 +187,7 @@ namespace Monogame
         /// </param>
         public void Intersects(ref BoundingBox box, out float? result)
         {
-			result = Intersects(box);
+            result = Intersects(box);
         }
 
         /*

@@ -15,7 +15,7 @@ namespace Monogame.Media
     {
 
         #region Properties
-        
+
         private static void PlatformInitialize()
         {
 
@@ -102,7 +102,7 @@ namespace Monogame.Media
             return true;
 #endif
         }
-		#endregion
+        #endregion
 
         private static void PlatformPause()
         {

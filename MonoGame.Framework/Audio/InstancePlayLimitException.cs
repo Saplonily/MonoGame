@@ -20,7 +20,7 @@ namespace Monogame.Audio
 #else
     public sealed class InstancePlayLimitException : ExternalException
 #endif
-	{
-	}
+    {
+    }
 }
 

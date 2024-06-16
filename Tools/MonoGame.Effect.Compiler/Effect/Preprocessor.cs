@@ -46,24 +46,24 @@ namespace MonoGame.Effect
                         }
                         break;
                     case CppNet.Token.CCOMMENT:
-                    {
-                        var tokenText = token.getText();
-                        if (tokenText != null)
                         {
-                            // Need to preserve line breaks so that line numbers are correct.
-                            foreach (var c in tokenText)
-                                if (c == '\n')
-                                    result.Append(c);
+                            var tokenText = token.getText();
+                            if (tokenText != null)
+                            {
+                                // Need to preserve line breaks so that line numbers are correct.
+                                foreach (var c in tokenText)
+                                    if (c == '\n')
+                                        result.Append(c);
+                            }
+                            break;
                         }
-                        break;
-                    }
                     default:
-                    {
-                        var tokenText = token.getText();
-                        if (tokenText != null)
-                            result.Append(tokenText);
-                        break;
-                    }
+                        {
+                            var tokenText = token.getText();
+                            if (tokenText != null)
+                                result.Append(tokenText);
+                            break;
+                        }
                 }
             }
 
@@ -173,12 +173,12 @@ namespace MonoGame.Effect
 
             private string GetPath(Source source)
             {
-                return ((MGStringLexerSource) source).Path;
+                return ((MGStringLexerSource)source).Path;
             }
 
             public void handleSourceChange(Source source, string ev)
             {
-                
+
             }
         }
     }

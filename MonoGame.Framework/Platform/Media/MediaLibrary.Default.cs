@@ -10,7 +10,7 @@ namespace Monogame.Media
     {
         private void PlatformLoad(Action<int> progressCallback)
         {
-            
+
         }
 
         private AlbumCollection PlatformGetAlbums()
@@ -25,7 +25,7 @@ namespace Monogame.Media
 
         private void PlatformDispose()
         {
-            
+
         }
     }
 }

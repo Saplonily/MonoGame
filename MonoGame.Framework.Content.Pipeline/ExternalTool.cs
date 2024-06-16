@@ -191,7 +191,7 @@ namespace Monogame.Content.Pipeline
                 File.Delete(filePath);
             }
             catch (Exception)
-            {                    
+            {
             }
         }
     }

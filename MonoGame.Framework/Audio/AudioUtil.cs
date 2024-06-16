@@ -13,7 +13,7 @@ namespace Monogame.Audio
             //buffer should contain 16-bit PCM wave data
             short bitsPerSample = 16;
 
-            using (var mStream = new MemoryStream(44+buffer.Length))
+            using (var mStream = new MemoryStream(44 + buffer.Length))
             using (var writer = new BinaryWriter(mStream))
             {
                 writer.Write("RIFF".ToCharArray()); //chunk id
@@ -34,7 +34,7 @@ namespace Monogame.Audio
                 writer.Write((int)buffer.Length); //data size
 
                 writer.Write(buffer);
-                
+
                 return mStream.ToArray();
             }
         }

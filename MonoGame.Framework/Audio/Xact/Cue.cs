@@ -30,7 +30,7 @@ namespace Monogame.Audio
         /// <remarks>IsPlaying and IsPaused both return true if a cue is paused while playing.</remarks>
         public bool IsPaused
         {
-            get 
+            get
             {
                 if (_curSound != null)
                     return _curSound.IsPaused;
@@ -43,7 +43,7 @@ namespace Monogame.Audio
         /// <remarks>IsPlaying and IsPaused both return true if a cue is paused while playing.</remarks>
         public bool IsPlaying
         {
-            get 
+            get
             {
                 if (_curSound != null)
                     return _curSound.Playing || _curSound.IsPaused;
@@ -55,7 +55,7 @@ namespace Monogame.Audio
         /// <summary>Indicates whether or not the cue is currently stopped.</summary>
         public bool IsStopped
         {
-            get 
+            get
             {
                 if (_curSound != null)
                     return _curSound.Stopped;
@@ -77,7 +77,7 @@ namespace Monogame.Audio
 
         /// <summary>Returns whether the cue is preparing to play.</summary>
         /// <remarks>Current implementation will always return <see langword="false"/>.</remarks>
-        public bool IsPreparing 
+        public bool IsPreparing
         {
             get { return false; }
         }
@@ -101,7 +101,7 @@ namespace Monogame.Audio
         {
             get { return _name; }
         }
-        
+
         internal Cue(AudioEngine engine, string cuename, XactSound sound)
         {
             _engine = engine;
@@ -112,7 +112,7 @@ namespace Monogame.Audio
             _probs[0] = 1.0f;
             _variables = engine.CreateCueVariables();
         }
-        
+
         internal Cue(AudioEngine engine, string cuename, XactSound[] sounds, float[] probs)
         {
             _engine = engine;
@@ -244,7 +244,7 @@ namespace Monogame.Audio
         /// <para>This must be called before Play().</para>
         /// <para>Calling this method automatically converts the sound to monoaural and sets the speaker mix for any sound played by this cue to a value calculated with the listener's and emitter's positions. Any stereo information in the sound will be discarded.</para>
         /// </remarks>
-        public void Apply3D(AudioListener listener, AudioEmitter emitter) 
+        public void Apply3D(AudioListener listener, AudioEmitter emitter)
         {
             if (listener == null)
                 throw new ArgumentNullException("listener");
@@ -353,7 +353,7 @@ namespace Monogame.Audio
 
             return volume;
         }
-        
+
         /// <summary>
         /// This event is triggered when the Cue is disposed.
         /// </summary>

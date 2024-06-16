@@ -9,18 +9,22 @@ using System.Text;
 
 using NUnit.Framework;
 
-namespace MonoGame.Tests {
-	partial class GameTest {
-		public static class Methods {
-			[TestFixture]
-			public class Run : FixtureBase {
-				[Test, Ignore("Fix me!")]
-				public void Can_only_be_called_once ()
-				{
-					Game.Run ();
-					Assert.Throws<InvalidOperationException> (() => Game.Run ());
-				}
-			}
-		}
-	}
+namespace MonoGame.Tests
+{
+    partial class GameTest
+    {
+        public static class Methods
+        {
+            [TestFixture]
+            public class Run : FixtureBase
+            {
+                [Test, Ignore("Fix me!")]
+                public void Can_only_be_called_once()
+                {
+                    Game.Run();
+                    Assert.Throws<InvalidOperationException>(() => Game.Run());
+                }
+            }
+        }
+    }
 }

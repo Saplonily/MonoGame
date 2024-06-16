@@ -9,9 +9,9 @@ using System.IO;
 namespace MonoGame.Effect.TPGParser
 {
     public class ShaderInfo
-	{
-		public List<TechniqueInfo> Techniques = new List<TechniqueInfo>();
+    {
+        public List<TechniqueInfo> Techniques = new List<TechniqueInfo>();
 
         public Dictionary<string, SamplerStateInfo> SamplerStates = new Dictionary<string, SamplerStateInfo>();
-	}
+    }
 }

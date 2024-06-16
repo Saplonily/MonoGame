@@ -59,7 +59,7 @@ namespace Monogame
         {
             if (type == null)
                 throw new ArgumentNullException("type");
-						
+
             object service;
             if (services.TryGetValue(type, out service))
                 return service;
@@ -79,7 +79,7 @@ namespace Monogame
 
             services.Remove(type);
         }
-        
+
         /// <summary>
         /// Add a service provider to this container.
         /// </summary>
@@ -101,7 +101,7 @@ namespace Monogame
         /// A service provider of the specified type or <code>null</code> if
         /// no suitable service provider is registered in this container.
         /// </returns>
- 	public T GetService<T>() where T : class
+        public T GetService<T>() where T : class
         {
             var service = GetService(typeof(T));
 

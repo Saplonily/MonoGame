@@ -89,7 +89,7 @@ namespace Monogame.Media
                 _topology = null;
             }
         }
-        
+
         private Album PlatformGetAlbum()
         {
             return null;

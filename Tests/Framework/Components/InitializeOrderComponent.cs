@@ -6,15 +6,15 @@ using Monogame;
 
 namespace MonoGame.Tests.Framework.Components
 {
-    class InitializeOrderComponent: GameComponent
+    class InitializeOrderComponent : GameComponent
     {
         static int g_initOrder = 0;
 
         public int InitOrder { get; private set; }
         public IGameComponent ChildComponent = null;
 
-        public InitializeOrderComponent(Game game):base(game)
-        {            
+        public InitializeOrderComponent(Game game) : base(game)
+        {
             InitOrder = -1;
         }
 

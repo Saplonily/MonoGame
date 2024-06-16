@@ -87,7 +87,7 @@ namespace MonoGame.Effect.TPGParser
 
         private void PrintNode(StringBuilder sb, ParseNode node, int indent)
         {
-            
+
             string space = "".PadLeft(indent, ' ');
 
             sb.Append(space);
@@ -96,7 +96,7 @@ namespace MonoGame.Effect.TPGParser
             foreach (ParseNode n in node.Nodes)
                 PrintNode(sb, n, indent + 2);
         }
-        
+
         /// <summary>
         /// this is the entry point for executing and evaluating the parse tree.
         /// </summary>
@@ -114,18 +114,19 @@ namespace MonoGame.Effect.TPGParser
     {
         protected string text;
         protected List<ParseNode> nodes;
-        
-        public List<ParseNode> Nodes { get {return nodes;} }
-        
+
+        public List<ParseNode> Nodes { get { return nodes; } }
+
         [XmlIgnore] // avoid circular references when serializing
         public ParseNode Parent;
         public Token Token; // the token/rule
 
         [XmlIgnore] // skip redundant text (is part of Token)
-        public string Text { // text to display in parse tree 
-            get { return text;} 
+        public string Text
+        { // text to display in parse tree 
+            get { return text; }
             set { text = value; }
-        } 
+        }
 
         public virtual ParseNode CreateNode(Token token, string text)
         {
@@ -514,31 +515,31 @@ namespace MonoGame.Effect.TPGParser
         protected virtual object EvalStart(ParseTree tree, params object[] paramlist)
         {
             var shader = new ShaderInfo();
-        
-           foreach (var node in Nodes)
-              node.Eval(tree, shader);
-        
-           return shader;
+
+            foreach (var node in Nodes)
+                node.Eval(tree, shader);
+
+            return shader;
         }
 
         protected virtual object EvalTechnique_Declaration(ParseTree tree, params object[] paramlist)
         {
             var technique = new TechniqueInfo();
-           technique.name = this.GetValue(tree, TokenType.Identifier, 0) as string ?? string.Empty;
-           technique.startPos = Token.StartPos;
-           technique.length = Token.Length;
-        
-           foreach (var node in Nodes)
-              node.Eval(tree, technique);
-           
-           // Make sure we have at least one pass.
-           if (technique.Passes.Count > 0)
-           {
-              var shaderInfo = paramlist[0] as ShaderInfo;
-              shaderInfo.Techniques.Add(technique);
-           }
-        
-           return null;
+            technique.name = this.GetValue(tree, TokenType.Identifier, 0) as string ?? string.Empty;
+            technique.startPos = Token.StartPos;
+            technique.length = Token.Length;
+
+            foreach (var node in Nodes)
+                node.Eval(tree, technique);
+
+            // Make sure we have at least one pass.
+            if (technique.Passes.Count > 0)
+            {
+                var shaderInfo = paramlist[0] as ShaderInfo;
+                shaderInfo.Techniques.Add(technique);
+            }
+
+            return null;
         }
 
         protected virtual object EvalFillMode_Solid(ParseTree tree, params object[] paramlist)
@@ -608,7 +609,7 @@ namespace MonoGame.Effect.TPGParser
 
         protected virtual object EvalColors_Boolean(ParseTree tree, params object[] paramlist)
         {
-            return ParseTreeTools.ParseBool((string)this.GetValue(tree, TokenType.Boolean, 0)) ?  ColorWriteChannels.All : ColorWriteChannels.None;
+            return ParseTreeTools.ParseBool((string)this.GetValue(tree, TokenType.Boolean, 0)) ? ColorWriteChannels.All : ColorWriteChannels.None;
         }
 
         protected virtual object EvalColors(ParseTree tree, params object[] paramlist)
@@ -618,10 +619,10 @@ namespace MonoGame.Effect.TPGParser
 
         protected virtual object EvalColorsMasks(ParseTree tree, params object[] paramlist)
         {
-            return	(ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 0) ?? 0) | 
-        			(ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 1) ?? 0) | 
-        			(ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 2) ?? 0) | 
-        			(ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 3) ?? 0);
+            return (ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 0) ?? 0) |
+                    (ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 1) ?? 0) |
+                    (ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 2) ?? 0) |
+                    (ColorWriteChannels)(this.GetValue(tree, TokenType.Colors, 3) ?? 0);
         }
 
         protected virtual object EvalBlend_Zero(ParseTree tree, params object[] paramlist)
@@ -691,9 +692,9 @@ namespace MonoGame.Effect.TPGParser
 
         protected virtual object EvalBlends(ParseTree tree, params object[] paramlist)
         {
-            return	this.GetValue(tree, TokenType.Blend_Zero, 0) ?? this.GetValue(tree, TokenType.Blend_One, 0) ?? this.GetValue(tree, TokenType.Blend_SrcColor, 0) ?? this.GetValue(tree, TokenType.Blend_InvSrcColor, 0) ?? this.GetValue(tree, TokenType.Blend_SrcAlpha, 0) ?? this.GetValue(tree, TokenType.Blend_InvSrcAlpha, 0) ?? 
-        			this.GetValue(tree, TokenType.Blend_DestAlpha, 0) ?? this.GetValue(tree, TokenType.Blend_InvDestAlpha, 0) ?? this.GetValue(tree, TokenType.Blend_DestColor, 0) ?? this.GetValue(tree, TokenType.Blend_InvDestColor, 0) ?? this.GetValue(tree, TokenType.Blend_SrcAlphaSat, 0) ??
-        			this.GetValue(tree, TokenType.Blend_BlendFactor, 0) ?? this.GetValue(tree, TokenType.Blend_InvBlendFactor, 0);
+            return this.GetValue(tree, TokenType.Blend_Zero, 0) ?? this.GetValue(tree, TokenType.Blend_One, 0) ?? this.GetValue(tree, TokenType.Blend_SrcColor, 0) ?? this.GetValue(tree, TokenType.Blend_InvSrcColor, 0) ?? this.GetValue(tree, TokenType.Blend_SrcAlpha, 0) ?? this.GetValue(tree, TokenType.Blend_InvSrcAlpha, 0) ??
+                    this.GetValue(tree, TokenType.Blend_DestAlpha, 0) ?? this.GetValue(tree, TokenType.Blend_InvDestAlpha, 0) ?? this.GetValue(tree, TokenType.Blend_DestColor, 0) ?? this.GetValue(tree, TokenType.Blend_InvDestColor, 0) ?? this.GetValue(tree, TokenType.Blend_SrcAlphaSat, 0) ??
+                    this.GetValue(tree, TokenType.Blend_BlendFactor, 0) ?? this.GetValue(tree, TokenType.Blend_InvBlendFactor, 0);
         }
 
         protected virtual object EvalBlendOp_Add(ParseTree tree, params object[] paramlist)
@@ -723,7 +724,7 @@ namespace MonoGame.Effect.TPGParser
 
         protected virtual object EvalBlendOps(ParseTree tree, params object[] paramlist)
         {
-            return	this.GetValue(tree, TokenType.BlendOp_Add, 0) ?? this.GetValue(tree, TokenType.BlendOp_Subtract, 0) ?? this.GetValue(tree, TokenType.BlendOp_RevSubtract, 0) ?? this.GetValue(tree, TokenType.BlendOp_Min, 0) ?? this.GetValue(tree, TokenType.BlendOp_Max, 0);
+            return this.GetValue(tree, TokenType.BlendOp_Add, 0) ?? this.GetValue(tree, TokenType.BlendOp_Subtract, 0) ?? this.GetValue(tree, TokenType.BlendOp_RevSubtract, 0) ?? this.GetValue(tree, TokenType.BlendOp_Min, 0) ?? this.GetValue(tree, TokenType.BlendOp_Max, 0);
         }
 
         protected virtual object EvalCmpFunc_Never(ParseTree tree, params object[] paramlist)
@@ -768,7 +769,7 @@ namespace MonoGame.Effect.TPGParser
 
         protected virtual object EvalCmpFunc(ParseTree tree, params object[] paramlist)
         {
-            return	this.GetValue(tree, TokenType.CmpFunc_Never, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Less, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Equal, 0) ?? this.GetValue(tree, TokenType.CmpFunc_LessEqual, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Greater, 0) ?? this.GetValue(tree, TokenType.CmpFunc_NotEqual, 0) ?? this.GetValue(tree, TokenType.CmpFunc_GreaterEqual, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Always, 0);
+            return this.GetValue(tree, TokenType.CmpFunc_Never, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Less, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Equal, 0) ?? this.GetValue(tree, TokenType.CmpFunc_LessEqual, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Greater, 0) ?? this.GetValue(tree, TokenType.CmpFunc_NotEqual, 0) ?? this.GetValue(tree, TokenType.CmpFunc_GreaterEqual, 0) ?? this.GetValue(tree, TokenType.CmpFunc_Always, 0);
         }
 
         protected virtual object EvalStencilOp_Keep(ParseTree tree, params object[] paramlist)
@@ -813,7 +814,7 @@ namespace MonoGame.Effect.TPGParser
 
         protected virtual object EvalStencilOp(ParseTree tree, params object[] paramlist)
         {
-            return	this.GetValue(tree, TokenType.StencilOp_Keep, 0) ?? this.GetValue(tree, TokenType.StencilOp_Zero, 0) ?? this.GetValue(tree, TokenType.StencilOp_Replace, 0) ?? this.GetValue(tree, TokenType.StencilOp_IncrSat, 0) ?? this.GetValue(tree, TokenType.StencilOp_DecrSat, 0) ?? this.GetValue(tree, TokenType.StencilOp_Invert, 0) ?? this.GetValue(tree, TokenType.StencilOp_Incr, 0) ?? this.GetValue(tree, TokenType.StencilOp_Decr, 0);
+            return this.GetValue(tree, TokenType.StencilOp_Keep, 0) ?? this.GetValue(tree, TokenType.StencilOp_Zero, 0) ?? this.GetValue(tree, TokenType.StencilOp_Replace, 0) ?? this.GetValue(tree, TokenType.StencilOp_IncrSat, 0) ?? this.GetValue(tree, TokenType.StencilOp_DecrSat, 0) ?? this.GetValue(tree, TokenType.StencilOp_Invert, 0) ?? this.GetValue(tree, TokenType.StencilOp_Incr, 0) ?? this.GetValue(tree, TokenType.StencilOp_Decr, 0);
         }
 
         protected virtual object EvalRender_State_CullMode(ParseTree tree, params object[] paramlist)
@@ -936,35 +937,35 @@ namespace MonoGame.Effect.TPGParser
         protected virtual object EvalPass_Declaration(ParseTree tree, params object[] paramlist)
         {
             var pass = new PassInfo();
-           pass.name = this.GetValue(tree, TokenType.Identifier, 0) as string ?? string.Empty;
-        
-           foreach (var node in Nodes)
-              node.Eval(tree, pass);
-        
-           // We need to have a pixel or vertex shader to keep this pass.
-           if (!string.IsNullOrEmpty(pass.psFunction) || !string.IsNullOrEmpty(pass.vsFunction))
-           {
-              var technique = paramlist[0] as TechniqueInfo;
-              technique.Passes.Add(pass);
-           }
-        
-           return null;
+            pass.name = this.GetValue(tree, TokenType.Identifier, 0) as string ?? string.Empty;
+
+            foreach (var node in Nodes)
+                node.Eval(tree, pass);
+
+            // We need to have a pixel or vertex shader to keep this pass.
+            if (!string.IsNullOrEmpty(pass.psFunction) || !string.IsNullOrEmpty(pass.vsFunction))
+            {
+                var technique = paramlist[0] as TechniqueInfo;
+                technique.Passes.Add(pass);
+            }
+
+            return null;
         }
 
         protected virtual object EvalVertexShader_Pass_Expression(ParseTree tree, params object[] paramlist)
         {
             var pass = paramlist[0] as PassInfo;
-           pass.vsModel = this.GetValue(tree, TokenType.ShaderModel, 0) as string;
-           pass.vsFunction = this.GetValue(tree, TokenType.Identifier, 0) as string;
-           return null;
+            pass.vsModel = this.GetValue(tree, TokenType.ShaderModel, 0) as string;
+            pass.vsFunction = this.GetValue(tree, TokenType.Identifier, 0) as string;
+            return null;
         }
 
         protected virtual object EvalPixelShader_Pass_Expression(ParseTree tree, params object[] paramlist)
         {
             var pass = paramlist[0] as PassInfo;
-           pass.psModel = this.GetValue(tree, TokenType.ShaderModel, 0) as string;
-           pass.psFunction = this.GetValue(tree, TokenType.Identifier, 0) as string;
-           return null;
+            pass.psModel = this.GetValue(tree, TokenType.ShaderModel, 0) as string;
+            pass.psFunction = this.GetValue(tree, TokenType.Identifier, 0) as string;
+            return null;
         }
 
         protected virtual object EvalAddressMode_Clamp(ParseTree tree, params object[] paramlist)
@@ -1099,22 +1100,22 @@ namespace MonoGame.Effect.TPGParser
         protected virtual object EvalSampler_Declaration(ParseTree tree, params object[] paramlist)
         {
             // if there is a comma or closing paren at the end this is a sampler as a parameter of a function
-        	if (this.GetValue(tree, TokenType.Semicolon, 0) == null) return null;
-        
-        	var sampler = new SamplerStateInfo();
-        	sampler.Name = this.GetValue(tree, TokenType.Identifier, 0) as string;
-        	
-        	foreach (ParseNode node in Nodes)
-        		node.Eval(tree, sampler);
-        	
-        	var shaderInfo = paramlist[0] as ShaderInfo;
-        	shaderInfo.SamplerStates.Add(sampler.Name, sampler);
-        	
-        	return null;
+            if (this.GetValue(tree, TokenType.Semicolon, 0) == null) return null;
+
+            var sampler = new SamplerStateInfo();
+            sampler.Name = this.GetValue(tree, TokenType.Identifier, 0) as string;
+
+            foreach (ParseNode node in Nodes)
+                node.Eval(tree, sampler);
+
+            var shaderInfo = paramlist[0] as ShaderInfo;
+            shaderInfo.SamplerStates.Add(sampler.Name, sampler);
+
+            return null;
         }
 
 
     }
-    
+
     #endregion ParseTree
 }

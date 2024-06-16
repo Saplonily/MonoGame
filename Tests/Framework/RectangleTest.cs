@@ -12,7 +12,7 @@ namespace MonoGame.Tests.Framework
 
             // Constructor
 
-            Assert.AreEqual(new Rectangle(){X = 10, Y = 20, Width = 64, Height = 64}, rectangle);
+            Assert.AreEqual(new Rectangle() { X = 10, Y = 20, Width = 64, Height = 64 }, rectangle);
 #if !XNA
             // Constructor 2
 
@@ -40,12 +40,12 @@ namespace MonoGame.Tests.Framework
 
             // Center property
 
-            Assert.AreEqual(new Point(10+32,20+32), rectangle.Center);
+            Assert.AreEqual(new Point(10 + 32, 20 + 32), rectangle.Center);
 
 #if !XNA
             // Size property
 
-            Assert.AreEqual(new Point(64,64), rectangle.Size);
+            Assert.AreEqual(new Point(64, 64), rectangle.Size);
 #endif
 
             // IsEmpty property
@@ -55,13 +55,13 @@ namespace MonoGame.Tests.Framework
 
             // Empty - static property
 
-            Assert.AreEqual(new Rectangle(),Rectangle.Empty);
+            Assert.AreEqual(new Rectangle(), Rectangle.Empty);
         }
 
         [Test]
         public void ContainsPoint()
         {
-            Rectangle rectangle = new Rectangle(0,0,64,64);
+            Rectangle rectangle = new Rectangle(0, 0, 64, 64);
 
             var p1 = new Point(-1, -1);
             var p2 = new Point(0, 0);
@@ -126,16 +126,16 @@ namespace MonoGame.Tests.Framework
             Rectangle rectangle = new Rectangle(0, 0, 64, 64);
 
             int x1 = -1; int y1 = -1;
-            int x2 = 0;  int y2 = 0;
+            int x2 = 0; int y2 = 0;
             int x3 = 32; int y3 = 32;
             int x4 = 63; int y4 = 63;
             int x5 = 64; int y5 = 64;
 
-            Assert.AreEqual(false, rectangle.Contains(x1,y1));
-            Assert.AreEqual(true, rectangle.Contains(x2,y2));
-            Assert.AreEqual(true, rectangle.Contains(x3,y3));
-            Assert.AreEqual(true, rectangle.Contains(x4,y4));
-            Assert.AreEqual(false, rectangle.Contains(x5,y5));
+            Assert.AreEqual(false, rectangle.Contains(x1, y1));
+            Assert.AreEqual(true, rectangle.Contains(x2, y2));
+            Assert.AreEqual(true, rectangle.Contains(x3, y3));
+            Assert.AreEqual(true, rectangle.Contains(x4, y4));
+            Assert.AreEqual(false, rectangle.Contains(x5, y5));
         }
 
         [Test]
@@ -144,7 +144,7 @@ namespace MonoGame.Tests.Framework
             Rectangle rectangle = new Rectangle(0, 0, 64, 64);
 
             float x1 = -1; float y1 = -1;
-            float x2 = 0;  float y2 = 0;
+            float x2 = 0; float y2 = 0;
             float x3 = 32; float y3 = 32;
             float x4 = 63; float y4 = 63;
             float x5 = 64; float y5 = 64;
@@ -192,9 +192,9 @@ namespace MonoGame.Tests.Framework
         [Test]
         public void Inflate()
         {
-            Rectangle rectangle = new Rectangle(0,0,64,64);
-            rectangle.Inflate(10,-10);
-            Assert.AreEqual(new Rectangle(-10, 10, 84, 44),rectangle);
+            Rectangle rectangle = new Rectangle(0, 0, 64, 64);
+            rectangle.Inflate(10, -10);
+            Assert.AreEqual(new Rectangle(-10, 10, 84, 44), rectangle);
 #if !XNA
             Rectangle rectangleF = new Rectangle(0, 0, 64, 64);
             rectangleF.Inflate(10.0f, -10.0f);
@@ -253,7 +253,7 @@ namespace MonoGame.Tests.Framework
         [Test]
         public void ToStringTest()
         {
-            StringAssert.IsMatch("{X:-10 Y:10 Width:100 Height:1000}",new Rectangle(-10,10,100,1000).ToString());
+            StringAssert.IsMatch("{X:-10 Y:10 Width:100 Height:1000}", new Rectangle(-10, 10, 100, 1000).ToString());
         }
 
 #if !XNA

@@ -38,8 +38,8 @@ namespace Monogame.Media
                         return;
                     }
                 }
-                    
-            
+
+
                 var files = new List<StorageFile>();
                 await this.GetAllFiles(musicFolder, files);
 
@@ -58,7 +58,7 @@ namespace Monogame.Media
                 using (var stream = new BinaryReader(baseStream))
                     try
                     {
-                        for (; baseStream.Position < baseStream.Length; )
+                        for (; baseStream.Position < baseStream.Length;)
                         {
                             var entry = MusicProperties.Deserialize(stream);
                             cache.Add(entry.Path, entry);
@@ -170,7 +170,7 @@ namespace Monogame.Media
 
         private void PlatformDispose()
         {
-            
+
         }
     }
 }

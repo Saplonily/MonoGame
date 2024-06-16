@@ -28,7 +28,7 @@ namespace Monogame.Media
             {
                 VideoOutputFormat = (int)SharpDX.DXGI.Format.B8G8R8A8_UNorm,
                 DxgiManager = _devManager
-                
+
             })
             {
                 _mediaEngine = new MediaEngine(factory, attributes, MediaEngineCreateFlags.None, OnMediaEngineEvent);
@@ -45,15 +45,15 @@ namespace Monogame.Media
                 case MediaEngineEvent.Play:
                     _lastFrame = null;
                     break;
-                
+
                 case MediaEngineEvent.Ended:
 
                     if (IsLooped)
                     {
                         PlatformPlay();
                         return;
-                    }   
-                    
+                    }
+
                     _state = MediaState.Stopped;
                     break;
             }
@@ -76,10 +76,10 @@ namespace Monogame.Media
                                         _currentVideo.Width,
                                         _currentVideo.Height,
                                         false,
-                                        SurfaceFormat.Bgra32, 
+                                        SurfaceFormat.Bgra32,
                                         Texture2D.SurfaceType.RenderTarget);
 
-			var region = new SharpDX.Mathematics.Interop.RawRectangle(0, 0, _currentVideo.Width, _currentVideo.Height);
+            var region = new SharpDX.Mathematics.Interop.RawRectangle(0, 0, _currentVideo.Width, _currentVideo.Height);
             _mediaEngine.TransferVideoFrame(_lastFrame.GetTexture(), null, region, null);
 
             return _lastFrame;

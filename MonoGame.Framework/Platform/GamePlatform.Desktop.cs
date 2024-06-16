@@ -22,5 +22,5 @@ namespace Monogame
             return new UAPGamePlatform(game);
 #endif
         }
-   }
+    }
 }

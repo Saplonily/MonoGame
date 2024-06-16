@@ -83,15 +83,15 @@ namespace MonoGame.Tests.ContentPipeline
             var processorContext = new TestProcessorContext(TargetPlatform.Windows, "dummy.xnb");
             var processor = new ModelProcessor
             {
-                RotationX = 10, 
+                RotationX = 10,
                 RotationY = 20,
                 RotationZ = 30
             };
             var output = processor.Process(input, processorContext);
 
             // The transform the processor above is applying to the model.
-            var processorXform =    Matrix.CreateRotationZ(MathHelper.ToRadians(30))*
-                                    Matrix.CreateRotationX(MathHelper.ToRadians(10))*
+            var processorXform = Matrix.CreateRotationZ(MathHelper.ToRadians(30)) *
+                                    Matrix.CreateRotationX(MathHelper.ToRadians(10)) *
                                     Matrix.CreateRotationY(MathHelper.ToRadians(20));
 
             // Test some basics.
@@ -173,7 +173,7 @@ namespace MonoGame.Tests.ContentPipeline
                 Assert.AreEqual(0, part.StartIndex);
                 Assert.AreEqual(0, part.VertexOffset);
                 Assert.AreEqual(3, part.NumVertices);
-                
+
                 Assert.NotNull(part.IndexBuffer);
                 Assert.AreEqual(3, part.IndexBuffer.Count);
                 Assert.AreEqual(0, part.IndexBuffer[0]);
@@ -247,15 +247,15 @@ namespace MonoGame.Tests.ContentPipeline
                 wieghts.Add(new BoneWeight("bone1", 0.5f));
                 geom.Vertices.Channels.Add(VertexChannelNames.Weights(0), new[]
                 {
-                    wieghts, 
-                    wieghts, 
+                    wieghts,
+                    wieghts,
                     wieghts
                 });
 
                 mesh.Geometry.Add(geom);
                 input.Children.Add(mesh);
 
-                var bone1 = new BoneContent { Name = "bone1", Transform = Matrix.CreateTranslation(0,1,0) };
+                var bone1 = new BoneContent { Name = "bone1", Transform = Matrix.CreateTranslation(0, 1, 0) };
                 input.Children.Add(bone1);
 
                 var anim = new AnimationContent()
@@ -269,7 +269,7 @@ namespace MonoGame.Tests.ContentPipeline
             var processorContext = new TestProcessorContext(TargetPlatform.Windows, "dummy.xnb");
             var processor = new ModelProcessor
             {
-                DefaultEffect = MaterialProcessorDefaultEffect.SkinnedEffect,                
+                DefaultEffect = MaterialProcessorDefaultEffect.SkinnedEffect,
             };
 
             var output = processor.Process(input, processorContext);

@@ -32,7 +32,7 @@ namespace MonoGame.Tests.Audio
         {
 
             var se = new SoundEffect(new byte[16000], 8000, AudioChannels.Mono);
-            
+
             using (var instance = se.CreateInstance())
             {
                 instance.IsLooped = true; //ensures that the sound effect does not stop unless Stop() is called.

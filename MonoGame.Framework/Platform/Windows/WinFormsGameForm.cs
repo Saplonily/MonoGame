@@ -13,7 +13,7 @@ using MonoGame.Framework;
 namespace Monogame.Windows
 {
     internal static class MessageExtensions
-    {     
+    {
         public static int GetPointerId(this Message msg)
         {
             return (short)msg.WParam;
@@ -24,10 +24,10 @@ namespace Monogame.Windows
             var lowword = msg.LParam.ToInt32();
 
             return new System.Drawing.Point()
-                       {
-                           X = (short)(lowword),
-                           Y = (short)(lowword >> 16),
-                       };
+            {
+                X = (short)(lowword),
+                Y = (short)(lowword >> 16),
+            };
         }
     }
 
@@ -69,9 +69,9 @@ namespace Monogame.Windows
 
         public void CenterOnPrimaryMonitor()
         {
-             Location = new System.Drawing.Point(
-                 (Screen.PrimaryScreen.WorkingArea.Width  - Width ) / 2,
-                 (Screen.PrimaryScreen.WorkingArea.Height - Height) / 2);
+            Location = new System.Drawing.Point(
+                (Screen.PrimaryScreen.WorkingArea.Width - Width) / 2,
+                (Screen.PrimaryScreen.WorkingArea.Height - Height) / 2);
         }
 
         [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]

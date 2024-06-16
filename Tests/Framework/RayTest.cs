@@ -10,7 +10,7 @@ namespace MonoGame.Tests.Framework
         {
             // Our test box.
             BoundingBox box;
-            box.Min = new Vector3(-10,-20,-30);
+            box.Min = new Vector3(-10, -20, -30);
             box.Max = new Vector3(10, 20, 30);
             var center = (box.Max + box.Min) * 0.5f;
 

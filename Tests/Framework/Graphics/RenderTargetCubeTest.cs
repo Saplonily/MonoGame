@@ -22,7 +22,7 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void NullDeviceShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => 
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 var renderTarget = new RenderTargetCube(null, 16, false, SurfaceFormat.Color, DepthFormat.None);
                 renderTarget.Dispose();
@@ -50,15 +50,15 @@ namespace MonoGame.Tests.Graphics
 
             for (var i = 0; i < 6; i++)
             {
-                gd.SetRenderTarget(renderTargetCube, (CubeMapFace) i);
+                gd.SetRenderTarget(renderTargetCube, (CubeMapFace)i);
                 gd.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, colors[i], 1.0f, 0);
-                gd.SetRenderTarget(null, (CubeMapFace) i);
+                gd.SetRenderTarget(null, (CubeMapFace)i);
             }
 
             for (var i = 0; i < 6; i++)
             {
                 var readData = new Color[dataSize];
-                renderTargetCube.GetData((CubeMapFace) i, readData);
+                renderTargetCube.GetData((CubeMapFace)i, readData);
 
                 for (var j = 0; j < dataSize; j++)
                     Assert.AreEqual(colors[i], readData[j]);
@@ -66,7 +66,7 @@ namespace MonoGame.Tests.Graphics
 
             renderTargetCube.Dispose();
         }
-                
+
         [TestCase(SurfaceFormat.Color, SurfaceFormat.Color)]
         // unsupported renderTarget formats
         [TestCase(SurfaceFormat.Alpha8, SurfaceFormat.Color)]
@@ -82,9 +82,9 @@ namespace MonoGame.Tests.Graphics
         [TestCase(SurfaceFormat.NormalizedByte2, SurfaceFormat.Color)]
         [TestCase(SurfaceFormat.NormalizedByte4, SurfaceFormat.Color)]
         public void PreferredSurfaceFormatTest(SurfaceFormat preferredSurfaceFormat, SurfaceFormat expectedSurfaceFormat)
-        {                    
+        {
             var renderTarget = new RenderTargetCube(gd, 16, false, preferredSurfaceFormat, DepthFormat.None);
-                    
+
             Assert.AreEqual(renderTarget.Format, expectedSurfaceFormat);
         }
     }

@@ -23,7 +23,7 @@ namespace MonoGame.Tests.Framework
         {
             var key = new CurveKey(1, 2, 3, 4, CurveContinuity.Step);
 
-            Assert.AreEqual(key,key.Clone());
+            Assert.AreEqual(key, key.Clone());
         }
     }
 }

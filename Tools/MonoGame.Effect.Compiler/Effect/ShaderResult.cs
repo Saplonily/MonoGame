@@ -124,7 +124,7 @@ namespace MonoGame.Effect
 
             return result;
         }
-                
+
         public static void WhitespaceNodes(TokenType type, List<ParseNode> nodes, ref string sourceFile)
         {
             for (var i = 0; i < nodes.Count; i++)

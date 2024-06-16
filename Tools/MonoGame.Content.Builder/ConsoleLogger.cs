@@ -11,7 +11,7 @@ namespace MonoGame.Content.Builder
     {
         public override void LogMessage(string message, params object[] messageArgs)
         {
-			Console.WriteLine(IndentString + message, messageArgs);
+            Console.WriteLine(IndentString + message, messageArgs);
         }
 
         public override void LogImportantMessage(string message, params object[] messageArgs)
@@ -30,7 +30,7 @@ namespace MonoGame.Content.Builder
                     warning += "(" + contentIdentity.FragmentIdentifier + ")";
                 warning += ": ";
             }
-            
+
             if (messageArgs != null && messageArgs.Length != 0)
                 warning += string.Format(message, messageArgs);
             else if (!string.IsNullOrEmpty(message))

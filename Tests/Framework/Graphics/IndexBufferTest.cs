@@ -9,11 +9,11 @@ using Monogame.Graphics;
 namespace MonoGame.Tests.Graphics
 {
     [TestFixture]
-    class IndexBufferTest: GraphicsDeviceTestFixtureBase
+    class IndexBufferTest : GraphicsDeviceTestFixtureBase
     {
         [Test]
         public void ShouldSetAndGetData()
-        {   
+        {
             var savedData = new short[] { 1, 2, 3, 4 };
             var indexBuffer = new IndexBuffer(gd, IndexElementSize.SixteenBits, savedData.Length, BufferUsage.None);
             indexBuffer.SetData(savedData);
@@ -21,7 +21,7 @@ namespace MonoGame.Tests.Graphics
             var readData = new short[4];
             indexBuffer.GetData(readData, 0, 4);
             Assert.AreEqual(savedData, readData);
-            
+
             indexBuffer.Dispose();
         }
 
@@ -31,7 +31,7 @@ namespace MonoGame.Tests.Graphics
             var savedData = new short[] { 1, 2, 3, 4 };
             var indexBuffer = new IndexBuffer(gd, IndexElementSize.SixteenBits, savedData.Length, BufferUsage.None);
             indexBuffer.SetData(savedData);
-            
+
             var readData = new short[4];
             indexBuffer.GetData(readData, 0, 2);
             Assert.AreEqual(1, readData[0]);
@@ -73,11 +73,11 @@ namespace MonoGame.Tests.Graphics
 
             indexBuffer.Dispose();
         }
-        
+
         [Test]
         public void NullDeviceShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => 
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 var indexBuffer = new IndexBuffer(null, IndexElementSize.SixteenBits, 3, BufferUsage.None);
                 indexBuffer.Dispose();

@@ -141,7 +141,7 @@ namespace Monogame.Media
             }
             set
             {
-                _androidPlayer.SeekTo((int)value.TotalMilliseconds);   
+                _androidPlayer.SeekTo((int)value.TotalMilliseconds);
             }
         }
 

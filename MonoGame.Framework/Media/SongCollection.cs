@@ -24,17 +24,17 @@ namespace Monogame.Media
     /// </para>
     /// </remarks>
 	public class SongCollection : ICollection<Song>, IEnumerable<Song>, IEnumerable, IDisposable
-	{
+    {
         /// <summary>
         /// Returns a <see cref="SongCollection"/> with no contents.
         /// </summary>
         public static readonly SongCollection Empty = new SongCollection();
-		private bool isReadOnly = false;
-		private List<Song> innerlist = new List<Song>();
+        private bool isReadOnly = false;
+        private List<Song> innerlist = new List<Song>();
 
         internal SongCollection()
         {
-            
+
         }
 
         internal SongCollection(List<Song> songs)
@@ -66,7 +66,7 @@ namespace Monogame.Media
         {
             get
             {
-				return innerlist.Count;
+                return innerlist.Count;
             }
         }
 
@@ -75,10 +75,10 @@ namespace Monogame.Media
         /// </summary>
         public bool IsReadOnly
         {
-		    get
-		    {
-		        return this.isReadOnly;
-		    }
+            get
+            {
+                return this.isReadOnly;
+            }
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Monogame.Media
         {
             get
             {
-				return this.innerlist[index];
+                return this.innerlist[index];
             }
         }
 
@@ -188,6 +188,6 @@ namespace Monogame.Media
         {
             return innerlist.Remove(item);
         }
-	}
+    }
 }
 

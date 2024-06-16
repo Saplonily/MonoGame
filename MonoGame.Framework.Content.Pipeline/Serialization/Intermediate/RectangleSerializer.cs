@@ -17,7 +17,7 @@ namespace Monogame.Content.Pipeline.Serialization.Intermediate
 
         protected internal override Rectangle Deserialize(string[] inputs, ref int index)
         {
-            return new Rectangle(   XmlConvert.ToInt32(inputs[index++]),
+            return new Rectangle(XmlConvert.ToInt32(inputs[index++]),
                                     XmlConvert.ToInt32(inputs[index++]),
                                     XmlConvert.ToInt32(inputs[index++]),
                                     XmlConvert.ToInt32(inputs[index++]));

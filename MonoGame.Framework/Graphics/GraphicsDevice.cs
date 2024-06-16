@@ -115,10 +115,11 @@ namespace Monogame.Graphics
         /// <summary>
         /// Get or set the color a <see cref="RenderTarget2D"/> is cleared to when it is set.
         /// </summary>
-        public static Color DiscardColor {
-			get { return _discardColor; }
-			set { _discardColor = value; }
-		}
+        public static Color DiscardColor
+        {
+            get { return _discardColor; }
+            set { _discardColor = value; }
+        }
 
         /// <summary>
         /// The active vertex shader.
@@ -209,13 +210,15 @@ namespace Monogame.Graphics
         /// <summary>
         /// Gets a value that indicates whether the associated content was lost.
         /// </summary>
-		public bool IsContentLost {
-			get {
-				// We will just return IsDisposed for now
-				// as that is the only case I can see for now
-				return IsDisposed;
-			}
-		}
+		public bool IsContentLost
+        {
+            get
+            {
+                // We will just return IsDisposed for now
+                // as that is the only case I can see for now
+                return IsDisposed;
+            }
+        }
 
         internal bool IsRenderTargetBound
         {
@@ -260,7 +263,7 @@ namespace Monogame.Graphics
         public GraphicsDebug GraphicsDebug { get { return _graphicsDebug; } set { _graphicsDebug = value; } }
 
         internal GraphicsDevice()
-		{
+        {
             PresentationParameters = new PresentationParameters();
             PresentationParameters.DepthStencilFormat = DepthFormat.Depth24;
             Setup();
@@ -342,8 +345,8 @@ namespace Monogame.Graphics
 #endif
 
             // Initialize the main viewport
-            _viewport = new Viewport (0, 0, DisplayMode.Width, DisplayMode.Height);
-			_viewport.MaxDepth = 1.0f;
+            _viewport = new Viewport(0, 0, DisplayMode.Width, DisplayMode.Height);
+            _viewport.MaxDepth = 1.0f;
 
             PlatformSetup();
 
@@ -508,8 +511,8 @@ namespace Monogame.Graphics
         /// </summary>
         public BlendState BlendState
         {
-			get { return _blendState; }
-			set
+            get { return _blendState; }
+            set
             {
                 if (value == null)
                     throw new ArgumentNullException("value");
@@ -518,7 +521,7 @@ namespace Monogame.Graphics
                 if (_blendState == value)
                     return;
 
-				_blendState = value;
+                _blendState = value;
 
                 // Static state properties never actually get bound;
                 // instead we use our GraphicsDevice-specific version of them.
@@ -545,7 +548,7 @@ namespace Monogame.Graphics
 
                 _blendStateDirty = true;
             }
-		}
+        }
 
         /// <summary>
         /// Gets or sets a system-defined instance of a depth-stencil state object.
@@ -638,7 +641,7 @@ namespace Monogame.Graphics
 
         /// <inheritdoc cref="Clear(ClearOptions, Color, float, int)"/>
         public void Clear(ClearOptions options, Vector4 color, float depth, int stencil)
-		{
+        {
             PlatformClear(options, color, depth, stencil);
 
             unchecked
@@ -754,10 +757,10 @@ namespace Monogame.Graphics
 
             // Update the back buffer.
             OnPresentationChanged();
-            
+
             EventHelpers.Raise(this, PresentationChanged, new PresentationEventArgs(PresentationParameters));
             EventHelpers.Raise(this, DeviceReset, EventArgs.Empty);
-       }
+        }
 
         /// <summary>
         /// Resets the current <see cref="GraphicsDevice"/> with the specified <see cref="PresentationParameters"/>.
@@ -903,17 +906,17 @@ namespace Monogame.Graphics
         /// to set the device render target to the back buffer of the device.
         /// </param>
 		public void SetRenderTarget(RenderTarget2D renderTarget)
-		{
-			if (renderTarget == null)
-		    {
+        {
+            if (renderTarget == null)
+            {
                 SetRenderTargets(null);
-		    }
-			else
-			{
-				_tempRenderTargetBinding[0] = new RenderTargetBinding(renderTarget);
-				SetRenderTargets(_tempRenderTargetBinding);
-			}
-		}
+            }
+            else
+            {
+                _tempRenderTargetBinding[0] = new RenderTargetBinding(renderTarget);
+                SetRenderTargets(_tempRenderTargetBinding);
+            }
+        }
 
         /// <inheritdoc cref="SetRenderTarget(RenderTarget2D)"/>
         /// <param name="renderTarget"/>
@@ -936,7 +939,7 @@ namespace Monogame.Graphics
         /// </summary>
         /// <param name="renderTargets">An array of render targets.</param>
 		public void SetRenderTargets(params RenderTargetBinding[] renderTargets)
-		{
+        {
             // Avoid having to check for null and zero length.
             var renderTargetCount = 0;
             if (renderTargets != null)
@@ -1005,8 +1008,8 @@ namespace Monogame.Graphics
                 renderTargetWidth = PresentationParameters.BackBufferWidth;
                 renderTargetHeight = PresentationParameters.BackBufferHeight;
             }
-			else
-			{
+            else
+            {
                 // Copy the new bindings.
                 Array.Copy(renderTargets, _currentRenderTargetBindings, renderTargets.Length);
                 _currentRenderTargetCount = renderTargets.Length;
@@ -1038,12 +1041,12 @@ namespace Monogame.Graphics
         /// </summary>
         /// <returns>An array of bound render targets.</returns>
 		public RenderTargetBinding[] GetRenderTargets()
-		{
+        {
             // Return a correctly sized copy our internal array.
             var bindings = new RenderTargetBinding[_currentRenderTargetCount];
             Array.Copy(_currentRenderTargetBindings, bindings, _currentRenderTargetCount);
             return bindings;
-		}
+        }
 
         /// <summary>
         /// Gets render target surfaces.
@@ -1298,7 +1301,7 @@ namespace Monogame.Graphics
             unchecked
             {
                 _graphicsMetrics._drawCount++;
-                _graphicsMetrics._primitiveCount +=  primitiveCount;
+                _graphicsMetrics._primitiveCount += primitiveCount;
             }
         }
 
@@ -1378,7 +1381,7 @@ namespace Monogame.Graphics
             unchecked
             {
                 _graphicsMetrics._drawCount++;
-                _graphicsMetrics._primitiveCount +=  primitiveCount;
+                _graphicsMetrics._primitiveCount += primitiveCount;
             }
         }
 
@@ -1454,11 +1457,11 @@ namespace Monogame.Graphics
                 throw new ArgumentOutOfRangeException("vertexDeclaration", "Vertex stride of vertexDeclaration should be at least as big as the stride of the actual vertices.");
 
             PlatformDrawUserIndexedPrimitives<T>(primitiveType, vertexData, vertexOffset, numVertices, indexData, indexOffset, primitiveCount, vertexDeclaration);
-            
+
             unchecked
             {
                 _graphicsMetrics._drawCount++;
-                _graphicsMetrics._primitiveCount +=  primitiveCount;
+                _graphicsMetrics._primitiveCount += primitiveCount;
             }
         }
 

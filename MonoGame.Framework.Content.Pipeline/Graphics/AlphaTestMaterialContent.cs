@@ -20,7 +20,7 @@ namespace Monogame.Content.Pipeline.Graphics
             get { return GetValueTypeProperty<float>(AlphaKey); }
             set { SetProperty(AlphaKey, value); }
         }
-        
+
         public CompareFunction? AlphaFunction
         {
             get { return GetValueTypeProperty<CompareFunction>(AlphaFunctionKey); }

@@ -41,7 +41,7 @@ namespace Monogame.Graphics.PackedVector
         /// <returns>The expanded value.</returns>
         public float ToAlpha()
         {
-            return (float) (packedValue / 255.0f);
+            return (float)(packedValue / 255.0f);
         }
 
         /// <inheritdoc />
@@ -57,14 +57,14 @@ namespace Monogame.Graphics.PackedVector
                 0.0f,
                 0.0f,
                 0.0f,
-                (float) (packedValue / 255.0f)
+                (float)(packedValue / 255.0f)
             );
         }
 
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            return (obj is Alpha8) && Equals((Alpha8) obj);
+            return (obj is Alpha8) && Equals((Alpha8)obj);
         }
 
         /// <inheritdoc />
@@ -109,7 +109,7 @@ namespace Monogame.Graphics.PackedVector
 
         private static byte Pack(float alpha)
         {
-            return (byte) MathF.Round(
+            return (byte)MathF.Round(
                 MathHelper.Clamp(alpha, 0, 1) * 255.0f
             );
         }

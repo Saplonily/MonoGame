@@ -11,15 +11,15 @@ namespace Monogame.Graphics
     /// This class cannot be inherited.
     /// </summary>
 	public sealed class DirectionalLight
-	{
-		internal EffectParameter diffuseColorParameter;
-		internal EffectParameter directionParameter;
-		internal EffectParameter specularColorParameter;
-		
-		Vector3 diffuseColor;
-		Vector3 direction;
-		Vector3 specularColor;
-		bool enabled;
+    {
+        internal EffectParameter diffuseColorParameter;
+        internal EffectParameter directionParameter;
+        internal EffectParameter specularColorParameter;
+
+        Vector3 diffuseColor;
+        Vector3 direction;
+        Vector3 specularColor;
+        bool enabled;
 
         /// <summary>
         /// Creates a new instance of the DirectionalLight class with or without a copy of a DirectionalLight instance.
@@ -33,36 +33,42 @@ namespace Monogame.Graphics
         /// coned object is null).  The three Effect Parameters are updated whenever the direction, diffuse color, or
         /// specular color properties are changed; or you can set these to null if you are using the cloned object.
         /// </remarks>
-		public DirectionalLight (EffectParameter directionParameter, EffectParameter diffuseColorParameter, EffectParameter specularColorParameter, DirectionalLight cloneSource)
-		{
-			this.diffuseColorParameter = diffuseColorParameter;
-			this.directionParameter = directionParameter;
-			this.specularColorParameter = specularColorParameter;
-			if (cloneSource != null) {
-				this.diffuseColor = cloneSource.diffuseColor;
-				this.direction = cloneSource.direction;
-				this.specularColor = cloneSource.specularColor;
-				this.enabled = cloneSource.enabled;
-			} else {
-				this.diffuseColorParameter = diffuseColorParameter;
-				this.directionParameter = directionParameter;
-				this.specularColorParameter = specularColorParameter;
-			}
-		}
+		public DirectionalLight(EffectParameter directionParameter, EffectParameter diffuseColorParameter, EffectParameter specularColorParameter, DirectionalLight cloneSource)
+        {
+            this.diffuseColorParameter = diffuseColorParameter;
+            this.directionParameter = directionParameter;
+            this.specularColorParameter = specularColorParameter;
+            if (cloneSource != null)
+            {
+                this.diffuseColor = cloneSource.diffuseColor;
+                this.direction = cloneSource.direction;
+                this.specularColor = cloneSource.specularColor;
+                this.enabled = cloneSource.enabled;
+            }
+            else
+            {
+                this.diffuseColorParameter = diffuseColorParameter;
+                this.directionParameter = directionParameter;
+                this.specularColorParameter = specularColorParameter;
+            }
+        }
 
         /// <summary>
         /// Gets or Sets the diffuse color of the light.
         /// </summary>
-		public Vector3 DiffuseColor {
-			get {
-				return diffuseColor;
-			}
-			set {
-				diffuseColor = value;
-				if (this.enabled && this.diffuseColorParameter != null)
-					diffuseColorParameter.SetValue (diffuseColor);
-			}
-		}
+		public Vector3 DiffuseColor
+        {
+            get
+            {
+                return diffuseColor;
+            }
+            set
+            {
+                diffuseColor = value;
+                if (this.enabled && this.diffuseColorParameter != null)
+                    diffuseColorParameter.SetValue(diffuseColor);
+            }
+        }
 
         /// <summary>
         /// Gets or Sets the light direction.
@@ -70,68 +76,74 @@ namespace Monogame.Graphics
         /// <remarks>
         /// This value must be a unit vector.
         /// </remarks>
-		public Vector3 Direction {
-			get {
-				return direction;
-			}
-			set {
-				direction = value;
-				if (this.directionParameter != null)
-					directionParameter.SetValue (direction);
-			}
-		}
+		public Vector3 Direction
+        {
+            get
+            {
+                return direction;
+            }
+            set
+            {
+                direction = value;
+                if (this.directionParameter != null)
+                    directionParameter.SetValue(direction);
+            }
+        }
 
         /// <summary>
         /// Gets or Sets the specular color of the light.
         /// </summary>
-		public Vector3 SpecularColor {
-			get {
-				return specularColor;
-			}
-			set {
-				specularColor = value;
-				if (this.enabled && this.specularColorParameter != null)
-					specularColorParameter.SetValue (specularColor);
-			}
-		}
+		public Vector3 SpecularColor
+        {
+            get
+            {
+                return specularColor;
+            }
+            set
+            {
+                specularColor = value;
+                if (this.enabled && this.specularColorParameter != null)
+                    specularColorParameter.SetValue(specularColor);
+            }
+        }
 
         /// <summary>
         /// Gets or Sets a value indicating whether light is enabled.
         /// </summary>
-		public bool Enabled 
-		{
-			get { return enabled; }
-			set 
-			{
-				if (this.enabled != value)
-				{
-				    this.enabled = value;
-				    if (this.enabled)
-				    {
-				        if (this.diffuseColorParameter != null)
-				        {
-				            this.diffuseColorParameter.SetValue(this.diffuseColor);
-				        }
-				        if (this.specularColorParameter != null)
-				        {
-				            this.specularColorParameter.SetValue(this.specularColor);
-				        }
-				    }
-				    else
-				    {
-				        if (this.diffuseColorParameter != null)
-				        {
-				            this.diffuseColorParameter.SetValue(Vector3.Zero);
-				        }
-				        if (this.specularColorParameter != null)
-				        {
-				            this.specularColorParameter.SetValue(Vector3.Zero);
-				        }
-				    }
-				}
+		public bool Enabled
+        {
+            get { return enabled; }
+            set
+            {
+                if (this.enabled != value)
+                {
+                    this.enabled = value;
+                    if (this.enabled)
+                    {
+                        if (this.diffuseColorParameter != null)
+                        {
+                            this.diffuseColorParameter.SetValue(this.diffuseColor);
+                        }
+                        if (this.specularColorParameter != null)
+                        {
+                            this.specularColorParameter.SetValue(this.specularColor);
+                        }
+                    }
+                    else
+                    {
+                        if (this.diffuseColorParameter != null)
+                        {
+                            this.diffuseColorParameter.SetValue(Vector3.Zero);
+                        }
+                        if (this.specularColorParameter != null)
+                        {
+                            this.specularColorParameter.SetValue(Vector3.Zero);
+                        }
+                    }
+                }
 
-			}
-		}
-	}
+            }
+        }
+    }
 }
 

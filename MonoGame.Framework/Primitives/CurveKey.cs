@@ -197,7 +197,7 @@ namespace Monogame
         {
             return this._position.GetHashCode() ^ this._value.GetHashCode() ^ this._tangentIn.GetHashCode() ^
                 this._tangentOut.GetHashCode() ^ this._continuity.GetHashCode();
-        } 
+        }
 
         #endregion
     }

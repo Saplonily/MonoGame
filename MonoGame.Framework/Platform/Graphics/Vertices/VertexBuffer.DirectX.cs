@@ -141,7 +141,7 @@ namespace Monogame.Graphics
                 {
                     var dataBox = d3dContext.MapSubresource(_buffer, 0, mode, SharpDX.Direct3D11.MapFlags.None);
                     if (vertexStride == elementSizeInBytes)
-					{
+                    {
                         SharpDX.Utilities.Write(dataBox.DataPointer + offsetInBytes, data, startIndex, elementCount);
                     }
                     else

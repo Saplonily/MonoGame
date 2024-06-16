@@ -6,16 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MonoGame.Tests.Components {
-	class UpdateGuard {
-		private int _lastDrawNumberOfUpdate = -1;
+namespace MonoGame.Tests.Components
+{
+    class UpdateGuard
+    {
+        private int _lastDrawNumberOfUpdate = -1;
 
-		public bool ShouldUpdate (FrameInfo frameInfo)
-		{
-			if (_lastDrawNumberOfUpdate == frameInfo.DrawNumber)
-				return false;
-			_lastDrawNumberOfUpdate = frameInfo.DrawNumber;
-			return true;
-		}
-	}
+        public bool ShouldUpdate(FrameInfo frameInfo)
+        {
+            if (_lastDrawNumberOfUpdate == frameInfo.DrawNumber)
+                return false;
+            _lastDrawNumberOfUpdate = frameInfo.DrawNumber;
+            return true;
+        }
+    }
 }

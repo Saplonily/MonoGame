@@ -7,23 +7,23 @@ using System;
 
 namespace Microsoft.Devices.Sensors
 {
-	public abstract class SensorBase<TSensorReading> : IDisposable
-		where TSensorReading : ISensorReading
-	{
+    public abstract class SensorBase<TSensorReading> : IDisposable
+        where TSensorReading : ISensorReading
+    {
 #if IOS
         protected static readonly CoreMotion.CMMotionManager motionManager = new CoreMotion.CMMotionManager();
 #endif
         bool disposed;
-		private TimeSpan timeBetweenUpdates;
-	    private TSensorReading currentValue;
+        private TimeSpan timeBetweenUpdates;
+        private TSensorReading currentValue;
         private SensorReadingEventArgs<TSensorReading> eventArgs = new SensorReadingEventArgs<TSensorReading>(default(TSensorReading));
 
-		public TSensorReading CurrentValue 
+        public TSensorReading CurrentValue
         {
             get { return currentValue; }
-		    protected set
-		    {
-		        currentValue = value;
+            protected set
+            {
+                currentValue = value;
 
                 var handler = CurrentValueChanged;
 
@@ -32,37 +32,37 @@ namespace Microsoft.Devices.Sensors
                     eventArgs.SensorReading = value;
                     handler(this, eventArgs);
                 }
-		    }
-		}
-		public bool IsDataValid { get; protected set; }
-		public TimeSpan TimeBetweenUpdates
-		{
-			get { return this.timeBetweenUpdates; }
-			set
-			{
-				if (this.timeBetweenUpdates != value)
-				{
-					this.timeBetweenUpdates = value;
-					EventHelpers.Raise(this, TimeBetweenUpdatesChanged, EventArgs.Empty);
-				}
-			}
-		}
+            }
+        }
+        public bool IsDataValid { get; protected set; }
+        public TimeSpan TimeBetweenUpdates
+        {
+            get { return this.timeBetweenUpdates; }
+            set
+            {
+                if (this.timeBetweenUpdates != value)
+                {
+                    this.timeBetweenUpdates = value;
+                    EventHelpers.Raise(this, TimeBetweenUpdatesChanged, EventArgs.Empty);
+                }
+            }
+        }
 
-		public event EventHandler<SensorReadingEventArgs<TSensorReading>> CurrentValueChanged;
-		protected event EventHandler<EventArgs> TimeBetweenUpdatesChanged;
+        public event EventHandler<SensorReadingEventArgs<TSensorReading>> CurrentValueChanged;
+        protected event EventHandler<EventArgs> TimeBetweenUpdatesChanged;
         protected bool IsDisposed { get { return disposed; } }
 
-		public SensorBase()
-		{
-			this.TimeBetweenUpdates = TimeSpan.FromMilliseconds(2);
-		}
+        public SensorBase()
+        {
+            this.TimeBetweenUpdates = TimeSpan.FromMilliseconds(2);
+        }
 
         ~SensorBase()
         {
             Dispose(false);
         }
 
-		public void Dispose()
+        public void Dispose()
         {
             if (disposed)
                 throw new ObjectDisposedException(GetType().Name);
@@ -79,9 +79,9 @@ namespace Microsoft.Devices.Sensors
             disposed = true;
         }
 
-		public abstract void Start();
+        public abstract void Start();
 
-		public abstract void Stop();
-	}
+        public abstract void Stop();
+    }
 }
 

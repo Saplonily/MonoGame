@@ -4,7 +4,7 @@
 
 namespace Monogame.Audio
 {
-    enum RpcPointType 
+    enum RpcPointType
     {
         Linear,
         Fast,

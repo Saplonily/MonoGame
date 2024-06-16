@@ -10,7 +10,7 @@ using Monogame.Content;
 
 namespace Monogame.Content
 {
-	internal class CharReader : ContentTypeReader<char>
+    internal class CharReader : ContentTypeReader<char>
     {
         public CharReader()
         {

@@ -5,7 +5,7 @@
 using System;
 
 namespace Monogame
-{   
+{
     /// <summary>
     /// An object that can be attached to a <see cref="Monogame.Game"/> and have its <see cref="Update"/>
     /// method called when <see cref="Monogame.Game.Update"/> is called.
@@ -111,7 +111,7 @@ namespace Monogame
         /// Shuts down the component.
         /// </summary>
         protected virtual void Dispose(bool disposing) { }
-        
+
         /// <summary>
         /// Shuts down the component.
         /// </summary>

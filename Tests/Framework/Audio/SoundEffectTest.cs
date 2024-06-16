@@ -42,11 +42,11 @@ namespace MonoGame.Tests.Audio
             Assert.DoesNotThrow(() => SoundEffect.GetSampleDuration(1, 8000, AudioChannels.Mono));
             Assert.DoesNotThrow(() => SoundEffect.GetSampleDuration(2, 8000, AudioChannels.Mono));
             Assert.DoesNotThrow(() => SoundEffect.GetSampleDuration(3, 8000, AudioChannels.Mono));
-            
+
             // Test sampleRate range.
             Assert.Throws<ArgumentOutOfRangeException>(() => SoundEffect.GetSampleDuration(2, -1, AudioChannels.Mono));
             Assert.Throws<ArgumentOutOfRangeException>(() => SoundEffect.GetSampleDuration(2, 0, AudioChannels.Mono));
-            Assert.Throws<ArgumentOutOfRangeException>(() => SoundEffect.GetSampleDuration(2, 8000-1, AudioChannels.Mono));
+            Assert.Throws<ArgumentOutOfRangeException>(() => SoundEffect.GetSampleDuration(2, 8000 - 1, AudioChannels.Mono));
             Assert.DoesNotThrow(() => SoundEffect.GetSampleDuration(2, 8000, AudioChannels.Mono));
             Assert.DoesNotThrow(() => SoundEffect.GetSampleDuration(2, 48000, AudioChannels.Mono));
             Assert.Throws<ArgumentOutOfRangeException>(() => SoundEffect.GetSampleDuration(2, 48000 + 1, AudioChannels.Mono));
@@ -364,7 +364,7 @@ namespace MonoGame.Tests.Audio
         {
             int sampleRate; AudioChannels channels;
             var data = LoadRiff(filename, out sampleRate, out channels);
-            Assert.Throws<ArgumentException >(() => new SoundEffect(data, sampleRate, channels));
+            Assert.Throws<ArgumentException>(() => new SoundEffect(data, sampleRate, channels));
         }
 
         // These 8bit PCMs pass although the SoundEffect constructors although
@@ -472,7 +472,7 @@ namespace MonoGame.Tests.Audio
 
         class ContentManagerProxy : ContentManager
         {
-            public ContentManagerProxy(IServiceProvider services): base(services) {}
+            public ContentManagerProxy(IServiceProvider services) : base(services) { }
 
             protected override Stream OpenStream(string assetName)
             {

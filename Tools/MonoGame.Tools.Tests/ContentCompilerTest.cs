@@ -257,7 +257,7 @@ namespace MonoGame.Tests.ContentPipeline
             public string this[string key]
             {
                 get
-                { 
+                {
                     string value;
                     return _dictionary.TryGetValue(key, out value) ? value : null;
                 }

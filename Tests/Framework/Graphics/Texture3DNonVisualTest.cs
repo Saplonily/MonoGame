@@ -17,7 +17,7 @@ namespace MonoGame.Tests.Graphics
     {
         Texture3D t;
         Color[] reference;
-        const int w=50, h=50, d=50, a = w * d * h;
+        const int w = 50, h = 50, d = 50, a = w * d * h;
         private Game _game;
 
         [OneTimeSetUp]
@@ -112,7 +112,7 @@ namespace MonoGame.Tests.Graphics
             {
                 write[i] = new Color(23, 23, 23, 23);
             }
-            Assert.Throws(Is.InstanceOf<Exception>(), () =>t.SetData(write, startIndex, elementCount));
+            Assert.Throws(Is.InstanceOf<Exception>(), () => t.SetData(write, startIndex, elementCount));
         }
 
         [TestCase((w - 2) * (h - 2) * (d - 2), 0, (w - 2) * (h - 2) * (d - 2), 1, 1, 1, w - 2, h - 2, d - 2)]
@@ -156,8 +156,8 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void NullDeviceShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => 
-            {                
+            Assert.Throws<ArgumentNullException>(() =>
+            {
                 var texture = new Texture3D(null, 16, 16, 16, false, SurfaceFormat.Color);
                 texture.Dispose();
             });

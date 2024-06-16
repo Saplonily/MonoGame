@@ -13,7 +13,7 @@ namespace Monogame.Graphics
     /// render targets on the graphics device.
     /// </summary>
 	public struct RenderTargetBinding
-	{
+    {
         private readonly Texture _renderTarget;
         private readonly int _arraySlice;
         private DepthFormat _depthFormat;
@@ -23,8 +23,8 @@ namespace Monogame.Graphics
         /// </summary>
 		public Texture RenderTarget
         {
-			get { return _renderTarget; }
-		}
+            get { return _renderTarget; }
+        }
 
         /// <summary>
         ///
@@ -48,14 +48,14 @@ namespace Monogame.Graphics
         /// <param name="renderTarget">The render target to create the binding for.</param>
         /// <exception cref="ArgumentNullException">The <paramref name="renderTarget"/> parameter is null.</exception>
 		public RenderTargetBinding(RenderTarget2D renderTarget)
-		{
-			if (renderTarget == null)
-				throw new ArgumentNullException("renderTarget");
+        {
+            if (renderTarget == null)
+                throw new ArgumentNullException("renderTarget");
 
-			_renderTarget = renderTarget;
+            _renderTarget = renderTarget;
             _arraySlice = (int)CubeMapFace.PositiveX;
             _depthFormat = renderTarget.DepthStencilFormat;
-		}
+        }
 
         /// <summary>
         /// Creates a new <b>RenderTargetBinding</b> with the specified parameters.
@@ -166,5 +166,5 @@ namespace Monogame.Graphics
         }
 
 #endif
-	}
+    }
 }

@@ -8,15 +8,15 @@ using Monogame.Content;
 
 namespace Monogame.Content
 {
-	internal class Vector2Reader : ContentTypeReader<Vector2>
-	{
-		public Vector2Reader ()
-		{
-		}
+    internal class Vector2Reader : ContentTypeReader<Vector2>
+    {
+        public Vector2Reader()
+        {
+        }
 
-		protected internal override Vector2 Read (ContentReader input, Vector2 existingInstance)
-		{
-			return input.ReadVector2 ();
-		}
-	}
+        protected internal override Vector2 Read(ContentReader input, Vector2 existingInstance)
+        {
+            return input.ReadVector2();
+        }
+    }
 }

@@ -4,7 +4,7 @@
 
 namespace Monogame.Audio
 {
-    enum CrossfadeType 
+    enum CrossfadeType
     {
         Linear,
         Logarithmic,

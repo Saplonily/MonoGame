@@ -91,26 +91,26 @@ namespace Monogame
             double dmin = 0;
 
             if (Center.X < box.Min.X)
-				dmin += (Center.X - box.Min.X) * (Center.X - box.Min.X);
+                dmin += (Center.X - box.Min.X) * (Center.X - box.Min.X);
 
-			else if (Center.X > box.Max.X)
-					dmin += (Center.X - box.Max.X) * (Center.X - box.Max.X);
+            else if (Center.X > box.Max.X)
+                dmin += (Center.X - box.Max.X) * (Center.X - box.Max.X);
 
-			if (Center.Y < box.Min.Y)
-				dmin += (Center.Y - box.Min.Y) * (Center.Y - box.Min.Y);
+            if (Center.Y < box.Min.Y)
+                dmin += (Center.Y - box.Min.Y) * (Center.Y - box.Min.Y);
 
-			else if (Center.Y > box.Max.Y)
-				dmin += (Center.Y - box.Max.Y) * (Center.Y - box.Max.Y);
+            else if (Center.Y > box.Max.Y)
+                dmin += (Center.Y - box.Max.Y) * (Center.Y - box.Max.Y);
 
-			if (Center.Z < box.Min.Z)
-				dmin += (Center.Z - box.Min.Z) * (Center.Z - box.Min.Z);
+            if (Center.Z < box.Min.Z)
+                dmin += (Center.Z - box.Min.Z) * (Center.Z - box.Min.Z);
 
-			else if (Center.Z > box.Max.Z)
-				dmin += (Center.Z - box.Max.Z) * (Center.Z - box.Max.Z);
+            else if (Center.Z > box.Max.Z)
+                dmin += (Center.Z - box.Max.Z) * (Center.Z - box.Max.Z);
 
-			if (dmin <= Radius * Radius) 
-				return ContainmentType.Intersects;
-            
+            if (dmin <= Radius * Radius)
+                return ContainmentType.Intersects;
+
             //else disjoint
             return ContainmentType.Disjoint;
         }
@@ -163,7 +163,7 @@ namespace Monogame
         /// </summary>
         /// <param name="frustum">The frustum for testing.</param>
         /// <param name="result">The containment type as an output parameter.</param>
-        public void Contains(ref BoundingFrustum frustum,out ContainmentType result)
+        public void Contains(ref BoundingFrustum frustum, out ContainmentType result)
         {
             result = this.Contains(frustum);
         }
@@ -222,14 +222,14 @@ namespace Monogame
             float sqRadius = Radius * Radius;
             float sqDistance;
             Vector3.DistanceSquared(ref point, ref Center, out sqDistance);
-            
+
             if (sqDistance > sqRadius)
                 result = ContainmentType.Disjoint;
 
             else if (sqDistance < sqRadius)
                 result = ContainmentType.Contains;
 
-            else 
+            else
                 result = ContainmentType.Intersects;
         }
 
@@ -286,7 +286,7 @@ namespace Monogame
         /// <returns>The new <see cref="BoundingSphere"/>.</returns>
         public static BoundingSphere CreateFromPoints(IEnumerable<Vector3> points)
         {
-            if (points == null )
+            if (points == null)
                 throw new ArgumentNullException("points");
 
             // From "Real-Time Collision Detection" (Page 89)
@@ -299,22 +299,22 @@ namespace Monogame
             var maxz = -minx;
 
             // Find the most extreme points along the principle axis.
-            var numPoints = 0;           
+            var numPoints = 0;
             foreach (var pt in points)
             {
                 ++numPoints;
 
-                if (pt.X < minx.X) 
+                if (pt.X < minx.X)
                     minx = pt;
-                if (pt.X > maxx.X) 
+                if (pt.X > maxx.X)
                     maxx = pt;
-                if (pt.Y < miny.Y) 
+                if (pt.Y < miny.Y)
                     miny = pt;
-                if (pt.Y > maxy.Y) 
+                if (pt.Y > maxy.Y)
                     maxy = pt;
-                if (pt.Z < minz.Z) 
+                if (pt.Z < minz.Z)
                     minz = pt;
-                if (pt.Z > maxz.Z) 
+                if (pt.Z > maxz.Z)
                     maxz = pt;
             }
 
@@ -328,20 +328,20 @@ namespace Monogame
             // Pick the pair of most distant points.
             var min = minx;
             var max = maxx;
-            if (sqDistY > sqDistX && sqDistY > sqDistZ) 
+            if (sqDistY > sqDistX && sqDistY > sqDistZ)
             {
                 max = maxy;
                 min = miny;
             }
-            if (sqDistZ > sqDistX && sqDistZ > sqDistY) 
+            if (sqDistZ > sqDistX && sqDistZ > sqDistY)
             {
                 max = maxz;
                 min = minz;
             }
-            
+
             var center = (min + max) * 0.5f;
             var radius = Vector3.Distance(max, center);
-            
+
             // Test every point and expand the sphere.
             // The current bounding sphere is just a good approximation and may not enclose all points.            
             // From: Mathematics for 3D Game Programming and Computer Graphics, Eric Lengyel, Third Edition.
@@ -349,7 +349,7 @@ namespace Monogame
             float sqRadius = radius * radius;
             foreach (var pt in points)
             {
-                Vector3 diff = (pt-center);
+                Vector3 diff = (pt - center);
                 float sqDist = diff.LengthSquared();
                 if (sqDist > sqRadius)
                 {
@@ -452,7 +452,7 @@ namespace Monogame
         /// <returns><c>true</c> if <see cref="BoundingBox"/> intersects with this sphere; <c>false</c> otherwise.</returns>
         public bool Intersects(BoundingBox box)
         {
-			return box.Intersects(this);
+            return box.Intersects(this);
         }
 
         /// <summary>
@@ -619,7 +619,7 @@ namespace Monogame
         /// <param name="a"><see cref="BoundingSphere"/> instance on the left of the equal sign.</param>
         /// <param name="b"><see cref="BoundingSphere"/> instance on the right of the equal sign.</param>
         /// <returns><c>true</c> if the instances are equal; <c>false</c> otherwise.</returns>
-        public static bool operator == (BoundingSphere a, BoundingSphere b)
+        public static bool operator ==(BoundingSphere a, BoundingSphere b)
         {
             return a.Equals(b);
         }
@@ -630,7 +630,7 @@ namespace Monogame
         /// <param name="a"><see cref="BoundingSphere"/> instance on the left of the not equal sign.</param>
         /// <param name="b"><see cref="BoundingSphere"/> instance on the right of the not equal sign.</param>
         /// <returns><c>true</c> if the instances are not equal; <c>false</c> otherwise.</returns>
-        public static bool operator != (BoundingSphere a, BoundingSphere b)
+        public static bool operator !=(BoundingSphere a, BoundingSphere b)
         {
             return !a.Equals(b);
         }

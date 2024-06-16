@@ -17,7 +17,7 @@ namespace Monogame.Content.Pipeline.Serialization.Intermediate
 
         protected internal override Vector3 Deserialize(string[] inputs, ref int index)
         {
-            return new Vector3( XmlConvert.ToSingle(inputs[index++]),
+            return new Vector3(XmlConvert.ToSingle(inputs[index++]),
                                 XmlConvert.ToSingle(inputs[index++]),
                                 XmlConvert.ToSingle(inputs[index++]));
         }

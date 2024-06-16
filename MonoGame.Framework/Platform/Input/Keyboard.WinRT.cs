@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Monogame.Input
 {
     public static partial class Keyboard
-    {   
+    {
         static KeyboardState _keyboardState;
         static KeyboardState _nextKeyboardState;
 
@@ -30,7 +30,7 @@ namespace Monogame.Input
         {
             _nextKeyboardState.InternalClearKey(key);
         }
-                
+
         internal static void Clear()
         {
             _nextKeyboardState.InternalClearAllKeys();

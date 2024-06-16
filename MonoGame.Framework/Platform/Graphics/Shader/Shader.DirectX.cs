@@ -58,7 +58,7 @@ namespace Monogame.Graphics
             _shaderBytecode = shaderBytecode;
 
             HashKey = MonoGame.Framework.Utilities.Hash.ComputeHash(Bytecode);
-            
+
             if (stage == ShaderStage.Vertex)
                 CreateVertexShader();
             else

@@ -9,7 +9,7 @@ namespace Monogame.Graphics
     /// The common effect light rendering parameters.
     /// </summary>
 	public interface IEffectLights
-	{
+    {
         /// <summary>
         /// The floating point ambient light color.
         /// </summary>
@@ -38,7 +38,7 @@ namespace Monogame.Graphics
         /// <summary>
         /// Initializes the lights to the standard key/fill/back lighting rig.
         /// </summary>
-		void EnableDefaultLighting ();
-	}
+		void EnableDefaultLighting();
+    }
 }
 

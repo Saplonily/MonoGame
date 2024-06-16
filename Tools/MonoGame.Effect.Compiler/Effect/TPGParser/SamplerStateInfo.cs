@@ -7,7 +7,7 @@ namespace MonoGame.Effect.TPGParser
     public class SamplerStateInfo
     {
         private SamplerState _state;
-        
+
         private bool _dirty;
 
         private TextureFilterType _minFilter;
@@ -195,7 +195,7 @@ namespace MonoGame.Effect.TPGParser
 
             _dirty = false;
         }
-        
+
         public SamplerState State
         {
             get

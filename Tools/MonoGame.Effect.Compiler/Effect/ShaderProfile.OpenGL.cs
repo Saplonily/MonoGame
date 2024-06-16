@@ -17,13 +17,13 @@ namespace MonoGame.Effect
 
         public OpenGLShaderProfile()
             : base("OpenGL", 0)
-        {                
+        {
         }
 
         internal override void AddMacros(Dictionary<string, string> macros)
         {
             macros.Add("GLSL", "1");
-            macros.Add("OPENGL", "1");                
+            macros.Add("OPENGL", "1");
         }
 
         internal override void ValidateShaderModels(PassInfo pass)

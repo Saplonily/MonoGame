@@ -38,7 +38,7 @@ namespace MonoGame.Tests.ContentPipeline
         }
 
         void BitmapCopyFullNoResize<T>(T color1)
-            where T: struct, IEquatable<T>
+            where T : struct, IEquatable<T>
         {
             var b1 = new PixelBitmapContent<T>(8, 8);
             Fill(b1, color1);
@@ -65,7 +65,7 @@ namespace MonoGame.Tests.ContentPipeline
 
         void BitmapConvertFullNoResize<T, U>(T color1, U color2)
             where T : struct, IEquatable<T>
-            where U: struct, IEquatable<U>
+            where U : struct, IEquatable<U>
         {
             var b1 = new PixelBitmapContent<T>(8, 8);
             Fill(b1, color1);

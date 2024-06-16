@@ -63,7 +63,7 @@ namespace MonoGame.Tests.ContentPipeline
             Assert.AreEqual(8, outFace.Width);
             Assert.AreEqual(8, outFace.Height);
 
-            for (var y=0; y < outFace.Height; y++)
+            for (var y = 0; y < outFace.Height; y++)
                 for (var x = 0; x < outFace.Width; x++)
                     Assert.AreEqual(Color.Transparent, outFace.GetPixel(x, y));
         }

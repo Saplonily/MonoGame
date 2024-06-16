@@ -84,7 +84,7 @@ namespace MonoGame.Tests.Graphics
 
                         if (occlusionQuery.IsComplete)
                         {
-                            Assert.AreEqual(100*100/2, occlusionQuery.PixelCount);
+                            Assert.AreEqual(100 * 100 / 2, occlusionQuery.PixelCount);
                             Console.WriteLine("First occlusionQuery completed in {0} frames", queryFrameCount);
                             state = 2;
                         }
@@ -92,7 +92,7 @@ namespace MonoGame.Tests.Graphics
                     case 2:
                         // Same results as last frame.
                         Assert.IsTrue(occlusionQuery.IsComplete);
-                        Assert.AreEqual(100*100/2, occlusionQuery.PixelCount);
+                        Assert.AreEqual(100 * 100 / 2, occlusionQuery.PixelCount);
 
                         // Reuse query a second time, 10% occlusion.
                         occlusionQuery.Begin();
@@ -112,7 +112,7 @@ namespace MonoGame.Tests.Graphics
 
                         if (occlusionQuery.IsComplete)
                         {
-                            Assert.AreEqual(100*100*9/10, occlusionQuery.PixelCount);
+                            Assert.AreEqual(100 * 100 * 9 / 10, occlusionQuery.PixelCount);
                             Console.WriteLine("Second occlusionQuery completed in {0} frames", queryFrameCount);
                             state = 4;
                         }
@@ -121,7 +121,7 @@ namespace MonoGame.Tests.Graphics
             };
 
             Predicate<int> exitCondition = frame => state == 4 || frame > 15;
-            
+
             DoGameLoop(action, exitCondition);
 
             spriteBatch.Dispose();

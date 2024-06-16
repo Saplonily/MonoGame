@@ -51,7 +51,7 @@ namespace MonoGame.Content.Builder
         {
             var serializer = new XmlSerializer(typeof(SourceFileCollection));
             using (var textWriter = new StreamWriter(filePath, false, new UTF8Encoding(false)))
-                serializer.Serialize(textWriter, this);            
+                serializer.Serialize(textWriter, this);
         }
 
         public void Merge(SourceFileCollection other)

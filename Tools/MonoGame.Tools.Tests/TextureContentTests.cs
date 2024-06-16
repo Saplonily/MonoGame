@@ -21,7 +21,7 @@ namespace MonoGame.Tests.ContentPipeline
             Assert.AreEqual(content.Faces[0], content.Mipmaps);
             Assert.AreEqual(0, content.Mipmaps.Count);
 
-            content.Faces[0] = new MipmapChain(new PixelBitmapContent<Color>(2,2));
+            content.Faces[0] = new MipmapChain(new PixelBitmapContent<Color>(2, 2));
             Assert.AreEqual(content.Faces[0], content.Mipmaps);
             Assert.AreEqual(1, content.Faces[0].Count);
             Assert.AreEqual(1, content.Mipmaps.Count);

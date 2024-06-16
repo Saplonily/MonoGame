@@ -35,14 +35,17 @@ namespace MonoGame.Content.Builder
             };
 
             if (!parser.Parse(args))
-                return -1;           
-            
+                return -1;
+
             // Launch debugger if requested.
             if (content.LaunchDebugger)
             {
-                try {
+                try
+                {
                     System.Diagnostics.Debugger.Launch();
-                } catch (NotImplementedException) {
+                }
+                catch (NotImplementedException)
+                {
                     // not implemented under Mono
                     Console.Error.WriteLine("The debugger is not implemented under Mono and thus is not supported on your platform.");
                 }

@@ -65,7 +65,7 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void FromStreamArgumentNullTest()
         {
-            Assert.Throws<ArgumentNullException>(() => Texture2D.FromStream(gd, (Stream) null));
+            Assert.Throws<ArgumentNullException>(() => Texture2D.FromStream(gd, (Stream)null));
 #if !XNA
             // XNA misses this check and throws a NullReferenceException
             Assert.Throws<ArgumentNullException>(() => Texture2D.FromStream(null, new MemoryStream()));
@@ -82,7 +82,7 @@ namespace MonoGame.Tests.Graphics
             using (var stream = File.OpenRead("Assets/Textures/red_128.png"))
             using (var texture = Texture2D.FromStream(gd, stream, data =>
             {
-                for(var i = 0; i < data.Length; i += 4)
+                for (var i = 0; i < data.Length; i += 4)
                 {
                     if (flag)
                     {
@@ -112,7 +112,8 @@ namespace MonoGame.Tests.Graphics
                         Assert.AreEqual(0, pngData[i].G);
                         Assert.AreEqual(0, pngData[i].B);
                         Assert.AreEqual(128, pngData[i].A);
-                    } else
+                    }
+                    else
                     {
                         // Custom value
                         Assert.AreEqual(customValue, pngData[i]);
@@ -140,10 +141,10 @@ namespace MonoGame.Tests.Graphics
 
                 for (var i = 0; i < pngData.Length; i++)
                 {
-                    Assert.AreEqual(255,    pngData[i].R);
-                    Assert.AreEqual(0,      pngData[i].G);
-                    Assert.AreEqual(0,      pngData[i].B);
-                    Assert.AreEqual(128,    pngData[i].A);
+                    Assert.AreEqual(255, pngData[i].R);
+                    Assert.AreEqual(0, pngData[i].G);
+                    Assert.AreEqual(0, pngData[i].B);
+                    Assert.AreEqual(128, pngData[i].A);
                 }
             }
         }
@@ -201,7 +202,7 @@ namespace MonoGame.Tests.Graphics
                 }
             }
         }
-        
+
         [Test]
         public void ZeroSizeShouldFailTest()
         {
@@ -225,7 +226,7 @@ namespace MonoGame.Tests.Graphics
 
                 var data = new byte[startIndex + elementCount];
                 for (var i = 0; i < data.Length; i++)
-                    data[i] = (byte) i;
+                    data[i] = (byte)i;
 
                 var rect = new Rectangle(x, y, width, height);
 
@@ -630,8 +631,8 @@ namespace MonoGame.Tests.Graphics
             {
                 var data = new Color[4];
                 var data2 = new Color[0];
-                Assert.Throws<ArgumentException>(() => t.GetData(0, new Rectangle(5, 5,  2, -2), data, 0, 4));
-                Assert.Throws<ArgumentException>(() => t.GetData(0, new Rectangle(5, 5, -2,  2), data, 0, 4));
+                Assert.Throws<ArgumentException>(() => t.GetData(0, new Rectangle(5, 5, 2, -2), data, 0, 4));
+                Assert.Throws<ArgumentException>(() => t.GetData(0, new Rectangle(5, 5, -2, 2), data, 0, 4));
                 Assert.Throws<ArgumentException>(() => t.GetData(0, new Rectangle(5, 5, -2, -2), data, 0, 4));
 
                 Assert.Throws<ArgumentException>(() => t.GetData(0, new Rectangle(5, 5, 0, 2), data2, 0, 4));
@@ -643,10 +644,10 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void GetAndSetDataDxtCompressed()
         {
-            var t = content.Load<Texture2D>(Paths.Texture ("random_16px_dxt"));
+            var t = content.Load<Texture2D>(Paths.Texture("random_16px_dxt"));
 
-            var b = new byte[t.Width*t.Height/2];
-            var b2 = new byte[t.Width*t.Height/2];
+            var b = new byte[t.Width * t.Height / 2];
+            var b2 = new byte[t.Width * t.Height / 2];
 
             t.GetData(b);
             t.SetData(b);
@@ -656,21 +657,21 @@ namespace MonoGame.Tests.Graphics
 
             // MonoGame allows any kind of type that is not larger than one element while XNA only allows byte
 #if !XNA
-            var b3 = new short[t.Width*t.Height/4];
+            var b3 = new short[t.Width * t.Height / 4];
             t.GetData(b3);
             t.SetData(b3);
 
             t.GetData(b2);
             Assert.AreEqual(b, b2);
 
-            var b4 = new int[t.Width*t.Height/8];
+            var b4 = new int[t.Width * t.Height / 8];
             t.GetData(b4);
             t.SetData(b4);
 
             t.GetData(b2);
             Assert.AreEqual(b, b2);
 
-            var b5 = new long[t.Width*t.Height/16];
+            var b5 = new long[t.Width * t.Height / 16];
             t.GetData(b5);
             t.SetData(b5);
 
@@ -678,11 +679,11 @@ namespace MonoGame.Tests.Graphics
             Assert.AreEqual(b, b2);
 
             // this is too large, DXT1 blocks are 64 bits while Vector4 is 128 bits
-            var b6 = new Vector4[t.Width*t.Height/32];
+            var b6 = new Vector4[t.Width * t.Height / 32];
             Assert.Throws<ArgumentException>(() => t.GetData(b6));
             Assert.Throws<ArgumentException>(() => t.SetData(b6));
 
-            var b7 = new Vector3[t.Width*t.Height/24];
+            var b7 = new Vector3[t.Width * t.Height / 24];
             Assert.Throws<ArgumentException>(() => t.GetData(b7));
             Assert.Throws<ArgumentException>(() => t.SetData(b7));
 #endif
@@ -720,15 +721,15 @@ namespace MonoGame.Tests.Graphics
                 var b2 = DxtUtil.DecompressDxt1(b, t.Width >> m, t.Height >> m);
 
                 // Should be a red opaque texture.
-                for (var p=0; p < b2.Length; p+=4)
+                for (var p = 0; p < b2.Length; p += 4)
                 {
-                    Assert.AreEqual(255,    b2[p + 0]);
-                    Assert.AreEqual(0,      b2[p + 1]);
-                    Assert.AreEqual(0,      b2[p + 2]);
-                    Assert.AreEqual(255,    b2[p + 3]);
-                }            
+                    Assert.AreEqual(255, b2[p + 0]);
+                    Assert.AreEqual(0, b2[p + 1]);
+                    Assert.AreEqual(0, b2[p + 2]);
+                    Assert.AreEqual(255, b2[p + 3]);
+                }
             }
-                        
+
             t.Dispose();
         }
 
@@ -740,9 +741,9 @@ namespace MonoGame.Tests.Graphics
         [TestCase(16, "random_16px_dxt_alpha", 1)]
         public void GetAndSetDataDxtNotMultipleOf4Rounding(int bs, string texName, int mip)
         {
-            var t = content.Load<Texture2D>(Paths.Texture (texName));
+            var t = content.Load<Texture2D>(Paths.Texture(texName));
 
-            var before = new byte[t.Width*t.Height*bs/16];
+            var before = new byte[t.Width * t.Height * bs / 16];
             t.GetData(before);
 
             var b1 = new byte[bs];
@@ -750,16 +751,16 @@ namespace MonoGame.Tests.Graphics
 
             t.GetData(mip, new Rectangle(0, 0, 4, 4), b1, 0, bs);
 
-            t.GetData(mip, new Rectangle(0,0,1,1), b2, 0, bs);
-            t.SetData(mip, new Rectangle(0,0,1,1), b2, 0, bs);
+            t.GetData(mip, new Rectangle(0, 0, 1, 1), b2, 0, bs);
+            t.SetData(mip, new Rectangle(0, 0, 1, 1), b2, 0, bs);
             Assert.AreEqual(b1, b2);
 
-            t.GetData(mip, new Rectangle(0,0,1,3), b2, 0, bs);
-            t.SetData(mip, new Rectangle(0,0,1,3), b2, 0, bs);
+            t.GetData(mip, new Rectangle(0, 0, 1, 3), b2, 0, bs);
+            t.SetData(mip, new Rectangle(0, 0, 1, 3), b2, 0, bs);
             Assert.AreEqual(b1, b2);
 
-            t.GetData(mip, new Rectangle(0,0,4,3), b2, 0, bs);
-            t.SetData(mip, new Rectangle(0,0,4,3), b2, 0, bs);
+            t.GetData(mip, new Rectangle(0, 0, 4, 3), b2, 0, bs);
+            t.SetData(mip, new Rectangle(0, 0, 4, 3), b2, 0, bs);
             Assert.AreEqual(b1, b2);
 
             t.GetData(mip, new Rectangle(0, 2, 4, 4), b2, 0, bs);
@@ -778,7 +779,7 @@ namespace MonoGame.Tests.Graphics
             t.SetData(mip, new Rectangle(4, 4, 4, 4), b2, 0, bs);
             Assert.AreNotEqual(b1, b2);
 
-            var after = new byte[t.Width*t.Height*bs/16];
+            var after = new byte[t.Width * t.Height * bs / 16];
             t.GetData(after);
 
             Assert.AreEqual(before, after);
@@ -811,13 +812,13 @@ namespace MonoGame.Tests.Graphics
             var b = new byte[bs];
             var b2 = new byte[bs];
 
-            t.GetData(0, new Rectangle(0,0,4,4), b, 0, bs);
-            t.GetData(1, new Rectangle(0,0,4,4), b2, 0, bs);
-            t.GetData(2, new Rectangle(0,0,4,4), b2, 0, bs);
-            t.GetData(3, new Rectangle(0,0,2,2), b2, 0, bs);
-            t.GetData(4, new Rectangle(0,0,1,1), b2, 0, bs);
-            t.SetData(3, new Rectangle(0,0,2,2), b2, 0, bs);
-            
+            t.GetData(0, new Rectangle(0, 0, 4, 4), b, 0, bs);
+            t.GetData(1, new Rectangle(0, 0, 4, 4), b2, 0, bs);
+            t.GetData(2, new Rectangle(0, 0, 4, 4), b2, 0, bs);
+            t.GetData(3, new Rectangle(0, 0, 2, 2), b2, 0, bs);
+            t.GetData(4, new Rectangle(0, 0, 1, 1), b2, 0, bs);
+            t.SetData(3, new Rectangle(0, 0, 2, 2), b2, 0, bs);
+
             // would be rounded, but the rectangle is outside the texture area so it wil throw before rounding
             Assert.Throws<ArgumentException>(() => t.GetData(3, new Rectangle(1, 1, 2, 2), b, 0, bs));
             Assert.Throws<ArgumentException>(() => t.GetData(3, new Rectangle(0, 0, 3, 3), b, 0, bs));
@@ -834,12 +835,12 @@ namespace MonoGame.Tests.Graphics
             var tex = new Texture2D(gd, w, h, false, SurfaceFormat.Bgr565);
             var data = new short[size];
             for (var i = 0; i < data.Length; i++)
-                data[i] = (short) i;
+                data[i] = (short)i;
             tex.SetData(data);
             var getData = new short[size];
             tex.GetData(data);
             for (var i = 0; i < getData.Length; i++)
-                Assert.AreEqual((short) i, data[i]);
+                Assert.AreEqual((short)i, data[i]);
 
             tex.Dispose();
         }
@@ -847,7 +848,7 @@ namespace MonoGame.Tests.Graphics
         [Test]
         public void NullDeviceShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => 
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 var texture = new Texture2D(null, 16, 16);
                 texture.Dispose();

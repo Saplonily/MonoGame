@@ -25,7 +25,7 @@ namespace Monogame.Graphics
         public int textureSlot;
         public int samplerSlot;
         public string name;
-		public SamplerState state;
+        public SamplerState state;
 
         // TODO: This should be moved to EffectPass.
         public int parameter;
@@ -40,7 +40,7 @@ namespace Monogame.Graphics
     }
 
     internal partial class Shader : GraphicsResource
-	{
+    {
         /// <summary>
         /// Returns the platform specific shader profile identifier.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Monogame.Graphics
 
         public SamplerInfo[] Samplers { get; private set; }
 
-	    public int[] CBuffers { get; private set; }
+        public int[] CBuffers { get; private set; }
 
         public ShaderStage Stage { get; private set; }
 
@@ -77,22 +77,22 @@ namespace Monogame.Graphics
                 Samplers[s].textureSlot = reader.ReadByte();
                 Samplers[s].samplerSlot = reader.ReadByte();
 
-				if (reader.ReadBoolean())
-				{
-					Samplers[s].state = new SamplerState();
-					Samplers[s].state.AddressU = (TextureAddressMode)reader.ReadByte();
-					Samplers[s].state.AddressV = (TextureAddressMode)reader.ReadByte();
-					Samplers[s].state.AddressW = (TextureAddressMode)reader.ReadByte();
+                if (reader.ReadBoolean())
+                {
+                    Samplers[s].state = new SamplerState();
+                    Samplers[s].state.AddressU = (TextureAddressMode)reader.ReadByte();
+                    Samplers[s].state.AddressV = (TextureAddressMode)reader.ReadByte();
+                    Samplers[s].state.AddressW = (TextureAddressMode)reader.ReadByte();
                     Samplers[s].state.BorderColor = new Color(
-                        reader.ReadByte(), 
-                        reader.ReadByte(), 
-                        reader.ReadByte(), 
+                        reader.ReadByte(),
+                        reader.ReadByte(),
+                        reader.ReadByte(),
                         reader.ReadByte());
-					Samplers[s].state.Filter = (TextureFilter)reader.ReadByte();
-					Samplers[s].state.MaxAnisotropy = reader.ReadInt32();
-					Samplers[s].state.MaxMipLevel = reader.ReadInt32();
-					Samplers[s].state.MipMapLevelOfDetailBias = reader.ReadSingle();
-				}
+                    Samplers[s].state.Filter = (TextureFilter)reader.ReadByte();
+                    Samplers[s].state.MaxAnisotropy = reader.ReadInt32();
+                    Samplers[s].state.MaxMipLevel = reader.ReadInt32();
+                    Samplers[s].state.MipMapLevelOfDetailBias = reader.ReadSingle();
+                }
 
                 Samplers[s].name = reader.ReadString();
                 Samplers[s].parameter = reader.ReadByte();
@@ -120,6 +120,6 @@ namespace Monogame.Graphics
         {
             PlatformGraphicsDeviceResetting();
         }
-	}
+    }
 }
 
