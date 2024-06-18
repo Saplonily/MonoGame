@@ -353,7 +353,7 @@ class WinFormsGameWindow : GameWindow, IDisposable
     private void OnKeyPress(object sender, KeyPressEventArgs e)
     {
         var key = (Key)(VkKeyScanEx(e.KeyChar, InputLanguage.CurrentInputLanguage.Handle) & 0xff);
-        OnTextInput(new TextInputEventArgs(e.KeyChar, key));
+        OnTextInput(e.KeyChar, key);
     }
 
     internal void Initialize(int width, int height)

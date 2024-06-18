@@ -619,7 +619,7 @@ public partial class GraphicsDevice
         _d3dContext = _d3dDevice.ImmediateContext.QueryInterface<SharpDX.Direct3D11.DeviceContext>();
 
         // Create a new instance of GraphicsDebug because we support it on Windows platforms.
-        _graphicsDebug = new GraphicsDebug(this);
+        GraphicsDebug = new GraphicsDebug(this);
     }
 
     internal void SetHardwareFullscreen()

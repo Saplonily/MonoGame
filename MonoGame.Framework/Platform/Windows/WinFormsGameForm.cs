@@ -195,11 +195,11 @@ internal class WinFormsGameForm : Form
             {
             case WM_KEYDOWN:
             case WM_SYSKEYDOWN:
-                _window.OnKeyDown(new InputKeyEventArgs(key));
+                _window.OnKeyDown(key);
                 break;
             case WM_KEYUP:
             case WM_SYSKEYUP:
-                _window.OnKeyUp(new InputKeyEventArgs(key));
+                _window.OnKeyUp(key);
                 break;
             default:
                 break;
@@ -227,7 +227,7 @@ internal class WinFormsGameForm : Form
             files[i] = builder.ToString();
         }
 
-        _window.OnFileDrop(new FileDropEventArgs(files));
+        _window.OnFileDrop(files);
         m.Result = IntPtr.Zero;
     }
 

@@ -48,7 +48,7 @@ public partial class GraphicsDevice : IDisposable
 #endif
 
     private Color _blendFactor = Color.White;
-    //private bool _blendFactorDirty;
+    private bool _blendFactorDirty;
 
     private BlendState _blendState;
     private BlendState _actualBlendState;
@@ -430,7 +430,7 @@ public partial class GraphicsDevice : IDisposable
             if (_blendFactor == value)
                 return;
             _blendFactor = value;
-            //_blendFactorDirty = true;
+            _blendFactorDirty = true;
         }
     }
 
