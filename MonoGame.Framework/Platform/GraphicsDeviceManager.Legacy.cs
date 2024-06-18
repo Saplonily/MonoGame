@@ -44,8 +44,7 @@ public class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable, IGraph
 
     public GraphicsDeviceManager(Game game)
     {
-        if (game == null)
-            throw new ArgumentNullException("The game cannot be null!");
+        ArgumentNullException.ThrowIfNull(game);
 
         _game = game;
 
@@ -109,38 +108,38 @@ public class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable, IGraph
 
     #region IGraphicsDeviceService Members
 
-    public event EventHandler<EventArgs> DeviceCreated;
-    public event EventHandler<EventArgs> DeviceDisposing;
-    public event EventHandler<EventArgs> DeviceReset;
-    public event EventHandler<EventArgs> DeviceResetting;
-    public event EventHandler<PreparingDeviceSettingsEventArgs> PreparingDeviceSettings;
+    public event Action DeviceCreated;
+    public event Action DeviceDisposing;
+    public event Action DeviceReset;
+    public event Action DeviceResetting;
+    public event Action<GraphicsDeviceInformation> PreparingDeviceSettings;
 
     // FIXME: Why does the GraphicsDeviceManager not know enough about the
     //        GraphicsDevice to raise these events without help?
-    internal void OnDeviceDisposing(EventArgs e)
+    internal void OnDeviceDisposing()
     {
-        EventHelpers.Raise(this, DeviceDisposing, e);
+        DeviceDisposing?.Invoke();
     }
 
     // FIXME: Why does the GraphicsDeviceManager not know enough about the
     //        GraphicsDevice to raise these events without help?
     internal void OnDeviceResetting(EventArgs e)
     {
-        EventHelpers.Raise(this, DeviceResetting, e);
+        DeviceResetting?.Invoke();
     }
 
     // FIXME: Why does the GraphicsDeviceManager not know enough about the
     //        GraphicsDevice to raise these events without help?
     internal void OnDeviceReset(EventArgs e)
     {
-        EventHelpers.Raise(this, DeviceReset, e);
+        DeviceReset?.Invoke();
     }
 
     // FIXME: Why does the GraphicsDeviceManager not know enough about the
     //        GraphicsDevice to raise these events without help?
     internal void OnDeviceCreated(EventArgs e)
     {
-        EventHelpers.Raise(this, DeviceCreated, e);
+        DeviceCreated?.Invoke();
     }
 
     #endregion
@@ -362,10 +361,9 @@ public class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable, IGraph
             gdi.GraphicsProfile = GraphicsProfile; // Microsoft defaults this to Reach.
             gdi.Adapter = GraphicsAdapter.DefaultAdapter;
             gdi.PresentationParameters = presentationParameters;
-            PreparingDeviceSettingsEventArgs pe = new PreparingDeviceSettingsEventArgs(gdi);
-            preparingDeviceSettingsHandler(this, pe);
-            presentationParameters = pe.GraphicsDeviceInformation.PresentationParameters;
-            GraphicsProfile = pe.GraphicsDeviceInformation.GraphicsProfile;
+            preparingDeviceSettingsHandler(gdi);
+            presentationParameters = gdi.PresentationParameters;
+            GraphicsProfile = gdi.GraphicsProfile;
         }
 
         // Needs to be before ApplyChanges()
@@ -578,8 +576,7 @@ public class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable, IGraph
         set
         {
             _supportedOrientations = value;
-            if (_game.Window != null)
-                _game.Window.SetSupportedOrientations(_supportedOrientations);
+            _game.Window?.SetSupportedOrientations(_supportedOrientations);
         }
     }
 

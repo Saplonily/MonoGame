@@ -79,7 +79,7 @@ public sealed partial class TextureCollection
                 shaderStage.SetShaderResource(i, _textures[i].GetShaderResourceView());
                 unchecked
                 {
-                    _graphicsDevice._graphicsMetrics._textureCount++;
+                    _graphicsDevice._graphicsMetrics.TextureCount++;
                 }
             }
             _dirty &= ~mask;

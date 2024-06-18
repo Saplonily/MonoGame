@@ -377,7 +377,7 @@ public partial class WaveBank : IDisposable
     /// <summary>
     /// This event is triggered when the WaveBank is disposed.
     /// </summary>
-    public event EventHandler<EventArgs> Disposing;
+    public event Action Disposing;
 
     /// <summary>
     /// Is true if the WaveBank has been disposed.
@@ -413,7 +413,7 @@ public partial class WaveBank : IDisposable
 
             IsPrepared = false;
             IsInUse = false;
-            EventHelpers.Raise(this, Disposing, EventArgs.Empty);
+            Disposing?.Invoke();
         }
     }
 }

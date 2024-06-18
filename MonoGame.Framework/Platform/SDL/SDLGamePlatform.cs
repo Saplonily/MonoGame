@@ -22,7 +22,7 @@ internal class SdlGamePlatform : GamePlatform
     }
 
     private readonly Game _game;
-    private readonly List<Keys> _keys;
+    private readonly List<Key> _keys;
 
     private int _isExiting;
     private SdlGameWindow _view;
@@ -33,7 +33,7 @@ internal class SdlGamePlatform : GamePlatform
         : base(game)
     {
         _game = game;
-        _keys = new List<Keys>();
+        _keys = new List<Key>();
         Keyboard.SetKeys(_keys);
 
         Sdl.GetVersion(out Sdl.version);
@@ -106,7 +106,7 @@ internal class SdlGamePlatform : GamePlatform
 
     private bool ShouldExit()
     {
-        if (_keys.Contains(Keys.F4) && (_keys.Contains(Keys.LeftAlt) || _keys.Contains(Keys.RightAlt)))
+        if (_keys.Contains(Key.F4) && (_keys.Contains(Key.LeftAlt) || _keys.Contains(Key.RightAlt)))
         {
             return Window.AllowAltF4;
         }
@@ -150,16 +150,16 @@ internal class SdlGamePlatform : GamePlatform
                 if (!_keys.Contains(key))
                     _keys.Add(key);
                 char character = (char)ev.Key.Keysym.Sym;
-                _view.OnKeyDown(new InputKeyEventArgs(key));
+                _view.OnKeyDown(key);
                 if (char.IsControl(character))
-                    _view.OnTextInput(new TextInputEventArgs(character, key));
+                    _view.OnTextInput(character, key);
                 break;
             }
             case Sdl.EventType.KeyUp:
             {
                 var key = KeyboardUtil.ToXna(ev.Key.Keysym.Sym);
                 _keys.Remove(key);
-                _view.OnKeyUp(new InputKeyEventArgs(key));
+                _view.OnKeyUp(key);
                 break;
             }
             case Sdl.EventType.TextInput:
@@ -205,9 +205,9 @@ internal class SdlGamePlatform : GamePlatform
                                 // so we need to convert it to Unicode codepoint and check if it's within the supported range
                                 int codepoint = UTF8ToUnicode(utf8character);
 
-                                if (codepoint >= 0 && codepoint < 0xFFFF)
+                                if (codepoint is >= 0 and < 0xFFFF)
                                 {
-                                    _view.OnTextInput(new TextInputEventArgs((char)codepoint, KeyboardUtil.ToXna(codepoint)));
+                                    _view.OnTextInput((char)codepoint, KeyboardUtil.ToXna(codepoint));
                                     // UTF16 characters beyond 0xFFFF are not supported (and would require a surrogate encoding that is not supported by the char type)
                                 }
                             }
@@ -262,7 +262,7 @@ internal class SdlGamePlatform : GamePlatform
 
                 if (_dropList.Count > 0)
                 {
-                    _view.OnFileDrop(new FileDropEventArgs(_dropList.ToArray()));
+                    _view.OnFileDrop(_dropList.ToArray());
                     _dropList.Clear();
                 }
 
@@ -338,8 +338,7 @@ internal class SdlGamePlatform : GamePlatform
 
     public override void Present()
     {
-        if (Game.GraphicsDevice != null)
-            Game.GraphicsDevice.Present();
+        Game.GraphicsDevice?.Present();
     }
 
     protected override void Dispose(bool disposing)

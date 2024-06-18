@@ -12,7 +12,7 @@ namespace Monogame;
 /// <summary>
 /// The system window used by a <see cref="Game"/>.
 /// </summary>
-	public abstract class GameWindow
+public abstract class GameWindow
 {
     #region Properties
 
@@ -119,42 +119,42 @@ namespace Monogame;
     /// Raised when the user resized the window or the window switches from fullscreen mode to
     /// windowed mode or vice versa.
     /// </summary>
-    public event EventHandler<EventArgs> ClientSizeChanged;
+    public event Action ClientSizeChanged;
 
     /// <summary>
     /// Raised when <see cref="CurrentOrientation"/> changed.
     /// </summary>
-    public event EventHandler<EventArgs> OrientationChanged;
+    public event Action OrientationChanged;
 
     /// <summary>
     /// Raised when <see cref="ScreenDeviceName"/> changed.
     /// </summary>
-    public event EventHandler<EventArgs> ScreenDeviceNameChanged;
+    public event Action ScreenDeviceNameChanged;
 
-#if WINDOWS || WINDOWS_UAP || DESKTOPGL|| ANGLE
+#if WINDOWS || WINDOWS_UAP || DESKTOPGL || ANGLE
 
     /// <summary>
-		/// Use this event to user text input.
-		/// 
-		/// This event is not raised by noncharacter keys except control characters such as backspace, tab, carriage return and escape.
-		/// This event also supports key repeat.
-		/// </summary>
-		/// <remarks>
-		/// This event is only supported on desktop platforms.
-		/// </remarks>
-		public event EventHandler<TextInputEventArgs> TextInput;
+    /// Use this event to user text input.
+    /// 
+    /// This event is not raised by noncharacter keys except control characters such as backspace, tab, carriage return and escape.
+    /// This event also supports key repeat.
+    /// </summary>
+    /// <remarks>
+    /// This event is only supported on desktop platforms.
+    /// </remarks>
+    public event Action<char, Key> TextInput;
 
-    internal bool IsTextInputHandled { get { return TextInput != null; } }
+    internal bool IsTextInputHandled => TextInput != null;
 
     /// <summary>
     /// Buffered keyboard KeyDown event.
     /// </summary>
-		public event EventHandler<InputKeyEventArgs> KeyDown;
+    public event Action<Key> KeyDown;
 
     /// <summary>
     /// Buffered keyboard KeyUp event.
     /// </summary>
-    public event EventHandler<InputKeyEventArgs> KeyUp;
+    public event Action<Key> KeyUp;
 
 #endif
 
@@ -164,7 +164,7 @@ namespace Monogame;
     /// <remarks>
     /// This event is only supported on desktop platforms.
     /// </remarks>
-    public event EventHandler<FileDropEventArgs> FileDrop;
+    public event Action<string[]> FileDrop;
 
     #endregion Events
 
@@ -194,23 +194,9 @@ namespace Monogame;
         EndScreenDeviceChange(screenDeviceName, ClientBounds.Width, ClientBounds.Height);
     }
 
-    /// <summary>
-    /// Called when the window gains focus.
-    /// </summary>
-    protected void OnActivated()
-    {
-    }
-
     internal void OnClientSizeChanged()
     {
-        EventHelpers.Raise(this, ClientSizeChanged, EventArgs.Empty);
-    }
-
-    /// <summary>
-    /// Called when the window loses focus.
-    /// </summary>
-    protected void OnDeactivated()
-    {
+        ClientSizeChanged?.Invoke();
     }
 
     /// <summary>
@@ -218,14 +204,7 @@ namespace Monogame;
     /// </summary>
     protected void OnOrientationChanged()
     {
-        EventHelpers.Raise(this, OrientationChanged, EventArgs.Empty);
-    }
-
-    /// <summary>
-    /// Called when the window needs to be painted.
-    /// </summary>
-		protected void OnPaint()
-    {
+        OrientationChanged?.Invoke();
     }
 
     /// <summary>
@@ -233,31 +212,32 @@ namespace Monogame;
     /// </summary>
     protected void OnScreenDeviceNameChanged()
     {
-        EventHelpers.Raise(this, ScreenDeviceNameChanged, EventArgs.Empty);
+        ScreenDeviceNameChanged?.Invoke();
     }
 
 #if WINDOWS || WINDOWS_UAP || DESKTOPGL || ANGLE
-	    /// <summary>
-	    /// Called when the window receives text input. Raises the <see cref="TextInput"/> event.
-	    /// </summary>
-	    /// <param name="e">Parameters to the <see cref="TextInput"/> event.</param>
-		internal void OnTextInput(TextInputEventArgs e)
-		{
-        EventHelpers.Raise(this, TextInput, e);
-		}
-    internal void OnKeyDown(InputKeyEventArgs e)
-	    {
-        EventHelpers.Raise(this, KeyDown, e);
-	    }
-    internal void OnKeyUp(InputKeyEventArgs e)
-	    {
-        EventHelpers.Raise(this, KeyUp, e);
-	    }
+    /// <summary>
+    /// Called when the window receives text input. Raises the <see cref="TextInput"/> event.
+    /// </summary>
+    internal void OnTextInput(char character, Key key)
+    {
+        TextInput?.Invoke(character, key);
+    }
+
+    internal void OnKeyDown(Key key)
+    {
+        KeyDown?.Invoke(key);
+    }
+
+    internal void OnKeyUp(Key key)
+    {
+        KeyUp?.Invoke(key);
+    }
 #endif
 
-    internal void OnFileDrop(FileDropEventArgs e)
+    internal void OnFileDrop(string[] files)
     {
-        EventHelpers.Raise(this, FileDrop, e);
+        FileDrop?.Invoke(files);
     }
 
     /// <summary>

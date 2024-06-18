@@ -15,7 +15,7 @@ using Monogame.Input;
 using Monogame.Input.Touch;
 using Monogame.Windows;
 using ButtonState = Monogame.Input.ButtonState;
-using Keys = Monogame.Input.Keys;
+using Key = Monogame.Input.Key;
 using Point = System.Drawing.Point;
 using Rectangle = Monogame.Rectangle;
 using XnaPoint = Monogame.Point;
@@ -352,7 +352,7 @@ class WinFormsGameWindow : GameWindow, IDisposable
 
     private void OnKeyPress(object sender, KeyPressEventArgs e)
     {
-        var key = (Keys)(VkKeyScanEx(e.KeyChar, InputLanguage.CurrentInputLanguage.Handle) & 0xff);
+        var key = (Key)(VkKeyScanEx(e.KeyChar, InputLanguage.CurrentInputLanguage.Handle) & 0xff);
         OnTextInput(new TextInputEventArgs(e.KeyChar, key));
     }
 

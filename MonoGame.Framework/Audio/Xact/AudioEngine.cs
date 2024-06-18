@@ -365,7 +365,7 @@ public class AudioEngine : IDisposable
     /// <summary>
     /// This event is triggered when the AudioEngine is disposed.
     /// </summary>
-    public event EventHandler<EventArgs> Disposing;
+    public event Action Disposing;
 
     /// <summary>
     /// Is true if the AudioEngine has been disposed.
@@ -398,6 +398,6 @@ public class AudioEngine : IDisposable
         // audio cues to stop here?
 
         if (disposing)
-            EventHelpers.Raise(this, Disposing, EventArgs.Empty);
+            Disposing?.Invoke();
     }
 }

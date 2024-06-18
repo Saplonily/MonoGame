@@ -357,7 +357,7 @@ public class Cue : IDisposable
     /// <summary>
     /// This event is triggered when the Cue is disposed.
     /// </summary>
-    public event EventHandler<EventArgs> Disposing;
+    public event Action Disposing;
 
     /// <summary>
     /// Is true if the Cue has been disposed.
@@ -383,7 +383,7 @@ public class Cue : IDisposable
         {
             IsCreated = false;
             IsPrepared = false;
-            EventHelpers.Raise(this, Disposing, EventArgs.Empty);
+            Disposing?.Invoke();
         }
     }
 }

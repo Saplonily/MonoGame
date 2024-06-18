@@ -26,11 +26,11 @@ public static partial class MediaPlayer
     /// Raised when the active song changes due to active playback or due to explicit calls to the
     /// <see cref="MoveNext()"/> or <see cref="MovePrevious()"/> methods.
     /// </summary>
-		public static event EventHandler<EventArgs> ActiveSongChanged;
+    public static event Action ActiveSongChanged;
     /// <summary>
     /// Raised when the media player play state changes.
     /// </summary>
-    public static event EventHandler<EventArgs> MediaStateChanged;
+    public static event Action MediaStateChanged;
 
     static MediaPlayer()
     {
@@ -47,7 +47,7 @@ public static partial class MediaPlayer
     /// <summary>
     /// Gets or set the muted setting for the media player.
     /// </summary>
-		public static bool IsMuted
+    public static bool IsMuted
     {
         get { return PlatformGetIsMuted(); }
         set { PlatformSetIsMuted(value); }
@@ -109,7 +109,7 @@ public static partial class MediaPlayer
             if (_state != value)
             {
                 _state = value;
-                EventHelpers.Raise(null, MediaStateChanged, EventArgs.Empty);
+                MediaStateChanged?.Invoke();
             }
         }
     }
@@ -187,7 +187,7 @@ public static partial class MediaPlayer
     public static void Play(Song song, TimeSpan? startPosition)
     {
         if (song == null)
-            throw new ArgumentNullException("song", "This method does not accept null for this parameter.");
+            throw new ArgumentNullException(nameof(song), "This method does not accept null for this parameter.");
 
         var previousSong = _queue.Count > 0 ? _queue[0] : null;
         _queue.Clear();
@@ -198,7 +198,7 @@ public static partial class MediaPlayer
         PlaySong(song, startPosition);
 
         if (previousSong != song)
-            EventHelpers.Raise(null, ActiveSongChanged, EventArgs.Empty);
+            ActiveSongChanged?.Invoke();
     }
 
     /// <summary>
@@ -208,7 +208,7 @@ public static partial class MediaPlayer
     public static void Play(SongCollection collection, int index = 0)
     {
         if (collection == null)
-            throw new ArgumentNullException("collection", "This method does not accept null for this parameter.");
+            throw new ArgumentNullException(nameof(collection), "This method does not accept null for this parameter.");
 
         _queue.Clear();
         _numSongsInQueuePlayed = 0;
@@ -223,8 +223,8 @@ public static partial class MediaPlayer
 
     private static void PlaySong(Song song, TimeSpan? startPosition)
     {
-        if (song != null && song.IsDisposed)
-            throw new ObjectDisposedException("song");
+        ArgumentNullException.ThrowIfNull(song);
+        ObjectDisposedException.ThrowIf(song.IsDisposed, song);
 
         PlatformPlaySong(song, startPosition);
         State = MediaState.Playing;
@@ -241,7 +241,7 @@ public static partial class MediaPlayer
             if (!IsRepeating)
             {
                 Stop();
-                EventHelpers.Raise(null, ActiveSongChanged, EventArgs.Empty);
+                ActiveSongChanged?.Invoke();
                 return;
             }
         }
@@ -281,7 +281,7 @@ public static partial class MediaPlayer
     /// If the current song is the last song in the queue, <see cref="MoveNext()"/> will stay on current song
     /// </para>
     /// </remarks>
-		public static void MoveNext()
+    public static void MoveNext()
     {
         NextSong(1);
     }
@@ -319,6 +319,6 @@ public static partial class MediaPlayer
         if (nextSong != null)
             PlaySong(nextSong, null);
 
-        EventHelpers.Raise(null, ActiveSongChanged, EventArgs.Empty);
+        ActiveSongChanged?.Invoke();
     }
 }

@@ -55,7 +55,7 @@ public sealed partial class TextureCollection
 
                 unchecked
                 {
-                    _graphicsDevice._graphicsMetrics._textureCount++;
+                    _graphicsDevice._graphicsMetrics.TextureCount++;
                 }
             }
 

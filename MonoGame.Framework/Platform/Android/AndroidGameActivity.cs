@@ -45,7 +45,7 @@ public class AndroidGameActivity : Activity
         Game.Activity = this;
     }
 
-    public static event EventHandler Paused;
+    public static event Action Paused;
 
     public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
     {
@@ -56,17 +56,18 @@ public class AndroidGameActivity : Activity
     protected override void OnPause()
     {
         base.OnPause();
-        EventHelpers.Raise(this, Paused, EventArgs.Empty);
+        Paused?.Invoke();
 
         if (_orientationListener.CanDetectOrientation())
             _orientationListener.Disable();
     }
 
-    public static event EventHandler Resumed;
+    public static event Action Resumed;
+
     protected override void OnResume()
     {
         base.OnResume();
-        EventHelpers.Raise(this, Resumed, EventArgs.Empty);
+        Resumed?.Invoke();
 
         if (Game != null)
         {
@@ -85,8 +86,7 @@ public class AndroidGameActivity : Activity
         UnregisterReceiver(screenReceiver);
         ScreenReceiver.ScreenLocked = false;
         _orientationListener = null;
-        if (Game != null)
-            Game.Dispose();
+        Game?.Dispose();
         Game = null;
         base.OnDestroy();
     }

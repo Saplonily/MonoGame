@@ -8,7 +8,7 @@ namespace Monogame.Input;
 
 public static partial class Keyboard
 {
-    static List<Keys> _keys;
+    static List<Key> _keys;
 
     private static KeyboardState PlatformGetState()
     {
@@ -18,7 +18,7 @@ public static partial class Keyboard
                                  (modifiers & Sdl.Keyboard.Keymod.NumLock) == Sdl.Keyboard.Keymod.NumLock);
     }
 
-    internal static void SetKeys(List<Keys> keys)
+    internal static void SetKeys(List<Key> keys)
     {
         _keys = keys;
     }

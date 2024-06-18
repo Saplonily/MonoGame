@@ -75,12 +75,12 @@ public sealed class Accelerometer : SensorBase<AccelerometerReading>
         sensor = sensorManager.GetDefaultSensor(SensorType.Accelerometer);
     }
 
-    void ActivityPaused(object sender, EventArgs eventArgs)
+    void ActivityPaused()
     {
         sensorManager.UnregisterListener(listener, sensor);
     }
 
-    void ActivityResumed(object sender, EventArgs eventArgs)
+    void ActivityResumed()
     {
         sensorManager.RegisterListener(listener, sensor, SensorDelay.Game);
     }
@@ -90,8 +90,7 @@ public sealed class Accelerometer : SensorBase<AccelerometerReading>
     /// </summary>
     public override void Start()
     {
-        if (IsDisposed)
-            throw new ObjectDisposedException(GetType().Name);
+        ObjectDisposedException.ThrowIf(IsDisposed, this);
         if (sensorManager == null)
             Initialize();
         if (started == false)

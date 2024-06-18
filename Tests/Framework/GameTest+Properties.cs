@@ -22,21 +22,6 @@ partial class GameTest
 {
     public static class Properties
     {
-        [TestFixture]
-        public class Components : ReadOnlyPropertyFixtureBase<GameComponentCollection>
-        {
-            public Components()
-                : base(g => g.Components)
-            { }
-
-            public override void Has_correct_default_value() { }
-
-            [Test]
-            public void Is_available_before_Run()
-            {
-                Assert.That(Game, HasThisProperty.Not.Null);
-            }
-        }
 
         [TestFixture]
         public class Content : ReadWritePropertyFixtureBase<ContentManager>
@@ -107,12 +92,10 @@ partial class GameTest
 
             private class MockGraphicsDeviceService : IGraphicsDeviceService
             {
-#pragma warning disable 67
-                public event EventHandler<EventArgs> DeviceCreated;
-                public event EventHandler<EventArgs> DeviceDisposing;
-                public event EventHandler<EventArgs> DeviceReset;
-                public event EventHandler<EventArgs> DeviceResetting;
-#pragma warning restore 67
+                public event Action DeviceCreated;
+                public event Action DeviceDisposing;
+                public event Action DeviceReset;
+                public event Action DeviceResetting;
 
                 // TODO: It might be nice to try to use a real, live
                 //       GraphicsDevice here rather than null.
@@ -176,22 +159,6 @@ partial class GameTest
             }
 
             public override void Cannot_set_illegal_value(Tuple<bool, Type> valueAndException) { }
-        }
-
-        [TestFixture]
-        public class LaunchParameters_ : ReadOnlyPropertyFixtureBase<LaunchParameters>
-        {
-            public LaunchParameters_()
-                : base(g => g.LaunchParameters)
-            { }
-
-            public override void Has_correct_default_value() { }
-
-            [Test]
-            public void Is_available_before_Run()
-            {
-                Assert.That(Game, HasThisProperty.Not.Null);
-            }
         }
 
         [TestFixture]

@@ -30,7 +30,6 @@
     <Compile Include="Platform\Graphics\SwapChainRenderTarget.cs" />
     <Compile Include="Platform\Graphics\Texture2D.StbSharp.cs" />
     <Compile Include="Platform\Input\GamePad.XInput.cs" />
-    <Compile Include="Platform\Input\InputKeyEventArgs.cs" />
     <Compile Include="Platform\Input\Joystick.Default.cs" />
     <Compile Include="Platform\Input\Keyboard.Windows.cs" />
     <Compile Include="Platform\Input\KeyboardInput.Windows.cs" />

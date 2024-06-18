@@ -23,6 +23,12 @@ public struct TouchPanelCapabilities
     private int maximumTouchCount;
     private bool initialized;
 
+    /// <summary/>
+    public TouchPanelCapabilities()
+    {
+        maximumTouchCount = 0;
+    }
+
     internal void Initialize()
     {
         if (!initialized)

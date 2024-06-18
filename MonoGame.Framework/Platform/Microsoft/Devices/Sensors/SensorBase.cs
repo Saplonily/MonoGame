@@ -7,8 +7,7 @@ using Monogame;
 
 namespace Microsoft.Devices.Sensors;
 
-public abstract class SensorBase<TSensorReading> : IDisposable
-    where TSensorReading : ISensorReading
+public abstract class SensorBase<TSensorReading> : IDisposable where TSensorReading : ISensorReading
 {
 #if IOS
     protected static readonly CoreMotion.CMMotionManager motionManager = new CoreMotion.CMMotionManager();
@@ -16,41 +15,36 @@ public abstract class SensorBase<TSensorReading> : IDisposable
     bool disposed;
     private TimeSpan timeBetweenUpdates;
     private TSensorReading currentValue;
-    private SensorReadingEventArgs<TSensorReading> eventArgs = new SensorReadingEventArgs<TSensorReading>(default(TSensorReading));
 
     public TSensorReading CurrentValue
     {
-        get { return currentValue; }
+        get => currentValue;
         protected set
         {
             currentValue = value;
-
-            var handler = CurrentValueChanged;
-
-            if (handler != null)
-            {
-                eventArgs.SensorReading = value;
-                handler(this, eventArgs);
-            }
+            CurrentValueChanged?.Invoke(currentValue);
         }
     }
+
     public bool IsDataValid { get; protected set; }
+
     public TimeSpan TimeBetweenUpdates
     {
-        get { return this.timeBetweenUpdates; }
+        get => timeBetweenUpdates;
         set
         {
-            if (this.timeBetweenUpdates != value)
+            if (timeBetweenUpdates != value)
             {
-                this.timeBetweenUpdates = value;
-                EventHelpers.Raise(this, TimeBetweenUpdatesChanged, EventArgs.Empty);
+                timeBetweenUpdates = value;
+                TimeBetweenUpdatesChanged?.Invoke();
             }
         }
     }
 
-    public event EventHandler<SensorReadingEventArgs<TSensorReading>> CurrentValueChanged;
-    protected event EventHandler<EventArgs> TimeBetweenUpdatesChanged;
-    protected bool IsDisposed { get { return disposed; } }
+    public event Action<TSensorReading> CurrentValueChanged;
+    protected event Action TimeBetweenUpdatesChanged;
+
+    protected bool IsDisposed => disposed;
 
     public SensorBase()
     {
@@ -64,8 +58,7 @@ public abstract class SensorBase<TSensorReading> : IDisposable
 
     public void Dispose()
     {
-        if (disposed)
-            throw new ObjectDisposedException(GetType().Name);
+        ObjectDisposedException.ThrowIf(disposed, this);
         Dispose(true);
         GC.SuppressFinalize(this);
     }

@@ -42,25 +42,6 @@ public partial class RenderTargetCube : TextureCube, IRenderTarget
     }
 
     /// <summary>
-    /// Gets a value that indicates whether the contents of this <b>RenderTargetCube</b> has been lost due to a lost
-    /// device event.
-    /// </summary>
-    /// <remarks>
-    /// This property will always return <b>false</b>.  It is included for XNA compatibility.
-    /// </remarks>
-    [Obsolete("This is provided for XNA compatibility only and will always return false")]
-    public bool IsContentLost { get { return false; } }
-
-    /// <summary>
-    /// Occurs when a graphics device lost event is triggered.
-    /// </summary>
-    /// <remarks>
-    /// This event is never called.  It is included for XNA compatibility.
-    /// </remarks>
-    [Obsolete("This is provided for XNA compatibility is never called by MonoGame")]
-    public event EventHandler<EventArgs> ContentLost;
-
-    /// <summary>
     /// Initializes a new instance of the <see cref="RenderTargetCube"/> class.
     /// </summary>
     /// <param name="graphicsDevice">The graphics device.</param>
@@ -97,14 +78,9 @@ public partial class RenderTargetCube : TextureCube, IRenderTarget
     protected static SurfaceFormat QuerySelectedFormat(GraphicsDevice graphicsDevice, SurfaceFormat preferredFormat)
     {
         SurfaceFormat selectedFormat = preferredFormat;
-        DepthFormat selectedDepthFormat;
-        int selectedMultiSampleCount;
 
-        if (graphicsDevice != null)
-        {
-            graphicsDevice.Adapter.QueryRenderTargetFormat(graphicsDevice.GraphicsProfile, preferredFormat, DepthFormat.None, 0,
-                out selectedFormat, out selectedDepthFormat, out selectedMultiSampleCount);
-        }
+        graphicsDevice?.Adapter.QueryRenderTargetFormat(graphicsDevice.GraphicsProfile, preferredFormat, DepthFormat.None, 0,
+                out selectedFormat, out DepthFormat selectedDepthFormat, out int selectedMultiSampleCount);
 
         return selectedFormat;
     }

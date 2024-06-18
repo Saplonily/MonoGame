@@ -14,8 +14,6 @@ namespace MonoGame.Framework;
 
 class WinFormsGamePlatform : GamePlatform
 {
-    //internal static string LaunchParameters;
-
     private WinFormsGameWindow _window;
 
     public WinFormsGamePlatform(Game game)
@@ -70,8 +68,7 @@ class WinFormsGamePlatform : GamePlatform
 
     public override void Exit()
     {
-        if (_window != null)
-            _window.Dispose();
+        _window?.Dispose();
         _window = null;
         Window = null;
     }
@@ -114,9 +111,7 @@ class WinFormsGamePlatform : GamePlatform
 
     public override void Present()
     {
-        var device = Game.GraphicsDevice;
-        if (device != null)
-            device.Present();
+        Game.GraphicsDevice?.Present();
     }
 
     protected override void Dispose(bool disposing)

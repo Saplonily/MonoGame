@@ -13,7 +13,7 @@ namespace Monogame.Graphics;
 /// batched and will process them into short.MaxValue groups (strided by 6 for the number of vertices
 /// sent to the GPU). 
 /// </summary>
-	internal class SpriteBatcher
+internal class SpriteBatcher
 {
     /*
      * Note that this class is fundamental to high performance for SpriteBatch games. Please exercise
@@ -31,12 +31,12 @@ namespace Monogame.Graphics;
     /// <summary>
     /// Initialization size for the vertex array, in batch units.
     /// </summary>
-		private const int InitialVertexArraySize = 256;
+    private const int InitialVertexArraySize = 256;
 
     /// <summary>
     /// The list of batch items to process.
     /// </summary>
-	    private SpriteBatchItem[] _batchItemList;
+    private SpriteBatchItem[] _batchItemList;
     /// <summary>
     /// Index pointer to the next available SpriteBatchItem in _batchItemList.
     /// </summary>
@@ -147,26 +147,14 @@ namespace Monogame.Graphics;
     /// Sorts the batch items and then groups batch drawing into maximal allowed batch sets that do not
     /// overflow the 16 bit array indices for vertices.
     /// </summary>
-    /// <param name="sortMode">The type of depth sorting desired for the rendering.</param>
     /// <param name="effect">The custom effect to apply to the drawn geometry</param>
-    public unsafe void DrawBatch(SpriteSortMode sortMode, Effect effect)
+    public unsafe void DrawBatch(Effect effect)
     {
-        if (effect != null && effect.IsDisposed)
-            throw new ObjectDisposedException("effect");
+        ObjectDisposedException.ThrowIf(effect?.IsDisposed is true, effect);
 
         // nothing to do
         if (_batchItemCount == 0)
             return;
-
-        // sort the batch items
-        switch (sortMode)
-        {
-        case SpriteSortMode.Texture:
-        case SpriteSortMode.FrontToBack:
-        case SpriteSortMode.BackToFront:
-            Array.Sort(_batchItemList, 0, _batchItemCount);
-            break;
-        }
 
         // Determine how many iterations through the drawing code we need to make
         int batchIndex = 0;
@@ -175,7 +163,7 @@ namespace Monogame.Graphics;
 
         unchecked
         {
-            _device._graphicsMetrics._spriteCount += batchCount;
+            _device._graphicsMetrics.SpriteCount += batchCount;
         }
 
         // Iterate through the batches, doing short.MaxValue sets of vertices only.

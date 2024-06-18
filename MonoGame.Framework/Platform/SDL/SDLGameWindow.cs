@@ -247,8 +247,8 @@ internal class SdlGameWindow : GameWindow, IDisposable
             _height = displayRect.Height;
         }
 
-        int ignore, minx = 0, miny = 0;
-        Sdl.Window.GetBorderSize(_handle, out miny, out minx, out ignore, out ignore);
+        int minx = 0, miny = 0;
+        Sdl.Window.GetBorderSize(_handle, out miny, out minx, out _, out _);
 
         var centerX = Math.Max(prevBounds.X + ((prevBounds.Width - clientWidth) / 2), minx);
         var centerY = Math.Max(prevBounds.Y + ((prevBounds.Height - clientHeight) / 2), miny);

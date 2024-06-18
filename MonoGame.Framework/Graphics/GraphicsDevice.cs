@@ -48,7 +48,7 @@ public partial class GraphicsDevice : IDisposable
 #endif
 
     private Color _blendFactor = Color.White;
-    private bool _blendFactorDirty;
+    //private bool _blendFactorDirty;
 
     private BlendState _blendState;
     private BlendState _actualBlendState;
@@ -157,110 +157,48 @@ public partial class GraphicsDevice : IDisposable
     // collected by holding a strong reference to it in this list.
     private readonly List<WeakReference> _resources = new List<WeakReference>();
 
-    // TODO Graphics Device events need implementing
-    /// <summary>
-    /// Occurs when a GraphicsDevice is about to be lost (for example, immediately before a reset).
-    /// </summary>
-    public event EventHandler<EventArgs> DeviceLost;
+    /// <summary>Occurs after a GraphicsDevice is reset, allowing an application to recreate all resources.</summary>
+    public event Action DeviceReset;
 
-    /// <summary>
-    /// Occurs after a GraphicsDevice is reset, allowing an application to recreate all resources.
-    /// </summary>
-		public event EventHandler<EventArgs> DeviceReset;
+    /// <summary>Occurs when a GraphicsDevice is resetting, allowing the application to cancel the default handling of the reset.</summary>
+    public event Action DeviceResetting;
 
-    /// <summary>
-    /// Occurs when a GraphicsDevice is resetting,
-    /// allowing the application to cancel the default handling of the reset.
-    /// </summary>
-		public event EventHandler<EventArgs> DeviceResetting;
+    /// <summary>Occurs when <see cref="Dispose()"/> is calledor when this object is finalized and collected by the garbage collector.</summary>
+    public event Action Disposing;
 
-    /// <summary>
-    /// Occurs when a resource is created.
-    /// </summary>
-		public event EventHandler<ResourceCreatedEventArgs> ResourceCreated;
-
-    /// <summary>
-    /// Occurs when a resource is destroyed.
-    /// </summary>
-		public event EventHandler<ResourceDestroyedEventArgs> ResourceDestroyed;
-
-    /// <summary>
-    /// Occurs when <see cref="Dispose()"/> is called
-    /// or when this object is finalized and collected by the garbage collector.
-    /// </summary>
-    public event EventHandler<EventArgs> Disposing;
-
-    internal event EventHandler<PresentationEventArgs> PresentationChanged;
+    internal event Action<PresentationParameters> PresentationChanged;
 
     private int _maxVertexBufferSlots;
     internal int MaxTextureSlots;
     internal int MaxVertexTextureSlots;
 
-    /// <summary>
-    /// Gets a value that indicates whether the object is disposed.
-    /// </summary>
-    public bool IsDisposed
-    {
-        get
-        {
-            return _isDisposed;
-        }
-    }
+    /// <summary>Gets a value that indicates whether the object is disposed.</summary>
+    public bool IsDisposed => _isDisposed;
 
-    /// <summary>
-    /// Gets a value that indicates whether the associated content was lost.
-    /// </summary>
-		public bool IsContentLost
-    {
-        get
-        {
-            // We will just return IsDisposed for now
-            // as that is the only case I can see for now
-            return IsDisposed;
-        }
-    }
+    // We will just return IsDisposed for now
+    // as that is the only case I can see for now
+    /// <summary>Gets a value that indicates whether the associated content was lost.</summary>
+    public bool IsContentLost => IsDisposed;
 
-    internal bool IsRenderTargetBound
-    {
-        get
-        {
-            return _currentRenderTargetCount > 0;
-        }
-    }
+    internal bool IsRenderTargetBound => _currentRenderTargetCount > 0;
 
-    internal DepthFormat ActiveDepthFormat
-    {
-        get
-        {
-            return IsRenderTargetBound
-                ? _currentRenderTargetBindings[0].DepthFormat
-                : PresentationParameters.DepthStencilFormat;
-        }
-    }
+    internal DepthFormat ActiveDepthFormat => IsRenderTargetBound ?
+        _currentRenderTargetBindings[0].DepthFormat :
+        PresentationParameters.DepthStencilFormat;
 
-    /// <summary>
-    /// Gets the graphics adapter.
-    /// </summary>
-    public GraphicsAdapter Adapter
-    {
-        get;
-        private set;
-    }
+    /// <summary>Gets the graphics adapter.</summary>
+    public GraphicsAdapter Adapter { get; private set; }
 
     internal GraphicsMetrics _graphicsMetrics;
 
     /// <summary>
     /// The rendering information for debugging and profiling.
-    /// The metrics are reset every frame after draw within <see cref="GraphicsDevice.Present"/>. 
+    /// The metrics are reset every frame after draw within <see cref="Present"/>. 
     /// </summary>
-    public GraphicsMetrics Metrics { get { return _graphicsMetrics; } set { _graphicsMetrics = value; } }
+    public GraphicsMetrics GraphicsMetrics { get => _graphicsMetrics; set => _graphicsMetrics = value; }
 
-    private GraphicsDebug _graphicsDebug;
-
-    /// <summary>
-    /// Access debugging APIs for the graphics subsystem.
-    /// </summary>
-    public GraphicsDebug GraphicsDebug { get { return _graphicsDebug; } set { _graphicsDebug = value; } }
+    /// <summary>Access debugging APIs for the graphics subsystem.</summary>
+    public GraphicsDebug GraphicsDebug { get; set; }
 
     internal GraphicsDevice()
     {
@@ -283,12 +221,10 @@ public partial class GraphicsDevice : IDisposable
     /// </exception>
     public GraphicsDevice(GraphicsAdapter adapter, GraphicsProfile graphicsProfile, PresentationParameters presentationParameters)
     {
-        if (adapter == null)
-            throw new ArgumentNullException("adapter");
+        ArgumentNullException.ThrowIfNull(adapter);
+        ArgumentNullException.ThrowIfNull(presentationParameters);
         if (!adapter.IsProfileSupported(graphicsProfile))
-            throw new NoSuitableGraphicsDeviceException(String.Format("Adapter '{0}' does not support the {1} profile.", adapter.Description, graphicsProfile));
-        if (presentationParameters == null)
-            throw new ArgumentNullException("presentationParameters");
+            throw new NoSuitableGraphicsDeviceException(string.Format("Adapter '{0}' does not support the {1} profile.", adapter.Description, graphicsProfile));
         Adapter = adapter;
         PresentationParameters = presentationParameters;
         _graphicsProfile = graphicsProfile;
@@ -311,12 +247,10 @@ public partial class GraphicsDevice : IDisposable
     /// </exception>
     public GraphicsDevice(GraphicsAdapter adapter, GraphicsProfile graphicsProfile, bool preferHalfPixelOffset, PresentationParameters presentationParameters)
     {
-        if (adapter == null)
-            throw new ArgumentNullException("adapter");
         if (!adapter.IsProfileSupported(graphicsProfile))
             throw new NoSuitableGraphicsDeviceException(String.Format("Adapter '{0}' does not support the {1} profile.", adapter.Description, graphicsProfile));
-        if (presentationParameters == null)
-            throw new ArgumentNullException("presentationParameters");
+        ArgumentNullException.ThrowIfNull(adapter);
+        ArgumentNullException.ThrowIfNull(presentationParameters);
 #if DIRECTX
         // TODO we need to figure out how to inject the half pixel offset into DX shaders
         preferHalfPixelOffset = false;
@@ -394,9 +328,9 @@ public partial class GraphicsDevice : IDisposable
             // for very large numbers. That doesn't matter because
             // the number will get clamped below anyway in this case.
             var msc = multiSampleCount;
-            msc = msc | (msc >> 1);
-            msc = msc | (msc >> 2);
-            msc = msc | (msc >> 4);
+            msc |= (msc >> 1);
+            msc |= (msc >> 2);
+            msc |= (msc >> 4);
             msc -= (msc >> 1);
             // and clamp it to what the device can handle
             if (msc > GraphicsCapabilities.MaxMultiSampleCount)
@@ -449,15 +383,10 @@ public partial class GraphicsDevice : IDisposable
     /// </summary>
     public RasterizerState RasterizerState
     {
-        get
-        {
-            return _rasterizerState;
-        }
-
+        get => _rasterizerState;
         set
         {
-            if (value == null)
-                throw new ArgumentNullException("value");
+            ArgumentNullException.ThrowIfNull(value);
 
             // Don't set the same state twice!
             if (_rasterizerState == value)
@@ -501,7 +430,7 @@ public partial class GraphicsDevice : IDisposable
             if (_blendFactor == value)
                 return;
             _blendFactor = value;
-            _blendFactorDirty = true;
+            //_blendFactorDirty = true;
         }
     }
 
@@ -514,8 +443,7 @@ public partial class GraphicsDevice : IDisposable
         get { return _blendState; }
         set
         {
-            if (value == null)
-                throw new ArgumentNullException("value");
+            ArgumentNullException.ThrowIfNull(value);
 
             // Don't set the same state twice!
             if (_blendState == value)
@@ -559,8 +487,7 @@ public partial class GraphicsDevice : IDisposable
         get { return _depthStencilState; }
         set
         {
-            if (value == null)
-                throw new ArgumentNullException("value");
+            ArgumentNullException.ThrowIfNull(value);
 
             // Don't set the same state twice!
             if (_depthStencilState == value)
@@ -607,9 +534,7 @@ public partial class GraphicsDevice : IDisposable
         PlatformApplyState(applyShaders);
     }
 
-    /// <summary>
-    /// Clears resource buffers.
-    /// </summary>
+    /// <summary>Clears resource buffers.</summary>
     /// <param name="color">Set this color value in all buffers.</param>
     public void Clear(Color color)
     {
@@ -620,7 +545,7 @@ public partial class GraphicsDevice : IDisposable
 
         unchecked
         {
-            _graphicsMetrics._clearCount++;
+            _graphicsMetrics.ClearCount++;
         }
     }
 
@@ -635,7 +560,7 @@ public partial class GraphicsDevice : IDisposable
 
         unchecked
         {
-            _graphicsMetrics._clearCount++;
+            _graphicsMetrics.ClearCount++;
         }
     }
 
@@ -646,7 +571,7 @@ public partial class GraphicsDevice : IDisposable
 
         unchecked
         {
-            _graphicsMetrics._clearCount++;
+            _graphicsMetrics.ClearCount++;
         }
     }
 
@@ -660,50 +585,48 @@ public partial class GraphicsDevice : IDisposable
     /// <summary/>
     protected virtual void Dispose(bool disposing)
     {
-        if (!_isDisposed)
+        if (_isDisposed) return;
+
+        if (disposing)
         {
-            if (disposing)
+            // Dispose of all remaining graphics resources before disposing of the graphics device
+            lock (_resourcesLock)
             {
-                // Dispose of all remaining graphics resources before disposing of the graphics device
-                lock (_resourcesLock)
+                foreach (var resource in _resources.ToArray())
                 {
-                    foreach (var resource in _resources.ToArray())
-                    {
-                        var target = resource.Target as IDisposable;
-                        if (target != null)
-                            target.Dispose();
-                    }
-                    _resources.Clear();
+                    if (resource.Target is IDisposable target)
+                        target.Dispose();
                 }
-
-                // Clear the effect cache.
-                EffectCache.Clear();
-
-                _blendState = null;
-                _actualBlendState = null;
-                _blendStateAdditive.Dispose();
-                _blendStateAlphaBlend.Dispose();
-                _blendStateNonPremultiplied.Dispose();
-                _blendStateOpaque.Dispose();
-
-                _depthStencilState = null;
-                _actualDepthStencilState = null;
-                _depthStencilStateDefault.Dispose();
-                _depthStencilStateDepthRead.Dispose();
-                _depthStencilStateNone.Dispose();
-
-                _rasterizerState = null;
-                _actualRasterizerState = null;
-                _rasterizerStateCullClockwise.Dispose();
-                _rasterizerStateCullCounterClockwise.Dispose();
-                _rasterizerStateCullNone.Dispose();
-
-                PlatformDispose();
+                _resources.Clear();
             }
 
-            _isDisposed = true;
-            EventHelpers.Raise(this, Disposing, EventArgs.Empty);
+            // Clear the effect cache.
+            EffectCache.Clear();
+
+            _blendState = null;
+            _actualBlendState = null;
+            _blendStateAdditive.Dispose();
+            _blendStateAlphaBlend.Dispose();
+            _blendStateNonPremultiplied.Dispose();
+            _blendStateOpaque.Dispose();
+
+            _depthStencilState = null;
+            _actualDepthStencilState = null;
+            _depthStencilStateDefault.Dispose();
+            _depthStencilStateDepthRead.Dispose();
+            _depthStencilStateNone.Dispose();
+
+            _rasterizerState = null;
+            _actualRasterizerState = null;
+            _rasterizerStateCullClockwise.Dispose();
+            _rasterizerStateCullCounterClockwise.Dispose();
+            _rasterizerStateCullNone.Dispose();
+
+            PlatformDispose();
         }
+
+        _isDisposed = true;
+        Disposing?.Invoke();
     }
 
     internal void AddResourceReference(WeakReference resourceReference)
@@ -737,13 +660,6 @@ public partial class GraphicsDevice : IDisposable
         PlatformPresent();
     }
 
-    /*
-    public void Present(Rectangle? sourceRectangle, Rectangle? destinationRectangle, IntPtr overrideWindowHandle)
-    {
-        throw new NotImplementedException();
-    }
-    */
-
     partial void PlatformReset();
 
     /// <summary>
@@ -752,14 +668,13 @@ public partial class GraphicsDevice : IDisposable
     public void Reset()
     {
         PlatformReset();
-
-        EventHelpers.Raise(this, DeviceResetting, EventArgs.Empty);
+        DeviceResetting?.Invoke();
 
         // Update the back buffer.
         OnPresentationChanged();
 
-        EventHelpers.Raise(this, PresentationChanged, new PresentationEventArgs(PresentationParameters));
-        EventHelpers.Raise(this, DeviceReset, EventArgs.Empty);
+        PresentationChanged?.Invoke(PresentationParameters);
+        DeviceReset?.Invoke();
     }
 
     /// <summary>
@@ -771,8 +686,7 @@ public partial class GraphicsDevice : IDisposable
     /// </exception>
     public void Reset(PresentationParameters presentationParameters)
     {
-        if (presentationParameters == null)
-            throw new ArgumentNullException("presentationParameters");
+        ArgumentNullException.ThrowIfNull(presentationParameters);
 
         PresentationParameters = presentationParameters;
         Reset();
@@ -784,14 +698,13 @@ public partial class GraphicsDevice : IDisposable
     /// </summary>
     internal void OnDeviceResetting()
     {
-        EventHelpers.Raise(this, DeviceResetting, EventArgs.Empty);
+        DeviceResetting?.Invoke();
 
         lock (_resourcesLock)
         {
             foreach (var resource in _resources)
             {
-                var target = resource.Target as GraphicsResource;
-                if (target != null)
+                if (resource.Target is GraphicsResource target)
                     target.GraphicsDeviceResetting();
             }
 
@@ -806,55 +719,26 @@ public partial class GraphicsDevice : IDisposable
     /// </summary>
     internal void OnDeviceReset()
     {
-        EventHelpers.Raise(this, DeviceReset, EventArgs.Empty);
+        DeviceReset?.Invoke();
     }
 
     /// <summary>
     /// Retrieves the display mode's spatial resolution, color resolution, and refresh frequency.
     /// </summary>
-    public DisplayMode DisplayMode
-    {
-        get
-        {
-            return Adapter.CurrentDisplayMode;
-        }
-    }
-
-    /// <summary>
-    /// Retrieves the status of the device.
-    /// </summary>
-    public GraphicsDeviceStatus GraphicsDeviceStatus
-    {
-        get
-        {
-            return GraphicsDeviceStatus.Normal;
-        }
-    }
+    public DisplayMode DisplayMode => Adapter.CurrentDisplayMode;
 
     /// <summary>
     /// Gets the presentation parameters associated with this graphics device.
     /// </summary>
-    public PresentationParameters PresentationParameters
-    {
-        get;
-        private set;
-    }
+    public PresentationParameters PresentationParameters { get; private set; }
 
     /// <summary>
     /// Gets or sets a viewport identifying the portion of the render target to receive draw calls.
     /// </summary>
     public Viewport Viewport
     {
-        get
-        {
-            return _viewport;
-        }
-
-        set
-        {
-            _viewport = value;
-            PlatformSetViewport(ref value);
-        }
+        get => _viewport;
+        set { _viewport = value; PlatformSetViewport(ref value); }
     }
 
     private readonly GraphicsProfile _graphicsProfile;
@@ -862,41 +746,21 @@ public partial class GraphicsDevice : IDisposable
     /// Gets the graphics profile.
     /// The default value is <see cref="GraphicsProfile.Reach"/>.
     /// </summary>
-    public GraphicsProfile GraphicsProfile
-    {
-        get { return _graphicsProfile; }
-    }
+    public GraphicsProfile GraphicsProfile => _graphicsProfile;
 
     /// <summary>
     /// Gets or sets the rectangle used for scissor testing. By default, the size matches the render target size.
     /// </summary>
     public Rectangle ScissorRectangle
     {
-        get
-        {
-            return _scissorRectangle;
-        }
-
-        set
-        {
-            if (_scissorRectangle == value)
-                return;
-
-            _scissorRectangle = value;
-            _scissorRectangleDirty = true;
-        }
+        get => _scissorRectangle;
+        set { if (_scissorRectangle == value) return; _scissorRectangle = value; _scissorRectangleDirty = true; }
     }
 
     /// <summary>
     /// Gets the amount of render targets bound to this device.
     /// </summary>
-    public int RenderTargetCount
-    {
-        get
-        {
-            return _currentRenderTargetCount;
-        }
-    }
+    public int RenderTargetCount => _currentRenderTargetCount;
 
     /// <summary>
     /// Sets a new render target for this <see cref="GraphicsDevice"/>.
@@ -905,7 +769,7 @@ public partial class GraphicsDevice : IDisposable
     /// A new render target for the device, or <see langword="null"/>
     /// to set the device render target to the back buffer of the device.
     /// </param>
-		public void SetRenderTarget(RenderTarget2D renderTarget)
+    public void SetRenderTarget(RenderTarget2D renderTarget)
     {
         if (renderTarget == null)
         {
@@ -938,7 +802,7 @@ public partial class GraphicsDevice : IDisposable
     /// Sets an array of render targets.
     /// </summary>
     /// <param name="renderTargets">An array of render targets.</param>
-		public void SetRenderTargets(params RenderTargetBinding[] renderTargets)
+    public void SetRenderTargets(params RenderTargetBinding[] renderTargets)
     {
         // Avoid having to check for null and zero length.
         var renderTargetCount = 0;
@@ -975,22 +839,21 @@ public partial class GraphicsDevice : IDisposable
         {
             unchecked
             {
-                _graphicsMetrics._targetCount++;
+                _graphicsMetrics.TargetCount++;
             }
         }
         else
         {
             unchecked
             {
-                _graphicsMetrics._targetCount += renderTargetCount;
+                _graphicsMetrics.TargetCount += renderTargetCount;
             }
         }
     }
 
     internal void ApplyRenderTargets(RenderTargetBinding[] renderTargets)
     {
-        var clearTarget = false;
-
+        bool clearTarget;
         PlatformResolveRenderTargets();
 
         // Clear the current bindings.
@@ -1040,7 +903,7 @@ public partial class GraphicsDevice : IDisposable
     /// Gets render target surfaces.
     /// </summary>
     /// <returns>An array of bound render targets.</returns>
-		public RenderTargetBinding[] GetRenderTargets()
+    public RenderTargetBinding[] GetRenderTargets()
     {
         // Return a correctly sized copy our internal array.
         var bindings = new RenderTargetBinding[_currentRenderTargetCount];
@@ -1067,9 +930,7 @@ public partial class GraphicsDevice : IDisposable
     /// <param name="vertexBuffer">A vertex buffer.</param>
     public void SetVertexBuffer(VertexBuffer vertexBuffer)
     {
-        _vertexBuffersDirty |= (vertexBuffer == null)
-                               ? _vertexBuffers.Clear()
-                               : _vertexBuffers.Set(vertexBuffer, 0);
+        _vertexBuffersDirty |= (vertexBuffer == null) ? _vertexBuffers.Clear() : _vertexBuffers.Set(vertexBuffer, 0);
     }
 
     /// <inheritdoc cref="SetVertexBuffer(VertexBuffer)"/>
@@ -1086,12 +947,10 @@ public partial class GraphicsDevice : IDisposable
             || vertexBuffer == null && vertexOffset != 0
             || vertexBuffer != null && vertexOffset >= vertexBuffer.VertexCount)
         {
-            throw new ArgumentOutOfRangeException("vertexOffset");
+            throw new ArgumentOutOfRangeException(nameof(vertexOffset));
         }
 
-        _vertexBuffersDirty |= (vertexBuffer == null)
-                               ? _vertexBuffers.Clear()
-                               : _vertexBuffers.Set(vertexBuffer, vertexOffset);
+        _vertexBuffersDirty |= (vertexBuffer == null) ? _vertexBuffers.Clear() : _vertexBuffers.Set(vertexBuffer, vertexOffset);
     }
 
     /// <summary>
@@ -1112,7 +971,7 @@ public partial class GraphicsDevice : IDisposable
             if (vertexBuffers.Length > _maxVertexBufferSlots)
             {
                 var message = string.Format(CultureInfo.InvariantCulture, "Max number of vertex buffers is {0}.", _maxVertexBufferSlots);
-                throw new ArgumentOutOfRangeException("vertexBuffers", message);
+                throw new ArgumentOutOfRangeException(nameof(vertexBuffers), message);
             }
 
             _vertexBuffersDirty |= _vertexBuffers.Set(vertexBuffers);
@@ -1135,62 +994,25 @@ public partial class GraphicsDevice : IDisposable
 
     internal Shader VertexShader
     {
-        get { return _vertexShader; }
-
-        set
-        {
-            if (_vertexShader == value)
-                return;
-
-            _vertexShader = value;
-            _vertexConstantBuffers.Clear();
-            _vertexShaderDirty = true;
-        }
+        get => _vertexShader;
+        set { if (_vertexShader == value) return; _vertexShader = value; _vertexConstantBuffers.Clear(); _vertexShaderDirty = true; }
     }
 
     internal Shader PixelShader
     {
-        get { return _pixelShader; }
-
-        set
-        {
-            if (_pixelShader == value)
-                return;
-
-            _pixelShader = value;
-            _pixelConstantBuffers.Clear();
-            _pixelShaderDirty = true;
-        }
+        get => _pixelShader;
+        set { if (_pixelShader == value) return; _pixelShader = value; _pixelConstantBuffers.Clear(); _pixelShaderDirty = true; }
     }
 
     internal void SetConstantBuffer(ShaderStage stage, int slot, ConstantBuffer buffer)
     {
-        if (stage == ShaderStage.Vertex)
-            _vertexConstantBuffers[slot] = buffer;
-        else
-            _pixelConstantBuffers[slot] = buffer;
+        (stage == ShaderStage.Vertex ? _vertexConstantBuffers : _pixelConstantBuffers)[slot] = buffer;
     }
 
     /// <summary>
     /// Gets a value that indicates whether the resources were lost.
     /// </summary>
     public bool ResourcesLost { get; set; }
-
-    /// <summary>
-    /// Draw geometry by indexing into the vertex buffer.
-    /// </summary>
-    /// <param name="primitiveType">The type of primitives in the index buffer.</param>
-    /// <param name="baseVertex">Used to offset the vertex range indexed from the vertex buffer.</param>
-    /// <param name="minVertexIndex">This is unused and remains here only for XNA API compatibility.</param>
-    /// <param name="numVertices">This is unused and remains here only for XNA API compatibility.</param>
-    /// <param name="startIndex">The index within the index buffer to start drawing from.</param>
-    /// <param name="primitiveCount">The number of primitives to render from the index buffer.</param>
-    /// <remarks>Note that minVertexIndex and numVertices are unused in MonoGame and will be ignored.</remarks>
-    [Obsolete("Use DrawIndexedPrimitives(PrimitiveType primitiveType, int baseVertex, int startIndex, int primitiveCount) instead. In future versions this method can be removed.")]
-    public void DrawIndexedPrimitives(PrimitiveType primitiveType, int baseVertex, int minVertexIndex, int numVertices, int startIndex, int primitiveCount)
-    {
-        DrawIndexedPrimitives(primitiveType, baseVertex, startIndex, primitiveCount);
-    }
 
     /// <summary>
     /// Draw geometry by indexing into the vertex buffer.
@@ -1210,15 +1032,14 @@ public partial class GraphicsDevice : IDisposable
         if (_indexBuffer == null)
             throw new InvalidOperationException("Index buffer must be set before calling DrawIndexedPrimitives.");
 
-        if (primitiveCount <= 0)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(primitiveCount);
 
         PlatformDrawIndexedPrimitives(primitiveType, baseVertex, startIndex, primitiveCount);
 
         unchecked
         {
-            _graphicsMetrics._drawCount++;
-            _graphicsMetrics._primitiveCount += primitiveCount;
+            _graphicsMetrics.DrawCount++;
+            _graphicsMetrics.PrimitiveCount += primitiveCount;
         }
     }
 
@@ -1248,32 +1069,29 @@ public partial class GraphicsDevice : IDisposable
     /// <param name="vertexDeclaration">The layout of the vertices.</param>
     public void DrawUserPrimitives<T>(PrimitiveType primitiveType, T[] vertexData, int vertexOffset, int primitiveCount, VertexDeclaration vertexDeclaration) where T : struct
     {
-        if (vertexData == null)
-            throw new ArgumentNullException("vertexData");
+        ArgumentNullException.ThrowIfNull(vertexData);
 
         if (vertexData.Length == 0)
-            throw new ArgumentOutOfRangeException("vertexData");
+            throw new ArgumentOutOfRangeException(nameof(vertexData));
 
         if (vertexOffset < 0 || vertexOffset >= vertexData.Length)
-            throw new ArgumentOutOfRangeException("vertexOffset");
+            throw new ArgumentOutOfRangeException(nameof(vertexOffset));
 
-        if (primitiveCount <= 0)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(primitiveCount);
 
         var vertexCount = GetElementCountArray(primitiveType, primitiveCount);
 
         if (vertexOffset + vertexCount > vertexData.Length)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+            throw new ArgumentOutOfRangeException(nameof(primitiveCount));
 
-        if (vertexDeclaration == null)
-            throw new ArgumentNullException("vertexDeclaration");
+        ArgumentNullException.ThrowIfNull(vertexDeclaration);
 
         PlatformDrawUserPrimitives<T>(primitiveType, vertexData, vertexOffset, vertexDeclaration, vertexCount);
 
         unchecked
         {
-            _graphicsMetrics._drawCount++;
-            _graphicsMetrics._primitiveCount += primitiveCount;
+            _graphicsMetrics.DrawCount++;
+            _graphicsMetrics.PrimitiveCount += primitiveCount;
         }
     }
 
@@ -1291,8 +1109,7 @@ public partial class GraphicsDevice : IDisposable
         if (_vertexBuffers.Count == 0)
             throw new InvalidOperationException("Vertex buffer must be set before calling DrawPrimitives.");
 
-        if (primitiveCount <= 0)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(primitiveCount);
 
         var vertexCount = GetElementCountArray(primitiveType, primitiveCount);
 
@@ -1300,8 +1117,8 @@ public partial class GraphicsDevice : IDisposable
 
         unchecked
         {
-            _graphicsMetrics._drawCount++;
-            _graphicsMetrics._primitiveCount += primitiveCount;
+            _graphicsMetrics.DrawCount++;
+            _graphicsMetrics.PrimitiveCount += primitiveCount;
         }
     }
 
@@ -1347,41 +1164,39 @@ public partial class GraphicsDevice : IDisposable
         // Inlined here for efficiency.
 
         if (vertexData == null || vertexData.Length == 0)
-            throw new ArgumentNullException("vertexData");
+            throw new ArgumentNullException(nameof(vertexData));
 
         if (vertexOffset < 0 || vertexOffset >= vertexData.Length)
-            throw new ArgumentOutOfRangeException("vertexOffset");
+            throw new ArgumentOutOfRangeException(nameof(vertexOffset));
 
         if (numVertices <= 0 || numVertices > vertexData.Length)
-            throw new ArgumentOutOfRangeException("numVertices");
+            throw new ArgumentOutOfRangeException(nameof(numVertices));
 
         if (vertexOffset + numVertices > vertexData.Length)
-            throw new ArgumentOutOfRangeException("numVertices");
+            throw new ArgumentOutOfRangeException(nameof(numVertices));
 
         if (indexData == null || indexData.Length == 0)
-            throw new ArgumentNullException("indexData");
+            throw new ArgumentNullException(nameof(indexData));
 
         if (indexOffset < 0 || indexOffset >= indexData.Length)
-            throw new ArgumentOutOfRangeException("indexOffset");
+            throw new ArgumentOutOfRangeException(nameof(indexOffset));
 
-        if (primitiveCount <= 0)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(primitiveCount);
 
         if (indexOffset + GetElementCountArray(primitiveType, primitiveCount) > indexData.Length)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+            throw new ArgumentOutOfRangeException(nameof(primitiveCount));
 
-        if (vertexDeclaration == null)
-            throw new ArgumentNullException("vertexDeclaration");
+        ArgumentNullException.ThrowIfNull(vertexDeclaration);
 
         if (vertexDeclaration.VertexStride < ReflectionHelpers.SizeOf<T>.Get())
-            throw new ArgumentOutOfRangeException("vertexDeclaration", "Vertex stride of vertexDeclaration should be at least as big as the stride of the actual vertices.");
+            throw new ArgumentOutOfRangeException(nameof(vertexDeclaration), "Vertex stride of vertexDeclaration should be at least as big as the stride of the actual vertices.");
 
         PlatformDrawUserIndexedPrimitives<T>(primitiveType, vertexData, vertexOffset, numVertices, indexData, indexOffset, primitiveCount, vertexDeclaration);
 
         unchecked
         {
-            _graphicsMetrics._drawCount++;
-            _graphicsMetrics._primitiveCount += primitiveCount;
+            _graphicsMetrics.DrawCount++;
+            _graphicsMetrics.PrimitiveCount += primitiveCount;
         }
     }
 
@@ -1427,41 +1242,39 @@ public partial class GraphicsDevice : IDisposable
         // Inlined here for efficiency.
 
         if (vertexData == null || vertexData.Length == 0)
-            throw new ArgumentNullException("vertexData");
+            throw new ArgumentNullException(nameof(vertexData));
 
         if (vertexOffset < 0 || vertexOffset >= vertexData.Length)
-            throw new ArgumentOutOfRangeException("vertexOffset");
+            throw new ArgumentOutOfRangeException(nameof(vertexOffset));
 
         if (numVertices <= 0 || numVertices > vertexData.Length)
-            throw new ArgumentOutOfRangeException("numVertices");
+            throw new ArgumentOutOfRangeException(nameof(numVertices));
 
         if (vertexOffset + numVertices > vertexData.Length)
-            throw new ArgumentOutOfRangeException("numVertices");
+            throw new ArgumentOutOfRangeException(nameof(numVertices));
 
         if (indexData == null || indexData.Length == 0)
-            throw new ArgumentNullException("indexData");
+            throw new ArgumentNullException(nameof(indexData));
 
         if (indexOffset < 0 || indexOffset >= indexData.Length)
-            throw new ArgumentOutOfRangeException("indexOffset");
+            throw new ArgumentOutOfRangeException(nameof(indexOffset));
 
-        if (primitiveCount <= 0)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(primitiveCount);
 
         if (indexOffset + GetElementCountArray(primitiveType, primitiveCount) > indexData.Length)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+            throw new ArgumentOutOfRangeException(nameof(primitiveCount));
 
-        if (vertexDeclaration == null)
-            throw new ArgumentNullException("vertexDeclaration");
+        ArgumentNullException.ThrowIfNull(vertexDeclaration);
 
         if (vertexDeclaration.VertexStride < ReflectionHelpers.SizeOf<T>.Get())
-            throw new ArgumentOutOfRangeException("vertexDeclaration", "Vertex stride of vertexDeclaration should be at least as big as the stride of the actual vertices.");
+            throw new ArgumentOutOfRangeException(nameof(vertexDeclaration), "Vertex stride of vertexDeclaration should be at least as big as the stride of the actual vertices.");
 
         PlatformDrawUserIndexedPrimitives<T>(primitiveType, vertexData, vertexOffset, numVertices, indexData, indexOffset, primitiveCount, vertexDeclaration);
 
         unchecked
         {
-            _graphicsMetrics._drawCount++;
-            _graphicsMetrics._primitiveCount += primitiveCount;
+            _graphicsMetrics.DrawCount++;
+            _graphicsMetrics.PrimitiveCount += primitiveCount;
         }
     }
 
@@ -1518,15 +1331,14 @@ public partial class GraphicsDevice : IDisposable
         if (_indexBuffer == null)
             throw new InvalidOperationException("Index buffer must be set before calling DrawInstancedPrimitives.");
 
-        if (primitiveCount <= 0)
-            throw new ArgumentOutOfRangeException("primitiveCount");
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(primitiveCount);
 
         PlatformDrawInstancedPrimitives(primitiveType, baseVertex, startIndex, primitiveCount, baseInstance, instanceCount);
 
         unchecked
         {
-            _graphicsMetrics._drawCount++;
-            _graphicsMetrics._primitiveCount += (primitiveCount * instanceCount);
+            _graphicsMetrics.DrawCount++;
+            _graphicsMetrics.PrimitiveCount += (primitiveCount * instanceCount);
         }
     }
 
@@ -1538,8 +1350,7 @@ public partial class GraphicsDevice : IDisposable
     /// <param name="data">Array of data.</param>
     public void GetBackBufferData<T>(T[] data) where T : struct
     {
-        if (data == null)
-            throw new ArgumentNullException("data");
+        ArgumentNullException.ThrowIfNull(data);
         GetBackBufferData(null, data, 0, data.Length);
     }
 
@@ -1569,8 +1380,7 @@ public partial class GraphicsDevice : IDisposable
     public void GetBackBufferData<T>(Rectangle? rect, T[] data, int startIndex, int elementCount)
         where T : struct
     {
-        if (data == null)
-            throw new ArgumentNullException("data");
+        ArgumentNullException.ThrowIfNull(data);
 
         int width, height;
         if (rect.HasValue)
@@ -1594,7 +1404,7 @@ public partial class GraphicsDevice : IDisposable
         if (tSize > fSize || fSize % tSize != 0)
             throw new ArgumentException("Type T is of an invalid size for the format of this texture.", "T");
         if (startIndex < 0 || startIndex >= data.Length)
-            throw new ArgumentException("startIndex must be at least zero and smaller than data.Length.", "startIndex");
+            throw new ArgumentException("startIndex must be at least zero and smaller than data.Length.", nameof(startIndex));
         if (data.Length < startIndex + elementCount)
             throw new ArgumentException("The data array is too small.");
         var dataByteSize = width * height * fSize;
@@ -1602,28 +1412,22 @@ public partial class GraphicsDevice : IDisposable
         if (elementCount * tSize != dataByteSize)
             throw new ArgumentException(string.Format("elementCount is not the right size, " +
                                         "elementCount * sizeof(T) is {0}, but data size is {1} bytes.",
-                                        elementCount * tSize, dataByteSize), "elementCount");
+                                        elementCount * tSize, dataByteSize), nameof(elementCount));
 
         PlatformGetBackBufferData(rect, data, startIndex, elementCount);
     }
 
     private static int GetElementCountArray(PrimitiveType primitiveType, int primitiveCount)
     {
-        switch (primitiveType)
+        return primitiveType switch
         {
-        case PrimitiveType.LineList:
-            return primitiveCount * 2;
-        case PrimitiveType.LineStrip:
-            return primitiveCount + 1;
-        case PrimitiveType.TriangleList:
-            return primitiveCount * 3;
-        case PrimitiveType.TriangleStrip:
-            return primitiveCount + 2;
-        case PrimitiveType.PointList:
-            return primitiveCount;
-        }
-
-        throw new NotSupportedException();
+            PrimitiveType.LineList => primitiveCount * 2,
+            PrimitiveType.LineStrip => primitiveCount + 1,
+            PrimitiveType.TriangleList => primitiveCount * 3,
+            PrimitiveType.TriangleStrip => primitiveCount + 2,
+            PrimitiveType.PointList => primitiveCount,
+            _ => throw new NotSupportedException(),
+        };
     }
 
     // uniformly scales down the given rectangle by 10%

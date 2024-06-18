@@ -9,7 +9,7 @@ namespace Monogame.Graphics;
 /// <summary>
 /// Contains rasterizer state, which determines how to convert vector data (shapes) into raster data (pixels).
 /// </summary>
-	public partial class RasterizerState : GraphicsResource
+public partial class RasterizerState : GraphicsResource
 {
     private readonly bool _defaultStateObject;
 
@@ -44,7 +44,7 @@ namespace Monogame.Graphics;
     /// A polygon with a larger z-bias value appears in front of a polygon with a smaller value.  For example, a
     /// a polygon with a value of <c>1.0f</c> appears drawn in front of a polygon with a value of <c>0.0f</c>
     /// </remarks>
-	    public float DepthBias
+    public float DepthBias
     {
         get { return _depthBias; }
         set
@@ -58,7 +58,7 @@ namespace Monogame.Graphics;
     /// Gets or Sets the fille mode, which defines how a triangle is filled during rendering.
     /// The default is <see cref="FillMode.Solid"/>.
     /// </summary>
-	    public FillMode FillMode
+    public FillMode FillMode
     {
         get { return _fillMode; }
         set
@@ -77,7 +77,7 @@ namespace Monogame.Graphics;
     /// written with the same sample value (sampled at a pixel center) which allows non-antialiased rendering to a
     /// mutlisample buffer.  This property has no effect when rendering to a buffer that does not support multisampling.
     /// </remarks>
-	    public bool MultiSampleAntiAlias
+    public bool MultiSampleAntiAlias
     {
         get { return _multiSampleAntiAlias; }
         set
@@ -94,7 +94,7 @@ namespace Monogame.Graphics;
     /// Scissor testing can improve drawing performance by only drawing triangles (or parts of triangles) that are
     /// contained within a <see cref="GraphicsDevice.ScissorRectangle">GraphicsDevice.ScissorRectangle</see>
     /// </remarks>
-	    public bool ScissorTestEnable
+    public bool ScissorTestEnable
     {
         get { return _scissorTestEnable; }
         set
@@ -119,7 +119,7 @@ namespace Monogame.Graphics;
     ///
     /// <code>m = max( abs(delta z / delta x), abs(delta z / delta y) )</code>
     /// </remarks>
-	    public float SlopeScaleDepthBias
+    public float SlopeScaleDepthBias
     {
         get { return _slopeScaleDepthBias; }
         set
@@ -169,7 +169,7 @@ namespace Monogame.Graphics;
     /// CullMode = CullMode.CullClockwiseFace
     /// </code>
     /// </remarks>
-	    public static readonly RasterizerState CullClockwise;
+    public static readonly RasterizerState CullClockwise;
 
     /// <summary>
     /// A built-in state object with settings for culling primitives with counter-clockwise winding order.

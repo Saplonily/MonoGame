@@ -14,7 +14,7 @@ namespace Monogame.Graphics;
 /// with the vertex and index buffers on <see cref="ModelMesh"/>.
 /// However, in most cases, <see cref="ModelMesh.Draw()"/> will be sufficient.
 /// </remarks>
-	public sealed class ModelMeshPart
+public sealed class ModelMeshPart
 {
     private Effect _effect;
 
@@ -60,37 +60,37 @@ namespace Monogame.Graphics;
     /// <summary>
     /// Gets the index buffer for this mesh part.
     /// </summary>
-		public IndexBuffer IndexBuffer { get; set; }
+    public IndexBuffer IndexBuffer { get; set; }
 
     /// <summary>
     /// Gets the number of vertices used during a draw call.
     /// </summary>
-		public int NumVertices { get; set; }
+    public int NumVertices { get; set; }
 
     /// <summary>
     /// Gets the number of primitives to render.
     /// </summary>
-		public int PrimitiveCount { get; set; }
+    public int PrimitiveCount { get; set; }
 
     /// <summary>
     /// Gets the location in the index array at which to start reading vertices.
     /// </summary>
-		public int StartIndex { get; set; }
+    public int StartIndex { get; set; }
 
     /// <summary>
     /// Gets or sets an object identifying this model mesh part.
     /// </summary>
-		public object Tag { get; set; }
+    public object Tag { get; set; }
 
     /// <summary>
     /// Gets the vertex buffer for this mesh part.
     /// </summary>
-		public VertexBuffer VertexBuffer { get; set; }
+    public VertexBuffer VertexBuffer { get; set; }
 
     /// <summary>
     /// Gets the offset (in vertices) from the top of vertex buffer.
     /// </summary>
-		public int VertexOffset { get; set; }
+    public int VertexOffset { get; set; }
 
     internal int VertexBufferIndex { get; set; }
 
@@ -104,6 +104,5 @@ namespace Monogame.Graphics;
     /// Using this constructor is strongly discouraged. Adding meshes to models at runtime is
     /// not supported and may lead to <see cref="NullReferenceException"/>s if parent is not set.
     /// </summary>
-    [Obsolete("This constructor is deprecated and will be made internal in a future release.")]
-    public ModelMeshPart() { }
+    internal ModelMeshPart() { }
 }

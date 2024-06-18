@@ -20,103 +20,39 @@ namespace Monogame.Graphics;
 /// </summary>
 public class PresentationParameters
 {
-    #region Constants
-
-    /// <summary>
-    /// Default presentation rate 
-    /// </summary>
-    public const int DefaultPresentRate = 60;
-
-    #endregion Constants
-
-    #region Private Fields
-
-    private DepthFormat depthStencilFormat;
-    private SurfaceFormat backBufferFormat;
-    private int backBufferHeight = GraphicsDeviceManager.DefaultBackBufferHeight;
-    private int backBufferWidth = GraphicsDeviceManager.DefaultBackBufferWidth;
-    private IntPtr deviceWindowHandle;
     private int multiSampleCount;
-    private bool disposed;
     private bool isFullScreen;
     private bool hardwareModeSwitch = true;
 
-    #endregion Private Fields
-
-    #region Constructors
-
-    /// <summary>
-    /// Create a <see cref="PresentationParameters"/> instance with default values for all properties.
-    /// </summary>
+    /// <summary>Create a <see cref="PresentationParameters"/> instance with default values for all properties.</summary>
     public PresentationParameters()
     {
         Clear();
     }
 
-    #endregion Constructors
+    /// <summary>Get or set the format of the back buffer.</summary>
+    public SurfaceFormat BackBufferFormat { get; set; }
 
-    #region Properties
+    /// <summary>Get or set the width of the back buffer.</summary>
+    public int BackBufferWidth { get; set; } = GraphicsDeviceManager.DefaultBackBufferWidth;
 
-    /// <summary>
-    /// Get or set the format of the back buffer.
-    /// </summary>
-    public SurfaceFormat BackBufferFormat
-    {
-        get { return backBufferFormat; }
-        set { backBufferFormat = value; }
-    }
+    /// <summary>Get or set the height of the back buffer.</summary>
+    public int BackBufferHeight { get; set; } = GraphicsDeviceManager.DefaultBackBufferHeight;
 
-    /// <summary>
-    /// Get or set the height of the back buffer.
-    /// </summary>
-    public int BackBufferHeight
-    {
-        get { return backBufferHeight; }
-        set { backBufferHeight = value; }
-    }
+    /// <summary>Get the bounds of the back buffer.</summary>
+    public Rectangle Bounds => new Rectangle(0, 0, BackBufferWidth, BackBufferHeight);
 
-    /// <summary>
-    /// Get or set the width of the back buffer.
-    /// </summary>
-    public int BackBufferWidth
-    {
-        get { return backBufferWidth; }
-        set { backBufferWidth = value; }
-    }
-
-    /// <summary>
-    /// Get the bounds of the back buffer.
-    /// </summary>
-    public Rectangle Bounds
-    {
-        get { return new Rectangle(0, 0, backBufferWidth, backBufferHeight); }
-    }
-
-    /// <summary>
-    /// Get or set the handle of the window that will present the back buffer.
-    /// </summary>
-    public IntPtr DeviceWindowHandle
-    {
-        get { return deviceWindowHandle; }
-        set { deviceWindowHandle = value; }
-    }
+    /// <summary>Get or set the handle of the window that will present the back buffer.</summary>
+    public IntPtr DeviceWindowHandle { get; set; }
 
 #if WINDOWS_UAP
     public SwapChainPanel SwapChainPanel { get; set; }
 #endif
 
-    /// <summary>
-    /// Get or set the depth stencil format for the back buffer.
-    /// </summary>
-		public DepthFormat DepthStencilFormat
-    {
-        get { return depthStencilFormat; }
-        set { depthStencilFormat = value; }
-    }
+    /// <summary>Get or set the depth stencil format for the back buffer.</summary>
+    public DepthFormat DepthStencilFormat { get; set; }
 
-    /// <summary>
-    /// Get or set a value indicating if we are in full screen mode.
-    /// </summary>
+    /// <summary>Get or set a value indicating if we are in full screen mode.</summary>
     public bool IsFullScreen
     {
         get
@@ -127,9 +63,8 @@ public class PresentationParameters
         {
             isFullScreen = value;
 #if IOS && !TVOS
-				UIApplication.SharedApplication.StatusBarHidden = isFullScreen;
+			UIApplication.SharedApplication.StatusBarHidden = isFullScreen;
 #endif
-
         }
     }
 
@@ -144,24 +79,18 @@ public class PresentationParameters
         set { hardwareModeSwitch = value; }
     }
 
-    /// <summary>
-    /// Get or set the multisample count for the back buffer.
-    /// </summary>
+    /// <summary>Get or set the multisample count for the back buffer.</summary>
     public int MultiSampleCount
     {
         get { return multiSampleCount; }
         set { multiSampleCount = value; }
     }
 
-    /// <summary>
-    /// Get or set the presentation interval.
-    /// </summary>
+    /// <summary>Get or set the presentation interval.</summary>
     public PresentInterval PresentationInterval { get; set; }
 
-    /// <summary>
-    /// Get or set the display orientation.
-    /// </summary>
-		public DisplayOrientation DisplayOrientation
+    /// <summary>Get or set the display orientation.</summary>
+    public DisplayOrientation DisplayOrientation
     {
         get;
         set;
@@ -175,17 +104,10 @@ public class PresentationParameters
     /// </summary>
     public RenderTargetUsage RenderTargetUsage { get; set; }
 
-    #endregion Properties
-
-
-    #region Methods
-
-    /// <summary>
-    /// Reset all properties to their default values.
-    /// </summary>
+    /// <summary>Reset all properties to their default values.</summary>
     public void Clear()
     {
-        backBufferFormat = SurfaceFormat.Color;
+        BackBufferFormat = SurfaceFormat.Color;
 #if IOS
 			// Mainscreen.Bounds does not account for the device's orientation. it ALWAYS assumes portrait
 			var width = (int)(UIScreen.MainScreen.Bounds.Width * UIScreen.MainScreen.Scale);
@@ -202,19 +124,20 @@ public class PresentationParameters
 			backBufferWidth = width;
         backBufferHeight = height;
 #else
-        backBufferWidth = GraphicsDeviceManager.DefaultBackBufferWidth;
-        backBufferHeight = GraphicsDeviceManager.DefaultBackBufferHeight;
+        BackBufferWidth = GraphicsDeviceManager.DefaultBackBufferWidth;
+        BackBufferHeight = GraphicsDeviceManager.DefaultBackBufferHeight;
 #endif
-        deviceWindowHandle = IntPtr.Zero;
+        DeviceWindowHandle = IntPtr.Zero;
+        // FIXME move this to ApplyChanges()
 #if IOS && !TVOS
-			isFullScreen = UIApplication.SharedApplication.StatusBarHidden;
+		isFullScreen = UIApplication.SharedApplication.StatusBarHidden;
 #else
         // isFullScreen = false;
 #endif
-        depthStencilFormat = DepthFormat.None;
+        DepthStencilFormat = DepthFormat.None;
         multiSampleCount = 0;
         PresentationInterval = PresentInterval.Default;
-        DisplayOrientation = Monogame.DisplayOrientation.Default;
+        DisplayOrientation = DisplayOrientation.Default;
     }
 
     /// <summary>
@@ -224,11 +147,11 @@ public class PresentationParameters
     public PresentationParameters Clone()
     {
         PresentationParameters clone = new PresentationParameters();
-        clone.backBufferFormat = this.backBufferFormat;
-        clone.backBufferHeight = this.backBufferHeight;
-        clone.backBufferWidth = this.backBufferWidth;
-        clone.deviceWindowHandle = this.deviceWindowHandle;
-        clone.depthStencilFormat = this.depthStencilFormat;
+        clone.BackBufferFormat = this.BackBufferFormat;
+        clone.BackBufferHeight = this.BackBufferHeight;
+        clone.BackBufferWidth = this.BackBufferWidth;
+        clone.DeviceWindowHandle = this.DeviceWindowHandle;
+        clone.DepthStencilFormat = this.DepthStencilFormat;
         clone.IsFullScreen = this.IsFullScreen;
         clone.HardwareModeSwitch = this.HardwareModeSwitch;
         clone.multiSampleCount = this.multiSampleCount;
@@ -237,7 +160,4 @@ public class PresentationParameters
         clone.RenderTargetUsage = this.RenderTargetUsage;
         return clone;
     }
-
-    #endregion Methods
-
 }

@@ -231,7 +231,7 @@ internal class WinFormsGameForm : Form
         m.Result = IntPtr.Zero;
     }
 
-    private static Monogame.Input.Keys KeyCodeTranslate(
+    private static Monogame.Input.Key KeyCodeTranslate(
         System.Windows.Forms.Keys keyCode, bool extended, long scancode)
     {
         switch (keyCode)
@@ -240,22 +240,22 @@ internal class WinFormsGameForm : Form
         // We have to check for special keys such as control/shift/alt/ etc
         case System.Windows.Forms.Keys.ControlKey:
             return extended
-                ? Monogame.Input.Keys.RightControl
-                : Monogame.Input.Keys.LeftControl;
+                ? Monogame.Input.Key.RightControl
+                : Monogame.Input.Key.LeftControl;
         case System.Windows.Forms.Keys.ShiftKey:
             // left shift is 0x2A, right shift is 0x36. IsExtendedKey is always false.
             return ((scancode & 0x1FF) == 0x36)
-                       ? Monogame.Input.Keys.RightShift
-                        : Monogame.Input.Keys.LeftShift;
+                       ? Monogame.Input.Key.RightShift
+                        : Monogame.Input.Key.LeftShift;
         // Note that the Alt key is now refered to as Menu.
         case System.Windows.Forms.Keys.Menu:
         case System.Windows.Forms.Keys.Alt:
             return extended
-                ? Monogame.Input.Keys.RightAlt
-                : Monogame.Input.Keys.LeftAlt;
+                ? Monogame.Input.Key.RightAlt
+                : Monogame.Input.Key.LeftAlt;
 
         default:
-            return (Monogame.Input.Keys)keyCode;
+            return (Monogame.Input.Key)keyCode;
         }
     }
 }

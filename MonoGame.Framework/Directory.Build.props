@@ -8,6 +8,7 @@
     <BaseOutputPath>..\Artifacts\MonoGame.Framework\$(MonoGamePlatform)</BaseOutputPath>
     <AssemblyName>MonoGame.Framework</AssemblyName>
     <RootNamespace>Monogame</RootNamespace>
+    <NoWarn>CA2014</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 

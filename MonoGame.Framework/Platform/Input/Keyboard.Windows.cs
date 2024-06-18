@@ -13,18 +13,18 @@ public static partial class Keyboard
     private static readonly byte[] DefinedKeyCodes;
 
     private static readonly byte[] _keyState = new byte[256];
-    private static readonly List<Keys> _keys = new List<Keys>(10);
+    private static readonly List<Key> _keys = new List<Key>(10);
 
     private static bool _isActive;
 
     [DllImport("user32.dll")]
     private static extern bool GetKeyboardState(byte[] lpKeyState);
 
-    private static readonly Predicate<Keys> IsKeyReleasedPredicate = key => IsKeyReleased((byte)key);
+    private static readonly Predicate<Key> IsKeyReleasedPredicate = key => IsKeyReleased((byte)key);
 
     static Keyboard()
     {
-        var definedKeys = Enum.GetValues(typeof(Keys));
+        var definedKeys = Enum.GetValues(typeof(Key));
         var keyCodes = new List<byte>(Math.Min(definedKeys.Length, 255));
         foreach (var key in definedKeys)
         {
@@ -45,7 +45,7 @@ public static partial class Keyboard
             {
                 if (IsKeyReleased(keyCode))
                     continue;
-                var key = (Keys)keyCode;
+                var key = (Key)keyCode;
                 if (!_keys.Contains(key))
                     _keys.Add(key);
             }

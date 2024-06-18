@@ -1026,7 +1026,7 @@ public partial class GraphicsDevice
             {
                 unchecked
                 {
-                    _graphicsMetrics._vertexShaderCount++;
+                    _graphicsMetrics.VertexShaderCount++;
                 }
             }
 
@@ -1034,7 +1034,7 @@ public partial class GraphicsDevice
             {
                 unchecked
                 {
-                    _graphicsMetrics._pixelShaderCount++;
+                    _graphicsMetrics.PixelShaderCount++;
                 }
             }
 

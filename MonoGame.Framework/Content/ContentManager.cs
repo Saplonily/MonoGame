@@ -23,7 +23,7 @@ namespace Monogame.Content;
 /// design time MonoGame Content Builder.  It also manages the lifespan of the loaded objects, disposing the
 /// content manager will also dispose any assets which are themselves <see cref="IDisposable"/>.
 /// </summary>
-	public partial class ContentManager : IDisposable
+public partial class ContentManager : IDisposable
 {
     const byte ContentCompressedLzx = 0x80;
     const byte ContentCompressedLz4 = 0x40;
@@ -141,7 +141,7 @@ namespace Monogame.Content;
     }
 
     /// <summary />
-		~ContentManager()
+    ~ContentManager()
     {
         Dispose(false);
     }
@@ -162,7 +162,7 @@ namespace Monogame.Content;
     /// </remarks>
     /// <param name="serviceProvider">The service provider that the ContentManager should use to locate services.</param>
     /// <exception cref="ArgumentNullException">The <paramref name="serviceProvider"/> parameter is null.</exception>
-		public ContentManager(IServiceProvider serviceProvider)
+    public ContentManager(IServiceProvider serviceProvider)
     {
         if (serviceProvider == null)
         {
@@ -191,7 +191,7 @@ namespace Monogame.Content;
     }
 
     /// <inheritdoc />
-		public void Dispose()
+    public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
@@ -203,7 +203,7 @@ namespace Monogame.Content;
     /// <param name="disposing">
     /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
     /// </param>
-		protected virtual void Dispose(bool disposing)
+    protected virtual void Dispose(bool disposing)
     {
         if (!disposed)
         {
@@ -341,7 +341,7 @@ namespace Monogame.Content;
     ///
     /// An error occurred while opening the content file.
     /// </exception>
-		public virtual T Load<T>(string assetName)
+    public virtual T Load<T>(string assetName)
     {
         if (string.IsNullOrEmpty(assetName))
         {
@@ -380,7 +380,7 @@ namespace Monogame.Content;
     }
 
     /// <summary />
-		protected virtual Stream OpenStream(string assetName)
+    protected virtual Stream OpenStream(string assetName)
     {
         Stream stream;
         try
@@ -391,11 +391,11 @@ namespace Monogame.Content;
             // Setting the RootDirectory to an absolute path is useful in editor
             // situations, but TitleContainer can ONLY be passed relative paths.                
 #if DESKTOPGL || WINDOWS
-            if (Path.IsPathRooted(assetPath))                
-                stream = File.OpenRead(assetPath);                
+            if (Path.IsPathRooted(assetPath))
+                stream = File.OpenRead(assetPath);
             else
-#endif                
-            stream = TitleContainer.OpenStream(assetPath);
+#endif
+                stream = TitleContainer.OpenStream(assetPath);
 #if ANDROID
             // Read the asset into memory in one go. This results in a ~50% reduction
             // in load times on Android due to slow Android asset streams.
@@ -424,7 +424,7 @@ namespace Monogame.Content;
     }
 
     /// <summary />
-		protected T ReadAsset<T>(string assetName, Action<IDisposable> recordDisposableObject)
+    protected T ReadAsset<T>(string assetName, Action<IDisposable> recordDisposableObject)
     {
         if (string.IsNullOrEmpty(assetName))
         {
@@ -527,7 +527,7 @@ namespace Monogame.Content;
     }
 
     /// <summary />
-		protected virtual void ReloadGraphicsAssets()
+    protected virtual void ReloadGraphicsAssets()
     {
         foreach (var asset in LoadedAssets)
         {
@@ -572,7 +572,7 @@ namespace Monogame.Content;
     /// If an asset being unloaded implements the <see cref="IDisposable"/> interface, then the
     /// <see cref="IDisposable.Dispose">IDisposable.Dispose</see> method will be called before unloading.
     /// </remarks>
-		public virtual void Unload()
+    public virtual void Unload()
     {
         // Look for disposable assets.
         foreach (var disposable in disposableAssets)
@@ -661,7 +661,7 @@ namespace Monogame.Content;
     /// <summary>
     /// Gets or Sets the root directory that this ContentManager will search for assets in.
     /// </summary>
-		public string RootDirectory
+    public string RootDirectory
     {
         get
         {
@@ -684,7 +684,7 @@ namespace Monogame.Content;
     /// <summary>
     /// Gets the service provider instance used by this ContentManager.
     /// </summary>
-		public IServiceProvider ServiceProvider
+    public IServiceProvider ServiceProvider
     {
         get
         {

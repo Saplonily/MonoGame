@@ -53,7 +53,6 @@
     <Compile Include="Platform\Media\VideoPlayer.Default.cs" />
     <Compile Include="Platform\Media\Video.Default.cs" />
     <Compile Include="Platform\Input\GamePad.SDL.cs" />
-    <Compile Include="Platform\Input\InputKeyEventArgs.cs" />
     <Compile Include="Platform\Input\Joystick.SDL.cs" />
     <Compile Include="Platform\Input\Keyboard.SDL.cs" />
     <Compile Include="Platform\Input\KeyboardUtil.SDL.cs" />

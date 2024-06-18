@@ -73,11 +73,10 @@ public abstract class GraphicsResource : IDisposable
 
             // Do not trigger the event if called from the finalizer
             if (disposing)
-                EventHelpers.Raise(this, Disposing, EventArgs.Empty);
+                Disposing?.Invoke();
 
             // Remove from the global list of graphics resources
-            if (graphicsDevice != null)
-                graphicsDevice.RemoveResourceReference(_selfReference);
+            graphicsDevice?.RemoveResourceReference(_selfReference);
 
             _selfReference = null;
             graphicsDevice = null;
@@ -89,17 +88,14 @@ public abstract class GraphicsResource : IDisposable
     /// Occurs when <see cref="Dispose()"/> is called
     /// or when this object is finalized and collected by the garbage collector.
     /// </summary>
-		public event EventHandler<EventArgs> Disposing;
+    public event Action Disposing;
 
     /// <summary>
     /// Gets the <see cref="Graphics.GraphicsDevice"/> associated with this <see cref="GraphicsResource"/>.
     /// </summary>
-		public GraphicsDevice GraphicsDevice
+    public GraphicsDevice GraphicsDevice
     {
-        get
-        {
-            return graphicsDevice;
-        }
+        get => graphicsDevice;
 
         internal set
         {
@@ -126,23 +122,17 @@ public abstract class GraphicsResource : IDisposable
     /// <summary>
     /// Gets a value that indicates whether the object is disposed.
     /// </summary>
-		public bool IsDisposed
-    {
-        get
-        {
-            return disposed;
-        }
-    }
+    public bool IsDisposed => disposed;
 
     /// <summary>
     /// Gets the name of the resource.
     /// </summary>
-		public string Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// Gets the resource tags for this resource.
     /// </summary>
-		public Object Tag { get; set; }
+    public Object Tag { get; set; }
 
     /// <summary>
     /// Gets a string representation of the current instance.

@@ -64,7 +64,7 @@ public class TouchPanelState
     /// Raised when a new touch event is processed. Clients can use this
     /// to obtain per-frame touch events beyond the scope of gestures/touch panel.
     /// </summary>
-    public event EventHandler<TouchLocation> OnTouchEvent;
+    public event Action<TouchLocation> OnTouchEvent;
 
     internal readonly GameWindow Window;
 
@@ -170,14 +170,13 @@ public class TouchPanelState
     internal void AddHighResolutionTouchEvent(int id, TouchLocationState state, Vector2 position)
     {
         //Try to find the touch id.
-        int touchId;
-        if (!_touchIds.TryGetValue(id, out touchId))
+        if (!_touchIds.TryGetValue(id, out int touchId))
         {
             return;
         }
         var evt = new TouchLocation(touchId, state, position * _touchScale, CurrentTimestamp,
             /* isHighFrequencyEvent */ true);
-        EventHelpers.Raise(this, OnTouchEvent, evt);
+        OnTouchEvent?.Invoke(evt);
     }
 
     internal void AddEvent(int id, TouchLocationState state, Vector2 position)
@@ -213,8 +212,7 @@ public class TouchPanelState
         }
 
         // Try to find the touch id.
-        int touchId;
-        if (!_touchIds.TryGetValue(id, out touchId))
+        if (!_touchIds.TryGetValue(id, out int touchId))
         {
             // If we got here that means either the device is sending
             // us bad, out of order, or old touch events.  In any case
@@ -228,7 +226,7 @@ public class TouchPanelState
             // Add the new touch event keeping the list from getting
             // too large if no one happens to be requesting the state.
             var evt = new TouchLocation(touchId, state, position * _touchScale, CurrentTimestamp);
-            EventHelpers.Raise(this, OnTouchEvent, evt);
+            OnTouchEvent?.Invoke(evt);
 
             if (!isMouse || EnableMouseTouchPoint)
             {
@@ -679,8 +677,7 @@ public class TouchPanelState
 
         // Make sure this is a move event and that we have
         // a previous touch location.
-        TouchLocation prevTouch;
-        if (touch.State != TouchLocationState.Moved || !touch.TryGetPreviousLocation(out prevTouch))
+        if (touch.State != TouchLocationState.Moved || !touch.TryGetPreviousLocation(out TouchLocation prevTouch))
             return;
 
         var delta = touch.Position - prevTouch.Position;
@@ -720,7 +717,7 @@ public class TouchPanelState
         }
 
         // If the drag could not be classified then no gesture.
-        if (_dragGestureStarted == GestureType.None || _dragGestureStarted == GestureType.DragComplete)
+        if (_dragGestureStarted is GestureType.None or GestureType.DragComplete)
             return;
 
         _tapDisabled = true;
@@ -734,13 +731,11 @@ public class TouchPanelState
 
     private void ProcessPinch(TouchLocation[] touches)
     {
-        TouchLocation prevPos0;
-        TouchLocation prevPos1;
 
-        if (!touches[0].TryGetPreviousLocation(out prevPos0))
+        if (!touches[0].TryGetPreviousLocation(out TouchLocation prevPos0))
             prevPos0 = touches[0];
 
-        if (!touches[1].TryGetPreviousLocation(out prevPos1))
+        if (!touches[1].TryGetPreviousLocation(out TouchLocation prevPos1))
             prevPos1 = touches[1];
 
         var delta0 = touches[0].Position - prevPos0.Position;

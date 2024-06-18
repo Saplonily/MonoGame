@@ -76,7 +76,7 @@ internal class Threading
     /// <returns>true if the code is currently running on the UI thread.</returns>
     public static bool IsOnUIThread()
     {
-        return _mainThreadId == Thread.CurrentThread.ManagedThreadId;
+        return _mainThreadId == Environment.CurrentManagedThreadId;
     }
 
     /// <summary>
@@ -167,8 +167,6 @@ internal class Threading
             _resetEventPool.Push(resetEvent);
             return; // return here to skip dispose
         }
-
-        resetEvent.Dispose();
     }
 
     /// <summary>

@@ -316,7 +316,7 @@ public class SoundBank : IDisposable
     /// <summary>
     /// This event is triggered when the SoundBank is disposed.
     /// </summary>
-    public event EventHandler<EventArgs> Disposing;
+    public event Action Disposing;
 
     /// <summary>
     /// Is true if the SoundBank has been disposed.
@@ -348,7 +348,7 @@ public class SoundBank : IDisposable
         if (disposing)
         {
             IsInUse = false;
-            EventHelpers.Raise(this, Disposing, EventArgs.Empty);
+            Disposing?.Invoke();
         }
     }
 }

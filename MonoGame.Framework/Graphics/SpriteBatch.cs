@@ -10,12 +10,10 @@ namespace Monogame.Graphics;
 /// <summary>
 /// Helper class for drawing text strings and sprites in one or more optimized batches.
 /// </summary>
-	public class SpriteBatch : GraphicsResource
+public class SpriteBatch : GraphicsResource
 {
-    #region Private Fields
     readonly SpriteBatcher _batcher;
 
-    SpriteSortMode _sortMode;
     BlendState _blendState;
     SamplerState _samplerState;
     DepthStencilState _depthStencilState;
@@ -29,7 +27,6 @@ namespace Monogame.Graphics;
     Rectangle _tempRect = new Rectangle(0, 0, 0, 0);
     Vector2 _texCoordTL = new Vector2(0, 0);
     Vector2 _texCoordBR = new Vector2(0, 0);
-    #endregion
 
     /// <summary>
     /// Constructs a <see cref="SpriteBatch"/>.
@@ -48,12 +45,8 @@ namespace Monogame.Graphics;
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="graphicsDevice"/> is null.</exception>
     public SpriteBatch(GraphicsDevice graphicsDevice, int capacity)
     {
-        if (graphicsDevice == null)
-        {
-            throw new ArgumentNullException("graphicsDevice", FrameworkResources.ResourceCreationWhenDeviceIsNull);
-        }
-
-        this.GraphicsDevice = graphicsDevice;
+        GraphicsDevice = graphicsDevice ?? 
+            throw new ArgumentNullException(nameof(graphicsDevice), FrameworkResources.ResourceCreationWhenDeviceIsNull);
 
         _spriteEffect = new SpriteEffect(graphicsDevice);
         _spritePass = _spriteEffect.CurrentTechnique.Passes[0];
@@ -66,7 +59,6 @@ namespace Monogame.Graphics;
     /// <summary>
     /// Begins a new sprite and text batch with the specified render state.
     /// </summary>
-    /// <param name="sortMode">The drawing order for sprite and text drawing. <see cref="SpriteSortMode.Deferred"/> by default.</param>
     /// <param name="blendState">State of the blending. Uses <see cref="BlendState.AlphaBlend"/> if null.</param>
     /// <param name="samplerState">State of the sampler. Uses <see cref="SamplerState.LinearClamp"/> if null.</param>
     /// <param name="depthStencilState">State of the depth-stencil buffer. Uses <see cref="DepthStencilState.None"/> if null.</param>
@@ -78,7 +70,6 @@ namespace Monogame.Graphics;
     /// <remarks>The <see cref="Begin"/> Begin should be called before drawing commands, and you cannot call it again before subsequent <see cref="End"/>.</remarks>
     public void Begin
     (
-         SpriteSortMode sortMode = SpriteSortMode.Deferred,
          BlendState blendState = null,
          SamplerState samplerState = null,
          DepthStencilState depthStencilState = null,
@@ -90,20 +81,12 @@ namespace Monogame.Graphics;
         if (_beginCalled)
             throw new InvalidOperationException("Begin cannot be called again until End has been successfully called.");
 
-        // defaults
-        _sortMode = sortMode;
         _blendState = blendState ?? BlendState.AlphaBlend;
         _samplerState = samplerState ?? SamplerState.LinearClamp;
         _depthStencilState = depthStencilState ?? DepthStencilState.None;
         _rasterizerState = rasterizerState ?? RasterizerState.CullCounterClockwise;
         _effect = effect;
         _spriteEffect.TransformMatrix = transformMatrix;
-
-        // Setup things now so a user can change them.
-        if (sortMode == SpriteSortMode.Immediate)
-        {
-            Setup();
-        }
 
         _beginCalled = true;
     }
@@ -112,17 +95,14 @@ namespace Monogame.Graphics;
     /// Flushes all batched text and sprites to the screen.
     /// </summary>
     /// <remarks>This command should be called after <see cref="Begin"/> and drawing commands.</remarks>
-		public void End()
+    public void End()
     {
         if (!_beginCalled)
             throw new InvalidOperationException("Begin must be called before calling End.");
 
         _beginCalled = false;
 
-        if (_sortMode != SpriteSortMode.Immediate)
-            Setup();
-
-        _batcher.DrawBatch(_sortMode, _effect);
+        _batcher.DrawBatch(_effect);
     }
 
     void Setup()
@@ -138,28 +118,23 @@ namespace Monogame.Graphics;
 
     void CheckValid(Texture2D texture)
     {
-        if (texture == null)
-            throw new ArgumentNullException("texture");
+        ArgumentNullException.ThrowIfNull(texture);
         if (!_beginCalled)
             throw new InvalidOperationException("Draw was called, but Begin has not yet been called. Begin must be called successfully before you can call Draw.");
     }
 
     void CheckValid(SpriteFont spriteFont, string text)
     {
-        if (spriteFont == null)
-            throw new ArgumentNullException("spriteFont");
-        if (text == null)
-            throw new ArgumentNullException("text");
+        ArgumentNullException.ThrowIfNull(spriteFont);
+        ArgumentNullException.ThrowIfNull(text);
         if (!_beginCalled)
             throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
     }
 
     void CheckValid(SpriteFont spriteFont, StringBuilder text)
     {
-        if (spriteFont == null)
-            throw new ArgumentNullException("spriteFont");
-        if (text == null)
-            throw new ArgumentNullException("text");
+        ArgumentNullException.ThrowIfNull(spriteFont);
+        ArgumentNullException.ThrowIfNull(text);
         if (!_beginCalled)
             throw new InvalidOperationException("DrawString was called, but Begin has not yet been called. Begin must be called successfully before you can call DrawString.");
     }
@@ -176,39 +151,22 @@ namespace Monogame.Graphics;
     /// <param name="scale">A scaling of this sprite.</param>
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this sprite.</param>
-		public void Draw(Texture2D texture,
-            Vector2 position,
-            Rectangle? sourceRectangle,
-            Color color,
-            float rotation,
-            Vector2 origin,
-            Vector2 scale,
-            SpriteEffects effects,
-            float layerDepth)
+    public void Draw(Texture2D texture,
+        Vector2 position,
+        Rectangle? sourceRectangle,
+        Color color,
+        float rotation,
+        Vector2 origin,
+        Vector2 scale,
+        SpriteEffects effects,
+        float layerDepth)
     {
         CheckValid(texture);
 
         var item = _batcher.CreateBatchItem();
         item.Texture = texture;
 
-        // set SortKey based on SpriteSortMode.
-        switch (_sortMode)
-        {
-        // Comparison of Texture objects.
-        case SpriteSortMode.Texture:
-            item.SortKey = texture.SortingKey;
-            break;
-        // Comparison of Depth
-        case SpriteSortMode.FrontToBack:
-            item.SortKey = layerDepth;
-            break;
-        // Comparison of Depth in reverse
-        case SpriteSortMode.BackToFront:
-            item.SortKey = -layerDepth;
-            break;
-        }
-
-        origin = origin * scale;
+        origin *= scale;
 
         float w, h;
         if (sourceRectangle.HasValue)
@@ -231,15 +189,11 @@ namespace Monogame.Graphics;
 
         if ((effects & SpriteEffects.FlipVertically) != 0)
         {
-            var temp = _texCoordBR.Y;
-            _texCoordBR.Y = _texCoordTL.Y;
-            _texCoordTL.Y = temp;
+            (_texCoordTL.Y, _texCoordBR.Y) = (_texCoordBR.Y, _texCoordTL.Y);
         }
         if ((effects & SpriteEffects.FlipHorizontally) != 0)
         {
-            var temp = _texCoordBR.X;
-            _texCoordBR.X = _texCoordTL.X;
-            _texCoordTL.X = temp;
+            (_texCoordTL.X, _texCoordBR.X) = (_texCoordBR.X, _texCoordTL.X);
         }
 
         if (rotation == 0f)
@@ -268,8 +222,6 @@ namespace Monogame.Graphics;
                     _texCoordBR,
                     layerDepth);
         }
-
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -284,15 +236,15 @@ namespace Monogame.Graphics;
     /// <param name="scale">A scaling of this sprite.</param>
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this sprite.</param>
-		public void Draw(Texture2D texture,
-            Vector2 position,
-            Rectangle? sourceRectangle,
-            Color color,
-            float rotation,
-            Vector2 origin,
-            float scale,
-            SpriteEffects effects,
-            float layerDepth)
+    public void Draw(Texture2D texture,
+        Vector2 position,
+        Rectangle? sourceRectangle,
+        Color color,
+        float rotation,
+        Vector2 origin,
+        float scale,
+        SpriteEffects effects,
+        float layerDepth)
     {
         var scaleVec = new Vector2(scale, scale);
         Draw(texture, position, sourceRectangle, color, rotation, origin, scaleVec, effects, layerDepth);
@@ -309,36 +261,19 @@ namespace Monogame.Graphics;
     /// <param name="origin">Center of the rotation. 0,0 by default.</param>
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this sprite.</param>
-		public void Draw(Texture2D texture,
-        Rectangle destinationRectangle,
-        Rectangle? sourceRectangle,
-        Color color,
-        float rotation,
-        Vector2 origin,
-        SpriteEffects effects,
-        float layerDepth)
+    public void Draw(Texture2D texture,
+    Rectangle destinationRectangle,
+    Rectangle? sourceRectangle,
+    Color color,
+    float rotation,
+    Vector2 origin,
+    SpriteEffects effects,
+    float layerDepth)
     {
         CheckValid(texture);
 
         var item = _batcher.CreateBatchItem();
         item.Texture = texture;
-
-        // set SortKey based on SpriteSortMode.
-        switch (_sortMode)
-        {
-        // Comparison of Texture objects.
-        case SpriteSortMode.Texture:
-            item.SortKey = texture.SortingKey;
-            break;
-        // Comparison of Depth
-        case SpriteSortMode.FrontToBack:
-            item.SortKey = layerDepth;
-            break;
-        // Comparison of Depth in reverse
-        case SpriteSortMode.BackToFront:
-            item.SortKey = -layerDepth;
-            break;
-        }
 
         if (sourceRectangle.HasValue)
         {
@@ -405,17 +340,6 @@ namespace Monogame.Graphics;
                     _texCoordBR,
                     layerDepth);
         }
-
-        FlushIfNeeded();
-    }
-
-    // Mark the end of a draw operation for Immediate SpriteSortMode.
-    internal void FlushIfNeeded()
-    {
-        if (_sortMode == SpriteSortMode.Immediate)
-        {
-            _batcher.DrawBatch(_sortMode, _effect);
-        }
     }
 
     /// <summary>
@@ -425,15 +349,12 @@ namespace Monogame.Graphics;
     /// <param name="position">The drawing location on screen.</param>
     /// <param name="sourceRectangle">An optional region on the texture which will be rendered. If null - draws full texture.</param>
     /// <param name="color">A color mask.</param>
-		public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color)
+    public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color)
     {
         CheckValid(texture);
 
         var item = _batcher.CreateBatchItem();
         item.Texture = texture;
-
-        // set SortKey based on SpriteSortMode.
-        item.SortKey = _sortMode == SpriteSortMode.Texture ? texture.SortingKey : 0;
 
         Vector2 size;
 
@@ -461,8 +382,6 @@ namespace Monogame.Graphics;
                  _texCoordTL,
                  _texCoordBR,
                  0);
-
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -472,15 +391,12 @@ namespace Monogame.Graphics;
     /// <param name="destinationRectangle">The drawing bounds on screen.</param>
     /// <param name="sourceRectangle">An optional region on the texture which will be rendered. If null - draws full texture.</param>
     /// <param name="color">A color mask.</param>
-		public void Draw(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color)
+    public void Draw(Texture2D texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color)
     {
         CheckValid(texture);
 
         var item = _batcher.CreateBatchItem();
         item.Texture = texture;
-
-        // set SortKey based on SpriteSortMode.
-        item.SortKey = _sortMode == SpriteSortMode.Texture ? texture.SortingKey : 0;
 
         if (sourceRectangle.HasValue)
         {
@@ -504,8 +420,6 @@ namespace Monogame.Graphics;
                  _texCoordTL,
                  _texCoordBR,
                  0);
-
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -514,15 +428,12 @@ namespace Monogame.Graphics;
     /// <param name="texture">A texture.</param>
     /// <param name="position">The drawing location on screen.</param>
     /// <param name="color">A color mask.</param>
-		public void Draw(Texture2D texture, Vector2 position, Color color)
+    public void Draw(Texture2D texture, Vector2 position, Color color)
     {
         CheckValid(texture);
 
         var item = _batcher.CreateBatchItem();
         item.Texture = texture;
-
-        // set SortKey based on SpriteSortMode.
-        item.SortKey = _sortMode == SpriteSortMode.Texture ? texture.SortingKey : 0;
 
         item.Set(position.X,
                  position.Y,
@@ -532,8 +443,6 @@ namespace Monogame.Graphics;
                  Vector2.Zero,
                  Vector2.One,
                  0);
-
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -549,9 +458,6 @@ namespace Monogame.Graphics;
         var item = _batcher.CreateBatchItem();
         item.Texture = texture;
 
-        // set SortKey based on SpriteSortMode.
-        item.SortKey = _sortMode == SpriteSortMode.Texture ? texture.SortingKey : 0;
-
         item.Set(destinationRectangle.X,
                  destinationRectangle.Y,
                  destinationRectangle.Width,
@@ -560,8 +466,6 @@ namespace Monogame.Graphics;
                  Vector2.Zero,
                  Vector2.One,
                  0);
-
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -571,11 +475,9 @@ namespace Monogame.Graphics;
     /// <param name="text">The text which will be drawn.</param>
     /// <param name="position">The drawing location on screen.</param>
     /// <param name="color">A color mask.</param>
-		public unsafe void DrawString(SpriteFont spriteFont, string text, Vector2 position, Color color)
+    public unsafe void DrawString(SpriteFont spriteFont, string text, Vector2 position, Color color)
     {
         CheckValid(spriteFont, text);
-
-        float sortKey = (_sortMode == SpriteSortMode.Texture) ? spriteFont.Texture.SortingKey : 0;
 
         var offset = Vector2.Zero;
         var firstGlyphOfLine = true;
@@ -619,7 +521,6 @@ namespace Monogame.Graphics;
 
                 var item = _batcher.CreateBatchItem();
                 item.Texture = spriteFont.Texture;
-                item.SortKey = sortKey;
 
                 _texCoordTL.X = pCurrentGlyph->BoundsInTexture.X * spriteFont.Texture.TexelWidth;
                 _texCoordTL.Y = pCurrentGlyph->BoundsInTexture.Y * spriteFont.Texture.TexelHeight;
@@ -639,7 +540,6 @@ namespace Monogame.Graphics;
             }
 
         // We need to flush if we're using Immediate sort mode.
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -654,9 +554,9 @@ namespace Monogame.Graphics;
     /// <param name="scale">A scaling of this string.</param>
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this string.</param>
-		public void DrawString(
-        SpriteFont spriteFont, string text, Vector2 position, Color color,
-        float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    public void DrawString(
+    SpriteFont spriteFont, string text, Vector2 position, Color color,
+    float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
     {
         var scaleVec = new Vector2(scale, scale);
         DrawString(spriteFont, text, position, color, rotation, origin, scaleVec, effects, layerDepth);
@@ -674,29 +574,11 @@ namespace Monogame.Graphics;
     /// <param name="scale">A scaling of this string.</param>
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this string.</param>
-		public unsafe void DrawString(
-        SpriteFont spriteFont, string text, Vector2 position, Color color,
-        float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+    public unsafe void DrawString(
+    SpriteFont spriteFont, string text, Vector2 position, Color color,
+    float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
     {
         CheckValid(spriteFont, text);
-
-        float sortKey = 0;
-        // set SortKey based on SpriteSortMode.
-        switch (_sortMode)
-        {
-        // Comparison of Texture objects.
-        case SpriteSortMode.Texture:
-            sortKey = spriteFont.Texture.SortingKey;
-            break;
-        // Comparison of Depth
-        case SpriteSortMode.FrontToBack:
-            sortKey = layerDepth;
-            break;
-        // Comparison of Depth in reverse
-        case SpriteSortMode.BackToFront:
-            sortKey = -layerDepth;
-            break;
-        }
 
         var flipAdjustment = Vector2.Zero;
 
@@ -793,7 +675,6 @@ namespace Monogame.Graphics;
 
                 var item = _batcher.CreateBatchItem();
                 item.Texture = spriteFont.Texture;
-                item.SortKey = sortKey;
 
                 _texCoordTL.X = pCurrentGlyph->BoundsInTexture.X * spriteFont.Texture.TexelWidth;
                 _texCoordTL.Y = pCurrentGlyph->BoundsInTexture.Y * spriteFont.Texture.TexelHeight;
@@ -842,9 +723,6 @@ namespace Monogame.Graphics;
 
                 offset.X += pCurrentGlyph->Width + pCurrentGlyph->RightSideBearing;
             }
-
-        // We need to flush if we're using Immediate sort mode.
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -860,29 +738,11 @@ namespace Monogame.Graphics;
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this string.</param>
     /// <param name="rtl">Text is Right to Left.</param>
-		public unsafe void DrawString(
-        SpriteFont spriteFont, string text, Vector2 position, Color color,
-        float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth, bool rtl)
+    public unsafe void DrawString(
+    SpriteFont spriteFont, string text, Vector2 position, Color color,
+    float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth, bool rtl)
     {
         CheckValid(spriteFont, text);
-
-        float sortKey = 0;
-        // set SortKey based on SpriteSortMode.
-        switch (_sortMode)
-        {
-        // Comparison of Texture objects.
-        case SpriteSortMode.Texture:
-            sortKey = spriteFont.Texture.SortingKey;
-            break;
-        // Comparison of Depth
-        case SpriteSortMode.FrontToBack:
-            sortKey = layerDepth;
-            break;
-        // Comparison of Depth in reverse
-        case SpriteSortMode.BackToFront:
-            sortKey = -layerDepth;
-            break;
-        }
 
         var flipAdjustment = Vector2.Zero;
 
@@ -978,7 +838,6 @@ namespace Monogame.Graphics;
 
                 var item = _batcher.CreateBatchItem();
                 item.Texture = spriteFont.Texture;
-                item.SortKey = sortKey;
 
                 _texCoordTL.X = pCurrentGlyph->BoundsInTexture.X * spriteFont.Texture.TexelWidth;
                 _texCoordTL.Y = pCurrentGlyph->BoundsInTexture.Y * spriteFont.Texture.TexelHeight;
@@ -1027,9 +886,6 @@ namespace Monogame.Graphics;
 
                 offset.X += pCurrentGlyph->Width + (rtl ? pCurrentGlyph->LeftSideBearing : pCurrentGlyph->RightSideBearing);
             }
-
-        // We need to flush if we're using Immediate sort mode.
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -1039,11 +895,9 @@ namespace Monogame.Graphics;
     /// <param name="text">The text which will be drawn.</param>
     /// <param name="position">The drawing location on screen.</param>
     /// <param name="color">A color mask.</param>
-		public unsafe void DrawString(SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color)
+    public unsafe void DrawString(SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color)
     {
         CheckValid(spriteFont, text);
-
-        float sortKey = (_sortMode == SpriteSortMode.Texture) ? spriteFont.Texture.SortingKey : 0;
 
         var offset = Vector2.Zero;
         var firstGlyphOfLine = true;
@@ -1087,7 +941,6 @@ namespace Monogame.Graphics;
 
                 var item = _batcher.CreateBatchItem();
                 item.Texture = spriteFont.Texture;
-                item.SortKey = sortKey;
 
                 _texCoordTL.X = pCurrentGlyph->BoundsInTexture.X * spriteFont.Texture.TexelWidth;
                 _texCoordTL.Y = pCurrentGlyph->BoundsInTexture.Y * spriteFont.Texture.TexelHeight;
@@ -1105,9 +958,6 @@ namespace Monogame.Graphics;
 
                 offset.X += pCurrentGlyph->Width + pCurrentGlyph->RightSideBearing;
             }
-
-        // We need to flush if we're using Immediate sort mode.
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -1122,9 +972,9 @@ namespace Monogame.Graphics;
     /// <param name="scale">A scaling of this string.</param>
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this string.</param>
-		public void DrawString(
-        SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color,
-        float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
+    public void DrawString(
+    SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color,
+    float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)
     {
         var scaleVec = new Vector2(scale, scale);
         DrawString(spriteFont, text, position, color, rotation, origin, scaleVec, effects, layerDepth);
@@ -1142,29 +992,11 @@ namespace Monogame.Graphics;
     /// <param name="scale">A scaling of this string.</param>
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this string.</param>
-		public unsafe void DrawString(
-        SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color,
-        float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
+    public unsafe void DrawString(
+    SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color,
+    float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
     {
         CheckValid(spriteFont, text);
-
-        float sortKey = 0;
-        // set SortKey based on SpriteSortMode.
-        switch (_sortMode)
-        {
-        // Comparison of Texture objects.
-        case SpriteSortMode.Texture:
-            sortKey = spriteFont.Texture.SortingKey;
-            break;
-        // Comparison of Depth
-        case SpriteSortMode.FrontToBack:
-            sortKey = layerDepth;
-            break;
-        // Comparison of Depth in reverse
-        case SpriteSortMode.BackToFront:
-            sortKey = -layerDepth;
-            break;
-        }
 
         var flipAdjustment = Vector2.Zero;
 
@@ -1260,7 +1092,6 @@ namespace Monogame.Graphics;
 
                 var item = _batcher.CreateBatchItem();
                 item.Texture = spriteFont.Texture;
-                item.SortKey = sortKey;
 
                 _texCoordTL.X = pCurrentGlyph->BoundsInTexture.X * (float)spriteFont.Texture.TexelWidth;
                 _texCoordTL.Y = pCurrentGlyph->BoundsInTexture.Y * (float)spriteFont.Texture.TexelHeight;
@@ -1309,9 +1140,6 @@ namespace Monogame.Graphics;
 
                 offset.X += pCurrentGlyph->Width + pCurrentGlyph->RightSideBearing;
             }
-
-        // We need to flush if we're using Immediate sort mode.
-        FlushIfNeeded();
     }
 
     /// <summary>
@@ -1327,29 +1155,11 @@ namespace Monogame.Graphics;
     /// <param name="effects">Modificators for drawing. Can be combined.</param>
     /// <param name="layerDepth">A depth of the layer of this string.</param>
     /// <param name="rtl">Text is Right to Left.</param>
-		public unsafe void DrawString(
-        SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color,
-        float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth, bool rtl)
+    public unsafe void DrawString(
+    SpriteFont spriteFont, StringBuilder text, Vector2 position, Color color,
+    float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth, bool rtl)
     {
         CheckValid(spriteFont, text);
-
-        float sortKey = 0;
-        // set SortKey based on SpriteSortMode.
-        switch (_sortMode)
-        {
-        // Comparison of Texture objects.
-        case SpriteSortMode.Texture:
-            sortKey = spriteFont.Texture.SortingKey;
-            break;
-        // Comparison of Depth
-        case SpriteSortMode.FrontToBack:
-            sortKey = layerDepth;
-            break;
-        // Comparison of Depth in reverse
-        case SpriteSortMode.BackToFront:
-            sortKey = -layerDepth;
-            break;
-        }
 
         var flipAdjustment = Vector2.Zero;
 
@@ -1445,7 +1255,6 @@ namespace Monogame.Graphics;
 
                 var item = _batcher.CreateBatchItem();
                 item.Texture = spriteFont.Texture;
-                item.SortKey = sortKey;
 
                 _texCoordTL.X = pCurrentGlyph->BoundsInTexture.X * spriteFont.Texture.TexelWidth;
                 _texCoordTL.Y = pCurrentGlyph->BoundsInTexture.Y * spriteFont.Texture.TexelHeight;
@@ -1494,9 +1303,6 @@ namespace Monogame.Graphics;
 
                 offset.X += pCurrentGlyph->Width + (rtl ? pCurrentGlyph->LeftSideBearing : pCurrentGlyph->RightSideBearing);
             }
-
-        // We need to flush if we're using Immediate sort mode.
-        FlushIfNeeded();
     }
 
     /// <summary>

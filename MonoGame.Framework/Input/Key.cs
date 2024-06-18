@@ -7,7 +7,7 @@ namespace Monogame.Input;
 /// <summary>
 /// Defines the keys on a keyboard.
 /// </summary>	
-	public enum Keys
+	public enum Key
 {
     /// <summary>
     /// Reserved.

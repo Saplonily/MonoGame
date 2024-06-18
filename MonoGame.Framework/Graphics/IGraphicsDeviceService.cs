@@ -19,21 +19,21 @@ public interface IGraphicsDeviceService
     /// <summary>
     /// Raised when a new <see cref="Graphics.GraphicsDevice"/> has been created.
     /// </summary>
-		event EventHandler<EventArgs> DeviceCreated;
+    event Action DeviceCreated;
 
     /// <summary>
     /// Raised when the <see cref="GraphicsDevice"/> is disposed.
     /// </summary>
-    event EventHandler<EventArgs> DeviceDisposing;
+    event Action DeviceDisposing;
 
     /// <summary>
     /// Raised when the <see cref="GraphicsDevice"/> has reset.
     /// </summary>
-    /// <seealso cref="Monogame.Graphics.GraphicsDevice.Reset"/>
-    event EventHandler<EventArgs> DeviceReset;
+    /// <seealso cref="GraphicsDevice.Reset()"/>
+    event Action DeviceReset;
 
     /// <summary>
     /// Raised before the <see cref="GraphicsDevice"/> is resetting.
     /// </summary>
-    event EventHandler<EventArgs> DeviceResetting;
+    event Action DeviceResetting;
 }

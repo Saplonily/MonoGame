@@ -116,7 +116,7 @@ class AndroidGamePlatform : GamePlatform
     }
 
     // EnterForeground
-    void Activity_Resumed(object sender, EventArgs e)
+    void Activity_Resumed()
     {
         if (!IsActive)
         {
@@ -130,8 +130,9 @@ class AndroidGamePlatform : GamePlatform
     }
 
     MediaState _MediaPlayer_PrevState = MediaState.Stopped;
+    
     // EnterBackground
-    void Activity_Paused(object sender, EventArgs e)
+    void Activity_Paused()
     {
         if (IsActive)
         {

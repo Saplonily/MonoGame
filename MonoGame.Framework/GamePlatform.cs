@@ -63,7 +63,10 @@ abstract partial class GamePlatform : IDisposable
             if (_isActive != value)
             {
                 _isActive = value;
-                EventHelpers.Raise(this, _isActive ? Activated : Deactivated, EventArgs.Empty);
+                if (_isActive)
+                    Activated?.Invoke();
+                else
+                    Deactivated?.Invoke();
             }
         }
     }
@@ -104,9 +107,9 @@ abstract partial class GamePlatform : IDisposable
 
     #region Events
 
-    public event EventHandler<EventArgs> AsyncRunLoopEnded;
-    public event EventHandler<EventArgs> Activated;
-    public event EventHandler<EventArgs> Deactivated;
+    public event Action AsyncRunLoopEnded;
+    public event Action Activated;
+    public event Action Deactivated;
 
     /// <summary>
     /// Raises the AsyncRunLoopEnded event.  This method must be called by
@@ -115,7 +118,7 @@ abstract partial class GamePlatform : IDisposable
     /// </summary>
     protected void RaiseAsyncRunLoopEnded()
     {
-        EventHelpers.Raise(this, AsyncRunLoopEnded, EventArgs.Empty);
+        AsyncRunLoopEnded?.Invoke();
     }
 
     #endregion Events

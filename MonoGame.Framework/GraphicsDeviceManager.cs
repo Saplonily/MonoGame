@@ -54,10 +54,7 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
     /// <param name="game">The game instance to attach.</param>
     public GraphicsDeviceManager(Game game)
     {
-        if (game == null)
-            throw new ArgumentNullException("game", "Game cannot be null.");
-
-        _game = game;
+        _game = game ?? throw new ArgumentNullException(nameof(game), "Game cannot be null.");
 
         _supportedOrientations = DisplayOrientation.Default;
         _preferredBackBufferFormat = SurfaceFormat.Color;
@@ -135,14 +132,14 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
         _shouldApplyChanges = false;
 
         // hook up reset events
-        GraphicsDevice.DeviceReset += (sender, args) => OnDeviceReset(args);
-        GraphicsDevice.DeviceResetting += (sender, args) => OnDeviceResetting(args);
+        GraphicsDevice.DeviceReset += OnDeviceReset;
+        GraphicsDevice.DeviceResetting +=  OnDeviceResetting;
 
         // update the touchpanel display size when the graphicsdevice is reset
         _graphicsDevice.DeviceReset += UpdateTouchPanel;
         _graphicsDevice.PresentationChanged += OnPresentationChanged;
 
-        OnDeviceCreated(EventArgs.Empty);
+        OnDeviceCreated();
     }
 
     void IGraphicsDeviceManager.CreateDevice()
@@ -181,65 +178,61 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
     #region Events
 
     /// <inheritdoc />
-    public event EventHandler<EventArgs> DeviceCreated;
+    public event Action DeviceCreated;
 
     /// <inheritdoc />
-    public event EventHandler<EventArgs> DeviceDisposing;
+    public event Action DeviceDisposing;
 
     /// <inheritdoc />
-    public event EventHandler<EventArgs> DeviceResetting;
+    public event Action DeviceResetting;
 
     /// <inheritdoc />
-    public event EventHandler<EventArgs> DeviceReset;
+    public event Action DeviceReset;
 
     /// <summary>
     /// Called when a <see cref="GraphicsDevice"/> is created. Raises the <see cref="DeviceCreated"/> event.
     /// </summary>
-    /// <param name="e"></param>
-    protected void OnDeviceCreated(EventArgs e)
+    protected void OnDeviceCreated()
     {
-        EventHelpers.Raise(this, DeviceCreated, e);
+        DeviceCreated?.Invoke();
     }
 
     /// <summary>
     /// Called when a <see cref="GraphicsDevice"/> is disposed. Raises the <see cref="DeviceDisposing"/> event.
     /// </summary>
-    /// <param name="e"></param>
-    protected void OnDeviceDisposing(EventArgs e)
+    protected void OnDeviceDisposing()
     {
-        EventHelpers.Raise(this, DeviceDisposing, e);
+        DeviceDisposing?.Invoke();
     }
 
     /// <summary>
     /// Called before a <see cref="Graphics.GraphicsDevice"/> is reset.
     /// Raises the <see cref="DeviceResetting"/> event.
     /// </summary>
-    /// <param name="e"></param>
-    protected void OnDeviceResetting(EventArgs e)
+    protected void OnDeviceResetting()
     {
-        EventHelpers.Raise(this, DeviceResetting, e);
+        DeviceResetting?.Invoke();
     }
 
     /// <summary>
     /// Called after a <see cref="Graphics.GraphicsDevice"/> is reset.
     /// Raises the <see cref="DeviceReset"/> event.
     /// </summary>
-    /// <param name="e"></param>
-    protected void OnDeviceReset(EventArgs e)
+    protected void OnDeviceReset()
     {
-        EventHelpers.Raise(this, DeviceReset, e);
+        DeviceReset?.Invoke();
     }
 
     /// <summary>
     /// Raised by <see cref="ApplyChanges"/>. Allows users to override the <see cref="PresentationParameters"/> to
     /// pass to the <see cref="Graphics.GraphicsDevice">GraphicsDevice</see>.
     /// </summary>
-    public event EventHandler<PreparingDeviceSettingsEventArgs> PreparingDeviceSettings;
+    public event Action<GraphicsDeviceInformation> PreparingDeviceSettings;
 
     /// <summary>
     /// Raised when this <see cref="GraphicsDeviceManager"/> is disposed.
     /// </summary>
-    public event EventHandler<EventArgs> Disposed;
+    public event Action Disposed;
 
     /// <summary>
     /// This populates a GraphicsDeviceInformation instance and invokes PreparingDeviceSettings to
@@ -254,9 +247,7 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
 
         if (preparingDeviceSettingsHandler != null)
         {
-            // this allows users to overwrite settings through the argument
-            var args = new PreparingDeviceSettingsEventArgs(gdi);
-            preparingDeviceSettingsHandler(this, args);
+            preparingDeviceSettingsHandler(gdi);
 
             if (gdi.PresentationParameters == null || gdi.Adapter == null)
                 throw new NullReferenceException("Members should not be set to null in PreparingDeviceSettingsEventArgs");
@@ -290,7 +281,7 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
                 }
             }
             _disposed = true;
-            EventHelpers.Raise(this, Disposed, EventArgs.Empty);
+            Disposed?.Invoke();
         }
     }
 
@@ -375,7 +366,7 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
     private void DisposeGraphicsDevice()
     {
         _graphicsDevice.Dispose();
-        EventHelpers.Raise(this, DeviceDisposing, EventArgs.Empty);
+        DeviceDisposing?.Invoke();
         _graphicsDevice = null;
     }
 
@@ -391,7 +382,7 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
         _initialized = true;
     }
 
-    private void UpdateTouchPanel(object sender, EventArgs eventArgs)
+    private void UpdateTouchPanel()
     {
         TouchPanel.DisplayWidth = _graphicsDevice.PresentationParameters.BackBufferWidth;
         TouchPanel.DisplayHeight = _graphicsDevice.PresentationParameters.BackBufferHeight;
@@ -410,9 +401,9 @@ public partial class GraphicsDeviceManager : IGraphicsDeviceService, IDisposable
         ApplyChanges();
     }
 
-    private void OnPresentationChanged(object sender, PresentationEventArgs args)
+    private void OnPresentationChanged(PresentationParameters presentationParameters)
     {
-        _game.Platform.OnPresentationChanged(args.PresentationParameters);
+        _game.Platform.OnPresentationChanged(presentationParameters);
     }
 
     /// <summary>

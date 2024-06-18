@@ -6,10 +6,9 @@ using System;
 
 namespace Monogame.Graphics;
 
-internal class SpriteBatchItem : IComparable<SpriteBatchItem>
+internal class SpriteBatchItem
 {
     public Texture2D Texture;
-    public float SortKey;
 
     public VertexPositionColorTexture vertexTL;
     public VertexPositionColorTexture vertexTR;
@@ -87,11 +86,4 @@ internal class SpriteBatchItem : IComparable<SpriteBatchItem>
         vertexBR.TextureCoordinate.X = texCoordBR.X;
         vertexBR.TextureCoordinate.Y = texCoordBR.Y;
     }
-
-    #region Implement IComparable
-    public int CompareTo(SpriteBatchItem other)
-    {
-        return SortKey.CompareTo(other.SortKey);
-    }
-    #endregion
 }

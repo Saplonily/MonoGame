@@ -9,24 +9,13 @@ namespace Monogame.Input;
 /// <summary>
 /// Allows getting keystrokes from keyboard.
 /// </summary>
-	public static partial class Keyboard
+public static partial class Keyboard
 {
     /// <summary>
     /// Returns the current keyboard state.
     /// </summary>
     /// <returns>Current keyboard state.</returns>
-		public static KeyboardState GetState()
-    {
-        return PlatformGetState();
-    }
-
-    /// <summary>
-    /// Returns the current keyboard state for a given player.
-    /// </summary>
-    /// <param name="playerIndex">Player index of the keyboard.</param>
-    /// <returns>Current keyboard state.</returns>
-    [Obsolete("Use GetState() instead. In future versions this method can be removed.")]
-    public static KeyboardState GetState(PlayerIndex playerIndex)
+    public static KeyboardState GetState()
     {
         return PlatformGetState();
     }

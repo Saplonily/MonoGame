@@ -11,42 +11,20 @@ namespace Monogame.Graphics;
 /// <summary>
 /// Represents a texture resource
 /// </summary>
-	public abstract partial class Texture : GraphicsResource
+public abstract partial class Texture : GraphicsResource
 {
     internal SurfaceFormat _format;
     internal int _levelCount;
 
-    private readonly int _sortingKey = Interlocked.Increment(ref _lastSortingKey);
-    private static int _lastSortingKey;
-
-    /// <summary>
-    /// Gets a unique identifier of this texture for sorting purposes.
-    /// </summary>
-    /// <remarks>
-    /// <para>For example, this value is used by <see cref="SpriteBatch"/> when drawing with <see cref="SpriteSortMode.Texture"/>.</para>
-    /// <para>The value is an implementation detail and may change between application launches or MonoGame versions.
-    /// It is only guaranteed to stay consistent during application lifetime.</para>
-    /// </remarks>
-    internal int SortingKey
-    {
-        get { return _sortingKey; }
-    }
-
     /// <summary>
     /// Gets the surface format used by this <b>Texture</b>.
     /// </summary>
-		public SurfaceFormat Format
-    {
-        get { return _format; }
-    }
+    public SurfaceFormat Format => _format;
 
     /// <summary>
     /// Gets the number of mipmap levels in this <b>Texture</b>.
     /// </summary>
-		public int LevelCount
-    {
-        get { return _levelCount; }
-    }
+    public int LevelCount => _levelCount;
 
     internal static int CalculateMipLevels(int width, int height = 0, int depth = 0)
     {
